@@ -59,7 +59,7 @@ cd ../
 
 ## Step 2
 ### Create a Sample List
-Next we create a sample list pointing to the names and locations of the raw .fastq files. This will tell our script what files to look for and where they are stored.
+Next we create a sample list pointing to the names and locations of the raw .fastq files. This will tell your script what files to look for and where they are stored.
 
 To do this, we will run the command `printf '%s\n' "$PWD"/* >FastP_practice_samplelist_${MY_NAME}.txt`, replacing `${MY_NAME}` with, you guessed it, your name. 
 
@@ -130,9 +130,9 @@ cd /sc/arion/projects/NGSCRC/Scripts/Umbrella_Academy
 
 mkdir Kelsey
 ```
-We need our sample list to be in the same folder as our script, but it's currently still in the `master_data` folder where it was made. We will use `mv` to move your sample list to the directory you just created. 
+We need the sample list to be in the same folder as your script, but it's currently still in the `master_data` folder where it was made. We will use `mv` to move your sample list to the directory you just created. 
 
-Because we have navigated to our `Scripts` directory, we need to append the location of our sample list to this command in order to locate it.
+Because we have navigated to the `Scripts` directory, we need to append the location of the sample list to this command in order to locate it.
 The command will look like `${path to sample list}/FastP_practice_samplelist_${MY_NAME}.txt ${MY_NAME}`:
 ```
 mv /sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy/FastP_practice_samplelist_Kelsey.txt Kelsey
@@ -186,21 +186,21 @@ Let's break down the command:
 - `bsub:` The syntax to submit a job using LSF is `bsub`.
 - `-J MyArrayJob[1]:` We specify the job type (`-J`) as an array job (`MyArrayJob`) and specify the samples included in the array.  
   Typical array syntax would have you specify the span of samples in the array (e.g. `[1-2]` over samples 1 and 2). We *could* tell it to run it from sample 1 to sample 1 (`[1-1]`), but it understands that when we specify `[1]`, we want it to run for a single sample.
-- `< FastP_practice_Kelsey.sh:` This is how we tell it to submit (`<`) our script (`FastP_practice_Kelsey.sh`) to the LSF batch job we just described. 
+- `< FastP_practice_Kelsey.sh:` This is how we tell it to submit (`<`) your script (`FastP_practice_Kelsey.sh`) to the LSF batch job we just described. 
 
 Because we have written the script to run as an array job, we must still submit it as an array, even when testing on a single sample. 
 
-To check on the progress of our job (whether it is pending or running, how long it has been running, if it has finished), we can use `bjobs`. To continually check on the progress, we use `watch bjobs`. 
+To check on the progress of the job (whether it is pending or running, how long it has been running, if it has finished), we can use `bjobs`. To continually check on the progress, we use `watch bjobs`. 
 
 ## Step 7
 ### Debug (as Needed)
-Once our job has finished, we can check to see whether it was successful. 
+Once the job has finished, we can check to see whether it was successful. 
 
-We can look at the log and error files that have now been generated in our `Scripts` folder. If we just want to look at a file and not edit it, we can use `less` to open it, and `ctrl + z` to close it.
+We can look at the log and error files that have now been generated in your `Scripts` folder. If we just want to look at a file and not edit it, we can use `less` to open it, and `ctrl + z` to close it.
 
 **Were your jobs successful? How do you know?**
 
-You can also check the actual output in the `Work` directory. We haven't been to this folder yet, but we created a new output folder in the `Work` directory in our array job script. 
+You can also check the actual output in the `Work` directory. We haven't been to this folder yet, but we created a new output folder in the `Work` directory in the array job script. 
 
 The command to access it will look like `cd /sc/arion/projects/NGSCRC/Work/Umbrella_Academy/trimmed_reads_practice/${MY_NAME}`. 
 
