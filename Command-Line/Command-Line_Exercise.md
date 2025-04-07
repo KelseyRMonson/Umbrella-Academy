@@ -1,13 +1,13 @@
-# Hands-on "Getting Started with The Command Line" Exercise
+# "Getting Started with The Command Line" Exercise
 
 This is an exercise to get people familiar with common bioinformatics command line activities on a High Performance Computing (HPC) cluster.
 
-These include
+These activities include
 - navigating the command line
 - creating and editing simple scripts
 - executing array jobs (using the LSF job scheduler) on Minerva, Mount Sinai's HPC. 
 
-By the end of this exercise, we will run [fastp](https://github.com/OpenGene/fastp), a "tool designed to provide ultrafast all-in-one preprocessing and quality control for FastQ data," on four .fastq files.
+By the end of this exercise, we will be prepared to run [fastp](https://github.com/OpenGene/fastp), a "tool designed to provide ultrafast all-in-one preprocessing and quality control for FastQ data," on four .fastq files.
 
 **fastp citation**
 >Shifu Chen. 2023. Ultrafast one-pass FASTQ data preprocessing, quality control, and deduplication using fastp. iMeta 2: e107. [DOI](https://doi.org/10.1002/imt2.107)
@@ -116,7 +116,7 @@ nano samplelist.txt
 > - It should auto-complete the file name until `FastP_practice_samplelist_`
 > - Then enter the first letter of your name and hit Tab again, entering letters and hitting Tab until you have completed your file's name.  
 
-Once the file is open, navigate to the line we wish to remove using the arrow keys, then delete the line with: 
+Once the file is open, use the arrow keys to navigate to the line we wish to remove, then delete the line with: 
 ```
 ctrl + k
 ```
@@ -140,20 +140,20 @@ mkdir Kelsey
 ```
 We need our sample list to be in the same folder as our script, but it's currently still in the `master_data` folder where it was made. We will use `mv` to move your sample list to the directory you just created. 
 
-Because we have navigated to our `Scripts` directory, we need to append the file path to the location of our sample list in order to locate it.
+Because we have navigated to our `Scripts` directory, we need to append the location of our sample list to this command in order to locate it.
 The command will look like `${path to sample list}/FastP_practice_samplelist_${MY_NAME}.txt ${MY_NAME}`:
 ```
 mv /sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy/FastP_practice_samplelist_Kelsey.txt Kelsey
 ```
 >💡**Tip:** The basic syntax for most UNIX commands is essentially:
-> - "what are you doing?" (*action*)
-> - "what are you doing it to?" (*input*)
-> - "what is the desired result?" (*output*)
+> - "What are you doing?" (*action*)
+> - "What are you doing it to?" (*input*)
+> - "What is the desired result?" (*output*)
 >  
 > Applying this here:
-> - "what are you doing?" *moving a file*
-> - "what are you doing it to?" *the sample list*
-> - "what is the desired result?" *file is moved to my directory*
+> - "What are you doing?" *moving a file*
+> - "What are you doing it to?" *the sample list*
+> - "What is the desired result?" *file is moved to my directory*
 
 Now, make a copy of the `FastP_practice_annotated.sh` script using `cp`. 
 
@@ -169,12 +169,45 @@ Do you see the UNIX syntax in action here?
 ### Modify the Script
 Now you have your own sample list and your own shell script that you can modify to run fastp yourself! 
 
-Navigate to your folder and open the script for editing using `nano` to revise it according to the instructions contained in the file:
+Navigate to your folder and open the script for editing using `nano`:
 ```
 cd Kelsey
 nano FastP_practice_Kelsey.sh
 ```
-When the file is ready to be executed, run the following LSF command to submit an array job. 
-```
+Revise according to the instructions contained in the file.
 
+## Step 5
+### Submit the Job
+When the file is ready to be executed, we will use LSF syntax to submit the job. 
+
+LSF (Load Sharing Facility) is the Minerva job scheduling platform, which determines your job's priority, available resources, elapsed time, etc. Such schedulers are essential for HPC environments, where massive amounts of computing power must be shared across many individuals. LSF is the one used on Minerva, but there are others (e.g. Slurm).
+
+>💡**Tip:** Because array jobs run the same script over multiple samples, it is good practice to test your script on a single sample first. Debug your script until it works on one sample, and then scale up.
+
+We will first test the LSF batch job on a single sample:
 ```
+bsub -J MyArrayJob[1] < FastP_practice_Kelsey.sh
+```
+Let's break down the command:
+- `bsub:` The syntax to submit a job using LSF is `bsub`.
+- `-J MyArrayJob[1]:` We specify the job type (`-J`) as an array job (`MyArrayJob`) and specify the samples included in the array.  
+  Typical array syntax would have you specify the span of samples in the array (e.g. `[1-2]` over samples 1 and 2). We *could* tell it to run it from sample 1 to sample 1 (`[1-1]`), but it understands that when we specify `[1]`, we want it to run for a single sample.
+- `< FastP_practice_Kelsey.sh:` This is how we tell it to submit (`<`) our script (`FastP_practice_Kelsey.sh`) to LSF batch job we just described. 
+
+Because we have written the script to run as an array job, we must still submit it as an array, even when testing on a single sample. 
+
+To check on the progress of our job (whether it is pending or running, how long it has been running, if it has finished), we can use `bjobs`. To continually check on the progress, we use `watch bjobs`. 
+
+Once our job has finished, we can check to see whether it was successful. 
+
+We can look at the log and error files that have now been generated in our `Scripts` folder. If we just want to look at a file and not edit it, we can use `less` to open it, and `ctrl + z` to close it.
+
+**Were your jobs successful? How do you know?**
+
+You can also check the actual output in the `Work` directory. We haven't been to this folder yet, but we created a new output folder in the `Work` directory in our array job script. The command to access it will look like `cd /sc/arion/projects/NGSCRC/Work/Umbrella_Academy/trimmed_reads_practice/${MY_NAME}`. Is there output in the folder?
+
+Once you are satisfied that your job works for one sample, you can submit your array job for the remaining samples:
+```
+bsub -J MyArrayJob[2-4] < FastP_practice_Kelsey.sh
+```
+ 
