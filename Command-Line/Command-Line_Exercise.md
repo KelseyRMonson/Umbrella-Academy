@@ -2,10 +2,10 @@
 
 This is an exercise to get people familiar with common bioinformatics command line activities on a High Performance Computing (HPC) cluster.
 
-These activities include
-- navigating the command line
-- creating and editing simple scripts
-- executing array jobs (using the LSF job scheduler) on Minerva, Mount Sinai's HPC. 
+These activities include:
+- 🗺️navigating the command line
+- 📝creating and editing simple scripts
+- ☑️executing array jobs (using the LSF job scheduler) on Minerva, Mount Sinai's HPC. 
 
 By the end of this exercise, we will be prepared to run [fastp](https://github.com/OpenGene/fastp), a "tool designed to provide ultrafast all-in-one preprocessing and quality control for FastQ data," on four .fastq files.
 
@@ -89,6 +89,8 @@ Let's break down the command:
     - *Save to a text file:*
         Instead of displaying the output of the command in the terminal, `>` will redirect the output to a new file, `samplelist.txt`.
 
+## Step 3
+### Modify your Sample List
 The sample list you just created will look like this:
 
 |  | 
@@ -116,21 +118,11 @@ nano samplelist.txt
 > - It should auto-complete the file name until `FastP_practice_samplelist_`
 > - Then enter the first letter of your name and hit Tab again, entering letters and hitting Tab until you have completed your file's name.  
 
-Once the file is open, use the arrow keys to navigate to the line we wish to remove, then delete the line with: 
-```
-ctrl + k
-```
-To save and quit:
-```
-ctrl + o
-  # "write Out" the file, saving the output
-Enter
-  # When prompted to provide the file name to be written, we hit Enter to keep the same name.
-ctrl + x
-  # Exit nano
-```
+Once the file is open, use the arrow keys to navigate to the line we wish to remove, then delete the line with `ctrl + k`.
 
-## Step 3
+To save and quit: `ctrl + o` ("Write Out" the file, saving the output), `Enter` (when prompted to provide the file name to be written, we hit Enter to keep the same name), and `ctrl + x` (exit nano).
+
+## Step 4
 ### Create the Script
 Navigate to the `Scripts` directory and create your own subdirectory using the `mkdir` (make directory) command:
 ```
@@ -157,15 +149,15 @@ mv /sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy/FastP_practice_sa
 
 Now, make a copy of the `FastP_practice_annotated.sh` script using `cp`. 
 
-*If you are following along on GitHub, follow [this link](FastP_practice_annotated.sh) to access the script.*
-
 In one step, you can also append your name to the end of the file and move it into the subdirectory that you just created. The command will look like `cp FastP_practice_annotated.sh ${MY_NAME}/FastP_practice_${MY_NAME}.sh`:
 ```
 cp FastP_practice_annotated.sh Kelsey/FastP_practice_Kelsey.sh
 ```
 Do you see the UNIX syntax in action here?
 
-## Step 4
+*If you are following along on GitHub, follow [this link](FastP_practice_annotated.sh) to access the script.*
+
+## Step 5
 ### Modify the Script
 Now you have your own sample list and your own shell script that you can modify to run fastp yourself! 
 
@@ -176,7 +168,9 @@ nano FastP_practice_Kelsey.sh
 ```
 Revise according to the instructions contained in the file.
 
-## Step 5
+Don't forget to save and exit (`ctrl + o`, `Enter`, and `ctrl + x`).
+
+## Step 6
 ### Submit the Job
 When the file is ready to be executed, we will use LSF syntax to submit the job. 
 
@@ -192,22 +186,54 @@ Let's break down the command:
 - `bsub:` The syntax to submit a job using LSF is `bsub`.
 - `-J MyArrayJob[1]:` We specify the job type (`-J`) as an array job (`MyArrayJob`) and specify the samples included in the array.  
   Typical array syntax would have you specify the span of samples in the array (e.g. `[1-2]` over samples 1 and 2). We *could* tell it to run it from sample 1 to sample 1 (`[1-1]`), but it understands that when we specify `[1]`, we want it to run for a single sample.
-- `< FastP_practice_Kelsey.sh:` This is how we tell it to submit (`<`) our script (`FastP_practice_Kelsey.sh`) to LSF batch job we just described. 
+- `< FastP_practice_Kelsey.sh:` This is how we tell it to submit (`<`) our script (`FastP_practice_Kelsey.sh`) to the LSF batch job we just described. 
 
 Because we have written the script to run as an array job, we must still submit it as an array, even when testing on a single sample. 
 
 To check on the progress of our job (whether it is pending or running, how long it has been running, if it has finished), we can use `bjobs`. To continually check on the progress, we use `watch bjobs`. 
 
+## Step 7
+### Debug (as Needed)
 Once our job has finished, we can check to see whether it was successful. 
 
 We can look at the log and error files that have now been generated in our `Scripts` folder. If we just want to look at a file and not edit it, we can use `less` to open it, and `ctrl + z` to close it.
 
 **Were your jobs successful? How do you know?**
 
-You can also check the actual output in the `Work` directory. We haven't been to this folder yet, but we created a new output folder in the `Work` directory in our array job script. The command to access it will look like `cd /sc/arion/projects/NGSCRC/Work/Umbrella_Academy/trimmed_reads_practice/${MY_NAME}`. Is there output in the folder?
+You can also check the actual output in the `Work` directory. We haven't been to this folder yet, but we created a new output folder in the `Work` directory in our array job script. 
 
+The command to access it will look like `cd /sc/arion/projects/NGSCRC/Work/Umbrella_Academy/trimmed_reads_practice/${MY_NAME}`. 
+
+Is there output in the folder?
+
+> 🐞 **Did your job fail?** Here are a few troubleshooting ideas:
+> - Check that you updated all the sections of the script that needed to be updated. Make sure you remembered to change the `${MY_NAME}` variable to your name.
+> - Check that the variables you are calling point to real files. For example, if you named your sample list `FastP_practice_samplelist_JohnnyCoolGuy.txt` but defined the `${MY_NAME}` variable in your script as `John`, your script won't find your sample list.
+> - Make sure your sample list contains only 4 rows, one for each sample, and points to the correct sample directories for the raw .fastq files.
+> - Make sure you typed your `bsub` command correctly, including the name of your script. Make sure you are launching the job from the `Scripts` folder that contains your script. 
+
+## Step 8
+### Run the Final Array Job
 Once you are satisfied that your job works for one sample, you can submit your array job for the remaining samples:
 ```
 bsub -J MyArrayJob[2-4] < FastP_practice_Kelsey.sh
 ```
- 
+> 💡**Tip:** Note that you don't have to restart the array from 1 (e.g. `MyArrayJob[1-4]`) since we've already successfully finished the first sample.
+> If you do run from `[1-4]`, note that it will overwrite your output for sample 1 from your previous job. 
+
+Check on your jobs using `bjobs` or `watch bjobs`. Now that we submitted an actual array job, you can now monitor multiple jobs at once. Are some running and some still pending? 
+
+Once they have finished running, check the output and error files for each sample and check the output in the `Work` folder to make sure they completed successfully.
+
+### 🎉Congratulations! 
+You successfully ran fastp on the HPC on 4 samples using an array job! Pat yourself on the back! 👋
+
+### Resources
+- Clean example script [here](FastP_practice_clean.sh).
+  - This gives you an example of what an actual script might look like.
+  - This script is ultimately very simple because we ran fastp using only the default settings, and specified only input and output files.
+  - For more complex scripts, I highly suggest keeping in the definition of what each variable in the program command does, and why. This is helpful to jog your memory when you return to a script after some time, as well as for writing the methods sections of your papers and proposals, and justifying your choices to reviewers.
+
+- Command line cheat sheet [here].
+  - This is a cheat sheet with all the commands we learned today while completing this exercise.
+  - Keep this handy to refer to when you're navigating the command line yourself!
