@@ -76,7 +76,7 @@ Let's break down the command:
         This is the path to the current working directory (`$PWD`) followed by an asterisk (`*`). The asterisk is a wildcard character that matches any file or directory within the current directory. Because we navigated to the `/sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy` folder, this is the working directory that will be printed, followed by the contents of the directory, which are the subfolders containing the .fastq files for each sample.
 - `>samplelist.txt:`
         The "output redirection operator" (`>`) sends the output of a command to a file instead of printing it in the terminal. You decide the file's name and extension. Here we are creating a .txt file. 
->⚠️<ins>**Important**</ins>⚠️ If the file does not exist, defining the name and the file extension in the command will create a new file. **But this command will overwrite the contents of an existing file**. Be careful when using `>`.  
+>⚠️<ins>**Important**</ins>⚠️ If the file does not exist, defining the name and the file extension in the command will create a new file. **But this command will overwrite the contents of an existing file if it has the same name**. Be careful when using `>`.  
             
 - So, putting it all together, this command will:
     
