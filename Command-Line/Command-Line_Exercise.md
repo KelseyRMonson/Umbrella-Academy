@@ -3,13 +3,13 @@
 This is an exercise to get people familiar with common bioinformatics command line activities on a High Performance Computing (HPC) cluster.
 
 These activities include:
-- 🗺️navigating the command line
-- 📝creating and editing simple scripts
-- ☑️executing array jobs (using the LSF job scheduler) on Minerva, Mount Sinai's HPC. 
+- 🗺️Navigating the command line
+- 📝Creating and editing simple scripts
+- ☑️Executing array jobs (using the LSF job scheduler) on Minerva, Mount Sinai's HPC. 
 
-By the end of this exercise, we will be prepared to run [fastp](https://github.com/OpenGene/fastp), a "tool designed to provide ultrafast all-in-one preprocessing and quality control for FastQ data," on four .fastq files.
+By the end of this exercise, you will be able to run [fastp](https://github.com/OpenGene/fastp), a "tool designed to provide ultrafast all-in-one preprocessing and quality control for FastQ data," on four RNA-seq .fastq files.
 
-**fastp citation**
+**fastp citation:**
 >Shifu Chen. 2023. Ultrafast one-pass FASTQ data preprocessing, quality control, and deduplication using fastp. iMeta 2: e107. [DOI](https://doi.org/10.1002/imt2.107)
 
 ## Step 1
@@ -76,7 +76,7 @@ Let's break down the command:
         This is the path to the current working directory (`$PWD`) followed by an asterisk (`*`). The asterisk is a wildcard character that matches any file or directory within the current directory. Because we navigated to the `/sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy` folder, this is the working directory that will be printed, followed by the contents of the directory, which are the subfolders containing the .fastq files for each sample.
 - `>samplelist.txt:`
         The "output redirection operator" (`>`) sends the output of a command to a file instead of printing it in the terminal. You decide the file's name and extension. Here we are creating a .txt file. 
->⚠️<ins>**Important**</ins>⚠️ If the file does not exist, defining the name and the file extension in the command will create a new file. **But this command will overwrite the contents of an existing file if it has the same name**. Be careful when using `>`.  
+>⚠️<ins>**Important**</ins>⚠️ If the file does not exist, defining the name and the file extension in the command will create a new file. But if you use the name of a file that already exists, **this command will overwrite the contents of an existing file if it has the same name.** Be careful when using `>`.  
             
 - So, putting it all together, this command will:
     
@@ -105,14 +105,12 @@ You will note that the first line contains a `README.txt` file. This is a file i
 
 It is good practice to have README files in your master data folders so you and current/future lab members know what the files are, where the data comes from, what species it is, the read length, etc. 
 
-But it will generate an error if we try to run an array job using this file (because the array job will look for subdirectories containing .fastq files, not text files in the main directory).  
+But we will get an error if we try to run an array job using this file as our sample list, because the array job is written to look for subdirectories containing .fastq files. It will see the `README.txt` file and throw an error when it finds out it isn't a subdirectory like it expected.  
 
 There are many ways to modify the file to remove the line; this is one way to do it quickly using the command line:
 
-`Nano` is one of many Linux text editors you can use to modify files on the command line. This will open the file interactively:
-```
-nano samplelist.txt
-```
+`Nano` is one of many Linux text editors you can use to modify files on the command line. Use `nano` followed by the name of your sample list to open the file interactively.
+
 >💡**Tip:** This is a great time to try out "Tab to complete"!
 > - Since your file will be named something like `FastP_practice_samplelist_Kelsey.txt`, start typing `nano Fa` and then hit Tab.
 > - It should auto-complete the file name until `FastP_practice_samplelist_`
@@ -120,7 +118,7 @@ nano samplelist.txt
 
 Once the file is open, use the arrow keys to navigate to the line we wish to remove, then delete the line with `ctrl + k`.
 
-To save and quit: `ctrl + o` ("Write Out" the file, saving the output), `Enter` (when prompted to provide the file name to be written, we hit Enter to keep the same name), and `ctrl + x` (exit nano).
+To save and quit: `ctrl + o` ("Write Out" the file, saving the output), `Enter` (when prompted to provide the file name to be written, we hit Enter to keep the same name), and `ctrl + x` (exit `nano`).
 
 ## Step 4
 ### Create the Script
@@ -130,7 +128,7 @@ cd /sc/arion/projects/NGSCRC/Scripts/Umbrella_Academy
 
 mkdir Kelsey
 ```
-We need the sample list to be in the same folder as your script, but it's currently still in the `master_data` folder where it was made. We will use `mv` to move your sample list to the directory you just created. 
+We will need the sample list to be in the same folder as the script, but it's currently still in the `master_data` folder where it was made. We will use `mv` to move your sample list to the directory you just created. 
 
 Because we have navigated to the `Scripts` directory, we need to append the location of the sample list to this command in order to locate it.
 The command will look like `${path to sample list}/FastP_practice_samplelist_${MY_NAME}.txt ${MY_NAME}`:
@@ -142,10 +140,10 @@ mv /sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy/FastP_practice_sa
 > - "What are you doing it to?" (*input*)
 > - "What is the desired result?" (*output*)
 >  
-> Applying this here:
+> ➡️ Applying this here:
 > - "What are you doing?" *moving a file*
 > - "What are you doing it to?" *the sample list*
-> - "What is the desired result?" *file is moved to my directory*
+> - "What is the desired result?" *move the file to this specific directory*
 
 Now, make a copy of the `FastP_practice_annotated.sh` script using `cp`. 
 
@@ -155,11 +153,11 @@ cp FastP_practice_annotated.sh Kelsey/FastP_practice_Kelsey.sh
 ```
 Do you see the UNIX syntax in action here?
 
-*If you are following along on GitHub, follow [this link](FastP_practice_annotated.sh) to access the script.*
+*If you are following along on GitHub, follow [this link](FastP_practice_annotated.sh) to access the `FastP_practice_annotated.sh` script.*
 
 ## Step 5
 ### Modify the Script
-Now you have your own sample list and your own shell script that you can modify to run fastp yourself! 
+Now you have your own sample list and your own shell script that you can modify to run [fastp](https://github.com/OpenGene/fastp) yourself! 
 
 Navigate to your folder and open the script for editing using `nano`:
 ``` Shell
@@ -170,11 +168,15 @@ Revise according to the instructions contained in the file.
 
 Don't forget to save and exit (`ctrl + o`, `Enter`, and `ctrl + x`).
 
+>💡**Tip:** If you ever want to create your own blank file, you can type `nano` and then a new file name + file extension.
+
 ## Step 6
 ### Submit the Job
 When the file is ready to be executed, we will use LSF syntax to submit the job. 
 
-LSF (Load Sharing Facility) is the Minerva job scheduling platform, which determines your job's priority, available resources, elapsed time, etc. Such schedulers are essential for HPC environments, where massive amounts of computing power must be shared across many individuals. LSF is the one used on Minerva, but there are others (e.g. Slurm).
+[LSF (Load Sharing Facility)](https://www.ibm.com/docs/en/spectrum-lsf/10.1.0?topic=overview-lsf-introduction) is the Minerva job scheduling platform, which determines your job's priority, available resources, elapsed time, etc. 
+
+Such schedulers are essential for HPC environments, where massive amounts of computing power must be shared across many individuals. LSF is the one used on Minerva, but there are others (e.g. Slurm).
 
 >💡**Tip:** Because array jobs run the same script over multiple samples, it is good practice to test your script on a single sample first. Debug your script until it works on one sample, and then scale up.
 
@@ -226,13 +228,28 @@ Check on your jobs using `bjobs` or `watch bjobs`. Now that we submitted an actu
 Once they have finished running, check the output and error files for each sample and check the output in the `Work` folder to make sure they completed successfully.
 
 ### 🎉Congratulations! 
-You successfully ran fastp on the HPC on 4 samples using an array job! Pat yourself on the back! 👋
+You successfully ran [fastp](https://github.com/OpenGene/fastp) on the HPC on 4 samples using an array job! Pat yourself on the back! 👋
+
+### Learning Recap
+After completing this exercise, you learned how to:
+- 🗺️Navigate the command line
+  - Move to different folders by changing your working directory
+  - Make new directories
+  - View the contents of directories
+- 📝Create and manipulate files
+  - Copy and create new files
+  - View and edit the contents of files
+  - Move files from one folder to another
+- ☑️Launch a job using LSF
+  -  Understand how to structure an array job script
+  -  Submit an array job
+  -  Monitor the status of your jobs
 
 ### Resources
 - Clean example script [here](FastP_practice_clean.sh).
   - This gives you an example of what an actual script might look like.
-  - This script is ultimately very simple because we ran fastp using only the default settings, and specified only input and output files.
-  - For more complex scripts, I highly suggest keeping in the definition of what each variable in the program command does, and why. This is helpful to jog your memory when you return to a script after some time, as well as for writing the methods sections of your papers and proposals, and justifying your choices to reviewers.
+  - This clean script is ultimately very simple because we ran [fastp](https://github.com/OpenGene/fastp) using only the default settings, meaning we only specified input and output files in our command.
+  - For more complex scripts, I highly suggest including the definition of what each variable in the program command does, and why. This is helpful to jog your memory when you return to a script after some time, so you can remember the rationale behind selecting the specific parameters you chose. It's also helpful when writing the methods sections of your papers and proposals, and justifying your choices to reviewers.
 
 - Command line cheat sheet [here].
   - This is a cheat sheet with all the commands we learned today while completing this exercise.
