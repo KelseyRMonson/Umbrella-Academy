@@ -11,7 +11,7 @@ This also includes a helpful resource for codes for commonly used R plots.
 | Class 1  | Course Intro    |
 | Class 2 | Intro to Next Generation Sequencing (NGS)     |
 | Class 3    | Intro to High Performance Computing (HPC)    |
-| Class 4  | Getting Started with the Command Line 💻    |
+| Class 4  | [Getting Started with the Command Line](Command-Line) 💻    |
 | Class 5 | Getting Started with R 💻     |
 | Class 6    | Debugging and QC   |
 | Class 7    | Data Normalization and Cleaning 💻    |
