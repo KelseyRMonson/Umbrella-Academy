@@ -43,7 +43,7 @@ Each subfolder within the `/sc/arion/projects/NGSCRC/master_data/test/Umbrella_A
 
 >💡**Tip**: As you move throughout your directories, creating and modifying files, it can become confusing.
 > - If you ever get lost or disoriented in your file structure, just type `pwd` (for "print working directory"). This will output the full path of your current directory.
-> - You can also type `ls` to list all the files in your current directory. Try it out now!*
+> - You can also type `ls` to list all the files in your current directory. Try it out now!
 
 Let's look inside one of the subfolders:
 ``` Shell
