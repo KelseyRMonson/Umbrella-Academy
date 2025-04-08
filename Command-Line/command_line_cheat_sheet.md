@@ -102,11 +102,26 @@ In this example, we have `Project 1` with two samples (`Sample 1` and `Sample 2`
 
 *File trees🌲created using [this cool tool](https://tree.nathanfriend.com/)*
 
+Visualizing the structure of your directories can be useful when thinking about navigating the command line.
+
 ## 🗺️Navigating the Command Line
 These are the codes we learned for basic navigation around the command line environment:
 
 ### Change directory: `cd`
-For example this code brings us to 
+Use this code to move from your current directory to another directory.
+
+For example this code brings us to the `master_data` folder where the raw .fastqs for the [Command Line Exercise](Command-Line_Exercise.md) are stored:
 ```
 cd /sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy
+```
+If you don't specify a destination (as we did when we included the path to the `master_data` above), typing just `cd` will send you to your login directory.
+
+Let's say you want to move up two folders to the `/sc/arion/projects/NGSCRC/master_data/` folder. 
+- You could type out the whole path (`cd /sc/arion/projects/NGSCRC/master_data/`).
+- But you can also use "dot dot" (`..`), which is recognized as the directory immediately above the current directory (called the "parent" directory).
+- If you know how many folders up you want to travel, you can separate your dot dots with a slash to get to the desired destination.
+
+Since we are moving up two directories, we would type
+```
+cd ../../
 ```
