@@ -1,6 +1,9 @@
 # Command Line Cheat Sheet
 This is a cheat sheet for the codes learned during the [Command Line Exercise](Command-Line_Exercise.md).
 
+>💡**Tip:** You can navigate quickly through this document by using the table of contents in the upper right hand corner:
+>![ToC Image](https://docs.github.com/assets/cb-142339/mw-1440/images/help/repository/headings-toc.webp)
+
 ## HPC File Structure
 As a refresher, this is an example of the HPC file structure: 
 ```
@@ -125,3 +128,16 @@ Since we are moving up two directories, we would type
 ```
 cd ../../
 ```
+### Print working directory: `pwd`
+Use this to display the full path of your current directory.
+
+This is useful to verify where you are in your file structures, particularly if you are using `..` and not absolute paths to travel.
+
+In the example above, it would be best to run `cd ../../` followed by `pwd` to verify that you are in the directory you intended to reach. 
+
+As we learned in the exercise when we generated the sample list, `pwd` can also be commbined with other commands (like `printf '%s\n'`, to capture full paths to files).
+
+### List contents: `ls`
+Use this to list the contents of your current directory. 
+
+
