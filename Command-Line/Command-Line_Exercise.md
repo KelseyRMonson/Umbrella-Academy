@@ -18,7 +18,7 @@ Using `cd` (change directory), navigate to the `master_data` folder on Minerva c
 ``` Shell
 cd /sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy
 ```
-*If you are following along on GitHub, these files can be found in the `master_data` folder within this directory.*
+*If you are following along on GitHub, these files can be found in the `master_data` [folder](master_data) within this directory.*
 
 These .fastqs are truncated test data adapted from the [NF-core test data repository](https://github.com/nf-core/test-datasets/tree/rnaseq). Samples are from S. cerevisiae (yeast), and are 101bp paired-end strand-specific RNA-seq files, sub-sampled to 50,000 reads.
 
