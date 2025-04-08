@@ -15,7 +15,7 @@ By the end of this exercise, we will be prepared to run [fastp](https://github.c
 ## Step 1
 ### Locate the Data
 Using `cd` (change directory), navigate to the `master_data` folder on Minerva containing the raw .fastq files we will use in the exercise:
-```
+``` Shell
 cd /sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy
 ```
 *If you are following along on GitHub, these files can be found in the `master_data` folder within this directory.*
@@ -46,14 +46,14 @@ Each subfolder within the `/sc/arion/projects/NGSCRC/master_data/test/Umbrella_A
 > - You can also type `ls` to list all the files in your current directory. Try it out now!*
 
 Let's look inside one of the subfolders:
-```
+``` Shell
 cd SRR6357070
 ls
 ```
 You'll notice there are actually two .fastq files for each sample. These files come from paired-end, strand-specific RNA-seq, so read 1 is the forward read and read 2 is the reverse read. 
 
 Let's go back to the main data folder. This command moves us one folder up in the file hierarchy:
-```
+``` Shell
 cd ../
 ```
 
@@ -64,7 +64,7 @@ Next we create a sample list pointing to the names and locations of the raw .fas
 To do this, we will run the command `printf '%s\n' "$PWD"/* >FastP_practice_samplelist_${MY_NAME}.txt`, replacing `${MY_NAME}` with, you guessed it, your name. 
 
 So mine will look like: 
-```
+``` Shell
 printf '%s\n' "$PWD"/* >FastP_practice_samplelist_Kelsey.txt
 ```
 For simplicity, for the rest of the exercise, I will just refer to this file as `"samplelist.txt"`
@@ -125,7 +125,7 @@ To save and quit: `ctrl + o` ("Write Out" the file, saving the output), `Enter` 
 ## Step 4
 ### Create the Script
 Navigate to the `Scripts` directory and create your own subdirectory using the `mkdir` (make directory) command:
-```
+``` Shell
 cd /sc/arion/projects/NGSCRC/Scripts/Umbrella_Academy
 
 mkdir Kelsey
@@ -134,7 +134,7 @@ We need the sample list to be in the same folder as your script, but it's curren
 
 Because we have navigated to the `Scripts` directory, we need to append the location of the sample list to this command in order to locate it.
 The command will look like `${path to sample list}/FastP_practice_samplelist_${MY_NAME}.txt ${MY_NAME}`:
-```
+``` Shell
 mv /sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy/FastP_practice_samplelist_Kelsey.txt Kelsey
 ```
 >💡**Tip:** The basic syntax for most UNIX commands is essentially:
@@ -150,7 +150,7 @@ mv /sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy/FastP_practice_sa
 Now, make a copy of the `FastP_practice_annotated.sh` script using `cp`. 
 
 In one step, you can also append your name to the end of the file and move it into the subdirectory that you just created. The command will look like `cp FastP_practice_annotated.sh ${MY_NAME}/FastP_practice_${MY_NAME}.sh`:
-```
+``` Shell
 cp FastP_practice_annotated.sh Kelsey/FastP_practice_Kelsey.sh
 ```
 Do you see the UNIX syntax in action here?
@@ -162,7 +162,7 @@ Do you see the UNIX syntax in action here?
 Now you have your own sample list and your own shell script that you can modify to run fastp yourself! 
 
 Navigate to your folder and open the script for editing using `nano`:
-```
+``` Shell
 cd Kelsey
 nano FastP_practice_Kelsey.sh
 ```
@@ -179,7 +179,7 @@ LSF (Load Sharing Facility) is the Minerva job scheduling platform, which determ
 >💡**Tip:** Because array jobs run the same script over multiple samples, it is good practice to test your script on a single sample first. Debug your script until it works on one sample, and then scale up.
 
 We will first test the LSF batch job on a single sample:
-```
+``` Shell
 bsub -J MyArrayJob[1] < FastP_practice_Kelsey.sh
 ```
 Let's break down the command:
@@ -215,7 +215,7 @@ Is there output in the folder?
 ## Step 8
 ### Run the Final Array Job
 Once you are satisfied that your job works for one sample, you can submit your array job for the remaining samples:
-```
+``` Shell
 bsub -J MyArrayJob[2-4] < FastP_practice_Kelsey.sh
 ```
 > 💡**Tip:** Note that you don't have to restart the array from 1 (e.g. `MyArrayJob[1-4]`) since we've already successfully finished the first sample.
