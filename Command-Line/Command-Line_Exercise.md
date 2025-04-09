@@ -71,7 +71,7 @@ For simplicity, for the rest of the exercise, I will just refer to this file as 
 
 Let's break down the command:
 - `printf '%s\n':`
-        The `printf` command is used to format and print text. The format string `'%s\n'` specifies that it should print a string (`%s`) followed by a newline (`\n`).    
+        The `printf` command is used to format and print text. The format string `'%s\n'` specifies that it should print a string (`%s`) followed by a new line (`\n`).    
 - `"$PWD"/*:`
         This is the path to the current working directory (`$PWD`) followed by an asterisk (`*`). The asterisk is a wildcard character that matches any file or directory within the current directory. Because we navigated to the `/sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy` folder, this is the working directory that will be printed, followed by the contents of the directory, which are the subfolders containing the .fastq files for each sample.
 - `>samplelist.txt:`
@@ -84,7 +84,7 @@ Let's break down the command:
         The `*` wildcard will be expanded to match all files and directories in the current working directory.
         
     - *Print the paths:*
-        For each file or directory matched, the `printf` command will print its full path, followed by a newline.
+        For each file or directory matched, the `printf` command will print its full path, followed by a new line.
       
     - *Save to a text file:*
         Instead of displaying the output of the command in the terminal, `>` will redirect the output to a new file, `samplelist.txt`.
@@ -105,7 +105,7 @@ You will note that the first line contains a `README.txt` file. This is a file i
 
 It is good practice to have README files in your master data folders so you and current/future lab members know what the files are, where the data comes from, what species it is, the read length, etc. 
 
-But we will get an error if we try to run an array job using this file as our sample list, because the array job is written to look for subdirectories containing .fastq files. It will see the `README.txt` file and throw an error when it finds out it isn't a subdirectory like it expected.  
+But we will get an error if we try to run an array job using this file as our sample list because the array job is written to look for subdirectories containing .fastq files. It will see the `README.txt` file and throw an error when it finds out it isn't a subdirectory like it expected.  
 
 There are many ways to modify the file to remove the line; this is one way to do it quickly using the command line:
 
