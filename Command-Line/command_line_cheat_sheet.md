@@ -1,8 +1,12 @@
 # Command Line Cheat Sheet
 This is a cheat sheet for the codes learned during the [Command Line Exercise](Command-Line_Exercise.md).
 
->💡**Tip:** You can navigate quickly through this document by using the table of contents in the upper right hand corner:
->![ToC Image](https://docs.github.com/assets/cb-142339/mw-1440/images/help/repository/headings-toc.webp)
+>💡**Tip:** You can navigate quickly through this document by using the table of contents in the upper right hand corner.
+><details>
+>    <summary> Help, where is the table of contents? </summary>
+>    
+> ![ToC Image](https://docs.github.com/assets/cb-142339/mw-1440/images/help/repository/headings-toc.webp) 
+> </details>
 
 ## HPC File Structure
 As a refresher, this is an example of the HPC file structure: 
@@ -103,9 +107,9 @@ In this example, we have `Project 1` with two samples (`Sample 1` and `Sample 2`
 ```
 </details>
 
-*File trees🌲created using [this cool tool](https://tree.nathanfriend.com/)*
-
 Visualizing the structure of your directories can be useful when thinking about navigating the command line.
+
+*File trees🌲created using [this cool tool](https://tree.nathanfriend.com/)*
 
 ## 🗺️Navigating the Command Line
 These are the codes we learned for basic navigation around the command line environment:
@@ -135,9 +139,28 @@ This is useful to verify where you are in your file structures, particularly if 
 
 In the example above, it would be best to run `cd ../../` followed by `pwd` to verify that you are in the directory you intended to reach. 
 
-As we learned in the exercise when we generated the sample list, `pwd` can also be commbined with other commands (like `printf '%s\n'`, to capture full paths to files).
+As we learned in the exercise when we generated the sample list, `pwd` can also be useful when commbined with other commands (like `printf '%s\n'`, to capture full paths to files).
 
 ### List contents: `ls`
 Use this to list the contents of your current directory. 
 
+For example, If we were in the "Zamarin Lab Home Base" directory (`/sc/arion/projects/NGSCRC`) and we typed `ls`, we would see:
+```
+/sc/arion/projects/NGSCRC/
+├── master_data
+├── Scripts
+├── Work
+├── Tools
+└── Resources
+```
+In this case, the Zamarin Lab parent directory only contains subdirectories, but `ls` will also show you files within a directory if they are present.
 
+Let's say we go into the `Project 1` folder within `master_data`, where we have subdirectories containing raw data for `Sample 1` and `Sample 2`, as well as a README text file describing the data. Typing `ls` would show us this:
+```
+Project 1/
+├── README.txt
+├── Sample 1
+└── Sample 2
+```
+> 🧠 **Extra Credit:** If you want to see additional information, you can type `ls -l`. This will show you file and directory details like permissions, number of links, owner, group, size, and time of last modification.  
+> To give the size in KB or GB you can type `ls -lh` (for "human readable").
