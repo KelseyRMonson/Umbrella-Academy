@@ -105,7 +105,7 @@ You will note that the first line contains a `README.txt` file. This is a file i
 
 It is good practice to have README files in your master data folders so you and current/future lab members know what the files are, where the data comes from, what species it is, the read length, etc. 
 
-But we will get an error if we try to run an array job using this file as our sample list because the array job is written to look for subdirectories containing .fastq files. It will see the `README.txt` file and throw an error when it finds out it isn't a subdirectory like it expected.  
+But we will get an error if we try to run an array job using this file as our sample list as-is, because the array job is written to look for subdirectories containing .fastq files. It will see the `README.txt` file and throw an error when it finds out it isn't a subdirectory like it expected.  
 
 There are many ways to modify the file to remove the line; this is one way to do it quickly using the command line:
 
