@@ -9,7 +9,9 @@ The step-by-step exercise for the "Getting started with the command line" class.
 ### 2. [master_data](master_data) folder 
 Raw .fastq data for the exercise. Contains one subdirectory for each of the four samples. 
 
-These subdirectories contain the raw .fastq files for both forward and reverse reads (`SampleID_1.fastq.gz` and `SampleID_2.fastq.gz`). These reads are gzipped to save space (hence `.fastq.gz`).
+These subdirectories contain the raw .fastq files for both forward and reverse reads (`SampleID_1.fastq.gz` and `SampleID_2.fastq.gz`). 
+
+These reads are gzipped to save space (hence `.fastq.gz`).
 
 ### 3. Scripts for the exercise
 - **[FastP_practice_annotated.sh](FastP_practice_annotated.sh): Highly annotated shell script for running fastp**
