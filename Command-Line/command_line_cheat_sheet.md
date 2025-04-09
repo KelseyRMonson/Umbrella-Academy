@@ -1,7 +1,7 @@
 # Command Line Cheat Sheet
 This is a cheat sheet for the codes learned during the [Command Line Exercise](Command-Line_Exercise.md).
 
->💡**Tip:** You can navigate quickly through this document by using the table of contents in the upper right hand corner.
+>💡**Tip:** You can navigate quickly through this document by using the table of contents in the upper right-hand corner.
 ><details>
 >    <summary> Help, where is the table of contents? </summary>
 >    
@@ -117,7 +117,7 @@ These are the codes we learned for basic navigation around the command line envi
 ### Change directory: `cd`
 Use this code to move from your current directory to another directory.
 
-For example this code brings us to the `master_data` folder where the raw .fastqs for the [Command Line Exercise](Command-Line_Exercise.md) are stored:
+For example, this code brings us to the `master_data` folder where the raw .fastqs for the [Command Line Exercise](Command-Line_Exercise.md) are stored:
 ```
 cd /sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy
 ```
@@ -139,7 +139,7 @@ This is useful to verify where you are in your file structures, particularly if 
 
 In the example above, it would be best to run `cd ../../` followed by `pwd` to verify that you are in the directory you intended to reach. 
 
-As we learned in the exercise when we generated the sample list, `pwd` can also be useful when commbined with other commands (like `printf '%s\n'`, to capture full paths to files).
+As we learned in the exercise when we generated the sample list, `pwd` can also be useful when combined with other commands (like `printf '%s\n'`, to capture full paths to files).
 
 ### List contents: `ls`
 Use this to list the contents of your current directory. 
@@ -163,4 +163,6 @@ Project 1/
 └── Sample 2
 ```
 > 🧠 **Extra Credit:** If you want to see additional information, you can type `ls -l`. This will show you file and directory details like permissions, number of links, owner, group, size, and time of last modification.  
-> To give the size in KB or GB you can type `ls -lh` (for "human readable").
+> This command gives you file size in bytes, which quickly becomes difficult to parse with large files stored on the cluster. To give the size in KB or GB you can type `ls -lh` (for "human readable").
+
+
