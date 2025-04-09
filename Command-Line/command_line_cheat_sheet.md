@@ -163,6 +163,10 @@ Project 1/
 └── Sample 2
 ```
 > 🧠 **Extra Credit:** If you want to see additional information, you can type `ls -l`. This will show you file and directory details like permissions, number of links, owner, group, size, and time of last modification.  
-> This command gives you file size in bytes, which quickly becomes difficult to parse with large files stored on the cluster. To give the size in KB or GB you can type `ls -lh` (for "human readable").
+>
+> `ls -l` gives you file size in bytes, which quickly becomes difficult to parse with large files stored on the cluster. To give the size in KB or GB you can type `ls -lh` (for "human readable").
+
+### Make a directory: `mkdir`
+Use this to create a new directory in your current working directory. 
 
 
