@@ -1,5 +1,5 @@
 # Command Line Cheat Sheet
-This is a cheat sheet for the codes learned during the [Command Line Exercise](Command-Line_Exercise.md).
+This is a cheat sheet for the codes learned during the [Command Line Exercise](Command_Line_Exercise.md).
 
 >💡**Tip:** You can navigate quickly through this document by using the table of contents in the upper right-hand corner.
 ><details>
@@ -117,7 +117,7 @@ These are the codes we learned for basic navigation around the command line envi
 ### Change directory: `cd`
 Use this code to move from your current directory to another directory.
 
-For example, this code brings us to the `master_data` folder where the raw .fastqs for the [Command Line Exercise](Command-Line_Exercise.md) are stored:
+For example, this code brings us to the `master_data` folder where the raw .fastqs for the [Command Line Exercise](Command_Line_Exercise.md) are stored:
 ```
 cd /sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy
 ```
