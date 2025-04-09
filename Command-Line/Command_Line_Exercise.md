@@ -251,6 +251,6 @@ After completing this exercise, you learned how to:
   - This clean script is ultimately very simple because we ran [fastp](https://github.com/OpenGene/fastp) using only the default settings, meaning we only specified input and output files in our command.
   - For more complex scripts, I highly suggest including the definition of what each variable in the program command does, and why. This is helpful to jog your memory when you return to a script after some time, so you can remember the rationale behind selecting the specific parameters you chose. It's also helpful when writing the methods sections of your papers and proposals, and justifying your choices to reviewers.
 
-- Command line cheat sheet [here].
+- Command line cheat sheet [here](command_line_cheat_sheet.md).
   - This is a cheat sheet with all the commands we learned today while completing this exercise.
   - Keep this handy to refer to when you're navigating the command line yourself!
