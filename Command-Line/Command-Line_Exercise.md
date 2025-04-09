@@ -54,7 +54,7 @@ You'll notice there are actually two .fastq files for each sample. These files c
 
 Let's go back to the main data folder. This command moves us one folder up in the file hierarchy:
 ``` Shell
-cd ../
+cd ..
 ```
 
 ## Step 2
