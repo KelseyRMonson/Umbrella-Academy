@@ -208,13 +208,13 @@ You might have noticed that I've only taught you how to create files and directo
 
 This is because it is **VERY DANGEROUS** to remove files from the HPC because it is not backed up and, **once they are deleted, they are gone forever**. The only exception is if the files have been archived, but this must be specifically requested.
 
-If I need to delete files or directories, I will often do it manually through my FTP client (I use 🪟WinFTP for Windows) because it gives me a popup message asking me to confirm the deletion. This way I can triple-check that I'm removing the file I intend to remove.  
+If I need to delete files or directories, I will often do it manually through my FTP client (I use 🪟WinSCP for Windows) because it gives me a popup message asking me to confirm the deletion. This way I can triple-check that I'm removing the file I intend to remove.  
 
 ## ☑️Launching Jobs using LSF
 These are the codes we learned to launch array jobs and interactive jobs using the [LSF (Load Sharing Facility)](https://www.ibm.com/docs/en/spectrum-lsf/10.1.0?topic=overview-lsf-introduction) job scheduler:
 
-### Array Job Script Header
-The header of each array job you run will look something like this:
+### Shell Script Header
+The header of each script you run will look something like this:
 ``` Shell
 #!/bin/bash
 #BSUB -P acc_NGSCRC 		   # Zamarin Lab allocation account
@@ -227,3 +227,41 @@ The header of each array job you run will look something like this:
 #BSUB -e err.%J.%I  		   # error file name (same nomenclature as above)
 #BSUB -L /bin/bash		   # Initialize the execution environment
 ```
+### Array Job Execution
+Once you have written your array job script, use the below command to execute it:
+``` Shell
+bsub -J MyArrayJob[x-xx] < Array_Script.sh
+```
+The numbers within the `MyArrayJob` brackets will depend on the number of samples included in your array job; if you need to run it over 50 samples, it will be `-J MyArrayJob[1-50]`.
+
+>🧠**Extra Credit:** What we learned in the lesson, however, is that you should always test your array job scripts on a single sample first.
+>
+>So if you have 50 total samples, you would really run `-J MyArrayJob[1]` on the first sample until you are satisfied your code works, and then `-J MyArrayJob[2-50]` on the remaining 49 samples.
+
+### Shell Script Execution
+You'll notice that I named the first heading in this section **"Shell Script Header."** In this exercise, we learned how to run an array job, but sometimes you want to run a script for a single sample (and only ever a single sample). 
+
+In that case, the header of the script file will look the same as it does for an array job, but you only need to run this to execute it:
+``` Shell
+bsub < Shell_Script.sh
+```
+### Launch an Interactive Shell
+When we want to launch an interactive shell, where we input commands in the terminal instead of using a shell script, we need to request HPC resources. 
+
+>⚠️**Important:** We learned that, unless we are doing very basic things like navigating the command line and creating or editing small files, we need to specifically request an interactive shell. 
+
+This is the code to request an interactive shell:
+``` Shell
+bsub -Is -n 1 -R "rusage[mem=10000]" -P acc_NGSCRC -W 60 /bin/bash
+```
+The parameters you will alter, depending on your task, are:
+- `-n`: If you want to parallelize your job, you can request more cores. This would be unusual, however, as most jobs requiring parallelization will be complex and should be written in a script.
+- `-R "rusage[mem=xxxxx]"`: Depending on the size of your task, you will request different amounts of memory. It's always better to start small and scale up your requests. Remember that LSF memory requests are in megabytes (MB). If you want to request 10 gigabytes (GB), for example, multiply by 1,000.
+- `-W`: Depending on how long your task will take, you can request different amounts of wall time. As with memory, start small and scale up as needed. You can request in minutes (`MM`) or hours (`HH:MM`).
+
+### Monitor your Jobs: `bjobs`
+You can view the status of your jobs using `bjobs`.
+
+To continuously monitor the status of your jobs (refreshed every 2 seconds) use `watch bjobs`.
+
+>🧠**Extra Credit:** `bjobs` has many options -- check out [this page](https://www.ibm.com/docs/en/spectrum-lsf/10.1.0?topic=bjobs-options) to see them all.
