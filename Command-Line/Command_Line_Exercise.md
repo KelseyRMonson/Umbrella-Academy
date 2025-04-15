@@ -23,6 +23,7 @@ cd /sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy
 
 These .fastqs are truncated test data adapted from the [NF-core test data repository](https://github.com/nf-core/test-datasets/tree/rnaseq). Samples are from S. cerevisiae (yeast), and are 101bp paired-end strand-specific RNA-seq files, sub-sampled to 50,000 reads.
 
+<!-- HTML_START -->
 <details>
 <summary>Sample details</summary>
 
@@ -41,6 +42,7 @@ These .fastqs are truncated test data adapted from the [NF-core test data reposi
 > [Pubmed](https://pubmed.ncbi.nlm.nih.gov/30576656/) [GEO](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE110004)
 
 </details>
+<!-- HTML_END -->
 
 Each subfolder within the `/sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy` directory contains the .fastq files for each of the four samples we are using for this example. 
 
