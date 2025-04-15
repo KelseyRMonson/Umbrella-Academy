@@ -250,7 +250,7 @@ bsub -Is -n 1 -R "rusage[mem=10000]" -P acc_NGSCRC -W 60 /bin/bash
 Let's break it down:
 - `bsub`: You know this one by now 🙂
 - `-Is`: This is the command to request an interactive shell
-- `-n 1`: This will not take much memory and doesn't need to be parallelized, so we are requesting 1 node
+- `-n 1`: This will not take much memory and doesn't need to be parallelized, so we are requesting 1 compute core
 - `-R "rusage[mem=10000]`: This is the memory request. In LSF, memory is requested in MB, so we are requesting 10,000 MB or 10GB
 - `-P acc_NGSCRC`: This is our project allocation account; each bsub job needs to include the associated project.
 - `-W 60`: This is the wall time -- here we are requesting 60 minutes
