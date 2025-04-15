@@ -237,8 +237,8 @@ Check on your jobs using `bjobs` or `watch bjobs`. Now that we submitted an actu
 Once they have finished running, check the output and error files for each sample and check the output in the `Work` folder to make sure they completed successfully.
 
 ## Step 9
-### Request an interactive shell
-[fastp](https://github.com/OpenGene/fastp) generates summary statistics and quality control (QC) plots. You can review these individually, but this quickly becomes tedious over many samples, and it is difficult to appreciate trends and outliers.
+### Request an Interactive Shell
+[fastp](https://github.com/OpenGene/fastp) generates summary statistics and quality control (QC) reports. You can review these individually, but this quickly becomes tedious over many samples, and it is difficult to appreciate trends and outliers.
 
 [MultiQC](https://github.com/MultiQC/MultiQC) is a powerful tool to aggregate results from bioinformatics analyses and generate an interactive and user-friendly .html report. 
 
@@ -262,11 +262,33 @@ Let's break it down:
 - `-n 1`: This will not take much memory and doesn't need to be parallelized, so we are requesting 1 node
 - `-R "rusage[mem=10000]`: This is the memory request. In LSF, memory is requested in MB, so we are requesting 10,000 MB or 10GB
 - `-P acc_NGSCRC`: This is our project allocation account; each bsub job needs to include the associated project.
-- `W 60`: This is the wall time -- here we are requesting 60 minutes
-- `/bin/bash`: This specifies that you want to run an interactive Bash shell on the compute node once LSF allocates the resources. This means you will be working in a Bash environment, just like we are when we use the login node. So we can use familiar Bash syntax like `cd`, `mv`, etc.
+- `-W 60`: This is the wall time -- here we are requesting 60 minutes
+- `/bin/bash`: This specifies that you want to run an interactive Bash shell on the compute node once LSF allocates the resources. This means you will be working in a Bash environment, just like we are when we use the login node, so we can use familiar Bash syntax like `cd`, `mv`, etc.
 
 ## Step 10
-### Aggregate the quality control reports using MultiQC
+### Aggregate the QC Reports Using MultiQC
+Now that we have our interactive shell, we can run MultiQC on the fastp QC files. 
+
+MultiQC runs using Python, so we need to load the Python module (like we loaded the fastp module in our shell script):
+``` Shell
+module load python
+```
+This loads the most recent version of Python available on the cluster; if we wanted to load a specific version (some programs are only compatible with specific versions of other programs), we could type `module avail python` to see all the versions of Python that are available on Minerva. 
+
+If you type `module list`, it will list the modules we currently have loaded. You will see that several other modules were loaded when we loaded Python. 
+
+To keep all of our MultiQC reports separate, let's navigate into the folder in the Work directory containing our fastp output and print the working directory path:
+``` Shell
+cd /sc/arion/projects/NGSCRC/Work/Umbrella_Academy/trimmed_reads_practice/Kelsey
+pwd
+```
+Copy that path by highlighting it in the terminal and right-clicking on it. We'll run MultiQC from within our personal folders so the .html reports will be output here.
+
+MultiQC is available on Minerva, so we can execute it using the following Python code. Right click to paste the path of your fastp output so you don't need to type it all out.
+``` Shell
+python -m multiqc /sc/arion/projects/NGSCRC/Work/Umbrella_Academy/trimmed_reads_practice/Kelsey
+```
+If you look in the folder now using `ls`, you will see a report, `multiqc_report.html`, and a subfolder, `multiqc_data`. The subfolder contains data needed to generate the report, so we are only interested in the `multiqc_report.html` file. 
 
 ### 🎉Congratulations! 
 You successfully ran [fastp](https://github.com/OpenGene/fastp) on the HPC on 4 samples using an array job, and generated a [MultiQC](https://github.com/MultiQC/MultiQC) report!! Pat yourself on the back! 👋
