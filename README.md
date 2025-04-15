@@ -3,9 +3,13 @@
 
 ![Umbrella Academy Logo](https://github.com/user-attachments/assets/1004db95-2f50-42dc-ad2d-614481d5e93b)
 
-Here you will find the code for the hands-on exercises to get students comfortable using the command line and R.
+## What is "The Umbrella Academy"? 
+A 10-week course created by [Kelsey Monson](https://github.com/KelseyRMonson) to teach **dry lab** skills to **wet lab** scientists (because an ☔ keeps you dry when it's wet, get it?)
 
-This also includes a helpful resource for codes for commonly used R plots and a command line "cheat sheet" to keep on hand.
+## What is hosted on the GitHub?
+Here you will find the code for the hands-on exercises to get students comfortable using the command line ([Getting Started with the Command Line](Command-Line)) and R ([Getting Started with R](tbd)). It also includes an exercise to practice data cleaning ([Data Normalization and Cleaning](tbd)).
+
+This also includes a helpful resource for codes for commonly used R plots and a [command line "cheat sheet"](Command-Line/command_line_cheat_sheet.md) to keep on hand.
 
 ## Course Schedule
 
