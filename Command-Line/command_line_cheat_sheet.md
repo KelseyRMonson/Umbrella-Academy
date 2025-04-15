@@ -118,7 +118,7 @@ These are the codes we learned for basic navigation around the command line envi
 Use this code to move from your current directory to another directory.
 
 For example, this code brings us to the `master_data` folder where the raw .fastqs for the [Command Line Exercise](Command_Line_Exercise.md) are stored:
-```
+``` Shell
 cd /sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy
 ```
 If you don't specify a destination (as we did when we included the path to the `master_data` above), typing just `cd` will send you to your login directory.
@@ -129,7 +129,7 @@ Let's say you want to move up two folders to the `/sc/arion/projects/NGSCRC/mast
 - If you know how many folders up you want to travel, you can separate your dot dots with a slash to get to the desired destination.
 
 Since we are moving up two directories, we would type
-```
+``` Shell
 cd ../../
 ```
 ### Print working directory: `pwd`
@@ -169,4 +169,46 @@ Project 1/
 ### Make a directory: `mkdir`
 Use this to create a new directory in your current working directory. 
 
+## 📝Creating and Manipulating Files
+These are the codes we learned to open, edit, move, and create files:
 
+### Edit and create new files: `nano`
+This is one of many Linux text editors, but it is my favorite (I find it powerful yet user-friendly). Other popular editors are `vim`, `vi`, and `Emacs`.
+
+Just type `nano` and your file name to open the file interactively for editing, or `nano` and a new file name + extension to create a blank file.
+
+### View file contents: `less`
+Use this if you only want to read the contents of a file, not edit it. This is often the safer option because you don't risk accidentally modifying a file you don't intend to change. 
+
+As with `nano`, simply type `less` and the name of the file you wish to view. 
+
+> 🧠 **Extra Credit:** Typing `head` and your file name will print just the top 10 lines of your file. Typing `tail` will show you the bottom 10. These are good for quick peeks at your files.
+
+### Move files: `mv`
+Use this to move a file to a new location. Type `mv`, the file name, and the path to the desired destination. 
+
+### Copy files: `cp`
+Use this to make a new copy of a file. Type `cp`, the original file name, and the name of the copy. 
+
+You cannot copy two files with the same name in the same directory. Your options are to:
+1. Copy a file in the same directory and give it a new name, e.g. `cp file.sh file_1.sh`
+2. Copy the file into a new directory, e.g. `cp file.sh different_folder/file.sh`
+
+### Create a sample list
+Navigate to the directory with your target files and run this code to create a sample list:
+```  Shell
+printf '%s\n' "$PWD"/* > samplelist.txt
+```
+We learned how to do this for the raw .fastq files used in this exercise, but sample lists are also used as input for downstream applications like aligning files to the genome. 
+
+In fact, the output from our fastp job, where we filtered out low-quality reads and trimmed the sequencing adapters, will be the input for the next step in the RNA-seq processing pipeline (aligning the reads to the genome). Instead of using the raw .fastq files as the input, we would create a sample list pointing to the trimmed reads. To do so, we just navigate to our output folder from our fastp job and run this code.  
+
+### ⚠️ An Important Warning
+You might have noticed that I've only taught you how to create files and directories, not remove them.
+
+This is because it is **VERY DANGEROUS** to remove files from the HPC because it is not backed up and, **once they are deleted, they are gone forever**. The only exception is if the files have been archived, but this must be specifically requested.
+
+If I need to delete files or directories, I will often do it manually through my FTP client because it gives me a popup message asking me to confirm the deletion. This way I can triple-check that I'm removing the file I intend to remove.  
+
+## ☑️Launching Jobs using LSF
+These are the codes we learned to launch array jobs and interactive jobs using the [LSF (Load Sharing Facility)](https://www.ibm.com/docs/en/spectrum-lsf/10.1.0?topic=overview-lsf-introduction) job scheduler:
