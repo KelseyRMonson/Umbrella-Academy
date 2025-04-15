@@ -300,5 +300,6 @@ These are all the commands we learned in this exercise, but this is only the beg
 
 Here are a few resources to get you started when you're on your own:
 - Here are a few more useful [Bash commands](https://builtin.com/data-science/bash-commands) for navigating the command line.
+- If you want to go deeper, see [Survival guide for Unix newbies](https://matt.might.net/articles/basic-unix/) and the follow-up, [Settling into Unix](https://matt.might.net/articles/settling-into-unix/).
 - A helpful resource for LSF commands is the [LSF Documentation Page](https://www.ibm.com/docs/en/spectrum-lsf/10.1.0).
 - [Biostars](https://www.biostars.org/) and [stack**overflow**](https://stackoverflow.com/questions) are great resources for specific coding questions. 
