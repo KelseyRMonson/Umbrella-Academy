@@ -16,8 +16,7 @@ By the end of this exercise, you will be able to run [fastp](https://github.com/
 **MultiQC citation**
 >Philip Ewels, Måns Magnusson, Sverker Lundin, Max Käller, MultiQC: summarize analysis results for multiple tools and samples in a single report, *Bioinformatics*, October 2016, [DOI](https://doi.org/10.1093/bioinformatics/btw354)
 
-## Step 1
-### Locate the Data
+## Step 1: Locate the Data
 Using `cd` (change directory), navigate to the `master_data` folder on Minerva containing the raw .fastq files we will use in the exercise:
 
 ``` Shell
@@ -66,8 +65,7 @@ Let's go back to the main data folder. This command moves us one folder up in th
 cd ..
 ```
 
-## Step 2
-### Create a Sample List
+## Step 2: Create a Sample List
 Next we create a sample list pointing to the names and locations of the raw .fastq files. This will tell your script what files to look for and where they are stored.
 
 To do this, we will run the command `printf '%s\n' "$PWD"/* >FastP_practice_samplelist_${MY_NAME}.txt`, replacing `${MY_NAME}` with, you guessed it, your name. 
@@ -98,8 +96,7 @@ Let's break down the command:
     - *Save to a text file:*
         Instead of displaying the output of the command in the terminal, `>` will redirect the output to a new file, `samplelist.txt`.
 
-## Step 3
-### Modify your Sample List
+## Step 3: Modify your Sample List
 The sample list you just created will look like this:
 
 |  | 
@@ -129,8 +126,7 @@ Once the file is open, use the arrow keys to navigate to the line we wish to rem
 
 To save and quit: `ctrl + o` ("Write Out" the file, saving the output), `Enter` (when prompted to provide the file name to be written, we hit Enter to keep the same name), and `ctrl + x` (exit `nano`).
 
-## Step 4
-### Create the Script
+## Step 4: Create the Script
 Navigate to the `Scripts` directory and create your own subdirectory using the `mkdir` (make directory) command:
 ``` Shell
 cd /sc/arion/projects/NGSCRC/Scripts/Umbrella_Academy
@@ -164,8 +160,7 @@ Do you see the UNIX syntax in action here?
 
 *If you are following along on GitHub, follow [this link](FastP_practice_annotated.sh) to access the `FastP_practice_annotated.sh` script.*
 
-## Step 5
-### Modify the Script
+## Step 5: Modify the Script
 Now you have your own sample list and your own shell script that you can modify to run [fastp](https://github.com/OpenGene/fastp) yourself! 
 
 Navigate to your folder and open the script for editing using `nano`:
@@ -179,8 +174,7 @@ Don't forget to save and exit (`ctrl + o`, `Enter`, and `ctrl + x`).
 
 >💡**Tip:** If you ever want to create your own blank file, you can type `nano` and then a new file name + file extension.
 
-## Step 6
-### Submit the Job
+## Step 6: Submit the Job
 When the file is ready to be executed, we will use LSF syntax to submit the job. 
 
 [LSF (Load Sharing Facility)](https://www.ibm.com/docs/en/spectrum-lsf/10.1.0?topic=overview-lsf-introduction) is the Minerva job scheduling platform, which determines your job's priority, available resources, elapsed time, etc. 
@@ -203,8 +197,7 @@ Because we have written the script to run as an array job, we must still submit 
 
 To check on the progress of the job (whether it is pending or running, how long it has been running, if it has finished), we can use `bjobs`. To continually check on the progress, we use `watch bjobs`. 
 
-## Step 7
-### Debug (as Needed)
+## Step 7: Debug (as Needed)
 Once the job has finished, we can check to see whether it was successful. 
 
 We can look at the log and error files that have now been generated in your `Scripts` folder. If we just want to look at a file and not edit it, we can use `less` to open it, and `ctrl + z` to close it.
@@ -223,8 +216,7 @@ Is there output in the folder?
 > - Make sure your sample list contains only 4 rows, one for each sample, and points to the correct sample directories for the raw .fastq files.
 > - Make sure you typed your `bsub` command correctly, including the name of your script. Make sure you are launching the job from the `Scripts` folder that contains your script. 
 
-## Step 8
-### Run the Final Array Job
+## Step 8: Run the Final Array Job
 Once you are satisfied that your job works for one sample, you can submit your array job for the remaining samples:
 ``` Shell
 bsub -J MyArrayJob[2-4] < FastP_practice_Kelsey.sh
@@ -236,8 +228,7 @@ Check on your jobs using `bjobs` or `watch bjobs`. Now that we submitted an actu
 
 Once they have finished running, check the output and error files for each sample and check the output in the `Work` folder to make sure they completed successfully.
 
-## Step 9
-### Request an Interactive Shell
+## Step 9: Request an Interactive Shell
 [fastp](https://github.com/OpenGene/fastp) generates summary statistics and quality control (QC) reports. You can review these individually, but this quickly becomes tedious over many samples, and it is difficult to appreciate trends and outliers.
 
 [MultiQC](https://github.com/MultiQC/MultiQC) is a powerful tool to aggregate results from bioinformatics analyses and generate an interactive and user-friendly .html report. 
@@ -265,8 +256,7 @@ Let's break it down:
 - `-W 60`: This is the wall time -- here we are requesting 60 minutes
 - `/bin/bash`: This specifies that you want to run an interactive Bash shell on the compute node once LSF allocates the resources. This means you will be working in a Bash environment, just like we are when we use the login node, so we can use familiar Bash syntax like `cd`, `mv`, etc.
 
-## Step 10
-### Aggregate the QC Reports Using MultiQC
+## Step 10: Aggregate the QC Reports Using MultiQC
 Now that we have our interactive shell, we can run MultiQC on the fastp QC files. 
 
 MultiQC runs using Python, so we need to load the Python module (like we loaded the fastp module in our shell script):
@@ -288,10 +278,26 @@ MultiQC is available on Minerva, so we can execute it using the following Python
 ``` Shell
 python -m multiqc /sc/arion/projects/NGSCRC/Work/Umbrella_Academy/trimmed_reads_practice/Kelsey
 ```
-If you look in the folder now using `ls`, you will see a report, `multiqc_report.html`, and a subfolder, `multiqc_data`. The subfolder contains data needed to generate the report, so we are only interested in the `multiqc_report.html` file. 
+If you look in the folder now using `ls`, you will see a report, `multiqc_report.html`, and a subfolder, `multiqc_data`. The subfolder contains data needed to generate the report, but we are only interested in the `multiqc_report.html` file. 
 
+## Step 11: Download the MultiQC Report Locally
+If you try to view the `multiqc_report.html` file using the UNIX commands we've learned (like `less` or `nano`), you'll notice that it's not very easy to understand. This is because it's written in .html, which is only really interpretable by browsers like Chrome and Safari.
+
+So how can we view the report? 
+
+There's no way to open it on a browser while it's still stored on the HPC, so we need to find a way to download it to our personal computers. 
+
+This requires a **FTP** or **"file transfer protocol"** to transfer the .html report from Minerva to our laptop. 
+
+>💡**Tip:** Use one of the below FTP programs to move the `multiqc_report.html` from Minerva to your laptop:  
+>- 🪟**Windows FTP:** [WinSCP](https://winscp.net/eng/index.php)  
+>- 🍏**Mac FTP:** [Cyberduck](https://cyberduck.io/)
+
+Now you can open the `multiqc_report.html` file in your browser and take a look!
+
+## Step 12: Celebrate your Success
 ### 🎉Congratulations! 
-You successfully ran [fastp](https://github.com/OpenGene/fastp) on the HPC on 4 samples using an array job, and generated a [MultiQC](https://github.com/MultiQC/MultiQC) report!! Pat yourself on the back! 👋
+You successfully ran [fastp](https://github.com/OpenGene/fastp) on the HPC on 4 samples using an array job, and generated a [MultiQC](https://github.com/MultiQC/MultiQC) report! Pat yourself on the back! 👋
 
 ### Learning Recap
 After completing this exercise, you learned how to:
