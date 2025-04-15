@@ -5,12 +5,16 @@ This is an exercise to get people familiar with common bioinformatics command li
 These activities include:
 - 🗺️Navigating the command line
 - 📝Creating and editing simple scripts
-- ☑️Executing array jobs (using the LSF job scheduler) on Minerva, Mount Sinai's HPC. 
+- ☑️Executing array jobs (using the LSF job scheduler) on Minerva, Mount Sinai's HPC.
+- 📊Aggregating quality control reports using MultiQC
 
-By the end of this exercise, you will be able to run [fastp](https://github.com/OpenGene/fastp), a "tool designed to provide ultrafast all-in-one preprocessing and quality control for FastQ data," on four RNA-seq .fastq files.
+By the end of this exercise, you will be able to run [fastp](https://github.com/OpenGene/fastp), a "tool designed to provide ultrafast all-in-one preprocessing and quality control for FastQ data," on four RNA-seq .fastq files and aggregate the QC documents using [MultiQC](https://github.com/MultiQC/MultiQC), a "tool to create a single report with interactive plots for multiple bioinformatics analyses across many samples."
 
 **fastp citation:**
->Shifu Chen. 2023. Ultrafast one-pass FASTQ data preprocessing, quality control, and deduplication using fastp. iMeta 2: e107. [DOI](https://doi.org/10.1002/imt2.107)
+>Shifu Chen. 2023. Ultrafast one-pass FASTQ data preprocessing, quality control, and deduplication using fastp. *iMeta* 2: e107. [DOI](https://doi.org/10.1002/imt2.107)
+
+**MultiQC citation**
+>Philip Ewels, Måns Magnusson, Sverker Lundin, Max Käller, MultiQC: summarize analysis results for multiple tools and samples in a single report, *Bioinformatics*, October 2016, [DOI](https://doi.org/10.1093/bioinformatics/btw354)
 
 ## Step 1
 ### Locate the Data
@@ -81,7 +85,7 @@ Let's break down the command:
         This is the path to the current working directory (`$PWD`) followed by an asterisk (`*`). The asterisk is a wildcard character that matches any file or directory within the current directory. Because we navigated to the `/sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy` folder, this is the working directory that will be printed, followed by the contents of the directory, which are the subfolders containing the .fastq files for each sample.
 - `>samplelist.txt:`
         The "output redirection operator" (`>`) sends the output of a command to a file instead of printing it in the terminal. You decide the file's name and extension. Here we are creating a .txt file. 
->⚠️<ins>**Important**</ins>⚠️ If the file does not exist, defining the name and the file extension in the command will create a new file. But if you use the name of a file that already exists, **this command will overwrite the contents of an existing file if it has the same name.** Be careful when using `>`.  
+>⚠️<ins>**Important**:</ins> If the file does not exist, defining the name and the file extension in the command will create a new file. But if you use the name of a file that already exists, **this command will overwrite the contents of an existing file if it has the same name.** Be careful when using `>`.  
             
 - So, putting it all together, this command will:
     
@@ -232,8 +236,40 @@ Check on your jobs using `bjobs` or `watch bjobs`. Now that we submitted an actu
 
 Once they have finished running, check the output and error files for each sample and check the output in the `Work` folder to make sure they completed successfully.
 
+## Step 9
+### Request an interactive shell
+[fastp](https://github.com/OpenGene/fastp) generates summary statistics and quality control (QC) plots. You can review these individually, but this quickly becomes tedious over many samples, and it is difficult to appreciate trends and outliers.
+
+[MultiQC](https://github.com/MultiQC/MultiQC) is a powerful tool to aggregate results from bioinformatics analyses and generate an interactive and user-friendly .html report. 
+
+To run MultiQC, we will practice using an **interactive shell**, where we request compute resources and then interact directly with the shell by typing commands and getting output from those commands. 
+
+**Why are we doing this now?**
+
+- When we typed basic commands like `cd`, `mkdir`, `mv`, etc., we were also in an interactive shell. These commands are simple and use very little memory and computing resources, so we were able to use the login shell. That is, we didn't have to specifically request time and resources, we just used the shared resources available to everyone on the login node.
+- When we ran our array job using a shell script, we were using a non-interactive shell. We requested the resources to run our job within the body of the script, the shell ran the commands in the script, and then exited when the script finished, without us interacting with the shell.
+
+>⚠️**Important:** If you are not using a shell script and are doing anything other than very simple tasks, **you must request an interactive shell!** The HPC is a shared computing resource, and running time- and memory-intensive jobs on the login node slows things down for everyone else. Requesting an interactive node with the time and memory needed for your activity ensures HPC resources are allocated appropriately.
+
+So how do we request an interactive shell? Like this!
+
+``` Shell
+bsub -Is -n 1 -R "rusage[mem=10000]" -P acc_NGSCRC -W 60 /bin/bash
+```
+Let's break it down:
+- `bsub`: You know this one by now 🙂
+- `-Is`: This is the command to request an interactive shell
+- `-n 1`: This will not take much memory and doesn't need to be parallelized, so we are requesting 1 node
+- `-R "rusage[mem=10000]`: This is the memory request. In LSF, memory is requested in MB, so we are requesting 10,000 MB or 10GB
+- `-P acc_NGSCRC`: This is our project allocation account; each bsub job needs to include the associated project.
+- `W 60`: This is the wall time -- here we are requesting 60 minutes
+- `/bin/bash`: This specifies that you want to run an interactive Bash shell on the compute node once LSF allocates the resources. This means you will be working in a Bash environment, just like we are when we use the login node. So we can use familiar Bash syntax like `cd`, `mv`, etc.
+
+## Step 10
+### Aggregate the quality control reports using MultiQC
+
 ### 🎉Congratulations! 
-You successfully ran [fastp](https://github.com/OpenGene/fastp) on the HPC on 4 samples using an array job! Pat yourself on the back! 👋
+You successfully ran [fastp](https://github.com/OpenGene/fastp) on the HPC on 4 samples using an array job, and generated a [MultiQC](https://github.com/MultiQC/MultiQC) report!! Pat yourself on the back! 👋
 
 ### Learning Recap
 After completing this exercise, you learned how to:
@@ -249,6 +285,12 @@ After completing this exercise, you learned how to:
   -  Understand how to structure an array job script
   -  Submit an array job
   -  Monitor the status of your jobs
+- 📊Run an interactive job and view .html files
+  -  Request an interactive shell
+  -  Load modules using the command line
+  -  Run a job using the command line
+  -  Download files from the HPC to your local computer
+
 
 ### Resources
 - Clean example script: [FastP_practice_clean.sh](FastP_practice_clean.sh).
