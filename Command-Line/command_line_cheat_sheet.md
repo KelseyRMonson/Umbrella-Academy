@@ -265,3 +265,28 @@ You can view the status of your jobs using `bjobs`.
 To continuously monitor the status of your jobs (refreshed every 2 seconds) use `watch bjobs`.
 
 >🧠**Extra Credit:** `bjobs` has many options -- check out [this page](https://www.ibm.com/docs/en/spectrum-lsf/10.1.0?topic=bjobs-options) to see them all.
+
+## ⚒️Modules
+These are the commands we used to view and load modules. "Modules" just means all the software available on the HPC.
+
+### Load a module: `module load`
+If you just type the module name (e.g. `module load python`), you will load the most recent version of the module. You can also type the specific version of the module (e.g. `module load python/3.12.5`).
+
+It also accepts the shorthand `ml` (e.g. `ml python`).
+
+### Find available modules: `module avail`
+If you just type `module avail`, it will show you all available modules on the HPC. (This is a lot of software, so it takes a while to load).
+
+If you want to see if a certain package is available, you can type e.g. `module avail python` and it will show you all version(s) available (if any). 
+
+If you want to search more generally, you can type e.g. `module avail py` and it will show you all modules that contain "py" in their name. 
+
+### Show your loaded modules: `module list`
+Typing `module list` will show you all the modules you currently have loaded. 
+
+Confusingly, this will also accept the shorthand `ml`. So `ml` followed by a module name loads a module, and `ml` alone shows you the modules you have loaded. 
+
+### Running a module
+Typically, to run commands using a specific module, you just need to type the module name followed by the commands. 
+
+For example, we ran `fastp -i ${FWD_READ} -I ${REV_READ} -o ${FWD_PAIRED_OUT} -O ${REV_PAIRED_OUT}` after loading fastp in our array job, and `python -m multiqc ${path}` after loading Python in our interactive shell. 
