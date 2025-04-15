@@ -2,6 +2,8 @@
 This is a cheat sheet for the codes learned during the [Command Line Exercise](Command_Line_Exercise.md).
 
 >💡**Tip:** You can navigate quickly through this document by using the table of contents in the upper right-hand corner.
+>
+>Where applicable, I've included the command in the name of the section header so you can skim the list to find the command you're looking for.
 ><details>
 >    <summary> Help, where is the table of contents? </summary>
 >    
@@ -232,7 +234,7 @@ Once you have written your array job script, use the below command to execute it
 ``` Shell
 bsub -J MyArrayJob[x-xx] < Array_Script.sh
 ```
-The numbers within the `MyArrayJob` brackets will depend on the number of samples included in your array job; if you need to run it over 50 samples, it will be `-J MyArrayJob[1-50]`.
+The numbers within the `MyArrayJob` brackets will depend on the number of samples included in your array job; for example, if you need to run it over 50 samples, it will be `-J MyArrayJob[1-50]`.
 
 >🧠**Extra Credit:** What we learned in the lesson, however, is that you should always test your array job scripts on a single sample first.
 >
@@ -258,6 +260,8 @@ The parameters you will alter, depending on your task, are:
 - `-n`: If you want to parallelize your job, you can request more cores. This would be unusual, however, as most jobs requiring parallelization will be complex and should be written in a script.
 - `-R "rusage[mem=xxxxx]"`: Depending on the size of your task, you will request different amounts of memory. It's always better to start small and scale up your requests. Remember that LSF memory requests are in megabytes (MB). If you want to request 10 gigabytes (GB), for example, multiply by 1,000.
 - `-W`: Depending on how long your task will take, you can request different amounts of wall time. As with memory, start small and scale up as needed. You can request in minutes (`MM`) or hours (`HH:MM`).
+
+>💡**Tip:** While you want to be respectful of the other HPC users and not request excessive amounts of computing resources, the number one place to try to troubleshoot a failing job, especially if the error message is non-specific, is to try throwing more memory at it. 
 
 ### Monitor your Jobs: `bjobs`
 You can view the status of your jobs using `bjobs`.
