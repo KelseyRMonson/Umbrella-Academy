@@ -208,7 +208,22 @@ You might have noticed that I've only taught you how to create files and directo
 
 This is because it is **VERY DANGEROUS** to remove files from the HPC because it is not backed up and, **once they are deleted, they are gone forever**. The only exception is if the files have been archived, but this must be specifically requested.
 
-If I need to delete files or directories, I will often do it manually through my FTP client because it gives me a popup message asking me to confirm the deletion. This way I can triple-check that I'm removing the file I intend to remove.  
+If I need to delete files or directories, I will often do it manually through my FTP client (I use 🪟WinFTP for Windows) because it gives me a popup message asking me to confirm the deletion. This way I can triple-check that I'm removing the file I intend to remove.  
 
 ## ☑️Launching Jobs using LSF
 These are the codes we learned to launch array jobs and interactive jobs using the [LSF (Load Sharing Facility)](https://www.ibm.com/docs/en/spectrum-lsf/10.1.0?topic=overview-lsf-introduction) job scheduler:
+
+### Array Job Script Header
+The header of each array job you run will look something like this:
+``` Shell
+#!/bin/bash
+#BSUB -P acc_NGSCRC 		   # Zamarin Lab allocation account
+#BSUB -n 1	    		   # total number of compute cores
+#BSUB -W 00:10	    		   # walltime in HH:MM
+#BSUB -q premium    		   # queue 
+#BSUB -R "rusage[mem=32GB]"        # 32 GB of memory (32 GB per core)
+#BSUB -J "NAME ME!"                # Job name
+#BSUB -o out.%J.%Im		   # output file name (%I=job array index, %J=jobID)
+#BSUB -e err.%J.%I  		   # error file name (same nomenclature as above)
+#BSUB -L /bin/bash		   # Initialize the execution environment
+```
