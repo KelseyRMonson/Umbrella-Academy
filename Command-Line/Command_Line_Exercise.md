@@ -15,6 +15,7 @@ By the end of this exercise, you will be able to run [fastp](https://github.com/
 ## Step 1
 ### Locate the Data
 Using `cd` (change directory), navigate to the `master_data` folder on Minerva containing the raw .fastq files we will use in the exercise:
+
 ``` Shell
 cd /sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy
 ```
@@ -23,10 +24,10 @@ cd /sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy
 These .fastqs are truncated test data adapted from the [NF-core test data repository](https://github.com/nf-core/test-datasets/tree/rnaseq). Samples are from S. cerevisiae (yeast), and are 101bp paired-end strand-specific RNA-seq files, sub-sampled to 50,000 reads.
 
 <details>
-<summary> Sample details </summary>  
-  
+<summary>Sample details</summary>
+
 **Sample info:**
-  
+
 | run_accession | experiment_alias | read_count | sample_title |
 |---------------|------------------|------------|--------------|
 | SRR6357070 | GSM2879618 | 47629288 | Wild-type total RNA-Seq biological replicate 1 |
@@ -35,8 +36,10 @@ These .fastqs are truncated test data adapted from the [NF-core test data reposi
 | SRR6357073 | GSM2879621 | 56006930 | Rap1-AID degron no induction total RNA-Seq biological replicate 1 |
 
 **Sample citation:**
->Andrew C K Wu, Harshil Patel, Minghao Chia, Fabien Moretto, David Frith, Ambrosius P Snijders, Folkert J van Werven. Repression of Divergent Noncoding Transcription by a Sequence-Specific Transcription Factor. Mol Cell. 2018 Dec 20;72(6):942-954.e7. doi: 10.1016/j.molcel.2018.10.018.
->[Pubmed](https://pubmed.ncbi.nlm.nih.gov/30576656/) [GEO](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE110004)
+
+> Andrew C K Wu, Harshil Patel, Minghao Chia, Fabien Moretto, David Frith, Ambrosius P Snijders, Folkert J van Werven. Repression of Divergent Noncoding Transcription by a Sequence-Specific Transcription Factor. Mol Cell. 2018 Dec 20;72(6):942-954.e7. doi: 10.1016/j.molcel.2018.10.018.
+> [Pubmed](https://pubmed.ncbi.nlm.nih.gov/30576656/) [GEO](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE110004)
+
 </details>
 
 Each subfolder within the `/sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy` directory contains the .fastq files for each of the four samples we are using for this example. 
