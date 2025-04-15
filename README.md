@@ -6,6 +6,7 @@ Here you will find the code for the hands-on exercises to get students comfortab
 This also includes a helpful resource for codes for commonly used R plots and a command line "cheat sheet" to keep on hand.
 
 ## Course Schedule
+
 | Course    | Description |
 | -------- | ------- |
 | Class 1  | Course Intro    |
