@@ -8,7 +8,7 @@ This is a cheat sheet for the codes learned during the [Command Line Exercise](C
 > ![ToC Image](https://docs.github.com/assets/cb-142339/mw-1440/images/help/repository/headings-toc.webp) 
 > </details>
 
-## HPC File Structure
+## 🌳HPC File Structure
 As a refresher, this is an example of the HPC file structure: 
 ```
 └── Zamarin Lab Home Base (/sc/arion/projects/NGSCRC)/
