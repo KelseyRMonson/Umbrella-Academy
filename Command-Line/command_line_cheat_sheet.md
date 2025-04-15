@@ -294,3 +294,11 @@ Confusingly, this will also accept the shorthand `ml`. So `ml` followed by a mod
 Typically, to run commands using a specific module, you just need to type the module name followed by the commands. 
 
 For example, we ran `fastp -i ${FWD_READ} -I ${REV_READ} -o ${FWD_PAIRED_OUT} -O ${REV_PAIRED_OUT}` after loading fastp in our array job, and `python -m multiqc ${path}` after loading Python in our interactive shell. 
+
+## Conclusion
+These are all the commands we learned in this exercise, but this is only the beginning! 
+
+Here are a few resources to get you started when you're on your own:
+- Here are a few more useful [Bash commands](https://builtin.com/data-science/bash-commands) for navigating the command line.
+- A helpful resource for LSF commands is the [LSF Documentation Page](https://www.ibm.com/docs/en/spectrum-lsf/10.1.0).
+- [Biostars](https://www.biostars.org/) and [stack**overflow**](https://stackoverflow.com/questions) are great resources for specific coding questions. 
