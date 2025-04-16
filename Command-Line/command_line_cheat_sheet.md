@@ -252,7 +252,7 @@ When we want to launch an interactive shell, where we input commands in the term
 
 >⚠️**Important:** We learned that, unless we are doing very basic things like navigating the command line and creating or editing small files, we need to specifically request an interactive shell.
 > 
-> A good rule of thumb is the **10-10 Rule:** Only run jobs on the login node if they last <10 minutes and use <10% of available CPU cores and memory (~5 cores, ~2GB).
+> A good rule of thumb is the **10-10 Rule:** Only run jobs on the login node if they last <10 minutes and use <10% of available CPU cores and memory, a.k.a. if they last less than 10 "cpu-minutes" (one cpu at 100% for 10 minutes).
 
 This is the code to request an interactive shell:
 ``` Shell
