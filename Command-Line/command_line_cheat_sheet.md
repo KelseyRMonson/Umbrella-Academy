@@ -250,7 +250,9 @@ bsub < Shell_Script.sh
 ### Launch an Interactive Shell
 When we want to launch an interactive shell, where we input commands in the terminal instead of using a shell script, we need to request HPC resources. 
 
->⚠️**Important:** We learned that, unless we are doing very basic things like navigating the command line and creating or editing small files, we need to specifically request an interactive shell. 
+>⚠️**Important:** We learned that, unless we are doing very basic things like navigating the command line and creating or editing small files, we need to specifically request an interactive shell.
+> 
+> A good rule of thumb is the **10-10 Rule:** Only run jobs on the login node if they last <10 minutes and use <10% of available CPU cores and memory (~5 cores, ~2GB).
 
 This is the code to request an interactive shell:
 ``` Shell
