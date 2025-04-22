@@ -2,7 +2,6 @@
 # Welcome to the Umbrella Academy GitHub page!
 <!-- badges: start -->
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
-[![GitHub contributors](https://img.shields.io/github/contributors/KelseyRMonson/KelseyRMonson)](https://github.com/KelseyRMonson)
 <!-- badges: end -->
 
 ![Umbrella Academy Logo](https://github.com/user-attachments/assets/1004db95-2f50-42dc-ad2d-614481d5e93b)
