@@ -3,7 +3,7 @@
 #BSUB -n 1	    		   # total number of compute cores
 #BSUB -W 00:10	    		   # walltime in HH:MM
 #BSUB -q premium    		   # queue 
-#BSUB -R "rusage[mem=32GB]"        # 32 GB of memory (32 GB per core)
+#BSUB -R "rusage[mem=32GB]"        # 32 GB of memory total (32 GB per core, 1 core requested). With LSF, memory is requested per core ("-n").
 #BSUB -J "NAME ME!"                # Job name
 #BSUB -o out.%J.%Im		   # output file name (%I=job array index, %J=jobID)
 #BSUB -e err.%J.%I  		   # error file name (same nomenclature as above)
