@@ -1,12 +1,11 @@
 
 # Welcome to the Umbrella Academy GitHub page!
-
-![Umbrella Academy Logo](https://github.com/user-attachments/assets/1004db95-2f50-42dc-ad2d-614481d5e93b)
 <!-- badges: start -->
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![GitHub contributors](https://img.shields.io/github/contributors/KelseyRMonson/KelseyRMonson)](https://github.com/KelseyRMonson)
 <!-- badges: end -->
 
+![Umbrella Academy Logo](https://github.com/user-attachments/assets/1004db95-2f50-42dc-ad2d-614481d5e93b)
 
 ## What is "The Umbrella Academy"? 
 A 10-week course created by [Kelsey Monson](https://github.com/KelseyRMonson) to teach **dry lab** skills to **wet lab** scientists (because an ☔ keeps you dry when it's wet, get it?)
