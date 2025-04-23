@@ -1,6 +1,6 @@
 ---
 title: "Making (Nice!) Plots in R"
-subtitle: "An exercise within the Umbrella Academy course"
+subtitle: "An R exercise within the Umbrella Academy course"
 description: "This is an exercise to help 'wet lab' scientists feel comfortable manipulating data and creating common charts in R"
 
 author:
@@ -38,6 +38,16 @@ editor: visual
 
 ## Introduction
 
-The goal of **The Umbrella Academy** is to familiarize "wet lab" scientists with useful "dry lab" tools they may want to use. Therefore, this exercise is geared primarily towards basic data manipulation to generate aesthetically pleasing plots.
+The goal of **The Umbrella Academy** class is to familiarize "wet lab" scientists with useful "dry lab" tools they may want to use. Therefore, this exercise is geared primarily towards basic data manipulation to generate aesthetically pleasing plots in R.
 
 R is an excellent tool for generating beautiful data visualizations, and is much more flexible and customizable than other tools like Excel or GraphPad.
+
+First, let's familiarize ourselves with some basics of working with R in RStudio.
+
+### R and RStudio
+
+By now, you should have installed what's often called "base R." According to its creators, R is "an integrated suite of software facilities for data manipulation, calculation and graphical display" (you can read more about it [here](https://www.r-project.org/about.html)).
+
+```{r}
+getwd()
+```
