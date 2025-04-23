@@ -164,18 +164,31 @@ background: #f0f3f5;
 
 <section id="introduction" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
-<p>The goal of <strong>The Umbrella Academy</strong> class is to familiarize “wet lab” scientists with useful “dry lab” tools they may want to use. Therefore, this exercise is geared primarily towards basic data manipulation to generate aesthetically pleasing plots in R.</p>
+<p>The goal of <strong>The Umbrella Academy</strong> is to familiarize “wet lab” scientists with useful “dry lab” tools. Therefore, this exercise is geared primarily towards basic data manipulation to generate aesthetically pleasing plots in R.</p>
 <p>R is an excellent tool for generating beautiful data visualizations, and is much more flexible and customizable than other tools like Excel or GraphPad.</p>
-<p>First, let’s familiarize ourselves with some basics of working with R in RStudio.</p>
+<p>Another major benefit of R is that it is, and (hopefully) always will be, free to use and open source, unlike other proprietary statistical computing software like SAS or STATA.</p>
+<p>But first, before we dive into the exercise itself, let’s familiarize ourselves with some basics of working with R in RStudio.</p>
 <section id="r-and-rstudio" class="level3" data-number="1.1">
 <h3 data-number="1.1" class="anchored" data-anchor-id="r-and-rstudio"><span class="header-section-number">1.1</span> R and RStudio</h3>
-<p>By now, you should have installed what’s often called “base R.” According to its creators, R is “an integrated suite of software facilities for data manipulation, calculation and graphical display” (you can read more about it <a href="https://www.r-project.org/about.html">here</a>).</p>
+<p>By now, you should have installed what’s often called <strong>“base R.”</strong></p>
+<p>What is R?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "C:/Users/Zamarin Lab/Documents/GitHub/Umbrella-Academy/R-Project"</code></pre>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tufte)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tufte' was built under R version 4.4.3</code></pre>
 </div>
 </div>
+<blockquote class="blockquote">
+“This is a quote from someone.”
+<footer>
+— John Doe
+</footer>
+<p><span class="newthought">Hi</span></p>
+</blockquote>
+<p>According to its creators, R is “a language and environment for statistical computing and graphics” and “an integrated suite of software facilities for data manipulation, calculation and graphical display” (you can read more about it <a href="https://www.r-project.org/about.html">here</a>).</p>
+<p>You might have run R after you installed it, and seen something like this, magically transporting yourself to circa 2004: <img src="assets/RGui.png" class="img-fluid" alt="Base RGui screenshot"></p>
+<p>While this is perfectly functional, it’s not the ideal way to interact with R.</p>
+<p>Enter: <strong>RStudio</strong>.</p>
 </section>
 </section>
 

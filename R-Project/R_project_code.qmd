@@ -38,16 +38,32 @@ editor: visual
 
 ## Introduction
 
-The goal of **The Umbrella Academy** class is to familiarize "wet lab" scientists with useful "dry lab" tools they may want to use. Therefore, this exercise is geared primarily towards basic data manipulation to generate aesthetically pleasing plots in R.
+The goal of **The Umbrella Academy** is to familiarize "wet lab" scientists with useful "dry lab" tools. Therefore, this exercise is geared primarily towards basic data manipulation to generate aesthetically pleasing plots in R.
 
 R is an excellent tool for generating beautiful data visualizations, and is much more flexible and customizable than other tools like Excel or GraphPad.
 
-First, let's familiarize ourselves with some basics of working with R in RStudio.
+Another major benefit of R is that it is, and (hopefully) always will be, free to use and open source, unlike other proprietary statistical computing software like SAS or STATA.
+
+But first, before we dive into the exercise itself, let's familiarize ourselves with some basics of working with R in RStudio.
 
 ### R and RStudio
 
-By now, you should have installed what's often called "base R." According to its creators, R is "an integrated suite of software facilities for data manipulation, calculation and graphical display" (you can read more about it [here](https://www.r-project.org/about.html)).
+By now, you should have installed what's often called **"Base-R."**
 
-```{r}
-getwd()
-```
+What is R?
+
+According to its creators,
+
+> R is "a language and environment for statistical computing and graphics" and "an integrated suite of software facilities for data manipulation, calculation and graphical display."
+
+(You can read more about it [here](https://www.r-project.org/about.html).)
+
+But what does that mean in practice?
+
+You might have run R after you installed it, and seen something like this, magically transporting yourself to circa 2004: ![Base RGui screenshot](assets/RGui.png)
+
+This is "Base-R," and it's not especially user-friendly (where are  you even supposed to start?). While this is perfectly functional, it's not the ideal way to interact with R.
+
+Enter: **RStudio**.
+
+To be honest, I've been coding in R since 2017 and have never once written a script or performed an analysis in Base-R. 
