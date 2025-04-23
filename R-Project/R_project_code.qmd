@@ -1,0 +1,47 @@
+---
+title: "Making Plots in R"
+subtitle: "For Umbrella Academy course"
+description: "This is the exercise to get wet lab scientists comfortable manipulating data and creating common charts in R"
+
+author: "Kelsey Monson"
+affiliation: "Icahn School of Medicine at Mount Sinai"
+email: kelsey.monson@mssm.edu
+
+title-block-banner: "#f0f3f5"
+title-block-banner-color: "black"
+
+keywords: "R, Data Analysis, Data Viz"
+date: today
+
+format: 
+  html: 
+    code-fold: true
+    code-summary: "Show the code"
+    toc: true
+    number-sections: true
+    css: style.css
+    
+fig-cap-location: margin
+editor: visual
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
