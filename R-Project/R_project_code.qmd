@@ -50,7 +50,7 @@ But first, before we dive into the exercise itself, let's familiarize ourselves 
 
 By now, you should have installed what's often called **"Base-R."**
 
-What is R?
+**What is R?**
 
 According to its creators,
 
@@ -62,8 +62,44 @@ But what does that mean in practice?
 
 You might have run R after you installed it, and seen something like this, magically transporting yourself to circa 2004: ![Base RGui screenshot](assets/RGui.png)
 
-This is "Base-R," and it's not especially user-friendly (where are  you even supposed to start?). While this is perfectly functional, it's not the ideal way to interact with R.
+This is "Base-R," and it's not especially user-friendly (where are you even supposed to start? how do you run a command?). While it's perfectly functional, it's not the ideal way to interact with R.
 
 Enter: **RStudio**.
 
-To be honest, I've been coding in R since 2017 and have never once written a script or performed an analysis in Base-R. 
+I'm writing this exercise in RStudio right now, see? ![RStudio screenshot](assets/RStudio.png)
+
+To be honest, I've been coding in R since 2017 and have never once written a script or performed an analysis in Base-R.
+
+Maybe you can see why -- RStudio is what's called an **"integrative development environment" (IDE).**
+
+This goes beyond even a "graphical user interface" (GUI), in that it provides tools to write, execute, and debug R code, manage the objects and variables you create, keep track of your files and projects, render plots, read help documentation... the list goes on.
+
+So let's dive in.
+
+### Navigating RStudio
+
+Remember in our [last lesson](../Command-Line/Command_Line_Exercise.md) when we learned the command `pwd` to see what directory we were in on the HPC?
+
+There is a similar command in R:
+
+```{r}
+getwd()
+```
+
+You can see I'm currently in my project directory on the Zamarin Lab computer.
+
+The syntax for commands in R is typically the `function` followed by the arguments to the function in parentheses `(arguments)`.
+
+With `getwd()`, we're asking the question of what directory we're in, so we aren't giving it any arguments. But if we want to *change* the directory, we can use the below command, giving it the path of the directory we want to move to:
+
+```{r}
+setwd("C:/Users/Zamarin Lab/Documents/GitHub/Umbrella-Academy/R-Project")
+```
+
+::: callout-note
+`getwd()` is short for "**get** working directory" (whereas `pwd` was "**print** working directory").
+
+`setwd()` is short for "**set** working directory."
+
+You can remember these since "set" and "get" rhyme!
+:::

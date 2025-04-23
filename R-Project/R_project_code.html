@@ -152,6 +152,7 @@ background: #f0f3f5;
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a>
   <ul class="collapse">
   <li><a href="#r-and-rstudio" id="toc-r-and-rstudio" class="nav-link" data-scroll-target="#r-and-rstudio"><span class="header-section-number">1.1</span> R and RStudio</a></li>
+  <li><a href="#navigating-rstudio" id="toc-navigating-rstudio" class="nav-link" data-scroll-target="#navigating-rstudio"><span class="header-section-number">1.2</span> Navigating RStudio</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -170,25 +171,54 @@ background: #f0f3f5;
 <p>But first, before we dive into the exercise itself, let’s familiarize ourselves with some basics of working with R in RStudio.</p>
 <section id="r-and-rstudio" class="level3" data-number="1.1">
 <h3 data-number="1.1" class="anchored" data-anchor-id="r-and-rstudio"><span class="header-section-number">1.1</span> R and RStudio</h3>
-<p>By now, you should have installed what’s often called <strong>“base R.”</strong></p>
-<p>What is R?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tufte)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'tufte' was built under R version 4.4.3</code></pre>
-</div>
-</div>
+<p>By now, you should have installed what’s often called <strong>“Base-R.”</strong></p>
+<p><strong>What is R?</strong></p>
+<p>According to its creators,</p>
 <blockquote class="blockquote">
-“This is a quote from someone.”
-<footer>
-— John Doe
-</footer>
-<p><span class="newthought">Hi</span></p>
+<p>R is “a language and environment for statistical computing and graphics” and “an integrated suite of software facilities for data manipulation, calculation and graphical display.”</p>
 </blockquote>
-<p>According to its creators, R is “a language and environment for statistical computing and graphics” and “an integrated suite of software facilities for data manipulation, calculation and graphical display” (you can read more about it <a href="https://www.r-project.org/about.html">here</a>).</p>
+<p>(You can read more about it <a href="https://www.r-project.org/about.html">here</a>.)</p>
+<p>But what does that mean in practice?</p>
 <p>You might have run R after you installed it, and seen something like this, magically transporting yourself to circa 2004: <img src="assets/RGui.png" class="img-fluid" alt="Base RGui screenshot"></p>
-<p>While this is perfectly functional, it’s not the ideal way to interact with R.</p>
+<p>This is “Base-R,” and it’s not especially user-friendly (where are you even supposed to start? how do you run a command?). While it’s perfectly functional, it’s not the ideal way to interact with R.</p>
 <p>Enter: <strong>RStudio</strong>.</p>
+<p>I’m writing this exercise in RStudio right now, see? <img src="assets/RStudio.png" class="img-fluid" alt="RStudio screenshot"></p>
+<p>To be honest, I’ve been coding in R since 2017 and have never once written a script or performed an analysis in Base-R.</p>
+<p>Maybe you can see why – RStudio is what’s called an <strong>“integrative development environment” (IDE).</strong></p>
+<p>This goes beyond even a “graphical user interface” (GUI), in that it provides tools to write, execute, and debug R code, manage the objects and variables you create, keep track of your files and projects, render plots, read help documentation… the list goes on.</p>
+<p>So let’s dive in.</p>
+</section>
+<section id="navigating-rstudio" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="navigating-rstudio"><span class="header-section-number">1.2</span> Navigating RStudio</h3>
+<p>Remember in our <a href="../Command-Line/Command_Line_Exercise.md">last lesson</a> when we learned the command <code>pwd</code> to see what directory we were in on the HPC?</p>
+<p>There is a similar command in R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "C:/Users/Zamarin Lab/Documents/GitHub/Umbrella-Academy/R-Project"</code></pre>
+</div>
+</div>
+<p>You can see I’m currently in my project directory on the Zamarin Lab computer.</p>
+<p>The syntax for commands in R is typically the <code>function</code> followed by the arguments to the function in parentheses <code>(arguments)</code>.</p>
+<p>With <code>getwd()</code>, we’re asking the question of what directory we’re in, so we aren’t giving it any arguments. But if we want to <em>change</em> the directory, we can use the below command, giving it the path of the directory we want to move to:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/Users/Zamarin Lab/Documents/GitHub/Umbrella-Academy/R-Project"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>getwd()</code> is short for “get working directory” (whereas <code>pwd</code> was “print working directory”).</p>
+<p><code>setwd()</code> is short for “set working directory.”</p>
+<p>You can remember these since “set” and “get” rhyme!</p>
+</div>
+</div>
 </section>
 </section>
 
