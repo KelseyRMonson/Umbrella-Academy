@@ -1,11 +1,24 @@
 ---
-title: "Making Plots in R"
-subtitle: "For Umbrella Academy course"
-description: "This is the exercise to get wet lab scientists comfortable manipulating data and creating common charts in R"
+title: "Making (Nice!) Plots in R"
+subtitle: "An exercise within the Umbrella Academy course"
+description: "This is an exercise to help 'wet lab' scientists feel comfortable manipulating data and creating common charts in R"
 
-author: "Kelsey Monson"
-affiliation: "Icahn School of Medicine at Mount Sinai"
-email: kelsey.monson@mssm.edu
+author:
+  - name: Kelsey Monson
+    degrees:
+      - PhD
+      - MS
+    orcid: 0000-0003-1093-8628
+    email: kelsey.monson@mssm.edu
+    affiliations:
+      - ref: ISMMS
+
+affiliations:
+  - id: ISMMS
+    name: Icahn School of Medicine at Mount Sinai
+    city: New York
+    state: NY
+    department: Immunology and Immunotherapy
 
 title-block-banner: "#f0f3f5"
 title-block-banner-color: "black"
@@ -15,8 +28,6 @@ date: today
 
 format: 
   html: 
-    code-fold: true
-    code-summary: "Show the code"
     toc: true
     number-sections: true
     css: style.css
@@ -25,23 +36,8 @@ fig-cap-location: margin
 editor: visual
 ---
 
-## Quarto
+## Introduction
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+The goal of **The Umbrella Academy** is to familiarize "wet lab" scientists with useful "dry lab" tools they may want to use. Therefore, this exercise is geared primarily towards basic data manipulation to generate aesthetically pleasing plots.
 
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-1 + 1
-```
-
-You can add options to executable code like this
-
-```{r}
-#| echo: false
-2 * 2
-```
-
-The `echo: false` option disables the printing of code (only output is displayed).
+R is an excellent tool for generating beautiful data visualizations, and is much more flexible and customizable than other tools like Excel or GraphPad.
