@@ -103,3 +103,20 @@ setwd("C:/Users/Zamarin Lab/Documents/GitHub/Umbrella-Academy/R-Project")
 
 You can remember these since "set" and "get" rhyme!
 :::
+
+**⚠️IMPORTANT CAVEAT** Some people believe very strongly that you should never include `setwd()` in your R scripts. In fact, they even threaten to [come to your office and set your computer on fire 🔥](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/).
+
+Rather, they argue that it is much better to create a folder for the specific project you are working on, and then create an R Project (or similar, but for our purposes we will discuss R Projects).
+
+::: {.callout-tip appearance="minimal"}
+## What is an R Project?
+
+-   A type of file that functions with RStudio
+-   They have the `.Rproj` file extension
+-   R projects are each associated with a directory
+-   They are useful when working with many files for one purpose, hence the name “project”
+-   They “know” which files are relevant to a project: when you open the project, RStudio will load those files automatically
+-   If we are working in an R project, our working directory is automatically set as the folder that the project is associated with -- so no need to use `setwd()` (and have our computers set on fire 🔥)
+
+Adapted from ["Communicate Data with R"](https://communicate-data-with-r.netlify.app/) -- full post and more info [here](https://communicate-data-with-r.netlify.app/docs/baser/workingprojects/).
+:::

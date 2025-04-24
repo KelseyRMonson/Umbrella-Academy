@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Kelsey Monson">
-<meta name="dcterms.date" content="2025-04-23">
+<meta name="dcterms.date" content="2025-04-24">
 <meta name="keywords" content="R, Data Analysis, Data Viz">
 <meta name="description" content="This is an exercise to help ‘wet lab’ scientists feel comfortable manipulating data and creating common charts in R">
 
@@ -128,7 +128,7 @@ background: #f0f3f5;
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">April 23, 2025</p>
+        <p class="date">April 24, 2025</p>
       </div>
     </div>
     
@@ -214,9 +214,32 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>getwd()</code> is short for “get working directory” (whereas <code>pwd</code> was “print working directory”).</p>
-<p><code>setwd()</code> is short for “set working directory.”</p>
+<p><code>getwd()</code> is short for “<strong>get</strong> working directory” (whereas <code>pwd</code> was “<strong>print</strong> working directory”).</p>
+<p><code>setwd()</code> is short for “<strong>set</strong> working directory.”</p>
 <p>You can remember these since “set” and “get” rhyme!</p>
+</div>
+</div>
+<p><strong>⚠️IMPORTANT CAVEAT</strong> Some people believe very strongly that you should never include <code>setwd()</code> in your R scripts. In fact, they even threaten to <a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/">come to your office and set your computer on fire 🔥</a>.</p>
+<p>Rather, they argue that it is much better to create a folder for the specific project you are working on, and then create an R Project (or similar, but for our purposes we will discuss R Projects).</p>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What is an R Project?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>A type of file that functions with RStudio</li>
+<li>They have the <code>.Rproj</code> file extension</li>
+<li>R projects are each associated with a directory</li>
+<li>They are useful when working with many files for one purpose, hence the name “project”</li>
+<li>They “know” which files are relevant to a project: when you open the project, RStudio will load those files automatically</li>
+<li>If we are working in an R project, our working directory is automatically set as the folder that the project is associated with – so no need to use <code>setwd()</code> (and have our computers set on fire 🔥)</li>
+</ul>
+<p>Adapted from <a href="https://communicate-data-with-r.netlify.app/">“Communicate Data with R”</a> – full post and more info <a href="https://communicate-data-with-r.netlify.app/docs/baser/workingprojects/">here</a>.</p>
 </div>
 </div>
 </section>
