@@ -60,7 +60,9 @@ According to its creators,
 
 But what does that mean in practice?
 
-You might have run R after you installed it, and seen something like this, magically transporting yourself to circa 2004: ![Base RGui screenshot](assets/RGui.png)
+You might have run R after you installed it, and seen something like this, magically transporting yourself to circa 2004:
+
+![**Base R GUI.** This always reminds me of an AIM chat window (if anyone is old enough to remember that).](assets/RGui.png)
 
 This is "Base-R," and it's not especially user-friendly (where are you even supposed to start? how do you run a command?). While it's perfectly functional, it's not the ideal way to interact with R.
 
@@ -77,6 +79,8 @@ This goes beyond even a "graphical user interface" (GUI), in that it provides to
 So let's dive in.
 
 ### Navigating RStudio
+
+#### Working directories
 
 Remember in our [last lesson](../Command-Line/Command_Line_Exercise.md) when we learned the command `pwd` to see what directory we were in on the HPC?
 
@@ -104,11 +108,13 @@ setwd("C:/Users/Zamarin Lab/Documents/GitHub/Umbrella-Academy/R-Project")
 You can remember these since "set" and "get" rhyme!
 :::
 
-**⚠️IMPORTANT CAVEAT** Some people believe very strongly that you should never include `setwd()` in your R scripts. In fact, they even threaten to [come to your office and set your computer on fire 🔥](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/).
+#### R Projects
+
+**⚠️IMPORTANT CAVEAT** Some people believe very strongly that you should never include `setwd()` in your R scripts. In fact, they even threaten to [come to your office and set your computer on fire🔥](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/).
 
 Rather, they argue that it is much better to create a folder for the specific project you are working on, and then create an R Project (or similar, but for our purposes we will discuss R Projects).
 
-::: {.callout-tip appearance="minimal"}
+::: {.callout-tip}
 #### What is an R Project?
 
 -   A type of file that functions with RStudio
@@ -116,7 +122,33 @@ Rather, they argue that it is much better to create a folder for the specific pr
 -   R projects are each associated with a directory
 -   They are useful when working with many files for one purpose, hence the name “project”
 -   They “know” which files are relevant to a project: when you open the project, RStudio will load those files automatically
--   If we are working in an R project, our working directory is automatically set as the folder that the project is associated with -- so no need to use `setwd()` (and have our computers set on fire 🔥)
+-   If we are working in an R project, our working directory is automatically set as the folder that the project is associated with -- so no need to use `setwd()` (and have our computers set on fire🔥)
 
-Adapted from ["Communicate Data with R"](https://communicate-data-with-r.netlify.app/) -- full post and more info [here](https://communicate-data-with-r.netlify.app/docs/baser/workingprojects/).
+Adapted from [*Communicate Data with R*](https://communicate-data-with-r.netlify.app/) -- full post and more info [here](https://communicate-data-with-r.netlify.app/docs/baser/workingprojects/).
 :::
+
+For this exercise, we will create an R Project, just to teach best practices.
+
+#### RStudio Windows
+
+If you launch RStudio now, you will see three panes (or windows).
+
+Let's create a new script so you can see all four of the typical windows you will be working with when coding in RStudio:
+
+![Create a new script by going to File -\> New File -\> R Script](assets/New_File.png)
+
+Now you should see something like this:
+
+![**The four RStudio windows.** Yours may be in a different orientation than in this figure. These images and annotations are from the silly yet useful book [*YaRrr! The Pirate’s Guide to R*](https://bookdown.org/ndphillips/YaRrr/)](https://bookdown.org/ndphillips/YaRrr/images/RStudio_Screenshot_Labels.png)
+
+-   The **Console** is the same as if you had just launched Base-R -- this is where you can enter commands, but they will not be stored for future use.
+-   The **Source** section (with your new script) can also be generated in Base-R
+    -   However, there's no "Run" button in Base-R to run your code.
+    -   That said, it's much faster and easier to use a keyboard shortcut to execute your codes -- just type `CTRL + Enter`.
+    -   Try that now by typing `getwd()`, followed by `CTRL + Enter`.
+    -   This will work in either the **Console** or the **Source**.
+    -   If you ran it in the **Console**, you'll note that the command disappeared. Try using the `Up` arrow to retrieve the command and run it again!
+-   We haven't created any variables (yet) to go into the **Environment**, but check out the **History** tab -- you should see the `getwd()` command(s) you just ran!
+- The last window with **Files, Plots, Packages, etc.** will also look fairly empty, but not for long!
+
+#### RStudio Projects
