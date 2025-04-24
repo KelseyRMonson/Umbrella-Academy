@@ -153,8 +153,8 @@ background: #f0f3f5;
   <ul class="collapse">
   <li><a href="#r-and-rstudio" id="toc-r-and-rstudio" class="nav-link" data-scroll-target="#r-and-rstudio"><span class="header-section-number">1.1</span> R and RStudio</a></li>
   <li><a href="#navigating-rstudio" id="toc-navigating-rstudio" class="nav-link" data-scroll-target="#navigating-rstudio"><span class="header-section-number">1.2</span> Navigating RStudio</a></li>
+  <li><a href="#data-types-and-variables" id="toc-data-types-and-variables" class="nav-link" data-scroll-target="#data-types-and-variables"><span class="header-section-number">1.3</span> Data Types and Variables</a></li>
   </ul></li>
-  <li><a href="#head" id="toc-head" class="nav-link" data-scroll-target="#head"><span class="header-section-number">2</span> Head</a></li>
   </ul>
 </nav>
 </div>
@@ -231,7 +231,7 @@ Note
 </section>
 <section id="r-projects" class="level4" data-number="1.2.2">
 <h4 data-number="1.2.2" class="anchored" data-anchor-id="r-projects"><span class="header-section-number">1.2.2</span> R Projects</h4>
-<p><strong>⚠️IMPORTANT CAVEAT</strong> Some people believe very strongly that you should never include <code>setwd()</code> in your R scripts. In fact, they even threaten to <a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/">come to your office and set your computer on fire🔥</a>.</p>
+<p>Some people believe very strongly that you should never include <code>setwd()</code> in your R scripts. In fact, they even threaten to <a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/">come to your office and set your computer on fire🔥</a>.</p>
 <p>Rather, they argue that it is much better to create a folder for the specific project you are working on, and then create an R Project (or similar, but for our purposes we will discuss R Projects).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -272,16 +272,15 @@ Caution
 <div class="callout-body-container callout-body">
 <p>Before we progress, we need to turn off a few RStudio defaults that will make our lives better.</p>
 <p>Basically, in an ideal world, you should be able to run all your code from start to finish and get the same result.</p>
-<p>However, RStudio’s default behavior is to restore your previous workspace.</p>
-<p>This can cause problems since your previous workspace might include objects or data from a different project or version of your code, making it difficult to reproduce your results consistently. More on this <a href="https://www.sesync.org/resources/tips-smooth-rstudio-workflow-and-reproducible-r-code">here</a>.</p>
-<p>To turn off workspace saving and loading:</p>
+<p>However, RStudio’s default behavior is to <em>restore your previous workspace</em>. This can cause problems since your previous workspace might include objects or data from a different project or version of your code, making it difficult to reproduce your results consistently. More on this <a href="https://www.sesync.org/resources/tips-smooth-rstudio-workflow-and-reproducible-r-code">here</a>.</p>
+<p><strong>To turn off workspace saving and loading:</strong></p>
 <ul>
 <li>Tools -&gt; Global Options -&gt; General -&gt; Uncheck “Restore .RData into workspace at startup”</li>
-<li>Tools -&gt; Global Options -&gt; General -&gt; Change “Save workspace to .RData on exit” to “Never”</li>
+<li>Tools -&gt; Global Options -&gt; General -&gt; Change “Save workspace to .RData on exit” to “Never” <img src="assets/Global_Options.png" class="img-fluid"></li>
 </ul>
 </div>
 </div>
-<p>Now, let’s create a new script so you can see all four of the typical windows you will be working with when coding in RStudio:</p>
+<p>Now that we’ve turned off those defaults, let’s create a new script so you can see all four of the typical windows you will be working with when coding in RStudio:</p>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
 <p><img src="assets/New_File.png" class="img-fluid figure-img"></p>
@@ -337,12 +336,74 @@ Note
 <p>If you want to learn more, I highly recommend this course, <a href="https://www.productive-r-workflow.com/"><em>Productive R Workflow</em></a>. Contact me if you are interested; the creator offers group rates for teams.</p>
 </div>
 </div>
-<p>Okay, so we now have our R Project and our fresh new script. It’s time to begin!</p>
+<p>Okay, so we now have our R Project and our fresh new script. It’s almost time to begin!</p>
 </section>
 </section>
+<section id="data-types-and-variables" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="data-types-and-variables"><span class="header-section-number">1.3</span> Data Types and Variables</h3>
+<p>Every basic programming class with include this section (in fact, if you completed your <a href="https://vscodeedu.com/courses/intro-to-python">homework</a> this should look quite familiar, though R and Python are slightly different in this regard).</p>
+<p>I’ll try to make this brief:</p>
+<section id="variable-structures-in-r" class="level4" data-number="1.3.1">
+<h4 data-number="1.3.1" class="anchored" data-anchor-id="variable-structures-in-r"><span class="header-section-number">1.3.1</span> Variable Structures in R</h4>
+<ul>
+<li><strong>Data Frame:</strong> A table-like structure with rows and columns. Each column can store a different data type, making it ideal for organizing datasets.</li>
+<li><strong>Tibble:</strong> A modern version of a data frame, offering improved printing behavior and no row names by default.</li>
+<li><strong>Vector:</strong> A one-dimensional collection that holds elements of the same data type.</li>
+<li><strong>List:</strong> An ordered collection that can store elements of different types, allowing greater flexibility.</li>
+<li><strong>Matrix:</strong> A two-dimensional version of a vector with rows and columns, where all elements share the same type.</li>
+<li><strong>Array:</strong> A multi-dimensional collection, similar to a matrix but capable of handling more than two dimensions.</li>
+</ul>
+<p>You will likely most often be working with <strong>Data Frames</strong> or <strong>Tibbles</strong> to create figures, but will probably use all of the variable types at one point or another.</p>
 </section>
-<section id="head" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="head"><span class="header-section-number">2</span> Head</h2>
+<section id="data-types-in-r" class="level4" data-number="1.3.2">
+<h4 data-number="1.3.2" class="anchored" data-anchor-id="data-types-in-r"><span class="header-section-number">1.3.2</span> Data Types in R</h4>
+<ul>
+<li><strong>Numeric:</strong> The default type used for numbers, including decimals.</li>
+<li><strong>Factor:</strong> A special structure for categorical data that defines a limited set of values.</li>
+<li><strong>Integer:</strong> Whole numbers explicitly defined with an “L” suffix (e.g., 10L).</li>
+<li><strong>Logical:</strong> Represents Boolean values: TRUE or FALSE.</li>
+<li><strong>Character:</strong> Text strings used to represent words or sentences.</li>
+<li><strong>Complex:</strong> Numbers that include both a real and an imaginary component (e.g., 2+3i).</li>
+<li><strong>Raw:</strong> Used for storing raw byte data.</li>
+</ul>
+<p>Some of these you won’t interact with much (I’ve never worked with Complex or Raw data, I don’t think…), others are pretty essential. <strong>Factors</strong> are especially important, and we will discuss them more later.</p>
+<p>These definitions are drawn from <a href="https://github.com/MVesuviusC/R_workshop/tree/main">this R Workshop GitHub</a>, which inspired a few other sections of this class (thank you, <a href="https://github.com/MVesuviusC">MVesuviusC</a>!).</p>
+</section>
+<section id="identifying-variable-structures-and-data-types" class="level4" data-number="1.3.3">
+<h4 data-number="1.3.3" class="anchored" data-anchor-id="identifying-variable-structures-and-data-types"><span class="header-section-number">1.3.3</span> Identifying Variable Structures and Data Types</h4>
+<p>There is an extremely useful function in R to tell you the structure of an object: <code>str()</code></p>
+<p>Here I’m going to show the difference between a <strong>Numeric</strong> variable and an <strong>Integer</strong>, by creating two <strong>Vectors</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> num [1:3] 1 2 3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>int <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>L,<span class="dv">2</span>L,<span class="dv">3</span>L)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(int)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> int [1:3] 1 2 3</code></pre>
+</div>
+</div>
+<p>We created the variables using <code>&lt;-</code>, otherwise known as the <code>assignment operator</code>, and then checked their structure by passing the object to the <code>str()</code> function.</p>
+<p>If you want, you can <em>coerce</em> a data type into another one. Let’s say I actually wanted <code>num</code> to be an integer data type:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(num)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> int [1:3] 1 2 3</code></pre>
+</div>
+</div>
+<p>But, oops, actually, just kidding, I really wanted <code>num</code> to be numeric. We can change it back:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(num)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> num [1:3] 1 2 3</code></pre>
+</div>
+</div>
+</section>
+</section>
 </section>
 
 </main>
