@@ -76,7 +76,7 @@ Maybe you can see why -- RStudio is what's called an **"integrative development 
 
 This goes beyond even a "graphical user interface" (GUI), in that it provides tools to write, execute, and debug R code, manage the objects and variables you create, keep track of your files and projects, render plots, read help documentation... the list goes on.
 
-So let's dive in.
+So let's dive in!
 
 ### Navigating RStudio
 
@@ -158,6 +158,20 @@ As promised, we will create an R Project for this exercise.
 
 Go ahead and close your new script containing the brilliant and groundbreaking code you just wrote (`getwd()`), no need to save it.
 
-Now, create a new project:
+Now, create a new project and new directory:
 
-![Create a new project by going to File -\> New Project. Then create a New Directory](assets/New_Proj.png)
+![Create a new project by going to File -\> New Project. Then create a New Directory, and finally New Project.](assets/New_Proj.png)
+
+You can name your new directory whatever you'd like, as long as you remember it's for this project.
+
+Now we'll go back and create a new R script in our project folder.
+
+::: callout-note
+For this exercise, we will be using an R script to write and execute our code.
+
+There are other document types, like R Markdown, or the newer Quarto (this is actually a Quarto document). These file types are a bit more advanced and require you to know Markdown syntax, but can be very helpful for actual projects. They allow you to combine code, text, and output very seamlessly, which is good for reproducibility.
+
+If you want to learn more, I highly recommend this course, [*Productive R Workflow*](https://www.productive-r-workflow.com/). Contact me if you are interested; the creator offers group rates for teams.
+:::
+
+Okay, so we now have our R Project and our fresh new script. It's time to begin!
