@@ -249,6 +249,7 @@ What is an R Project?
 <li>They are useful when working with many files for one purpose, hence the name “project”</li>
 <li>They “know” which files are relevant to a project: when you open the project, RStudio will load those files automatically</li>
 <li>If we are working in an R project, our working directory is automatically set as the folder that the project is associated with – so no need to use <code>setwd()</code> (and have our computers set on fire🔥)</li>
+<li>This is especially useful if you need to move your project directory or change computers – you don’t have to rewrite the path to your working directory if the project moves, which is really beneficial for collaboration and reproducibility</li>
 </ul>
 <p>Adapted from <a href="https://communicate-data-with-r.netlify.app/"><em>Communicate Data with R</em></a> – full post and more info <a href="https://communicate-data-with-r.netlify.app/docs/baser/workingprojects/">here</a>.</p>
 </div>
@@ -269,11 +270,11 @@ What is an R Project?
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
 <p><img src="https://bookdown.org/ndphillips/YaRrr/images/RStudio_Screenshot_Labels.png" class="img-fluid figure-img"></p>
-<figcaption class="margin-caption"><strong>The four RStudio windows.</strong> They may be in a different orientation than in this figure. These images and annotations are from the silly yet useful book <a href="https://bookdown.org/ndphillips/YaRrr/"><em>YaRrr! The Pirate’s Guide to R</em></a></figcaption>
+<figcaption class="margin-caption"><strong>The four RStudio windows.</strong> Yours may be in a different orientation than in this figure. These images and annotations are from the silly yet useful book <a href="https://bookdown.org/ndphillips/YaRrr/"><em>YaRrr! The Pirate’s Guide to R</em></a></figcaption>
 </figure>
 </div>
 <ul>
-<li>The <strong>Console</strong> is the same as if you had just launched Base-R – this is where you can enter commands, but they will not be stored for future use.</li>
+<li>The <strong>Console</strong> is the same as if you had just launched Base-R – you can enter and run commands here, but they will not be stored for future use.</li>
 <li>The <strong>Source</strong> section (with your new script) can also be generated in Base-R
 <ul>
 <li>However, there’s no “Run” button in Base-R to run your code.</li>
@@ -286,8 +287,17 @@ What is an R Project?
 <li>The last window with <strong>Files, Plots, Packages, etc.</strong> will also look fairly empty, but not for long!</li>
 </ul>
 </section>
-<section id="rstudio-projects" class="level4" data-number="1.2.4">
+<section id="rstudio-projects" class="level4 page-columns page-full" data-number="1.2.4">
 <h4 data-number="1.2.4" class="anchored" data-anchor-id="rstudio-projects"><span class="header-section-number">1.2.4</span> RStudio Projects</h4>
+<p>As promised, we will create an R Project for this exercise.</p>
+<p>Go ahead and close your new script containing the brilliant and groundbreaking code you just wrote (<code>getwd()</code>), no need to save it.</p>
+<p>Now, create a new project:</p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="assets/New_Proj.png" class="img-fluid figure-img"></p>
+<figcaption class="margin-caption">Create a new project by going to File -&gt; New Project. Then create a New Directory</figcaption>
+</figure>
+</div>
 </section>
 </section>
 </section>

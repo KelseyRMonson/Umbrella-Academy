@@ -114,7 +114,7 @@ You can remember these since "set" and "get" rhyme!
 
 Rather, they argue that it is much better to create a folder for the specific project you are working on, and then create an R Project (or similar, but for our purposes we will discuss R Projects).
 
-::: {.callout-tip}
+::: callout-tip
 #### What is an R Project?
 
 -   A type of file that functions with RStudio
@@ -123,6 +123,7 @@ Rather, they argue that it is much better to create a folder for the specific pr
 -   They are useful when working with many files for one purpose, hence the name “project”
 -   They “know” which files are relevant to a project: when you open the project, RStudio will load those files automatically
 -   If we are working in an R project, our working directory is automatically set as the folder that the project is associated with -- so no need to use `setwd()` (and have our computers set on fire🔥)
+-   This is especially useful if you need to move your project directory or change computers -- you don't have to rewrite the path to your working directory if the project moves, which is really beneficial for collaboration and reproducibility
 
 Adapted from [*Communicate Data with R*](https://communicate-data-with-r.netlify.app/) -- full post and more info [here](https://communicate-data-with-r.netlify.app/docs/baser/workingprojects/).
 :::
@@ -141,7 +142,7 @@ Now you should see something like this:
 
 ![**The four RStudio windows.** Yours may be in a different orientation than in this figure. These images and annotations are from the silly yet useful book [*YaRrr! The Pirate’s Guide to R*](https://bookdown.org/ndphillips/YaRrr/)](https://bookdown.org/ndphillips/YaRrr/images/RStudio_Screenshot_Labels.png)
 
--   The **Console** is the same as if you had just launched Base-R -- this is where you can enter commands, but they will not be stored for future use.
+-   The **Console** is the same as if you had just launched Base-R -- you can enter and run commands here, but they will not be stored for future use.
 -   The **Source** section (with your new script) can also be generated in Base-R
     -   However, there's no "Run" button in Base-R to run your code.
     -   That said, it's much faster and easier to use a keyboard shortcut to execute your codes -- just type `CTRL + Enter`.
@@ -149,6 +150,14 @@ Now you should see something like this:
     -   This will work in either the **Console** or the **Source**.
     -   If you ran it in the **Console**, you'll note that the command disappeared. Try using the `Up` arrow to retrieve the command and run it again!
 -   We haven't created any variables (yet) to go into the **Environment**, but check out the **History** tab -- you should see the `getwd()` command(s) you just ran!
-- The last window with **Files, Plots, Packages, etc.** will also look fairly empty, but not for long!
+-   The last window with **Files, Plots, Packages, etc.** will also look fairly empty, but not for long!
 
 #### RStudio Projects
+
+As promised, we will create an R Project for this exercise.
+
+Go ahead and close your new script containing the brilliant and groundbreaking code you just wrote (`getwd()`), no need to save it.
+
+Now, create a new project:
+
+![Create a new project by going to File -\> New Project. Then create a New Directory](assets/New_Proj.png)
