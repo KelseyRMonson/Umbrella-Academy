@@ -109,7 +109,7 @@ You can remember these since "set" and "get" rhyme!
 Rather, they argue that it is much better to create a folder for the specific project you are working on, and then create an R Project (or similar, but for our purposes we will discuss R Projects).
 
 ::: {.callout-tip appearance="minimal"}
-## What is an R Project?
+#### What is an R Project?
 
 -   A type of file that functions with RStudio
 -   They have the `.Rproj` file extension
