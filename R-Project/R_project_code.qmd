@@ -134,7 +134,20 @@ For this exercise, we will create an R Project, just to teach best practices.
 
 If you launch RStudio now, you will see three panes (or windows).
 
-Let's create a new script so you can see all four of the typical windows you will be working with when coding in RStudio:
+::: callout-caution
+Before we progress, we need to turn off a few RStudio defaults that will make our lives better.
+
+Basically, in an ideal world, you should be able to run all your code from start to finish and get the same result. 
+
+However, RStudio's default behavior is to restore your previous workspace. This can cause problems since your previous workspace might include objects or data from a different project or version of your code, making it difficult to reproduce your results consistently. More on this [here](https://www.sesync.org/resources/tips-smooth-rstudio-workflow-and-reproducible-r-code).
+
+**To turn off workspace saving and loading:**
+
+- Tools -\> Global Options -\> General -\> Uncheck “Restore .RData into workspace at startup”
+- Tools -\> Global Options -\> General -\> Change “Save workspace to .RData on exit” to “Never”
+:::
+
+Now that we've turned off those defaults, let's create a new script so you can see all four of the typical windows you will be working with when coding in RStudio:
 
 ![Create a new script by going to File -\> New File -\> R Script](assets/New_File.png)
 
@@ -175,3 +188,5 @@ If you want to learn more, I highly recommend this course, [*Productive R Workfl
 :::
 
 Okay, so we now have our R Project and our fresh new script. It's time to begin!
+
+## Head

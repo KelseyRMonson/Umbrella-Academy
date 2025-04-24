@@ -154,6 +154,7 @@ background: #f0f3f5;
   <li><a href="#r-and-rstudio" id="toc-r-and-rstudio" class="nav-link" data-scroll-target="#r-and-rstudio"><span class="header-section-number">1.1</span> R and RStudio</a></li>
   <li><a href="#navigating-rstudio" id="toc-navigating-rstudio" class="nav-link" data-scroll-target="#navigating-rstudio"><span class="header-section-number">1.2</span> Navigating RStudio</a></li>
   </ul></li>
+  <li><a href="#head" id="toc-head" class="nav-link" data-scroll-target="#head"><span class="header-section-number">2</span> Head</a></li>
   </ul>
 </nav>
 </div>
@@ -192,7 +193,7 @@ background: #f0f3f5;
 <p>To be honest, I’ve been coding in R since 2017 and have never once written a script or performed an analysis in Base-R.</p>
 <p>Maybe you can see why – RStudio is what’s called an <strong>“integrative development environment” (IDE).</strong></p>
 <p>This goes beyond even a “graphical user interface” (GUI), in that it provides tools to write, execute, and debug R code, manage the objects and variables you create, keep track of your files and projects, render plots, read help documentation… the list goes on.</p>
-<p>So let’s dive in.</p>
+<p>So let’s dive in!</p>
 </section>
 <section id="navigating-rstudio" class="level3 page-columns page-full" data-number="1.2">
 <h3 data-number="1.2" class="anchored" data-anchor-id="navigating-rstudio"><span class="header-section-number">1.2</span> Navigating RStudio</h3>
@@ -259,7 +260,28 @@ What is an R Project?
 <section id="rstudio-windows" class="level4 page-columns page-full" data-number="1.2.3">
 <h4 data-number="1.2.3" class="anchored" data-anchor-id="rstudio-windows"><span class="header-section-number">1.2.3</span> RStudio Windows</h4>
 <p>If you launch RStudio now, you will see three panes (or windows).</p>
-<p>Let’s create a new script so you can see all four of the typical windows you will be working with when coding in RStudio:</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before we progress, we need to turn off a few RStudio defaults that will make our lives better.</p>
+<p>Basically, in an ideal world, you should be able to run all your code from start to finish and get the same result.</p>
+<p>However, RStudio’s default behavior is to restore your previous workspace.</p>
+<p>This can cause problems since your previous workspace might include objects or data from a different project or version of your code, making it difficult to reproduce your results consistently. More on this <a href="https://www.sesync.org/resources/tips-smooth-rstudio-workflow-and-reproducible-r-code">here</a>.</p>
+<p>To turn off workspace saving and loading:</p>
+<ul>
+<li>Tools -&gt; Global Options -&gt; General -&gt; Uncheck “Restore .RData into workspace at startup”</li>
+<li>Tools -&gt; Global Options -&gt; General -&gt; Change “Save workspace to .RData on exit” to “Never”</li>
+</ul>
+</div>
+</div>
+<p>Now, let’s create a new script so you can see all four of the typical windows you will be working with when coding in RStudio:</p>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
 <p><img src="assets/New_File.png" class="img-fluid figure-img"></p>
@@ -311,13 +333,16 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <p>For this exercise, we will be using an R script to write and execute our code.</p>
-<p>There are other document types, like R Markdown, or the newer Quarto (this document is actually a Quarto document). These file types are a bit more advanced and require you to know Markdown syntax, but can be very helpful for actual projects. They allow you to combine code, text, and output very seamlessly, which is good for reproducibility.</p>
+<p>There are other document types, like R Markdown, or the newer Quarto (this is actually a Quarto document). These file types are a bit more advanced and require you to know Markdown syntax, but can be very helpful for actual projects. They allow you to combine code, text, and output very seamlessly, which is good for reproducibility.</p>
 <p>If you want to learn more, I highly recommend this course, <a href="https://www.productive-r-workflow.com/"><em>Productive R Workflow</em></a>. Contact me if you are interested; the creator offers group rates for teams.</p>
 </div>
 </div>
 <p>Okay, so we now have our R Project and our fresh new script. It’s time to begin!</p>
 </section>
 </section>
+</section>
+<section id="head" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="head"><span class="header-section-number">2</span> Head</h2>
 </section>
 
 </main>
