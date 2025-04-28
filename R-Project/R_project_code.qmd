@@ -401,6 +401,15 @@ Okay, so we now have our R Project and our fresh new script. It's time to begin!
 library(tidyverse)
 library(viridis)
 library(readxl)
+
 ```
 
+Some packages (and Base-R) include their own test data. This is useful when you want to see what a package is capable of, and is especially good for testing specific functions. If the package documentation shows you how to run functions using test data that you can download too, you can both recreate the example they are showing you and more easily apply it to your own data. 
+
+We will use the `starwars` dataset from the `tidyverse` package as our example data today. 
+
+### Getting Started
 I've created an [R Script](Getting_Started_with_R_script.R) that includes the code necessary to generate the plots for this exercise.
+
+Go ahead and open that script to see the names of the packages we need to download and load today -- and then do that!
+
