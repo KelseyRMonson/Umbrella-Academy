@@ -542,7 +542,7 @@ Extra Credit
 <div class="cell-output cell-output-stdout">
 <pre><code> chr [1:4] "third" "second" "fourth" "first"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># But treats it alphabetically</span></span>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># But still treats it alphabetically</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>rankings
@@ -572,10 +572,12 @@ Extra Credit
 <ul>
 <li>Searches the help documentation for the keyword you provide.</li>
 <li>e.g.&nbsp;<code>??mean()</code> will look for all the functions (and their documentation) that include the word <code>mean</code> and will return a list that you can select from.</li>
-<li>Because this searches documentation for your keyword(s) and not just function names, this is a good option if you know <em>what</em> you want a function to do, even if you don’t know its name.</li>
+<li>Because this searches documentation for your keyword(s) and not just function names, this is a good option if you know <em>what</em> you want a function to do, even if you don’t know its name, and/or you want to see if there are multiple functions to choose from.</li>
 <li>This type search of works better if you use more specific keywords, since many functions share common words (in fact, you can try out <code>??mean()</code> and see how many results you get – it might take a while!)</li>
 </ul></li>
 </ul>
+<p>One of the most useful reasons to use <code>?</code> is because, in addition to giving you general information about how a function works, it tells you the possible arguments (what can go inside the parentheses) as well as any default behavior.</p>
+<p>I use <code>?</code> almost every time I’m coding in R – sometimes just to see what other cool things a function I’m using can do!</p>
 </section>
 </section>
 
