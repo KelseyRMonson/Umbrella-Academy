@@ -344,9 +344,8 @@ Caution
 <p>This is where the <strong>Factor</strong> variable type comes in. We can specify that this categorical variable is a factor, and tell it the levels we expect:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(rankings)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># If we just coerce the variable into a factor, we still have the same problem, </span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># because R doesn't know that we want them in order:</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># If we just coerce the variable into a factor, we still have the same problem, because R doesn't know that we want them in order:</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> Factor w/ 4 levels "first","fourth",..: 1 3 4 2</code></pre>
 </div>

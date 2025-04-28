@@ -31,6 +31,7 @@ format:
     toc: true
     number-sections: true
     css: style.css
+    code-overflow: wrap
     
 fig-cap-location: margin
 editor: visual
@@ -194,8 +195,7 @@ This is where the **Factor** variable type comes in. We can specify that this ca
 
 ```{r}
 rankings <- as.factor(rankings)
-# If we just coerce the variable into a factor, we still have the same problem, 
-# because R doesn't know that we want them in order:
+# If we just coerce the variable into a factor, we still have the same problem, because R doesn't know that we want them in order:
 str(rankings)
 table(rankings)
 
@@ -394,4 +394,13 @@ If you want to learn more, I highly recommend this course, [*Productive R Workfl
 Okay, so we now have our R Project and our fresh new script. It's time to begin!
 
 ## Exercise
-I've created an [R Script](Getting_Started_with_R_script.R) that includes the code necessary to generate the plots for this exercise. 
+```{r}
+#| echo: false
+#| warning: false
+
+library(tidyverse)
+library(viridis)
+library(readxl)
+```
+
+I've created an [R Script](Getting_Started_with_R_script.R) that includes the code necessary to generate the plots for this exercise.
