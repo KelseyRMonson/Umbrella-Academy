@@ -114,7 +114,7 @@ Some people believe very strongly that you should never include `setwd()` in you
 
 Rather, they argue that it is much better to create a folder for the specific project you are working on, and then create an R Project (or similar, but for our purposes we will discuss R Projects).
 
-::: callout-tip
+::: {.callout-tip collapse="true"}
 #### What is an R Project?
 
 -   A type of file that functions with RStudio
@@ -134,8 +134,9 @@ For this exercise, we will create an R Project, just to teach best practices.
 
 If you launch RStudio now, you will see three panes (or windows).
 
-::: callout-caution
-Before we progress, we need to turn off a few RStudio defaults that will make our lives better.
+::: {.callout-caution collapse="true"}
+#### Before we progress...
+...we need to turn off a few RStudio defaults that will make our lives better.
 
 Basically, in an ideal world, you should be able to run all your code from start to finish and get the same result.
 
