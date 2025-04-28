@@ -181,7 +181,8 @@ You can name your new directory whatever you'd like, as long as you remember it'
 
 Now we'll go back and create a new R script in our project folder.
 
-::: callout-note
+::: {.callout-note collapse="true"}
+##### A note on document types
 For this exercise, we will be using an R script to write and execute our code.
 
 There are other document types, like R Markdown, or the newer Quarto (this is actually a Quarto document). These file types are a bit more advanced and require you to know Markdown syntax, but can be very helpful for actual projects. They allow you to combine code, text, and output very seamlessly, which is good for reproducibility.
@@ -231,9 +232,12 @@ There is an extremely useful function in R to tell you the structure of an objec
 Here I'm going to show the difference between a **Numeric** variable and an **Integer**, by creating two **Vectors**:
 
 ```{r}
+# Create the vectors
 num <- c(1,2,3)
-str(num)
 int <- c(1L,2L,3L)
+
+# Look at their structure with `str()`
+str(num)
 str(int)
 ```
 
@@ -258,7 +262,7 @@ num <- as.numeric(num)
 str(num)
 ```
 
-::: callout-caution
+::: callout-warning
 **Be careful not to coerce a variable into an impossible data type!**
 :::
 
@@ -272,11 +276,13 @@ number <- as.numeric(number)
 str(number)
 ```
 
-R isn't reading and evaluating what our character variables to assume what they might mean, so it isn't going to automatically convert `one` into `1`. If you have numeric variables in your dataset, it's best to save them initially as numbers in your raw data, and treat them as either numeric or integer variables in R.
+R isn't reading and evaluating what our character variables to assume what they might mean, so it isn't going to automatically convert `one` into `1`. 
+
+If you have numeric variables in your dataset, it's best to save them initially as numbers in your raw data, and treat them as either numeric or integer variables in R.
 
 ##### Why use **Factors**?
 
-::: callout-warning
+::: callout-caution
 **The default behavior in R is to treat text variables alphabetically** unless we specify otherwise.
 
 Here's an example where that might become confusing.

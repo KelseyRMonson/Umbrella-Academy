@@ -329,18 +329,21 @@ Before we progress…
 <p>You can name your new directory whatever you’d like, as long as you remember it’s for this project.</p>
 <p>Now we’ll go back and create a new R script in our project folder.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+A note on document types
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>For this exercise, we will be using an R script to write and execute our code.</p>
 <p>There are other document types, like R Markdown, or the newer Quarto (this is actually a Quarto document). These file types are a bit more advanced and require you to know Markdown syntax, but can be very helpful for actual projects. They allow you to combine code, text, and output very seamlessly, which is good for reproducibility.</p>
 <p>If you want to learn more, I highly recommend this course, <a href="https://www.productive-r-workflow.com/"><em>Productive R Workflow</em></a>. Contact me if you are interested; the creator offers group rates for teams.</p>
+</div>
 </div>
 </div>
 <p>Okay, so we now have our R Project and our fresh new script. It’s almost time to begin!</p>
@@ -383,13 +386,16 @@ Note
 <p>There is an extremely useful function in R to tell you the structure of an object: <code>str()</code></p>
 <p>Here I’m going to show the difference between a <strong>Numeric</strong> variable and an <strong>Integer</strong>, by creating two <strong>Vectors</strong>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the vectors</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>int <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>L,<span class="dv">2</span>L,<span class="dv">3</span>L)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at their structure with `str()`</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> num [1:3] 1 2 3</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>int <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>L,<span class="dv">2</span>L,<span class="dv">3</span>L)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(int)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(int)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> int [1:3] 1 2 3</code></pre>
 </div>
@@ -418,13 +424,13 @@ Note
 <pre><code> num [1:3] 1 2 3</code></pre>
 </div>
 </div>
-<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Caution
+Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -447,17 +453,18 @@ Caution
 <pre><code> num [1:3] NA NA NA</code></pre>
 </div>
 </div>
-<p>R isn’t reading and evaluating what our character variables to assume what they might mean, so it isn’t going to automatically convert <code>one</code> into <code>1</code>. If you have numeric variables in your dataset, it’s best to save them initially as numbers in your raw data, and treat them as either numeric or integer variables in R.</p>
+<p>R isn’t reading and evaluating what our character variables to assume what they might mean, so it isn’t going to automatically convert <code>one</code> into <code>1</code>.</p>
+<p>If you have numeric variables in your dataset, it’s best to save them initially as numbers in your raw data, and treat them as either numeric or integer variables in R.</p>
 </section>
 <section id="why-use-factors" class="level5" data-number="1.3.3.2">
 <h5 data-number="1.3.3.2" class="anchored" data-anchor-id="why-use-factors"><span class="header-section-number">1.3.3.2</span> Why use <strong>Factors</strong>?</h5>
-<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Warning
+Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -553,16 +560,21 @@ Extra Credit
 <section id="getting-help" class="level3" data-number="1.4">
 <h3 data-number="1.4" class="anchored" data-anchor-id="getting-help"><span class="header-section-number">1.4</span> Getting Help</h3>
 <p>R has a very robust help system, and it’s as easy as prepending a <code>?</code> to the name of a function.</p>
-<p>There are actually two ways to search for help – a single <code>?</code> or a double <code>??</code>.</p>
-<p>- <code>?</code> displays the help documentation for a specific function</p>
-<p>- <code>??</code> searches the documentation for the keyword you provide</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>?<span class="fu">mean</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>starting httpd help server ... done</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>??theme_minimal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>There are actually two ways to search for help:</p>
+<ul>
+<li><p>Single question mark: <code>?</code></p>
+<ul>
+<li>Displays the help documentation for a specific function.</li>
+<li>e.g.&nbsp;<code>?mean()</code> will show you the help documents for the Base-R function <code>mean</code> (for calculating means).</li>
+<li>This type of search is best if you are looking for information on a specific function that you know the name of (for example, if you are trying to recreate a figure using code you found online and want to know what a specific function does).</li>
+</ul></li>
+<li><p>Double question mark: <code>??</code></p>
+<ul>
+<li>Searches the help documentation for the keyword you provide.</li>
+<li>e.g.&nbsp;<code>??mean()</code> will look for all the functions (and their documentation) that include the word <code>mean</code> and will return a list that you can select from.</li>
+<li>This type search of works better if you use more specific keywords, since many functions share common words (in fact, you can try out <code>??mean()</code> and see how many results you get – it might take a while!)</li>
+</ul></li>
+</ul>
 </section>
 </section>
 
