@@ -619,22 +619,44 @@ A note on document types
 </section>
 </section>
 </section>
-<section id="exercise" class="level2 page-columns page-full" data-number="2">
+<section id="exercise" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="exercise"><span class="header-section-number">2</span> Exercise</h2>
 <p>Some packages (and Base-R) include their own test data. This is useful when you want to see what a package is capable of, and is especially good for testing specific functions. If the package documentation shows you how to run functions using test data that you can download too, you can both recreate the example they are showing you and more easily apply it to your own data.</p>
 <p>We will use the <code>starwars</code> dataset from the <code>tidyverse</code> package as our example data today.</p>
-<section id="getting-started" class="level3 page-columns page-full" data-number="2.1">
+<section id="getting-started" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="getting-started"><span class="header-section-number">2.1</span> Getting Started</h3>
 <p>I’ve created an <a href="Getting_Started_with_R_script.R">R Script</a> that includes the code necessary to generate the plots for this exercise.</p>
+<section id="install-and-load-packages-download-data" class="level4" data-number="2.1.1">
+<h4 data-number="2.1.1" class="anchored" data-anchor-id="install-and-load-packages-download-data"><span class="header-section-number">2.1.1</span> Install and Load Packages, Download Data</h4>
 <p>Go ahead and open that script to see the names of the packages we need to download and load today – and then do that!</p>
 <p>While we will use the <code>starwars</code> dataset built into the <code>tidyverse</code>, you will eventually need to know how to load in your own data to R, so I saved a small version of the dataset to teach you to do just that.</p>
 <p>Download the <a href="input/small_star_wars.xlsx">dataset</a> from the GitHub:</p>
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
-<p><img src="assets/Download_Data.png" class="img-fluid figure-img"></p>
-<figcaption class="margin-caption">Navigate to the <em>input</em> folder, select the file, and select “Copy raw file.”</figcaption>
-</figure>
+<p><img src="assets/Download_Data.png" class="img-fluid" alt="Navigate to the input folder, select the file, and select “Copy raw file.”"> Then create a folder in your own project directory called <code>input</code> and save the file there.</p>
+<p>Reading in the data should now look like:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>small_star_wars <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"input/small_star_wars.xlsx"</span>, <span class="at">na=</span><span class="st">"NA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="explore-the-data" class="level4" data-number="2.1.2">
+<h4 data-number="2.1.2" class="anchored" data-anchor-id="explore-the-data"><span class="header-section-number">2.1.2</span> Explore the Data</h4>
+<p>This dataset is more complicated than the vectors I created earlier – what does it look like if we run <code>str()</code> on this?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(small_star_wars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [9 × 10] (S3: tbl_df/tbl/data.frame)
+ $ name      : chr [1:9] "Luke Skywalker" "C-3PO" "R2-D2" "Darth Vader" ...
+ $ height    : num [1:9] 172 167 96 202 150 182 188 228 180
+ $ mass      : num [1:9] 77 75 32 136 49 77 84 112 80
+ $ hair_color: chr [1:9] "blond" NA NA "none" ...
+ $ skin_color: chr [1:9] "fair" "gold" "white, blue" "white" ...
+ $ eye_color : chr [1:9] "blue" "yellow" "red" "yellow" ...
+ $ birth_year: num [1:9] 19 112 33 41.9 19 57 41.9 200 29
+ $ sex       : chr [1:9] "male" "none" "none" "male" ...
+ $ homeworld : chr [1:9] "Tatooine" "Tatooine" "Naboo" "Tatooine" ...
+ $ species   : chr [1:9] "Human" "Droid" "Droid" "Human" ...</code></pre>
+</div>
+</div>
+</section>
 </section>
 </section>
 

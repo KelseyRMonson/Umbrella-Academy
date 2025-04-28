@@ -411,6 +411,8 @@ We will use the `starwars` dataset from the `tidyverse` package as our example d
 ### Getting Started
 I've created an [R Script](Getting_Started_with_R_script.R) that includes the code necessary to generate the plots for this exercise.
 
+#### Install and Load Packages, Download Data
+
 Go ahead and open that script to see the names of the packages we need to download and load today -- and then do that!
 
 While we will use the `starwars` dataset built into the `tidyverse`, you will eventually need to know how to load in your own data to R, so I saved a small version of the dataset to teach you to do just that.
@@ -418,4 +420,16 @@ While we will use the `starwars` dataset built into the `tidyverse`, you will ev
 Download the [dataset](input/small_star_wars.xlsx) from the GitHub:
 
 ![Navigate to the *input* folder, select the file, and select "Copy raw file."](assets/Download_Data.png)
+Then create a folder in your own project directory called `input` and save the file there.
 
+Reading in the data should now look like:
+```{r}
+small_star_wars <- read_excel("input/small_star_wars.xlsx", na="NA")
+```
+
+#### Explore the Data
+
+This dataset is more complicated than the vectors I created earlier -- what does it look like if we run `str()` on this?
+```{r}
+str(small_star_wars)
+```
