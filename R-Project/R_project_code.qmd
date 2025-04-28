@@ -413,3 +413,9 @@ I've created an [R Script](Getting_Started_with_R_script.R) that includes the co
 
 Go ahead and open that script to see the names of the packages we need to download and load today -- and then do that!
 
+While we will use the `starwars` dataset built into the `tidyverse`, you will eventually need to know how to load in your own data to R, so I saved a small version of the dataset to teach you to do just that.
+
+Download the [dataset](input/small_star_wars.xlsx) from the GitHub:
+
+![Navigate to the *input* folder, select the file, and select "Copy raw file."](assets/Download_Data.png)
+
