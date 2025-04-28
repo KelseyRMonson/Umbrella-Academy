@@ -205,14 +205,14 @@ background: #f0f3f5;
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "C:/Users/Zamarin Lab/Documents/GitHub/Umbrella-Academy/R-Project"</code></pre>
+<pre><code>[1] "C:/Users/kelse/OneDrive/Documents/GitHub/Umbrella-Academy/R-Project"</code></pre>
 </div>
 </div>
 <p>You can see I’m currently in my project directory on the Zamarin Lab computer.</p>
 <p>The syntax for commands in R is typically the <code>function</code> followed by the arguments to the function in parentheses <code>(arguments)</code>.</p>
 <p>With <code>getwd()</code>, we’re asking the question of what directory we’re in, so we aren’t giving it any arguments. But if we want to <em>change</em> the directory, we can use the below command, giving it the path of the directory we want to move to:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/Users/Zamarin Lab/Documents/GitHub/Umbrella-Academy/R-Project"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#setwd("C:/Users/Zamarin Lab/Documents/GitHub/Umbrella-Academy/R-Project")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -428,7 +428,7 @@ Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><em>Be careful not to coerce a variable into an impossible data type!</em></p>
+<p><strong>Be careful not to coerce a variable into an impossible data type!</strong></p>
 </div>
 </div>
 <p>Note what happens if we try to coerce a character vector into a numeric vector, even if we know that the character vector <em>could</em> represent a number:</p>
@@ -447,7 +447,7 @@ Caution
 <pre><code> num [1:3] NA NA NA</code></pre>
 </div>
 </div>
-<p>R isn’t reading and evaluating what our character variables mean, so it isn’t going to automatically convert <code>one</code> into <code>1</code>.</p>
+<p>R isn’t reading and evaluating what our character variables to assume what they might mean, so it isn’t going to automatically convert <code>one</code> into <code>1</code>. If you have numeric variables in your dataset, it’s best to save them initially as numbers in your raw data, and treat them as either numeric or integer variables in R.</p>
 </section>
 <section id="why-use-factors" class="level5" data-number="1.3.3.2">
 <h5 data-number="1.3.3.2" class="anchored" data-anchor-id="why-use-factors"><span class="header-section-number">1.3.3.2</span> Why use <strong>Factors</strong>?</h5>
@@ -552,6 +552,17 @@ Extra Credit
 </section>
 <section id="getting-help" class="level3" data-number="1.4">
 <h3 data-number="1.4" class="anchored" data-anchor-id="getting-help"><span class="header-section-number">1.4</span> Getting Help</h3>
+<p>R has a very robust help system, and it’s as easy as prepending a <code>?</code> to the name of a function.</p>
+<p>There are actually two ways to search for help – a single <code>?</code> or a double <code>??</code>.</p>
+<p>- <code>?</code> displays the help documentation for a specific function</p>
+<p>- <code>??</code> searches the documentation for the keyword you provide</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>?<span class="fu">mean</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>starting httpd help server ... done</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>??theme_minimal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
 

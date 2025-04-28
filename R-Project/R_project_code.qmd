@@ -97,7 +97,7 @@ The syntax for commands in R is typically the `function` followed by the argumen
 With `getwd()`, we're asking the question of what directory we're in, so we aren't giving it any arguments. But if we want to *change* the directory, we can use the below command, giving it the path of the directory we want to move to:
 
 ```{r}
-setwd("C:/Users/Zamarin Lab/Documents/GitHub/Umbrella-Academy/R-Project")
+#setwd("C:/Users/Zamarin Lab/Documents/GitHub/Umbrella-Academy/R-Project")
 ```
 
 ::: callout-note
@@ -334,4 +334,21 @@ table(rankings)
 Changing the levels of your **factor** variables can be very useful when it comes to plotting data, as we will see.
 
 ### Getting Help
-R has a very robust help system, and it's as easy as prepending a `?` to the name of a function. 
+
+R has a very robust help system, and it's as easy as prepending a `?` to the name of a function.
+
+There are actually two ways to search for help:
+
+-   Single question mark: `?`
+
+    -   Displays the help documentation for a specific function.
+    -   e.g. `?mean()` will show you the help documents for the Base-R function `mean` (for calculating means).
+    -   This type of search is best if you are looking for information on a specific function that you know the name of (for example, if you are trying to recreate a figure using code you found online and want to know what a specific function does).
+
+-   Double question mark: `??`
+
+    -   Searches the help documentation for the keyword you provide.
+    -   e.g. `??mean()` will look for all the functions (and their documentation) that include the word `mean` and will return a list that you can select from.
+    -   This type search of works better if you use more specific keywords, since many functions share common words (in fact, you can try out `??mean()` and see how many results you get -- it might take a while!)
+
+
