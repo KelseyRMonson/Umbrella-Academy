@@ -152,10 +152,10 @@ background: #f0f3f5;
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a>
   <ul class="collapse">
   <li><a href="#r-and-rstudio" id="toc-r-and-rstudio" class="nav-link" data-scroll-target="#r-and-rstudio"><span class="header-section-number">1.1</span> R and RStudio</a></li>
-  <li><a href="#navigating-rstudio" id="toc-navigating-rstudio" class="nav-link" data-scroll-target="#navigating-rstudio"><span class="header-section-number">1.2</span> Navigating RStudio</a></li>
-  <li><a href="#data-types-and-variables" id="toc-data-types-and-variables" class="nav-link" data-scroll-target="#data-types-and-variables"><span class="header-section-number">1.3</span> Data Types and Variables</a></li>
-  <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help"><span class="header-section-number">1.4</span> Getting Help</a></li>
-  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages"><span class="header-section-number">1.5</span> Packages</a></li>
+  <li><a href="#data-types-and-variables" id="toc-data-types-and-variables" class="nav-link" data-scroll-target="#data-types-and-variables"><span class="header-section-number">1.2</span> Data Types and Variables</a></li>
+  <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help"><span class="header-section-number">1.3</span> Getting Help</a></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages"><span class="header-section-number">1.4</span> Packages</a></li>
+  <li><a href="#navigating-rstudio" id="toc-navigating-rstudio" class="nav-link" data-scroll-target="#navigating-rstudio"><span class="header-section-number">1.5</span> Navigating RStudio</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -195,16 +195,283 @@ background: #f0f3f5;
 <p>To be honest, I’ve been coding in R since 2017 and have never once written a script or performed an analysis in Base-R.</p>
 <p>Maybe you can see why – RStudio is what’s called an <strong>“integrative development environment” (IDE).</strong></p>
 <p>This goes beyond even a “graphical user interface” (GUI), in that it provides tools to write, execute, and debug R code, manage the objects and variables you create, keep track of your files and projects, render plots, read help documentation… the list goes on.</p>
-<p>So let’s dive in!</p>
+<p>We’ll explore RStudio in depth throughout the exercise, but first we need to learn a bit more about how R works.</p>
 </section>
-<section id="navigating-rstudio" class="level3 page-columns page-full" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="navigating-rstudio"><span class="header-section-number">1.2</span> Navigating RStudio</h3>
-<section id="working-directories" class="level4" data-number="1.2.1">
-<h4 data-number="1.2.1" class="anchored" data-anchor-id="working-directories"><span class="header-section-number">1.2.1</span> Working directories</h4>
+<section id="data-types-and-variables" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="data-types-and-variables"><span class="header-section-number">1.2</span> Data Types and Variables</h3>
+<p>Every basic programming class with include this section (in fact, if you completed your <a href="https://vscodeedu.com/courses/intro-to-python">homework</a> this should look quite familiar, though R and Python are slightly different in this regard).</p>
+<p>I’ll try to make this brief:</p>
+<section id="variable-structures-in-r" class="level4" data-number="1.2.1">
+<h4 data-number="1.2.1" class="anchored" data-anchor-id="variable-structures-in-r"><span class="header-section-number">1.2.1</span> Variable Structures in R</h4>
+<ul>
+<li><strong>Data Frame:</strong> A table-like structure with rows and columns. Each column can store a different data type, making it ideal for organizing datasets.</li>
+<li><strong>Tibble:</strong> A modern version of a data frame, offering improved printing behavior and no row names by default.</li>
+<li><strong>Vector:</strong> A one-dimensional collection that holds elements of the same data type.</li>
+<li><strong>List:</strong> An ordered collection that can store elements of different types, allowing greater flexibility.</li>
+<li><strong>Matrix:</strong> A two-dimensional version of a vector with rows and columns, where all elements share the same type.</li>
+<li><strong>Array:</strong> A multi-dimensional collection, similar to a matrix but capable of handling more than two dimensions.</li>
+</ul>
+<p>You will likely most often be working with <strong>Data Frames</strong> or <strong>Tibbles</strong> to create figures, but will probably use all of the variable types at one point or another.</p>
+</section>
+<section id="data-types-in-r" class="level4" data-number="1.2.2">
+<h4 data-number="1.2.2" class="anchored" data-anchor-id="data-types-in-r"><span class="header-section-number">1.2.2</span> Data Types in R</h4>
+<ul>
+<li><strong>Numeric:</strong> The default type used for numbers, including decimals.</li>
+<li><strong>Factor:</strong> A special structure for categorical data that defines a limited set of values.</li>
+<li><strong>Integer:</strong> Whole numbers explicitly defined with an “L” suffix (e.g., 10L).</li>
+<li><strong>Logical:</strong> Represents Boolean values: TRUE or FALSE.</li>
+<li><strong>Character:</strong> Text strings used to represent words or sentences.</li>
+<li><strong>Complex:</strong> Numbers that include both a real and an imaginary component (e.g., 2+3i).</li>
+<li><strong>Raw:</strong> Used for storing raw byte data.</li>
+</ul>
+<p>Some of these you won’t interact with much (I’ve never worked with Complex or Raw data, I don’t think…), others are pretty essential. <strong>Factors</strong> are especially important, and we will discuss them more later.</p>
+<p>These definitions are drawn from <a href="https://github.com/MVesuviusC/R_workshop/tree/main">this R Workshop GitHub</a>, which inspired a few other sections of this class (thank you, <a href="https://github.com/MVesuviusC">MVesuviusC</a>!).</p>
+</section>
+<section id="identifying-variable-structures-and-data-types" class="level4" data-number="1.2.3">
+<h4 data-number="1.2.3" class="anchored" data-anchor-id="identifying-variable-structures-and-data-types"><span class="header-section-number">1.2.3</span> Identifying Variable Structures and Data Types</h4>
+<section id="the-str-function" class="level5" data-number="1.2.3.1">
+<h5 data-number="1.2.3.1" class="anchored" data-anchor-id="the-str-function"><span class="header-section-number">1.2.3.1</span> The <code>str()</code> function</h5>
+<p>There is an extremely useful function in R to tell you the structure of an object: <code>str()</code></p>
+<p>Here I’m going to show the difference between a <strong>Numeric</strong> variable and an <strong>Integer</strong>, by creating two <strong>Vectors</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the vectors</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>int <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>L,<span class="dv">2</span>L,<span class="dv">3</span>L)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at their structure with `str()`</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> num [1:3] 1 2 3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(int)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> int [1:3] 1 2 3</code></pre>
+</div>
+</div>
+<p>Breaking down the above code, we</p>
+<ol type="1">
+<li>Created the variables using <code>&lt;-</code>, otherwise known as the <code>assignment operator</code></li>
+<li>Combined the numbers/integers and passed them to our new variables using the combine function <code>c()</code></li>
+<li>Checked their structure by passing the object (either <code>num</code> or <code>int</code>) to the <code>str()</code> function.</li>
+</ol>
+<p>If you want, you can <em>coerce</em> a data type into another one.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's say I actually wanted `num` to be an integer:</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(num)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> int [1:3] 1 2 3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Or even a character:</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">as.character</span>(num)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> chr [1:3] "1" "2" "3"</code></pre>
+</div>
+</div>
+<p>But, oops, actually, just kidding, I really wanted <code>num</code> to be numeric. We can change it back:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(num)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> num [1:3] 1 2 3</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Be careful not to coerce a variable into an impossible data type!</strong></p>
+</div>
+</div>
+<p>Note what happens if we try to coerce a character vector into a numeric vector, even if we know that the character vector <em>could</em> represent a number:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>number <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"one"</span>,<span class="st">"two"</span>,<span class="st">"three"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(number)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> chr [1:3] "one" "two" "three"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>number <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(number)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: NAs introduced by coercion</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(number)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> num [1:3] NA NA NA</code></pre>
+</div>
+</div>
+<p>R isn’t reading and evaluating our character variables to assume what they might mean, so it isn’t going to automatically convert <code>one</code> into <code>1</code>.</p>
+<p>If you have numeric variables in your dataset, it’s best to save them initially as numbers in your raw data, and treat them as either numeric or integer variables in R.</p>
+</section>
+<section id="why-use-factors" class="level5" data-number="1.2.3.2">
+<h5 data-number="1.2.3.2" class="anchored" data-anchor-id="why-use-factors"><span class="header-section-number">1.2.3.2</span> Why use <strong>Factors</strong>?</h5>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>The default behavior in R is to treat text variables alphabetically</strong> unless we specify otherwise.</p>
+<p>Here’s an example where that might become confusing.</p>
+<p>Say we had a dataset from a contest, where participants could come in first, second, third, or fourth.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"first"</span>,<span class="st">"second"</span>,<span class="st">"third"</span>,<span class="st">"fourth"</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># If we look at the structure of our variable, we see them in the order we would expect...</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> chr [1:4] "first" "second" "third" "fourth"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># But if we use the table() function to summarize the data, we see it lists them alphabetically</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>rankings
+ first fourth second  third 
+     1      1      1      1 </code></pre>
+</div>
+</div>
+<p>How do we fix this if we want them to be ordered logically, from first to fourth?</p>
+</div>
+</div>
+<p>This is where the <strong>factor</strong> variable type comes in. We can specify that this categorical variable is a factor, and tell it the levels we expect:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(rankings)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># If we just coerce the variable into a factor, we still have the same problem, </span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># because R doesn't know that we want them in order:</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Factor w/ 4 levels "first","fourth",..: 1 3 4 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>rankings
+ first fourth second  third 
+     1      1      1      1 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instead, we can explicitly tell it the order we want with the "levels" argument:</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> <span class="fu">factor</span>(rankings, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"first"</span>,<span class="st">"second"</span>,<span class="st">"third"</span>,<span class="st">"fourth"</span>))</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>rankings
+ first second  third fourth 
+     1      1      1      1 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can set the levels to be whatever we want -- for example, we could list them backwards:</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> <span class="fu">factor</span>(rankings, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"fourth"</span>,<span class="st">"third"</span>,<span class="st">"second"</span>,<span class="st">"first"</span>))</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>rankings
+fourth  third second  first 
+     1      1      1      1 </code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Extra Credit
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Why did the <code>str()</code> function print the rankings in the correct order the very first time, even though using the <code>table()</code> function showed that R was treating them alphabetically?</p>
+<p>Because when we created the <code>rankings</code> variable, we entered the variable names in the logical order. If we had created the variable with them out of order, they would have printed out of order, but R would still treat them alphabetically:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"third"</span>,<span class="st">"second"</span>,<span class="st">"fourth"</span>,<span class="st">"first"</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Prints the character variable in the silly order we supplied...</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> chr [1:4] "third" "second" "fourth" "first"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># But still treats it alphabetically</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>rankings
+ first fourth second  third 
+     1      1      1      1 </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Changing the levels of your <strong>factor</strong> variables can be very useful when it comes to plotting data, as we will see.</p>
+</section>
+</section>
+</section>
+<section id="getting-help" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="getting-help"><span class="header-section-number">1.3</span> Getting Help</h3>
+<p>R has a very robust help system, and it’s as easy as prepending a <code>?</code> to the name of a function.</p>
+<p>There are actually two ways to search for help:</p>
+<ul>
+<li><p>Single question mark: <code>?</code></p>
+<ul>
+<li>Displays the help documentation for a specific function.</li>
+<li>e.g.&nbsp;<code>?mean()</code> will show you the help documents for the Base-R function <code>mean</code> (for calculating means).</li>
+<li>This type of search is best if you are looking for information on a specific function that you know the name of (for example, if you are trying to recreate a figure using code you found online and want to know what a specific function does).</li>
+</ul></li>
+<li><p>Double question mark: <code>??</code></p>
+<ul>
+<li>Searches the help documentation for the keyword you provide.</li>
+<li>e.g.&nbsp;<code>??mean()</code> will look for all the functions (and their documentation) that include the word <code>mean</code> and will return a list that you can select from.</li>
+<li>Because this searches documentation for your keyword(s) and not just function names, this is a good option if you know <em>what</em> you want a function to do, even if you don’t know its name, and/or you want to see if there are multiple functions to choose from.</li>
+<li>This type search of works better if you use more specific keywords, since many functions share common words (in fact, you can try out <code>??mean()</code> and see how many results you get – it might take a while!)</li>
+</ul></li>
+</ul>
+<p>One of the most useful reasons to use <code>?</code> is because, in addition to giving you general information about how a function works, it tells you the possible arguments (what can go inside the parentheses) as well as any default behavior.</p>
+<p>I use <code>?</code> almost every time I’m coding in R – sometimes just to see what other cool things a function I’m using can do!</p>
+</section>
+<section id="packages" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="packages"><span class="header-section-number">1.4</span> Packages</h3>
+<p>Did you notice how I specified above that <code>mean()</code> is a function in Base-R? R comes ready-made with a number of essential statistical and graphical functions built into it.</p>
+<p>But one of the best things about R is that there is a huge community of other R users who create <strong>packages</strong>, basically collections of related functions to do specific things in R.</p>
+<p>This is how people can use R to calculate differential gene expression from RNA-seq data, plot complex microbiome phylogenetic trees, use machine learning tools to make sophisticated predictive statistical models, and more.</p>
+<p>These tasks are all very different and require diverse skills and expertise to program and execute. But with the broad and brilliant user base of R, there are people who make packages to do each of these things (and so much more!).</p>
+<p>So how do we get these packages?</p>
+<ul>
+<li>Almost all packages can be installed with the intuitively named <code>install.packages("package_name")</code> function.</li>
+<li>Some bioinformatics-specific tools need to be installed from <a href="https://www.bioconductor.org/">Bioconductor</a> using <code>BiocManager::install("package_name")</code>.</li>
+<li>Some packages can be installed directly from GitHub using <code>devtools::install_github("package_name")</code>.</li>
+<li>To load and use a downloaded package, use <code>library(package_name)</code>.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+A few notes on packages
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>When installing a package, the package name must be enclosed in quotes.</p></li>
+<li><p>When loading a package, you do not need to use quotes around the name.</p></li>
+<li><p>You don’t need to <em>download</em> a package more than once (though you may need to update it).</p></li>
+<li><p>However, you must <em>load</em> a package every time before you can use it.</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="navigating-rstudio" class="level3 page-columns page-full" data-number="1.5">
+<h3 data-number="1.5" class="anchored" data-anchor-id="navigating-rstudio"><span class="header-section-number">1.5</span> Navigating RStudio</h3>
+<section id="working-directories" class="level4" data-number="1.5.1">
+<h4 data-number="1.5.1" class="anchored" data-anchor-id="working-directories"><span class="header-section-number">1.5.1</span> Working directories</h4>
 <p>Remember in our <a href="../Command-Line/Command_Line_Exercise.md">last lesson</a> when we learned the command <code>pwd</code> to see what directory we were in on the HPC?</p>
 <p>There is a similar command in R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "C:/Users/Zamarin Lab/Documents/GitHub/Umbrella-Academy/R-Project"</code></pre>
 </div>
@@ -213,7 +480,7 @@ background: #f0f3f5;
 <p>The syntax for commands in R is typically the <code>function</code> followed by the arguments to the function in parentheses <code>(arguments)</code>.</p>
 <p>With <code>getwd()</code>, we’re asking the question of what directory we’re in, so we aren’t giving it any arguments. But if we want to <em>change</em> the directory, we can use the below command, giving it the path of the directory we want to move to:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#setwd("C:/Users/Zamarin Lab/Documents/GitHub/Umbrella-Academy/R-Project")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#setwd("C:/Users/Zamarin Lab/Documents/GitHub/Umbrella-Academy/R-Project")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -231,12 +498,12 @@ Note
 </div>
 </div>
 </section>
-<section id="r-projects" class="level4" data-number="1.2.2">
-<h4 data-number="1.2.2" class="anchored" data-anchor-id="r-projects"><span class="header-section-number">1.2.2</span> R Projects</h4>
+<section id="r-projects" class="level4" data-number="1.5.2">
+<h4 data-number="1.5.2" class="anchored" data-anchor-id="r-projects"><span class="header-section-number">1.5.2</span> R Projects</h4>
 <p>Some people believe very strongly that you should never include <code>setwd()</code> in your R scripts. In fact, they even threaten to <a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/">come to your office and set your computer on fire🔥</a>.</p>
 <p>Rather, they argue that it is much better to create a folder for the specific project you are working on, and then create an R Project (or similar, but for our purposes we will discuss R Projects).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -245,7 +512,7 @@ What is an R Project?
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li>A type of file that functions with RStudio</li>
@@ -262,11 +529,11 @@ What is an R Project?
 </div>
 <p>For this exercise, we will create an R Project, just to teach best practices.</p>
 </section>
-<section id="rstudio-windows" class="level4 page-columns page-full" data-number="1.2.3">
-<h4 data-number="1.2.3" class="anchored" data-anchor-id="rstudio-windows"><span class="header-section-number">1.2.3</span> RStudio Windows</h4>
+<section id="rstudio-windows" class="level4 page-columns page-full" data-number="1.5.3">
+<h4 data-number="1.5.3" class="anchored" data-anchor-id="rstudio-windows"><span class="header-section-number">1.5.3</span> RStudio Windows</h4>
 <p>If you launch RStudio now, you will see three panes (or windows).</p>
 <div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -275,7 +542,7 @@ Before we progress…
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>…we need to turn off a few RStudio defaults that will make our lives better.</p>
 <p>Basically, in an ideal world, you should be able to run all your code from start to finish and get the same result.</p>
@@ -316,8 +583,8 @@ Before we progress…
 <li>The last window with <strong>Files, Plots, Packages, etc.</strong> will also look fairly empty, but not for long!</li>
 </ul>
 </section>
-<section id="rstudio-projects" class="level4 page-columns page-full" data-number="1.2.4">
-<h4 data-number="1.2.4" class="anchored" data-anchor-id="rstudio-projects"><span class="header-section-number">1.2.4</span> RStudio Projects</h4>
+<section id="rstudio-projects" class="level4 page-columns page-full" data-number="1.5.4">
+<h4 data-number="1.5.4" class="anchored" data-anchor-id="rstudio-projects"><span class="header-section-number">1.5.4</span> RStudio Projects</h4>
 <p>As promised, we will create an R Project for this exercise.</p>
 <p>Go ahead and close your new script containing the brilliant and groundbreaking code you just wrote (<code>getwd()</code>), no need to save it.</p>
 <p>Now, create a new project and new directory:</p>
@@ -330,7 +597,7 @@ Before we progress…
 <p>You can name your new directory whatever you’d like, as long as you remember it’s for this project.</p>
 <p>Now we’ll go back and create a new R script in our project folder.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -339,7 +606,7 @@ A note on document types
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>For this exercise, we will be using an R script to write and execute our code.</p>
 <p>There are other document types, like R Markdown, or the newer Quarto (this is actually a Quarto document). These file types are a bit more advanced and require you to know Markdown syntax, but can be very helpful for actual projects. They allow you to combine code, text, and output very seamlessly, which is good for reproducibility.</p>
@@ -349,273 +616,6 @@ A note on document types
 </div>
 <p>Okay, so we now have our R Project and our fresh new script. It’s almost time to begin!</p>
 </section>
-</section>
-<section id="data-types-and-variables" class="level3" data-number="1.3">
-<h3 data-number="1.3" class="anchored" data-anchor-id="data-types-and-variables"><span class="header-section-number">1.3</span> Data Types and Variables</h3>
-<p>Every basic programming class with include this section (in fact, if you completed your <a href="https://vscodeedu.com/courses/intro-to-python">homework</a> this should look quite familiar, though R and Python are slightly different in this regard).</p>
-<p>I’ll try to make this brief:</p>
-<section id="variable-structures-in-r" class="level4" data-number="1.3.1">
-<h4 data-number="1.3.1" class="anchored" data-anchor-id="variable-structures-in-r"><span class="header-section-number">1.3.1</span> Variable Structures in R</h4>
-<ul>
-<li><strong>Data Frame:</strong> A table-like structure with rows and columns. Each column can store a different data type, making it ideal for organizing datasets.</li>
-<li><strong>Tibble:</strong> A modern version of a data frame, offering improved printing behavior and no row names by default.</li>
-<li><strong>Vector:</strong> A one-dimensional collection that holds elements of the same data type.</li>
-<li><strong>List:</strong> An ordered collection that can store elements of different types, allowing greater flexibility.</li>
-<li><strong>Matrix:</strong> A two-dimensional version of a vector with rows and columns, where all elements share the same type.</li>
-<li><strong>Array:</strong> A multi-dimensional collection, similar to a matrix but capable of handling more than two dimensions.</li>
-</ul>
-<p>You will likely most often be working with <strong>Data Frames</strong> or <strong>Tibbles</strong> to create figures, but will probably use all of the variable types at one point or another.</p>
-</section>
-<section id="data-types-in-r" class="level4" data-number="1.3.2">
-<h4 data-number="1.3.2" class="anchored" data-anchor-id="data-types-in-r"><span class="header-section-number">1.3.2</span> Data Types in R</h4>
-<ul>
-<li><strong>Numeric:</strong> The default type used for numbers, including decimals.</li>
-<li><strong>Factor:</strong> A special structure for categorical data that defines a limited set of values.</li>
-<li><strong>Integer:</strong> Whole numbers explicitly defined with an “L” suffix (e.g., 10L).</li>
-<li><strong>Logical:</strong> Represents Boolean values: TRUE or FALSE.</li>
-<li><strong>Character:</strong> Text strings used to represent words or sentences.</li>
-<li><strong>Complex:</strong> Numbers that include both a real and an imaginary component (e.g., 2+3i).</li>
-<li><strong>Raw:</strong> Used for storing raw byte data.</li>
-</ul>
-<p>Some of these you won’t interact with much (I’ve never worked with Complex or Raw data, I don’t think…), others are pretty essential. <strong>Factors</strong> are especially important, and we will discuss them more later.</p>
-<p>These definitions are drawn from <a href="https://github.com/MVesuviusC/R_workshop/tree/main">this R Workshop GitHub</a>, which inspired a few other sections of this class (thank you, <a href="https://github.com/MVesuviusC">MVesuviusC</a>!).</p>
-</section>
-<section id="identifying-variable-structures-and-data-types" class="level4" data-number="1.3.3">
-<h4 data-number="1.3.3" class="anchored" data-anchor-id="identifying-variable-structures-and-data-types"><span class="header-section-number">1.3.3</span> Identifying Variable Structures and Data Types</h4>
-<section id="the-str-function" class="level5" data-number="1.3.3.1">
-<h5 data-number="1.3.3.1" class="anchored" data-anchor-id="the-str-function"><span class="header-section-number">1.3.3.1</span> The <code>str()</code> function</h5>
-<p>There is an extremely useful function in R to tell you the structure of an object: <code>str()</code></p>
-<p>Here I’m going to show the difference between a <strong>Numeric</strong> variable and an <strong>Integer</strong>, by creating two <strong>Vectors</strong>:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the vectors</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>int <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>L,<span class="dv">2</span>L,<span class="dv">3</span>L)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at their structure with `str()`</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> num [1:3] 1 2 3</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(int)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> int [1:3] 1 2 3</code></pre>
-</div>
-</div>
-<p>Breaking down the above code, we</p>
-<ol type="1">
-<li>Created the variables using <code>&lt;-</code>, otherwise known as the <code>assignment operator</code></li>
-<li>Combined the numbers/integers and passed them to our new variables using the combine function <code>c()</code></li>
-<li>Checked their structure by passing the object (either <code>num</code> or <code>int</code>) to the <code>str()</code> function.</li>
-</ol>
-<p>If you want, you can <em>coerce</em> a data type into another one.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's say I actually wanted `num` to be an integer:</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(num)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> int [1:3] 1 2 3</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Or even a character:</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">as.character</span>(num)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> chr [1:3] "1" "2" "3"</code></pre>
-</div>
-</div>
-<p>But, oops, actually, just kidding, I really wanted <code>num</code> to be numeric. We can change it back:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(num)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> num [1:3] 1 2 3</code></pre>
-</div>
-</div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Be careful not to coerce a variable into an impossible data type!</strong></p>
-</div>
-</div>
-<p>Note what happens if we try to coerce a character vector into a numeric vector, even if we know that the character vector <em>could</em> represent a number:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>number <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"one"</span>,<span class="st">"two"</span>,<span class="st">"three"</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(number)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> chr [1:3] "one" "two" "three"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>number <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(number)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: NAs introduced by coercion</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(number)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> num [1:3] NA NA NA</code></pre>
-</div>
-</div>
-<p>R isn’t reading and evaluating our character variables to assume what they might mean, so it isn’t going to automatically convert <code>one</code> into <code>1</code>.</p>
-<p>If you have numeric variables in your dataset, it’s best to save them initially as numbers in your raw data, and treat them as either numeric or integer variables in R.</p>
-</section>
-<section id="why-use-factors" class="level5" data-number="1.3.3.2">
-<h5 data-number="1.3.3.2" class="anchored" data-anchor-id="why-use-factors"><span class="header-section-number">1.3.3.2</span> Why use <strong>Factors</strong>?</h5>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Caution
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>The default behavior in R is to treat text variables alphabetically</strong> unless we specify otherwise.</p>
-<p>Here’s an example where that might become confusing.</p>
-<p>Say we had a dataset from a contest, where participants could come in first, second, third, or fourth.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"first"</span>,<span class="st">"second"</span>,<span class="st">"third"</span>,<span class="st">"fourth"</span>)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># If we look at the structure of our variable, we see them in the order we would expect...</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> chr [1:4] "first" "second" "third" "fourth"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># But if we use the table() function to summarize the data, we see it lists them alphabetically</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>rankings
- first fourth second  third 
-     1      1      1      1 </code></pre>
-</div>
-</div>
-<p>How do we fix this if we want them to be ordered logically, from first to fourth?</p>
-</div>
-</div>
-<p>This is where the <strong>factor</strong> variable type comes in. We can specify that this categorical variable is a factor, and tell it the levels we expect:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(rankings)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># If we just coerce the variable into a factor, we still have the same problem, </span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># because R doesn't know that we want them in order:</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> Factor w/ 4 levels "first","fourth",..: 1 3 4 2</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>rankings
- first fourth second  third 
-     1      1      1      1 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instead, we can explicitly tell it the order we want with the "levels" argument:</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> <span class="fu">factor</span>(rankings, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"first"</span>,<span class="st">"second"</span>,<span class="st">"third"</span>,<span class="st">"fourth"</span>))</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>rankings
- first second  third fourth 
-     1      1      1      1 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can set the levels to be whatever we want -- for example, we could list them backwards:</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> <span class="fu">factor</span>(rankings, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"fourth"</span>,<span class="st">"third"</span>,<span class="st">"second"</span>,<span class="st">"first"</span>))</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>rankings
-fourth  third second  first 
-     1      1      1      1 </code></pre>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Extra Credit
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Why did the <code>str()</code> function print the rankings in the correct order the very first time, even though using the <code>table()</code> function showed that R was treating them alphabetically?</p>
-<p>Because when we created the <code>rankings</code> variable, we entered the variable names in the logical order. If we had created the variable with them out of order, they would have printed out of order, but R would still treat them alphabetically:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"third"</span>,<span class="st">"second"</span>,<span class="st">"fourth"</span>,<span class="st">"first"</span>)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Prints the character variable in the silly order we supplied...</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> chr [1:4] "third" "second" "fourth" "first"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># But still treats it alphabetically</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>rankings
- first fourth second  third 
-     1      1      1      1 </code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<p>Changing the levels of your <strong>factor</strong> variables can be very useful when it comes to plotting data, as we will see.</p>
-</section>
-</section>
-</section>
-<section id="getting-help" class="level3" data-number="1.4">
-<h3 data-number="1.4" class="anchored" data-anchor-id="getting-help"><span class="header-section-number">1.4</span> Getting Help</h3>
-<p>R has a very robust help system, and it’s as easy as prepending a <code>?</code> to the name of a function.</p>
-<p>There are actually two ways to search for help:</p>
-<ul>
-<li><p>Single question mark: <code>?</code></p>
-<ul>
-<li>Displays the help documentation for a specific function.</li>
-<li>e.g.&nbsp;<code>?mean()</code> will show you the help documents for the Base-R function <code>mean</code> (for calculating means).</li>
-<li>This type of search is best if you are looking for information on a specific function that you know the name of (for example, if you are trying to recreate a figure using code you found online and want to know what a specific function does).</li>
-</ul></li>
-<li><p>Double question mark: <code>??</code></p>
-<ul>
-<li>Searches the help documentation for the keyword you provide.</li>
-<li>e.g.&nbsp;<code>??mean()</code> will look for all the functions (and their documentation) that include the word <code>mean</code> and will return a list that you can select from.</li>
-<li>Because this searches documentation for your keyword(s) and not just function names, this is a good option if you know <em>what</em> you want a function to do, even if you don’t know its name, and/or you want to see if there are multiple functions to choose from.</li>
-<li>This type search of works better if you use more specific keywords, since many functions share common words (in fact, you can try out <code>??mean()</code> and see how many results you get – it might take a while!)</li>
-</ul></li>
-</ul>
-<p>One of the most useful reasons to use <code>?</code> is because, in addition to giving you general information about how a function works, it tells you the possible arguments (what can go inside the parentheses) as well as any default behavior.</p>
-<p>I use <code>?</code> almost every time I’m coding in R – sometimes just to see what other cool things a function I’m using can do!</p>
-</section>
-<section id="packages" class="level3" data-number="1.5">
-<h3 data-number="1.5" class="anchored" data-anchor-id="packages"><span class="header-section-number">1.5</span> Packages</h3>
-<p>Did you notice how I specified above that <code>mean()</code> is a function in Base-R? R comes ready-made with a number of essential statistical and graphical functions built into it.</p>
-<p>But one of the best things about R is that there is a huge community of other R users who create <strong>packages</strong>, basically collections of related functions to do specific things in R.</p>
-<p>This is how people can use R to calculate differential gene expression from RNA-seq data, plot complex microbiome phylogenetic trees, use machine learning tools to make sophisticated predictive statistical models, and more.</p>
-<p>These tasks are all very different and require diverse skills and expertise to program and execute. But with the broad and brilliant user base of R, there are people who make packages to do each of these things (and so much more!).</p>
-<p>So how do we get these packages?</p>
-<ul>
-<li>Almost all packages can be installed with the intuitively named <code>install.packages("package_name")</code> function.</li>
-<li>Some bioinformatics-specific tools need to be installed from <a href="https://www.bioconductor.org/">Bioconductor</a> using <code>BiocManager::install("package_name")</code>.</li>
-<li>Some packages can be installed directly from GitHub using <code>devtools::install_github("package_name")</code>.</li>
-<li>To load and use a downloaded package, use <code>library(package_name)</code>.</li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-A few notes on packages
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li><p>When installing a package, the package name must be enclosed in quotes.</p></li>
-<li><p>When loading a package, you do not need to use quotes around the name.</p></li>
-<li><p>You don’t need to <em>download</em> a package more than once (though you may need to update it).</p></li>
-<li><p>However, you must <em>load</em> a package every time before you can use it.</p></li>
-</ul>
-</div>
-</div>
 </section>
 </section>
 
