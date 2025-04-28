@@ -373,4 +373,25 @@ Did you notice how I specified above that `mean()` is a function in Base-R? R co
 
 But one of the best things about R is that there is a huge community of other R users who create **packages**, basically collections of related functions to do specific things in R.
 
-This is how people can use R to calculate differential gene expression from RNA-seq data, plot complex microbiome phylogenetic trees, use machine learning tools to make sophisticated predictive statistical models, and more. These tasks are all very different and require broad expertise to program and execute. But with the broad and brilliant user base of R, there are people who make packages to do each of these things (and so much more!).
+This is how people can use R to calculate differential gene expression from RNA-seq data, plot complex microbiome phylogenetic trees, use machine learning tools to make sophisticated predictive statistical models, and more.
+
+These tasks are all very different and require diverse skills and expertise to program and execute. But with the broad and brilliant user base of R, there are people who make packages to do each of these things (and so much more!).
+
+So how do we get these packages?
+
+-   Almost all packages can be installed with the intuitively named `install.packages("package_name")` function.
+-   Some bioinformatics-specific tools need to be installed from [Bioconductor](https://www.bioconductor.org/) using `BiocManager::install("package_name")`.
+-   Some packages can be installed directly from GitHub using `devtools::install_github("package_name")`.
+-   To load and use a downloaded package, use `library(package_name)`.
+
+::: callout-note
+#### A few notes on packages
+
+-   When installing a package, the package name must be enclosed in quotes.
+
+-   When loading a package, you do not need to use quotes around the name.
+
+-   You don't need to *download* a package more than once (though you may need to update it).
+
+-   However, you must *load* a package every time before you can use it.
+:::

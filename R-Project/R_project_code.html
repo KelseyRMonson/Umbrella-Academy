@@ -589,7 +589,33 @@ Extra Credit
 <h3 data-number="1.5" class="anchored" data-anchor-id="packages"><span class="header-section-number">1.5</span> Packages</h3>
 <p>Did you notice how I specified above that <code>mean()</code> is a function in Base-R? R comes ready-made with a number of essential statistical and graphical functions built into it.</p>
 <p>But one of the best things about R is that there is a huge community of other R users who create <strong>packages</strong>, basically collections of related functions to do specific things in R.</p>
-<p>This is how people can use R to calculate differential gene expression from RNA-seq data, plot complex microbiome phylogenetic trees, use machine learning tools to make sophisticated predictive statistical models, and more. These tasks are all very different and require broad expertise to program and execute. But with the broad and brilliant user base of R, there are people who make packages to do each of these things (and so much more!).</p>
+<p>This is how people can use R to calculate differential gene expression from RNA-seq data, plot complex microbiome phylogenetic trees, use machine learning tools to make sophisticated predictive statistical models, and more.</p>
+<p>These tasks are all very different and require diverse skills and expertise to program and execute. But with the broad and brilliant user base of R, there are people who make packages to do each of these things (and so much more!).</p>
+<p>So how do we get these packages?</p>
+<ul>
+<li>Almost all packages can be installed with the intuitively named <code>install.packages("package_name")</code> function.</li>
+<li>Some bioinformatics-specific tools need to be installed from <a href="https://www.bioconductor.org/">Bioconductor</a> using <code>BiocManager::install("package_name")</code>.</li>
+<li>Some packages can be installed directly from GitHub using <code>devtools::install_github("package_name")</code>.</li>
+<li>To load and use a downloaded package, use <code>library(package_name)</code>.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+A few notes on packages
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>When installing a package, the package name must be enclosed in quotes.</p></li>
+<li><p>When loading a package, you do not need to use quotes around the name.</p></li>
+<li><p>You don’t need to <em>download</em> a package more than once (though you may need to update it).</p></li>
+<li><p>However, you must <em>load</em> a package every time before you can use it.</p></li>
+</ul>
+</div>
+</div>
 </section>
 </section>
 
