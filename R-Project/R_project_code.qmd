@@ -391,4 +391,7 @@ There are other document types, like R Markdown, or the newer Quarto (this is ac
 If you want to learn more, I highly recommend this course, [*Productive R Workflow*](https://www.productive-r-workflow.com/). Contact me if you are interested; the creator offers group rates for teams.
 :::
 
-Okay, so we now have our R Project and our fresh new script. It's almost time to begin!
+Okay, so we now have our R Project and our fresh new script. It's time to begin!
+
+## Exercise
+
