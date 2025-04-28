@@ -222,6 +222,7 @@ Some of these you won't interact with much (I've never worked with Complex or Ra
 These definitions are drawn from [this R Workshop GitHub](https://github.com/MVesuviusC/R_workshop/tree/main), which inspired a few other sections of this class (thank you, [MVesuviusC](https://github.com/MVesuviusC)!).
 
 #### Identifying Variable Structures and Data Types
+##### The `str()` function
 There is an extremely useful function in R to tell you the structure of an object: `str()`
 
 Here I'm going to show the difference between a **Numeric** variable and an **Integer**, by creating two **Vectors**:
@@ -234,10 +235,15 @@ str(int)
 ```
 We created the variables using `<-`, otherwise known as the `assignment operator`, and then checked their structure by passing the object (either `num` or `int`) to the `str()` function.
 
-If you want, you can *coerce* a data type into another one. Let's say I actually wanted `num` to be an integer:
+If you want, you can *coerce* a data type into another one.
 
 ```{r}
+# Let's say I actually wanted `num` to be an integer:
 num <- as.integer(num)
+str(num)
+
+# Or even a character:
+num <- as.character(num)
 str(num)
 ```
 
@@ -246,3 +252,58 @@ But, oops, actually, just kidding, I really wanted `num` to be numeric. We can c
 num <- as.numeric(num)
 str(num)
 ```
+
+##### Why use **Factors**?
+::: {.callout-warning}
+**The default behavior in R is to treat text variables alphabetically** unless we specify otherwise. 
+
+Here's an example where that might become confusing. 
+
+Say we had a dataset from a contest, where participants could come in first, second, third, or fourth.
+
+```{r}
+rankings <- c("first","second","third","fourth")
+# If we look at the structure of our variable, we see them in the order we would expect...
+str(rankings)
+
+# But if we use the table() function to summarize the data, we see it lists them alphabetically
+table(rankings)
+
+```
+How do we fix this if we want them to be ordered logically, from first to fourth? 
+:::
+
+This is where the **factor** variable type comes in. We can specify that this categorical variable is a factor, and tell it the levels we expect:
+
+```{r}
+rankings <- as.factor(rankings)
+# If we just coerce the variable into a factor, we still have the same problem, 
+# because R doesn't know that we want them in order:
+str(rankings)
+table(rankings)
+
+# Instead, we can explicitly tell it the order we want with the "levels" argument:
+rankings <- factor(rankings, levels=c("first","second","third","fourth"))
+table(rankings)
+
+# We can set the levels to be whatever we want -- for example, we could list them backwards:
+rankings <- factor(rankings, levels=c("fourth","third","second","first"))
+table(rankings)
+```
+::: {.callout-tip collapse="true"}
+#### Extra Credit
+Why did the `str()` function print the rankings in the correct order the very first time, even though using the `table()` function showed that R was treating them alphabetically?
+
+Because when we created the `rankings` variable, we entered the variable names in the logical order. If we had created the variable with them out of order, they would have printed out of order, but R would still treat them alphabetically:
+
+```{r}
+rankings <- c("third","second","fourth","first")
+# Prints the character variable in a silly order
+str(rankings)
+# But treats it alphabetically
+table(rankings)
+
+```
+
+
+:::

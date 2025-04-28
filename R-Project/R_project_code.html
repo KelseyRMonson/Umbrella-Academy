@@ -377,6 +377,8 @@ Note
 </section>
 <section id="identifying-variable-structures-and-data-types" class="level4" data-number="1.3.3">
 <h4 data-number="1.3.3" class="anchored" data-anchor-id="identifying-variable-structures-and-data-types"><span class="header-section-number">1.3.3</span> Identifying Variable Structures and Data Types</h4>
+<section id="the-str-function" class="level5" data-number="1.3.3.1">
+<h5 data-number="1.3.3.1" class="anchored" data-anchor-id="the-str-function"><span class="header-section-number">1.3.3.1</span> The <code>str()</code> function</h5>
 <p>There is an extremely useful function in R to tell you the structure of an object: <code>str()</code></p>
 <p>Here I’m going to show the difference between a <strong>Numeric</strong> variable and an <strong>Integer</strong>, by creating two <strong>Vectors</strong>:</p>
 <div class="cell">
@@ -392,22 +394,128 @@ Note
 </div>
 </div>
 <p>We created the variables using <code>&lt;-</code>, otherwise known as the <code>assignment operator</code>, and then checked their structure by passing the object (either <code>num</code> or <code>int</code>) to the <code>str()</code> function.</p>
-<p>If you want, you can <em>coerce</em> a data type into another one. Let’s say I actually wanted <code>num</code> to be an integer:</p>
+<p>If you want, you can <em>coerce</em> a data type into another one.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(num)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's say I actually wanted `num` to be an integer:</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(num)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> int [1:3] 1 2 3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Or even a character:</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">as.character</span>(num)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> chr [1:3] "1" "2" "3"</code></pre>
 </div>
 </div>
 <p>But, oops, actually, just kidding, I really wanted <code>num</code> to be numeric. We can change it back:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(num)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(num)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> num [1:3] 1 2 3</code></pre>
 </div>
 </div>
+</section>
+<section id="why-use-factors" class="level5" data-number="1.3.3.2">
+<h5 data-number="1.3.3.2" class="anchored" data-anchor-id="why-use-factors"><span class="header-section-number">1.3.3.2</span> Why use <strong>Factors</strong>?</h5>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>The default behavior in R is to treat text variables alphabetically</strong> unless we specify otherwise.</p>
+<p>Here’s an example where that might become confusing.</p>
+<p>Say we had a dataset from a contest, where participants could come in first, second, third, or fourth.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"first"</span>,<span class="st">"second"</span>,<span class="st">"third"</span>,<span class="st">"fourth"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># If we look at the structure of our variable, we see them in the order we would expect...</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> chr [1:4] "first" "second" "third" "fourth"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># But if we use the table() function to summarize the data, we see it lists them alphabetically</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>rankings
+ first fourth second  third 
+     1      1      1      1 </code></pre>
+</div>
+</div>
+<p>How do we fix this if we want them to be ordered logically, from first to fourth?</p>
+</div>
+</div>
+<p>This is where the <strong>factor</strong> variable type comes in. We can specify that this categorical variable is a factor, and tell it the levels we expect:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(rankings)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># If we just coerce the variable into a factor, we still have the same problem, </span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># because R doesn't know that we want them in order:</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Factor w/ 4 levels "first","fourth",..: 1 3 4 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>rankings
+ first fourth second  third 
+     1      1      1      1 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instead, we can explicitly tell it the order we want with the "levels" argument:</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> <span class="fu">factor</span>(rankings, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"first"</span>,<span class="st">"second"</span>,<span class="st">"third"</span>,<span class="st">"fourth"</span>))</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>rankings
+ first second  third fourth 
+     1      1      1      1 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can set the levels to be whatever we want -- for example, we could list them backwards:</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> <span class="fu">factor</span>(rankings, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"fourth"</span>,<span class="st">"third"</span>,<span class="st">"second"</span>,<span class="st">"first"</span>))</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>rankings
+fourth  third second  first 
+     1      1      1      1 </code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Extra Credit
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Why did the <code>str()</code> function print the rankings in the correct order the very first time, even though using the <code>table()</code> function showed that R was treating them alphabetically?</p>
+<p>Because when we created the <code>rankings</code> variable, we entered the variable names in the logical order. If we had created the variable with them out of order, they would have printed out of order, but R would still treat them alphabetically:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"third"</span>,<span class="st">"second"</span>,<span class="st">"fourth"</span>,<span class="st">"first"</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Prints the character variable in a silly order</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> chr [1:4] "third" "second" "fourth" "first"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># But treats it alphabetically</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>rankings
+ first fourth second  third 
+     1      1      1      1 </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
 </section>
 </section>
 </section>
