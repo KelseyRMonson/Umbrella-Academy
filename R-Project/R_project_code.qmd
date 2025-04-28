@@ -42,7 +42,7 @@ The goal of **The Umbrella Academy** is to familiarize "wet lab" scientists with
 
 R is an excellent tool for generating beautiful data visualizations, and is much more flexible and customizable than other tools like Excel or GraphPad.
 
-Another major benefit of R is that it is, and (hopefully) always will be, free to use and open source, unlike other proprietary statistical computing software like SAS or STATA.
+Another major benefit of R is that it is free to use and open source, unlike other proprietary statistical computing software like SAS or STATA.
 
 But first, before we dive into the exercise itself, let's familiarize ourselves with some basics of working with R in RStudio.
 
@@ -394,4 +394,4 @@ If you want to learn more, I highly recommend this course, [*Productive R Workfl
 Okay, so we now have our R Project and our fresh new script. It's time to begin!
 
 ## Exercise
-
+I've created an [R Script](Getting_Started_with_R_script.R) that includes the code necessary to generate the plots for this exercise. 
