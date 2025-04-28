@@ -155,6 +155,7 @@ background: #f0f3f5;
   <li><a href="#navigating-rstudio" id="toc-navigating-rstudio" class="nav-link" data-scroll-target="#navigating-rstudio"><span class="header-section-number">1.2</span> Navigating RStudio</a></li>
   <li><a href="#data-types-and-variables" id="toc-data-types-and-variables" class="nav-link" data-scroll-target="#data-types-and-variables"><span class="header-section-number">1.3</span> Data Types and Variables</a></li>
   <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help"><span class="header-section-number">1.4</span> Getting Help</a></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages"><span class="header-section-number">1.5</span> Packages</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -205,7 +206,7 @@ background: #f0f3f5;
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "C:/Users/kelse/OneDrive/Documents/GitHub/Umbrella-Academy/R-Project"</code></pre>
+<pre><code>[1] "C:/Users/Zamarin Lab/Documents/GitHub/Umbrella-Academy/R-Project"</code></pre>
 </div>
 </div>
 <p>You can see I’m currently in my project directory on the Zamarin Lab computer.</p>
@@ -400,7 +401,12 @@ A note on document types
 <pre><code> int [1:3] 1 2 3</code></pre>
 </div>
 </div>
-<p>We created the variables using <code>&lt;-</code>, otherwise known as the <code>assignment operator</code>, and then checked their structure by passing the object (either <code>num</code> or <code>int</code>) to the <code>str()</code> function.</p>
+<p>Breaking down the above code, we</p>
+<ol type="1">
+<li>Created the variables using <code>&lt;-</code>, otherwise known as the <code>assignment operator</code></li>
+<li>Combined the numbers/integers and passed them to our new variables using the combine function <code>c()</code></li>
+<li>Checked their structure by passing the object (either <code>num</code> or <code>int</code>) to the <code>str()</code> function.</li>
+</ol>
 <p>If you want, you can <em>coerce</em> a data type into another one.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's say I actually wanted `num` to be an integer:</span></span>
@@ -453,7 +459,7 @@ Warning
 <pre><code> num [1:3] NA NA NA</code></pre>
 </div>
 </div>
-<p>R isn’t reading and evaluating what our character variables to assume what they might mean, so it isn’t going to automatically convert <code>one</code> into <code>1</code>.</p>
+<p>R isn’t reading and evaluating our character variables to assume what they might mean, so it isn’t going to automatically convert <code>one</code> into <code>1</code>.</p>
 <p>If you have numeric variables in your dataset, it’s best to save them initially as numbers in your raw data, and treat them as either numeric or integer variables in R.</p>
 </section>
 <section id="why-use-factors" class="level5" data-number="1.3.3.2">
@@ -578,6 +584,12 @@ Extra Credit
 </ul>
 <p>One of the most useful reasons to use <code>?</code> is because, in addition to giving you general information about how a function works, it tells you the possible arguments (what can go inside the parentheses) as well as any default behavior.</p>
 <p>I use <code>?</code> almost every time I’m coding in R – sometimes just to see what other cool things a function I’m using can do!</p>
+</section>
+<section id="packages" class="level3" data-number="1.5">
+<h3 data-number="1.5" class="anchored" data-anchor-id="packages"><span class="header-section-number">1.5</span> Packages</h3>
+<p>Did you notice how I specified above that <code>mean()</code> is a function in Base-R? R comes ready-made with a number of essential statistical and graphical functions built into it.</p>
+<p>But one of the best things about R is that there is a huge community of other R users who create <strong>packages</strong>, basically collections of related functions to do specific things in R.</p>
+<p>This is how people can use R to calculate differential gene expression from RNA-seq data, plot complex microbiome phylogenetic trees, use machine learning tools to make sophisticated predictive statistical models, and more. These tasks are all very different and require broad expertise to program and execute. But with the broad and brilliant user base of R, there are people who make packages to do each of these things (and so much more!).</p>
 </section>
 </section>
 
