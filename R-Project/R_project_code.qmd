@@ -115,7 +115,7 @@ Some people believe very strongly that you should never include `setwd()` in you
 Rather, they argue that it is much better to create a folder for the specific project you are working on, and then create an R Project (or similar, but for our purposes we will discuss R Projects).
 
 ::: {.callout-tip collapse="true"}
-#### What is an R Project?
+##### What is an R Project?
 
 -   A type of file that functions with RStudio
 -   They have the `.Rproj` file extension
@@ -135,7 +135,8 @@ For this exercise, we will create an R Project, just to teach best practices.
 If you launch RStudio now, you will see three panes (or windows).
 
 ::: {.callout-caution collapse="true"}
-#### Before we progress...
+##### Before we progress...
+
 ...we need to turn off a few RStudio defaults that will make our lives better.
 
 Basically, in an ideal world, you should be able to run all your code from start to finish and get the same result.
@@ -222,7 +223,9 @@ Some of these you won't interact with much (I've never worked with Complex or Ra
 These definitions are drawn from [this R Workshop GitHub](https://github.com/MVesuviusC/R_workshop/tree/main), which inspired a few other sections of this class (thank you, [MVesuviusC](https://github.com/MVesuviusC)!).
 
 #### Identifying Variable Structures and Data Types
+
 ##### The `str()` function
+
 There is an extremely useful function in R to tell you the structure of an object: `str()`
 
 Here I'm going to show the difference between a **Numeric** variable and an **Integer**, by creating two **Vectors**:
@@ -233,6 +236,7 @@ str(num)
 int <- c(1L,2L,3L)
 str(int)
 ```
+
 We created the variables using `<-`, otherwise known as the `assignment operator`, and then checked their structure by passing the object (either `num` or `int`) to the `str()` function.
 
 If you want, you can *coerce* a data type into another one.
@@ -248,16 +252,32 @@ str(num)
 ```
 
 But, oops, actually, just kidding, I really wanted `num` to be numeric. We can change it back:
+
 ```{r}
 num <- as.numeric(num)
 str(num)
 ```
 
-##### Why use **Factors**?
-::: {.callout-warning}
-**The default behavior in R is to treat text variables alphabetically** unless we specify otherwise. 
+::: {.callout-caution}
+**Be careful not to coerce a variable into an impossible data type!**
+:::
 
-Here's an example where that might become confusing. 
+Note what happens if we try to coerce a character vector into a numeric vector, even if we know that the character vector *could* represent a number:
+```{r}
+number <- c("one","two","three")
+str(number)
+
+number <- as.numeric(number)
+str(number)
+```
+R isn't reading and evaluating what our character variables to assume what they might mean, so it isn't going to automatically convert `one` into `1`. If you have numeric variables in your dataset, it's best to save them initially as numbers in your raw data, and treat them as either numeric or integer variables in R. 
+
+##### Why use **Factors**?
+
+::: callout-warning
+**The default behavior in R is to treat text variables alphabetically** unless we specify otherwise.
+
+Here's an example where that might become confusing.
 
 Say we had a dataset from a contest, where participants could come in first, second, third, or fourth.
 
@@ -270,7 +290,8 @@ str(rankings)
 table(rankings)
 
 ```
-How do we fix this if we want them to be ordered logically, from first to fourth? 
+
+How do we fix this if we want them to be ordered logically, from first to fourth?
 :::
 
 This is where the **factor** variable type comes in. We can specify that this categorical variable is a factor, and tell it the levels we expect:
@@ -290,8 +311,10 @@ table(rankings)
 rankings <- factor(rankings, levels=c("fourth","third","second","first"))
 table(rankings)
 ```
+
 ::: {.callout-tip collapse="true"}
-#### Extra Credit
+###### Extra Credit
+
 Why did the `str()` function print the rankings in the correct order the very first time, even though using the `table()` function showed that R was treating them alphabetically?
 
 Because when we created the `rankings` variable, we entered the variable names in the logical order. If we had created the variable with them out of order, they would have printed out of order, but R would still treat them alphabetically:
@@ -304,6 +327,8 @@ str(rankings)
 table(rankings)
 
 ```
-
-
 :::
+
+Changing the levels of your **factor** variables can be very useful when it comes to plotting data, as we will see.
+
+### Getting Help
