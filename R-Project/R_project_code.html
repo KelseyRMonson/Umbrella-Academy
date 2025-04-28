@@ -537,7 +537,7 @@ Extra Credit
 <p>Because when we created the <code>rankings</code> variable, we entered the variable names in the logical order. If we had created the variable with them out of order, they would have printed out of order, but R would still treat them alphabetically:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"third"</span>,<span class="st">"second"</span>,<span class="st">"fourth"</span>,<span class="st">"first"</span>)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Prints the character variable in a silly order</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Prints the character variable in the silly order we supplied...</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> chr [1:4] "third" "second" "fourth" "first"</code></pre>
@@ -572,6 +572,7 @@ Extra Credit
 <ul>
 <li>Searches the help documentation for the keyword you provide.</li>
 <li>e.g.&nbsp;<code>??mean()</code> will look for all the functions (and their documentation) that include the word <code>mean</code> and will return a list that you can select from.</li>
+<li>Because this searches documentation for your keyword(s) and not just function names, this is a good option if you know <em>what</em> you want a function to do, even if you don’t know its name.</li>
 <li>This type search of works better if you use more specific keywords, since many functions share common words (in fact, you can try out <code>??mean()</code> and see how many results you get – it might take a while!)</li>
 </ul></li>
 </ul>

@@ -183,6 +183,7 @@ Now we'll go back and create a new R script in our project folder.
 
 ::: {.callout-note collapse="true"}
 ##### A note on document types
+
 For this exercise, we will be using an R script to write and execute our code.
 
 There are other document types, like R Markdown, or the newer Quarto (this is actually a Quarto document). These file types are a bit more advanced and require you to know Markdown syntax, but can be very helpful for actual projects. They allow you to combine code, text, and output very seamlessly, which is good for reproducibility.
@@ -276,7 +277,7 @@ number <- as.numeric(number)
 str(number)
 ```
 
-R isn't reading and evaluating what our character variables to assume what they might mean, so it isn't going to automatically convert `one` into `1`. 
+R isn't reading and evaluating what our character variables to assume what they might mean, so it isn't going to automatically convert `one` into `1`.
 
 If you have numeric variables in your dataset, it's best to save them initially as numbers in your raw data, and treat them as either numeric or integer variables in R.
 
@@ -329,9 +330,9 @@ Because when we created the `rankings` variable, we entered the variable names i
 
 ```{r}
 rankings <- c("third","second","fourth","first")
-# Prints the character variable in a silly order
+# Prints the character variable in the silly order we supplied...
 str(rankings)
-# But treats it alphabetically
+# But still treats it alphabetically
 table(rankings)
 
 ```
@@ -355,6 +356,9 @@ There are actually two ways to search for help:
 
     -   Searches the help documentation for the keyword you provide.
     -   e.g. `??mean()` will look for all the functions (and their documentation) that include the word `mean` and will return a list that you can select from.
+    -   Because this searches documentation for your keyword(s) and not just function names, this is a good option if you know *what* you want a function to do, even if you don't know its name, and/or you want to see if there are multiple functions to choose from.
     -   This type search of works better if you use more specific keywords, since many functions share common words (in fact, you can try out `??mean()` and see how many results you get -- it might take a while!)
 
+One of the most useful reasons to use `?` is because, in addition to giving you general information about how a function works, it tells you the possible arguments (what can go inside the parentheses) as well as any default behavior. 
 
+I use `?` almost every time I'm coding in R -- sometimes just to see what other cool things a function I'm using can do! 
