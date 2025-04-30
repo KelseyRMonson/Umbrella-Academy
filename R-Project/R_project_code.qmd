@@ -409,11 +409,13 @@ Some packages (and Base-R) include their own test data. This is useful when you 
 We will use the `starwars` dataset from the `tidyverse` package as our example data today. 
 
 ### Getting Started
-I've created an [R Script](Getting_Started_with_R_script.R) that includes the code necessary to generate the plots for this exercise.
+I've created an [R Script](Getting_Started_with_R_script.R) that includes the code necessary to generate the plots for this exercise. Go ahead and open that script now.
 
 #### Install and Load Packages, Download Data
 
-Go ahead and open that script to see the names of the packages we need to download and load today -- and then do that!
+Please download and load the packages that we will use today. 
+
+As I noted, you don't need to save the `install.packages()` commands to your actual script since you won't need to run them again. 
 
 While we will use the `starwars` dataset built into the `tidyverse`, you will eventually need to know how to load in your own data to R, so I saved a small version of the dataset to teach you to do just that.
 
@@ -429,7 +431,11 @@ small_star_wars <- read_excel("input/small_star_wars.xlsx", na="NA")
 
 #### Explore the Data
 
-This dataset is more complicated than the vectors I created earlier -- what does it look like if we run `str()` on this?
+This dataset is more complicated than the vectors I created earlier. What does it look like if we run `str()` on this?
 ```{r}
 str(small_star_wars)
 ```
+
+We can see that `str()` gives us more information than just the data type of each variable -- we can now see that this is a **Tibble** (a fancy version of a **Data Frame**). 
+
+**Tibbles** and **Data Frames** can contain variables of different types -- you can see that this contains both numeric and character variables. 

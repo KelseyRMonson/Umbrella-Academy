@@ -625,10 +625,11 @@ A note on document types
 <p>We will use the <code>starwars</code> dataset from the <code>tidyverse</code> package as our example data today.</p>
 <section id="getting-started" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="getting-started"><span class="header-section-number">2.1</span> Getting Started</h3>
-<p>I’ve created an <a href="Getting_Started_with_R_script.R">R Script</a> that includes the code necessary to generate the plots for this exercise.</p>
+<p>I’ve created an <a href="Getting_Started_with_R_script.R">R Script</a> that includes the code necessary to generate the plots for this exercise. Go ahead and open that script now.</p>
 <section id="install-and-load-packages-download-data" class="level4" data-number="2.1.1">
 <h4 data-number="2.1.1" class="anchored" data-anchor-id="install-and-load-packages-download-data"><span class="header-section-number">2.1.1</span> Install and Load Packages, Download Data</h4>
-<p>Go ahead and open that script to see the names of the packages we need to download and load today – and then do that!</p>
+<p>Please download and load the packages that we will use today.</p>
+<p>As I noted, you don’t need to save the <code>install.packages()</code> commands to your actual script since you won’t need to run them again.</p>
 <p>While we will use the <code>starwars</code> dataset built into the <code>tidyverse</code>, you will eventually need to know how to load in your own data to R, so I saved a small version of the dataset to teach you to do just that.</p>
 <p>Download the <a href="input/small_star_wars.xlsx">dataset</a> from the GitHub:</p>
 <p><img src="assets/Download_Data.png" class="img-fluid" alt="Navigate to the input folder, select the file, and select “Copy raw file.”"> Then create a folder in your own project directory called <code>input</code> and save the file there.</p>
@@ -639,7 +640,7 @@ A note on document types
 </section>
 <section id="explore-the-data" class="level4" data-number="2.1.2">
 <h4 data-number="2.1.2" class="anchored" data-anchor-id="explore-the-data"><span class="header-section-number">2.1.2</span> Explore the Data</h4>
-<p>This dataset is more complicated than the vectors I created earlier – what does it look like if we run <code>str()</code> on this?</p>
+<p>This dataset is more complicated than the vectors I created earlier. What does it look like if we run <code>str()</code> on this?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(small_star_wars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -656,6 +657,8 @@ A note on document types
  $ species   : chr [1:9] "Human" "Droid" "Droid" "Human" ...</code></pre>
 </div>
 </div>
+<p>We can see that <code>str()</code> gives us more information than just the data type of each variable – we can now see that this is a <strong>Tibble</strong> (a fancy version of a <strong>Data Frame</strong>).</p>
+<p><strong>Tibbles</strong> and <strong>Data Frames</strong> can contain variables of different types – you can see that this contains both numeric and character variables.</p>
 </section>
 </section>
 </section>
