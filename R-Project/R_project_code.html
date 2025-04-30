@@ -648,17 +648,17 @@ A note on document types
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(small_star_wars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>tibble [9 × 10] (S3: tbl_df/tbl/data.frame)
- $ name      : chr [1:9] "Luke Skywalker" "C-3PO" "R2-D2" "Darth Vader" ...
- $ height    : num [1:9] 172 167 96 202 150 182 188 228 180
- $ mass      : num [1:9] 77 75 32 136 49 77 84 112 80
- $ hair_color: chr [1:9] "blond" NA NA "none" ...
- $ skin_color: chr [1:9] "fair" "gold" "white, blue" "white" ...
- $ eye_color : chr [1:9] "blue" "yellow" "red" "yellow" ...
- $ birth_year: num [1:9] 19 112 33 41.9 19 57 41.9 200 29
- $ sex       : chr [1:9] "male" "none" "none" "male" ...
- $ homeworld : chr [1:9] "Tatooine" "Tatooine" "Naboo" "Tatooine" ...
- $ species   : chr [1:9] "Human" "Droid" "Droid" "Human" ...</code></pre>
+<pre><code>tibble [6 × 10] (S3: tbl_df/tbl/data.frame)
+ $ name      : chr [1:6] "Luke Skywalker" "R2-D2" "Darth Vader" "Leia Organa" ...
+ $ height    : num [1:6] 172 96 202 150 228 180
+ $ mass      : num [1:6] 77 32 136 49 112 80
+ $ hair_color: chr [1:6] "blond" NA "none" "brown" ...
+ $ skin_color: chr [1:6] "fair" "white, blue" "white" "light" ...
+ $ eye_color : chr [1:6] "blue" "red" "yellow" "brown" ...
+ $ birth_year: num [1:6] 19 33 41.9 19 200 29
+ $ sex       : chr [1:6] "male" "none" "male" "female" ...
+ $ homeworld : chr [1:6] "Tatooine" "Naboo" "Tatooine" "Alderaan" ...
+ $ species   : chr [1:6] "Human" "Droid" "Human" "Human" ...</code></pre>
 </div>
 </div>
 <p>We can see that <code>str()</code> gives us more information than just the data type of each variable – we can now see that this is a <strong>Tibble</strong> (a fancy version of a <strong>Data Frame</strong>).</p>
@@ -667,22 +667,22 @@ A note on document types
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(small_star_wars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     name               height           mass         hair_color       
- Length:9           Min.   : 96.0   Min.   : 32.00   Length:9          
- Class :character   1st Qu.:167.0   1st Qu.: 75.00   Class :character  
- Mode  :character   Median :180.0   Median : 77.00   Mode  :character  
-                    Mean   :173.9   Mean   : 80.22                     
-                    3rd Qu.:188.0   3rd Qu.: 84.00                     
-                    Max.   :228.0   Max.   :136.00                     
+<pre><code>     name               height           mass        hair_color       
+ Length:6           Min.   : 96.0   Min.   : 32.0   Length:6          
+ Class :character   1st Qu.:155.5   1st Qu.: 56.0   Class :character  
+ Mode  :character   Median :176.0   Median : 78.5   Mode  :character  
+                    Mean   :171.3   Mean   : 81.0                     
+                    3rd Qu.:196.5   3rd Qu.:104.0                     
+                    Max.   :228.0   Max.   :136.0                     
   skin_color         eye_color           birth_year         sex           
- Length:9           Length:9           Min.   : 19.00   Length:9          
- Class :character   Class :character   1st Qu.: 29.00   Class :character  
- Mode  :character   Mode  :character   Median : 41.90   Mode  :character  
-                                       Mean   : 61.42                     
-                                       3rd Qu.: 57.00                     
+ Length:6           Length:6           Min.   : 19.00   Length:6          
+ Class :character   Class :character   1st Qu.: 21.50   Class :character  
+ Mode  :character   Mode  :character   Median : 31.00   Mode  :character  
+                                       Mean   : 56.98                     
+                                       3rd Qu.: 39.67                     
                                        Max.   :200.00                     
   homeworld           species         
- Length:9           Length:9          
+ Length:6           Length:6          
  Class :character   Class :character  
  Mode  :character   Mode  :character  
                                       
@@ -695,23 +695,23 @@ A note on document types
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>small_star_wars <span class="sc">%&gt;%</span> </span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="lezxbtjhhq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#lezxbtjhhq table {
+<div id="fispywcxsr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fispywcxsr table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#lezxbtjhhq thead, #lezxbtjhhq tbody, #lezxbtjhhq tfoot, #lezxbtjhhq tr, #lezxbtjhhq td, #lezxbtjhhq th {
+#fispywcxsr thead, #fispywcxsr tbody, #fispywcxsr tfoot, #fispywcxsr tr, #fispywcxsr td, #fispywcxsr th {
   border-style: none;
 }
 
-#lezxbtjhhq p {
+#fispywcxsr p {
   margin: 0;
   padding: 0;
 }
 
-#lezxbtjhhq .gt_table {
+#fispywcxsr .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -737,12 +737,12 @@ A note on document types
   border-left-color: #D3D3D3;
 }
 
-#lezxbtjhhq .gt_caption {
+#fispywcxsr .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#lezxbtjhhq .gt_title {
+#fispywcxsr .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -754,7 +754,7 @@ A note on document types
   border-bottom-width: 0;
 }
 
-#lezxbtjhhq .gt_subtitle {
+#fispywcxsr .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -766,7 +766,7 @@ A note on document types
   border-top-width: 0;
 }
 
-#lezxbtjhhq .gt_heading {
+#fispywcxsr .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -778,13 +778,13 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#lezxbtjhhq .gt_bottom_border {
+#fispywcxsr .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lezxbtjhhq .gt_col_headings {
+#fispywcxsr .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -799,7 +799,7 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#lezxbtjhhq .gt_col_heading {
+#fispywcxsr .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -819,7 +819,7 @@ A note on document types
   overflow-x: hidden;
 }
 
-#lezxbtjhhq .gt_column_spanner_outer {
+#fispywcxsr .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -831,15 +831,15 @@ A note on document types
   padding-right: 4px;
 }
 
-#lezxbtjhhq .gt_column_spanner_outer:first-child {
+#fispywcxsr .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lezxbtjhhq .gt_column_spanner_outer:last-child {
+#fispywcxsr .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lezxbtjhhq .gt_column_spanner {
+#fispywcxsr .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -851,11 +851,11 @@ A note on document types
   width: 100%;
 }
 
-#lezxbtjhhq .gt_spanner_row {
+#fispywcxsr .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#lezxbtjhhq .gt_group_heading {
+#fispywcxsr .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -881,7 +881,7 @@ A note on document types
   text-align: left;
 }
 
-#lezxbtjhhq .gt_empty_group_heading {
+#fispywcxsr .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -896,15 +896,15 @@ A note on document types
   vertical-align: middle;
 }
 
-#lezxbtjhhq .gt_from_md > :first-child {
+#fispywcxsr .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lezxbtjhhq .gt_from_md > :last-child {
+#fispywcxsr .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lezxbtjhhq .gt_row {
+#fispywcxsr .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -923,7 +923,7 @@ A note on document types
   overflow-x: hidden;
 }
 
-#lezxbtjhhq .gt_stub {
+#fispywcxsr .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -936,7 +936,7 @@ A note on document types
   padding-right: 5px;
 }
 
-#lezxbtjhhq .gt_stub_row_group {
+#fispywcxsr .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -950,15 +950,15 @@ A note on document types
   vertical-align: top;
 }
 
-#lezxbtjhhq .gt_row_group_first td {
+#fispywcxsr .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#lezxbtjhhq .gt_row_group_first th {
+#fispywcxsr .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#lezxbtjhhq .gt_summary_row {
+#fispywcxsr .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -968,16 +968,16 @@ A note on document types
   padding-right: 5px;
 }
 
-#lezxbtjhhq .gt_first_summary_row {
+#fispywcxsr .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#lezxbtjhhq .gt_first_summary_row.thick {
+#fispywcxsr .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#lezxbtjhhq .gt_last_summary_row {
+#fispywcxsr .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -987,7 +987,7 @@ A note on document types
   border-bottom-color: #D3D3D3;
 }
 
-#lezxbtjhhq .gt_grand_summary_row {
+#fispywcxsr .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -997,7 +997,7 @@ A note on document types
   padding-right: 5px;
 }
 
-#lezxbtjhhq .gt_first_grand_summary_row {
+#fispywcxsr .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1007,7 +1007,7 @@ A note on document types
   border-top-color: #D3D3D3;
 }
 
-#lezxbtjhhq .gt_last_grand_summary_row_top {
+#fispywcxsr .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1017,11 +1017,11 @@ A note on document types
   border-bottom-color: #D3D3D3;
 }
 
-#lezxbtjhhq .gt_striped {
+#fispywcxsr .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lezxbtjhhq .gt_table_body {
+#fispywcxsr .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1030,7 +1030,7 @@ A note on document types
   border-bottom-color: #D3D3D3;
 }
 
-#lezxbtjhhq .gt_footnotes {
+#fispywcxsr .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1044,7 +1044,7 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#lezxbtjhhq .gt_footnote {
+#fispywcxsr .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1053,7 +1053,7 @@ A note on document types
   padding-right: 5px;
 }
 
-#lezxbtjhhq .gt_sourcenotes {
+#fispywcxsr .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1067,7 +1067,7 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#lezxbtjhhq .gt_sourcenote {
+#fispywcxsr .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1075,72 +1075,72 @@ A note on document types
   padding-right: 5px;
 }
 
-#lezxbtjhhq .gt_left {
+#fispywcxsr .gt_left {
   text-align: left;
 }
 
-#lezxbtjhhq .gt_center {
+#fispywcxsr .gt_center {
   text-align: center;
 }
 
-#lezxbtjhhq .gt_right {
+#fispywcxsr .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lezxbtjhhq .gt_font_normal {
+#fispywcxsr .gt_font_normal {
   font-weight: normal;
 }
 
-#lezxbtjhhq .gt_font_bold {
+#fispywcxsr .gt_font_bold {
   font-weight: bold;
 }
 
-#lezxbtjhhq .gt_font_italic {
+#fispywcxsr .gt_font_italic {
   font-style: italic;
 }
 
-#lezxbtjhhq .gt_super {
+#fispywcxsr .gt_super {
   font-size: 65%;
 }
 
-#lezxbtjhhq .gt_footnote_marks {
+#fispywcxsr .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#lezxbtjhhq .gt_asterisk {
+#fispywcxsr .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#lezxbtjhhq .gt_indent_1 {
+#fispywcxsr .gt_indent_1 {
   text-indent: 5px;
 }
 
-#lezxbtjhhq .gt_indent_2 {
+#fispywcxsr .gt_indent_2 {
   text-indent: 10px;
 }
 
-#lezxbtjhhq .gt_indent_3 {
+#fispywcxsr .gt_indent_3 {
   text-indent: 15px;
 }
 
-#lezxbtjhhq .gt_indent_4 {
+#fispywcxsr .gt_indent_4 {
   text-indent: 20px;
 }
 
-#lezxbtjhhq .gt_indent_5 {
+#fispywcxsr .gt_indent_5 {
   text-indent: 25px;
 }
 
-#lezxbtjhhq .katex-display {
+#fispywcxsr .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#lezxbtjhhq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#fispywcxsr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1174,18 +1174,6 @@ A note on document types
 <td class="gt_row gt_left" headers="species">Human</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="name">C-3PO</td>
-<td class="gt_row gt_right" headers="height">167</td>
-<td class="gt_row gt_right" headers="mass">75</td>
-<td class="gt_row gt_left" headers="hair_color">NA</td>
-<td class="gt_row gt_left" headers="skin_color">gold</td>
-<td class="gt_row gt_left" headers="eye_color">yellow</td>
-<td class="gt_row gt_right" headers="birth_year">112.0</td>
-<td class="gt_row gt_left" headers="sex">none</td>
-<td class="gt_row gt_left" headers="homeworld">Tatooine</td>
-<td class="gt_row gt_left" headers="species">Droid</td>
-</tr>
-<tr class="odd">
 <td class="gt_row gt_left" headers="name">R2-D2</td>
 <td class="gt_row gt_right" headers="height">96</td>
 <td class="gt_row gt_right" headers="mass">32</td>
@@ -1197,7 +1185,7 @@ A note on document types
 <td class="gt_row gt_left" headers="homeworld">Naboo</td>
 <td class="gt_row gt_left" headers="species">Droid</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td class="gt_row gt_left" headers="name">Darth Vader</td>
 <td class="gt_row gt_right" headers="height">202</td>
 <td class="gt_row gt_right" headers="mass">136</td>
@@ -1209,7 +1197,7 @@ A note on document types
 <td class="gt_row gt_left" headers="homeworld">Tatooine</td>
 <td class="gt_row gt_left" headers="species">Human</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td class="gt_row gt_left" headers="name">Leia Organa</td>
 <td class="gt_row gt_right" headers="height">150</td>
 <td class="gt_row gt_right" headers="mass">49</td>
@@ -1221,31 +1209,7 @@ A note on document types
 <td class="gt_row gt_left" headers="homeworld">Alderaan</td>
 <td class="gt_row gt_left" headers="species">Human</td>
 </tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="name">Obi-Wan Kenobi</td>
-<td class="gt_row gt_right" headers="height">182</td>
-<td class="gt_row gt_right" headers="mass">77</td>
-<td class="gt_row gt_left" headers="hair_color">auburn, white</td>
-<td class="gt_row gt_left" headers="skin_color">fair</td>
-<td class="gt_row gt_left" headers="eye_color">blue-gray</td>
-<td class="gt_row gt_right" headers="birth_year">57.0</td>
-<td class="gt_row gt_left" headers="sex">male</td>
-<td class="gt_row gt_left" headers="homeworld">Stewjon</td>
-<td class="gt_row gt_left" headers="species">Human</td>
-</tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="name">Anakin Skywalker</td>
-<td class="gt_row gt_right" headers="height">188</td>
-<td class="gt_row gt_right" headers="mass">84</td>
-<td class="gt_row gt_left" headers="hair_color">blond</td>
-<td class="gt_row gt_left" headers="skin_color">fair</td>
-<td class="gt_row gt_left" headers="eye_color">blue</td>
-<td class="gt_row gt_right" headers="birth_year">41.9</td>
-<td class="gt_row gt_left" headers="sex">male</td>
-<td class="gt_row gt_left" headers="homeworld">Tatooine</td>
-<td class="gt_row gt_left" headers="species">Human</td>
-</tr>
-<tr class="even">
 <td class="gt_row gt_left" headers="name">Chewbacca</td>
 <td class="gt_row gt_right" headers="height">228</td>
 <td class="gt_row gt_right" headers="mass">112</td>
@@ -1257,7 +1221,7 @@ A note on document types
 <td class="gt_row gt_left" headers="homeworld">Kashyyyk</td>
 <td class="gt_row gt_left" headers="species">Wookiee</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td class="gt_row gt_left" headers="name">Han Solo</td>
 <td class="gt_row gt_right" headers="height">180</td>
 <td class="gt_row gt_right" headers="mass">80</td>
@@ -1275,28 +1239,29 @@ A note on document types
 </div>
 </div>
 </div>
-<p>This code uses <code>%&gt;%</code>, which is called the <code>pipe operator</code>. <a href="https://www.geeksforgeeks.org/pipe-in-r/">Pipes</a> are a bit more advanced than what we will be doing today, but their main benefit is to chain together multiple operations.</p>
-<p>You can just as easily generate the same table by using the <code>small_star_wars</code> Tibble variable as the argument passed to <code>gt()</code>:</p>
+<p>This code uses <code>%&gt;%</code>, which is called the <code>pipe operator</code>.</p>
+<p><a href="https://www.geeksforgeeks.org/pipe-in-r/">Pipes</a> are a bit more advanced than what we will be doing today, but their main benefit is to chain together multiple operations.</p>
+<p>Since we’re only running one operation, you can just as easily generate the same table by using the <code>small_star_wars</code> variable as the argument passed to <code>gt()</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(small_star_wars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="xzmqzloihb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#xzmqzloihb table {
+<div id="qwembvsixg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#qwembvsixg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#xzmqzloihb thead, #xzmqzloihb tbody, #xzmqzloihb tfoot, #xzmqzloihb tr, #xzmqzloihb td, #xzmqzloihb th {
+#qwembvsixg thead, #qwembvsixg tbody, #qwembvsixg tfoot, #qwembvsixg tr, #qwembvsixg td, #qwembvsixg th {
   border-style: none;
 }
 
-#xzmqzloihb p {
+#qwembvsixg p {
   margin: 0;
   padding: 0;
 }
 
-#xzmqzloihb .gt_table {
+#qwembvsixg .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1322,12 +1287,12 @@ A note on document types
   border-left-color: #D3D3D3;
 }
 
-#xzmqzloihb .gt_caption {
+#qwembvsixg .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#xzmqzloihb .gt_title {
+#qwembvsixg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1339,7 +1304,7 @@ A note on document types
   border-bottom-width: 0;
 }
 
-#xzmqzloihb .gt_subtitle {
+#qwembvsixg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1351,7 +1316,7 @@ A note on document types
   border-top-width: 0;
 }
 
-#xzmqzloihb .gt_heading {
+#qwembvsixg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1363,13 +1328,13 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#xzmqzloihb .gt_bottom_border {
+#qwembvsixg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xzmqzloihb .gt_col_headings {
+#qwembvsixg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1384,7 +1349,7 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#xzmqzloihb .gt_col_heading {
+#qwembvsixg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1404,7 +1369,7 @@ A note on document types
   overflow-x: hidden;
 }
 
-#xzmqzloihb .gt_column_spanner_outer {
+#qwembvsixg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1416,15 +1381,15 @@ A note on document types
   padding-right: 4px;
 }
 
-#xzmqzloihb .gt_column_spanner_outer:first-child {
+#qwembvsixg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xzmqzloihb .gt_column_spanner_outer:last-child {
+#qwembvsixg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xzmqzloihb .gt_column_spanner {
+#qwembvsixg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1436,11 +1401,11 @@ A note on document types
   width: 100%;
 }
 
-#xzmqzloihb .gt_spanner_row {
+#qwembvsixg .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#xzmqzloihb .gt_group_heading {
+#qwembvsixg .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1466,7 +1431,7 @@ A note on document types
   text-align: left;
 }
 
-#xzmqzloihb .gt_empty_group_heading {
+#qwembvsixg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1481,15 +1446,15 @@ A note on document types
   vertical-align: middle;
 }
 
-#xzmqzloihb .gt_from_md > :first-child {
+#qwembvsixg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xzmqzloihb .gt_from_md > :last-child {
+#qwembvsixg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xzmqzloihb .gt_row {
+#qwembvsixg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1508,7 +1473,7 @@ A note on document types
   overflow-x: hidden;
 }
 
-#xzmqzloihb .gt_stub {
+#qwembvsixg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1521,7 +1486,7 @@ A note on document types
   padding-right: 5px;
 }
 
-#xzmqzloihb .gt_stub_row_group {
+#qwembvsixg .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1535,15 +1500,15 @@ A note on document types
   vertical-align: top;
 }
 
-#xzmqzloihb .gt_row_group_first td {
+#qwembvsixg .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xzmqzloihb .gt_row_group_first th {
+#qwembvsixg .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#xzmqzloihb .gt_summary_row {
+#qwembvsixg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1553,16 +1518,16 @@ A note on document types
   padding-right: 5px;
 }
 
-#xzmqzloihb .gt_first_summary_row {
+#qwembvsixg .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xzmqzloihb .gt_first_summary_row.thick {
+#qwembvsixg .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xzmqzloihb .gt_last_summary_row {
+#qwembvsixg .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1572,7 +1537,7 @@ A note on document types
   border-bottom-color: #D3D3D3;
 }
 
-#xzmqzloihb .gt_grand_summary_row {
+#qwembvsixg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1582,7 +1547,7 @@ A note on document types
   padding-right: 5px;
 }
 
-#xzmqzloihb .gt_first_grand_summary_row {
+#qwembvsixg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1592,7 +1557,7 @@ A note on document types
   border-top-color: #D3D3D3;
 }
 
-#xzmqzloihb .gt_last_grand_summary_row_top {
+#qwembvsixg .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1602,11 +1567,11 @@ A note on document types
   border-bottom-color: #D3D3D3;
 }
 
-#xzmqzloihb .gt_striped {
+#qwembvsixg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xzmqzloihb .gt_table_body {
+#qwembvsixg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1615,7 +1580,7 @@ A note on document types
   border-bottom-color: #D3D3D3;
 }
 
-#xzmqzloihb .gt_footnotes {
+#qwembvsixg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1629,7 +1594,7 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#xzmqzloihb .gt_footnote {
+#qwembvsixg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1638,7 +1603,7 @@ A note on document types
   padding-right: 5px;
 }
 
-#xzmqzloihb .gt_sourcenotes {
+#qwembvsixg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1652,7 +1617,7 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#xzmqzloihb .gt_sourcenote {
+#qwembvsixg .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1660,72 +1625,72 @@ A note on document types
   padding-right: 5px;
 }
 
-#xzmqzloihb .gt_left {
+#qwembvsixg .gt_left {
   text-align: left;
 }
 
-#xzmqzloihb .gt_center {
+#qwembvsixg .gt_center {
   text-align: center;
 }
 
-#xzmqzloihb .gt_right {
+#qwembvsixg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xzmqzloihb .gt_font_normal {
+#qwembvsixg .gt_font_normal {
   font-weight: normal;
 }
 
-#xzmqzloihb .gt_font_bold {
+#qwembvsixg .gt_font_bold {
   font-weight: bold;
 }
 
-#xzmqzloihb .gt_font_italic {
+#qwembvsixg .gt_font_italic {
   font-style: italic;
 }
 
-#xzmqzloihb .gt_super {
+#qwembvsixg .gt_super {
   font-size: 65%;
 }
 
-#xzmqzloihb .gt_footnote_marks {
+#qwembvsixg .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#xzmqzloihb .gt_asterisk {
+#qwembvsixg .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xzmqzloihb .gt_indent_1 {
+#qwembvsixg .gt_indent_1 {
   text-indent: 5px;
 }
 
-#xzmqzloihb .gt_indent_2 {
+#qwembvsixg .gt_indent_2 {
   text-indent: 10px;
 }
 
-#xzmqzloihb .gt_indent_3 {
+#qwembvsixg .gt_indent_3 {
   text-indent: 15px;
 }
 
-#xzmqzloihb .gt_indent_4 {
+#qwembvsixg .gt_indent_4 {
   text-indent: 20px;
 }
 
-#xzmqzloihb .gt_indent_5 {
+#qwembvsixg .gt_indent_5 {
   text-indent: 25px;
 }
 
-#xzmqzloihb .katex-display {
+#qwembvsixg .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#xzmqzloihb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#qwembvsixg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1759,18 +1724,6 @@ A note on document types
 <td class="gt_row gt_left" headers="species">Human</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="name">C-3PO</td>
-<td class="gt_row gt_right" headers="height">167</td>
-<td class="gt_row gt_right" headers="mass">75</td>
-<td class="gt_row gt_left" headers="hair_color">NA</td>
-<td class="gt_row gt_left" headers="skin_color">gold</td>
-<td class="gt_row gt_left" headers="eye_color">yellow</td>
-<td class="gt_row gt_right" headers="birth_year">112.0</td>
-<td class="gt_row gt_left" headers="sex">none</td>
-<td class="gt_row gt_left" headers="homeworld">Tatooine</td>
-<td class="gt_row gt_left" headers="species">Droid</td>
-</tr>
-<tr class="odd">
 <td class="gt_row gt_left" headers="name">R2-D2</td>
 <td class="gt_row gt_right" headers="height">96</td>
 <td class="gt_row gt_right" headers="mass">32</td>
@@ -1782,7 +1735,7 @@ A note on document types
 <td class="gt_row gt_left" headers="homeworld">Naboo</td>
 <td class="gt_row gt_left" headers="species">Droid</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td class="gt_row gt_left" headers="name">Darth Vader</td>
 <td class="gt_row gt_right" headers="height">202</td>
 <td class="gt_row gt_right" headers="mass">136</td>
@@ -1794,7 +1747,7 @@ A note on document types
 <td class="gt_row gt_left" headers="homeworld">Tatooine</td>
 <td class="gt_row gt_left" headers="species">Human</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td class="gt_row gt_left" headers="name">Leia Organa</td>
 <td class="gt_row gt_right" headers="height">150</td>
 <td class="gt_row gt_right" headers="mass">49</td>
@@ -1806,31 +1759,7 @@ A note on document types
 <td class="gt_row gt_left" headers="homeworld">Alderaan</td>
 <td class="gt_row gt_left" headers="species">Human</td>
 </tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="name">Obi-Wan Kenobi</td>
-<td class="gt_row gt_right" headers="height">182</td>
-<td class="gt_row gt_right" headers="mass">77</td>
-<td class="gt_row gt_left" headers="hair_color">auburn, white</td>
-<td class="gt_row gt_left" headers="skin_color">fair</td>
-<td class="gt_row gt_left" headers="eye_color">blue-gray</td>
-<td class="gt_row gt_right" headers="birth_year">57.0</td>
-<td class="gt_row gt_left" headers="sex">male</td>
-<td class="gt_row gt_left" headers="homeworld">Stewjon</td>
-<td class="gt_row gt_left" headers="species">Human</td>
-</tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="name">Anakin Skywalker</td>
-<td class="gt_row gt_right" headers="height">188</td>
-<td class="gt_row gt_right" headers="mass">84</td>
-<td class="gt_row gt_left" headers="hair_color">blond</td>
-<td class="gt_row gt_left" headers="skin_color">fair</td>
-<td class="gt_row gt_left" headers="eye_color">blue</td>
-<td class="gt_row gt_right" headers="birth_year">41.9</td>
-<td class="gt_row gt_left" headers="sex">male</td>
-<td class="gt_row gt_left" headers="homeworld">Tatooine</td>
-<td class="gt_row gt_left" headers="species">Human</td>
-</tr>
-<tr class="even">
 <td class="gt_row gt_left" headers="name">Chewbacca</td>
 <td class="gt_row gt_right" headers="height">228</td>
 <td class="gt_row gt_right" headers="mass">112</td>
@@ -1842,7 +1771,7 @@ A note on document types
 <td class="gt_row gt_left" headers="homeworld">Kashyyyk</td>
 <td class="gt_row gt_left" headers="species">Wookiee</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td class="gt_row gt_left" headers="name">Han Solo</td>
 <td class="gt_row gt_right" headers="height">180</td>
 <td class="gt_row gt_right" headers="mass">80</td>
@@ -1878,8 +1807,8 @@ A note on document types
 <span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, species, homeworld) <span class="sc">%&gt;%</span></span>
 <span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
 <span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_theme_guardian</span>()</span>
-<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Same as above, just grouping by `species`</span></span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_theme_excel</span>()</span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Same as above, just grouping by `species` and changing the theme</span></span>
 <span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a>agg_star_wars <span class="ot">&lt;-</span> starwars <span class="sc">%&gt;%</span></span>
 <span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This is a bit more complicated </span></span>
@@ -1916,24 +1845,24 @@ A note on document types
 </details>
 <div class="cell quarto-layout-panel" data-layout="[[45,-1,45],[100]]">
 <div class="quarto-layout-row">
-<div id="bmdpewxnbp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="xghqpssxnw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#bmdpewxnbp table {
+#xghqpssxnw table {
   font-family: Roboto, system-ui, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#bmdpewxnbp thead, #bmdpewxnbp tbody, #bmdpewxnbp tfoot, #bmdpewxnbp tr, #bmdpewxnbp td, #bmdpewxnbp th {
+#xghqpssxnw thead, #xghqpssxnw tbody, #xghqpssxnw tfoot, #xghqpssxnw tr, #xghqpssxnw td, #xghqpssxnw th {
   border-style: none;
 }
 
-#bmdpewxnbp p {
+#xghqpssxnw p {
   margin: 0;
   padding: 0;
 }
 
-#bmdpewxnbp .gt_table {
+#xghqpssxnw .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1959,12 +1888,12 @@ A note on document types
   border-left-color: #D3D3D3;
 }
 
-#bmdpewxnbp .gt_caption {
+#xghqpssxnw .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#bmdpewxnbp .gt_title {
+#xghqpssxnw .gt_title {
   color: #333333;
   font-size: 30px;
   font-weight: bold;
@@ -1976,7 +1905,7 @@ A note on document types
   border-bottom-width: 0;
 }
 
-#bmdpewxnbp .gt_subtitle {
+#xghqpssxnw .gt_subtitle {
   color: #333333;
   font-size: 16px;
   font-weight: initial;
@@ -1988,7 +1917,7 @@ A note on document types
   border-top-width: 0;
 }
 
-#bmdpewxnbp .gt_heading {
+#xghqpssxnw .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -2000,13 +1929,13 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#bmdpewxnbp .gt_bottom_border {
+#xghqpssxnw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#bmdpewxnbp .gt_col_headings {
+#xghqpssxnw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: rgba(255, 255, 255, 0);
@@ -2021,7 +1950,7 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#bmdpewxnbp .gt_col_heading {
+#xghqpssxnw .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -2041,7 +1970,7 @@ A note on document types
   overflow-x: hidden;
 }
 
-#bmdpewxnbp .gt_column_spanner_outer {
+#xghqpssxnw .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -2053,15 +1982,15 @@ A note on document types
   padding-right: 4px;
 }
 
-#bmdpewxnbp .gt_column_spanner_outer:first-child {
+#xghqpssxnw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#bmdpewxnbp .gt_column_spanner_outer:last-child {
+#xghqpssxnw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#bmdpewxnbp .gt_column_spanner {
+#xghqpssxnw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 3px;
   border-bottom-color: rgba(255, 255, 255, 0);
@@ -2073,11 +2002,11 @@ A note on document types
   width: 100%;
 }
 
-#bmdpewxnbp .gt_spanner_row {
+#xghqpssxnw .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#bmdpewxnbp .gt_group_heading {
+#xghqpssxnw .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2103,7 +2032,7 @@ A note on document types
   text-align: left;
 }
 
-#bmdpewxnbp .gt_empty_group_heading {
+#xghqpssxnw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2118,15 +2047,15 @@ A note on document types
   vertical-align: middle;
 }
 
-#bmdpewxnbp .gt_from_md > :first-child {
+#xghqpssxnw .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#bmdpewxnbp .gt_from_md > :last-child {
+#xghqpssxnw .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#bmdpewxnbp .gt_row {
+#xghqpssxnw .gt_row {
   padding-top: 6px;
   padding-bottom: 6px;
   padding-left: 5px;
@@ -2145,7 +2074,7 @@ A note on document types
   overflow-x: hidden;
 }
 
-#bmdpewxnbp .gt_stub {
+#xghqpssxnw .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -2158,7 +2087,7 @@ A note on document types
   padding-right: 5px;
 }
 
-#bmdpewxnbp .gt_stub_row_group {
+#xghqpssxnw .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2172,15 +2101,15 @@ A note on document types
   vertical-align: top;
 }
 
-#bmdpewxnbp .gt_row_group_first td {
+#xghqpssxnw .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#bmdpewxnbp .gt_row_group_first th {
+#xghqpssxnw .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#bmdpewxnbp .gt_summary_row {
+#xghqpssxnw .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2190,16 +2119,16 @@ A note on document types
   padding-right: 5px;
 }
 
-#bmdpewxnbp .gt_first_summary_row {
+#xghqpssxnw .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#bmdpewxnbp .gt_first_summary_row.thick {
+#xghqpssxnw .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#bmdpewxnbp .gt_last_summary_row {
+#xghqpssxnw .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2209,7 +2138,7 @@ A note on document types
   border-bottom-color: #D3D3D3;
 }
 
-#bmdpewxnbp .gt_grand_summary_row {
+#xghqpssxnw .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2219,7 +2148,7 @@ A note on document types
   padding-right: 5px;
 }
 
-#bmdpewxnbp .gt_first_grand_summary_row {
+#xghqpssxnw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2229,7 +2158,7 @@ A note on document types
   border-top-color: #D3D3D3;
 }
 
-#bmdpewxnbp .gt_last_grand_summary_row_top {
+#xghqpssxnw .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2239,11 +2168,11 @@ A note on document types
   border-bottom-color: #D3D3D3;
 }
 
-#bmdpewxnbp .gt_striped {
+#xghqpssxnw .gt_striped {
   background-color: #F5F5F5;
 }
 
-#bmdpewxnbp .gt_table_body {
+#xghqpssxnw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2252,7 +2181,7 @@ A note on document types
   border-bottom-color: #D3D3D3;
 }
 
-#bmdpewxnbp .gt_footnotes {
+#xghqpssxnw .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2266,7 +2195,7 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#bmdpewxnbp .gt_footnote {
+#xghqpssxnw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2275,7 +2204,7 @@ A note on document types
   padding-right: 5px;
 }
 
-#bmdpewxnbp .gt_sourcenotes {
+#xghqpssxnw .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2289,7 +2218,7 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#bmdpewxnbp .gt_sourcenote {
+#xghqpssxnw .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2297,72 +2226,72 @@ A note on document types
   padding-right: 5px;
 }
 
-#bmdpewxnbp .gt_left {
+#xghqpssxnw .gt_left {
   text-align: left;
 }
 
-#bmdpewxnbp .gt_center {
+#xghqpssxnw .gt_center {
   text-align: center;
 }
 
-#bmdpewxnbp .gt_right {
+#xghqpssxnw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#bmdpewxnbp .gt_font_normal {
+#xghqpssxnw .gt_font_normal {
   font-weight: normal;
 }
 
-#bmdpewxnbp .gt_font_bold {
+#xghqpssxnw .gt_font_bold {
   font-weight: bold;
 }
 
-#bmdpewxnbp .gt_font_italic {
+#xghqpssxnw .gt_font_italic {
   font-style: italic;
 }
 
-#bmdpewxnbp .gt_super {
+#xghqpssxnw .gt_super {
   font-size: 65%;
 }
 
-#bmdpewxnbp .gt_footnote_marks {
+#xghqpssxnw .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#bmdpewxnbp .gt_asterisk {
+#xghqpssxnw .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#bmdpewxnbp .gt_indent_1 {
+#xghqpssxnw .gt_indent_1 {
   text-indent: 5px;
 }
 
-#bmdpewxnbp .gt_indent_2 {
+#xghqpssxnw .gt_indent_2 {
   text-indent: 10px;
 }
 
-#bmdpewxnbp .gt_indent_3 {
+#xghqpssxnw .gt_indent_3 {
   text-indent: 15px;
 }
 
-#bmdpewxnbp .gt_indent_4 {
+#xghqpssxnw .gt_indent_4 {
   text-indent: 20px;
 }
 
-#bmdpewxnbp .gt_indent_5 {
+#xghqpssxnw .gt_indent_5 {
   text-indent: 25px;
 }
 
-#bmdpewxnbp .katex-display {
+#xghqpssxnw .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#bmdpewxnbp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#xghqpssxnw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2383,15 +2312,7 @@ A note on document types
 <td class="gt_row gt_left" style="text-align: left;" headers="Tatooine  species">Human</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left gt_striped" style="text-align: left;" headers="Tatooine  name">C-3PO</td>
-<td class="gt_row gt_left gt_striped" style="text-align: left;" headers="Tatooine  species">Droid</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" style="text-align: left;" headers="Tatooine  name">Darth Vader</td>
-<td class="gt_row gt_left" style="text-align: left;" headers="Tatooine  species">Human</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left gt_striped" style="text-align: left;" headers="Tatooine  name">Anakin Skywalker</td>
+<td class="gt_row gt_left gt_striped" style="text-align: left;" headers="Tatooine  name">Darth Vader</td>
 <td class="gt_row gt_left gt_striped" style="text-align: left;" headers="Tatooine  species">Human</td>
 </tr>
 <tr class="even gt_group_heading_row">
@@ -2409,25 +2330,18 @@ A note on document types
 <td class="gt_row gt_left gt_striped" style="text-align: left;" headers="Alderaan  species">Human</td>
 </tr>
 <tr class="even gt_group_heading_row">
-<td colspan="2" id="Stewjon" class="gt_group_heading" style="text-align: left;" data-quarto-table-cell-role="th" scope="colgroup">Stewjon</td>
-</tr>
-<tr class="odd gt_row_group_first">
-<td class="gt_row gt_left" style="text-align: left;" headers="Stewjon  name">Obi-Wan Kenobi</td>
-<td class="gt_row gt_left" style="text-align: left;" headers="Stewjon  species">Human</td>
-</tr>
-<tr class="even gt_group_heading_row">
 <td colspan="2" id="Kashyyyk" class="gt_group_heading" style="text-align: left;" data-quarto-table-cell-role="th" scope="colgroup">Kashyyyk</td>
 </tr>
 <tr class="odd gt_row_group_first">
-<td class="gt_row gt_left gt_striped" style="text-align: left;" headers="Kashyyyk  name">Chewbacca</td>
-<td class="gt_row gt_left gt_striped" style="text-align: left;" headers="Kashyyyk  species">Wookiee</td>
+<td class="gt_row gt_left" style="text-align: left;" headers="Kashyyyk  name">Chewbacca</td>
+<td class="gt_row gt_left" style="text-align: left;" headers="Kashyyyk  species">Wookiee</td>
 </tr>
 <tr class="even gt_group_heading_row">
 <td colspan="2" id="Corellia" class="gt_group_heading" style="text-align: left;" data-quarto-table-cell-role="th" scope="colgroup">Corellia</td>
 </tr>
 <tr class="odd gt_row_group_first">
-<td class="gt_row gt_left" style="text-align: left;" headers="Corellia  name">Han Solo</td>
-<td class="gt_row gt_left" style="text-align: left;" headers="Corellia  species">Human</td>
+<td class="gt_row gt_left gt_striped" style="text-align: left;" headers="Corellia  name">Han Solo</td>
+<td class="gt_row gt_left gt_striped" style="text-align: left;" headers="Corellia  species">Human</td>
 </tr>
 </tbody>
 </table>
@@ -2436,24 +2350,23 @@ A note on document types
 <div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 1.1%;justify-content: flex-start;">
 <p>&nbsp;</p>
 </div>
-<div id="vrrvwuuxcw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#vrrvwuuxcw table {
-  font-family: 'Noto Sans', system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+<div id="irlvwgjzpv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#irlvwgjzpv table {
+  font-family: Calibri, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vrrvwuuxcw thead, #vrrvwuuxcw tbody, #vrrvwuuxcw tfoot, #vrrvwuuxcw tr, #vrrvwuuxcw td, #vrrvwuuxcw th {
+#irlvwgjzpv thead, #irlvwgjzpv tbody, #irlvwgjzpv tfoot, #irlvwgjzpv tr, #irlvwgjzpv td, #irlvwgjzpv th {
   border-style: none;
 }
 
-#vrrvwuuxcw p {
+#irlvwgjzpv p {
   margin: 0;
   padding: 0;
 }
 
-#vrrvwuuxcw .gt_table {
+#irlvwgjzpv .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2463,28 +2376,28 @@ A note on document types
   font-size: 16px;
   font-weight: normal;
   font-style: normal;
-  background-color: #F6F6F6;
+  background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #40C5FF;
-  border-right-style: none;
+  border-top-width: 2px;
+  border-top-color: #000000;
+  border-right-style: solid;
   border-right-width: 2px;
-  border-right-color: #D3D3D3;
+  border-right-color: #000000;
   border-bottom-style: solid;
-  border-bottom-width: 3px;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #000000;
+  border-left-style: solid;
   border-left-width: 2px;
-  border-left-color: #D3D3D3;
+  border-left-color: #000000;
 }
 
-#vrrvwuuxcw .gt_caption {
+#irlvwgjzpv .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vrrvwuuxcw .gt_title {
+#irlvwgjzpv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2492,11 +2405,11 @@ A note on document types
   padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
-  border-bottom-color: #F6F6F6;
+  border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
 
-#vrrvwuuxcw .gt_subtitle {
+#irlvwgjzpv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2504,14 +2417,14 @@ A note on document types
   padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
-  border-top-color: #F6F6F6;
+  border-top-color: #FFFFFF;
   border-top-width: 0;
 }
 
-#vrrvwuuxcw .gt_heading {
-  background-color: #F6F6F6;
+#irlvwgjzpv .gt_heading {
+  background-color: #FFFFFF;
   text-align: left;
-  border-bottom-color: #F6F6F6;
+  border-bottom-color: #FFFFFF;
   border-left-style: none;
   border-left-width: 1px;
   border-left-color: #D3D3D3;
@@ -2520,19 +2433,19 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#vrrvwuuxcw .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 0px;
-  border-bottom-color: #D3D3D3;
-}
-
-#vrrvwuuxcw .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #40C5FF;
+#irlvwgjzpv .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
-  border-bottom-color: #ECECEC;
+  border-bottom-color: #000000;
+}
+
+#irlvwgjzpv .gt_col_headings {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #000000;
   border-left-style: none;
   border-left-width: 1px;
   border-left-color: #D3D3D3;
@@ -2541,10 +2454,10 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#vrrvwuuxcw .gt_col_heading {
-  color: #333333;
-  background-color: #F6F6F6;
-  font-size: 100%;
+#irlvwgjzpv .gt_col_heading {
+  color: #FFFFFF;
+  background-color: #000000;
+  font-size: 85%;
   font-weight: bold;
   text-transform: inherit;
   border-left-style: none;
@@ -2561,10 +2474,10 @@ A note on document types
   overflow-x: hidden;
 }
 
-#vrrvwuuxcw .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #F6F6F6;
-  font-size: 100%;
+#irlvwgjzpv .gt_column_spanner_outer {
+  color: #FFFFFF;
+  background-color: #000000;
+  font-size: 85%;
   font-weight: bold;
   text-transform: inherit;
   padding-top: 0;
@@ -2573,18 +2486,18 @@ A note on document types
   padding-right: 4px;
 }
 
-#vrrvwuuxcw .gt_column_spanner_outer:first-child {
+#irlvwgjzpv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vrrvwuuxcw .gt_column_spanner_outer:last-child {
+#irlvwgjzpv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vrrvwuuxcw .gt_column_spanner {
+#irlvwgjzpv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
-  border-bottom-color: #ECECEC;
+  border-bottom-color: #000000;
   vertical-align: bottom;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -2593,94 +2506,94 @@ A note on document types
   width: 100%;
 }
 
-#vrrvwuuxcw .gt_spanner_row {
+#irlvwgjzpv .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vrrvwuuxcw .gt_group_heading {
+#irlvwgjzpv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
   padding-right: 5px;
   color: #333333;
-  background-color: #F6F6F6;
+  background-color: #FFFFFF;
   font-size: 100%;
-  font-weight: bold;
+  font-weight: initial;
   text-transform: inherit;
   border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #BEBEBE;
+  border-top-width: 2px;
+  border-top-color: #000000;
   border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: #BEBEBE;
+  border-bottom-width: 2px;
+  border-bottom-color: #000000;
   border-left-style: none;
   border-left-width: 1px;
-  border-left-color: #D3D3D3;
+  border-left-color: #000000;
   border-right-style: none;
   border-right-width: 1px;
-  border-right-color: #D3D3D3;
+  border-right-color: #000000;
   vertical-align: middle;
   text-align: left;
 }
 
-#vrrvwuuxcw .gt_empty_group_heading {
+#irlvwgjzpv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
-  background-color: #F6F6F6;
+  background-color: #FFFFFF;
   font-size: 100%;
-  font-weight: bold;
+  font-weight: initial;
   border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #BEBEBE;
+  border-top-width: 2px;
+  border-top-color: #000000;
   border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: #BEBEBE;
+  border-bottom-width: 2px;
+  border-bottom-color: #000000;
   vertical-align: middle;
 }
 
-#vrrvwuuxcw .gt_from_md > :first-child {
+#irlvwgjzpv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vrrvwuuxcw .gt_from_md > :last-child {
+#irlvwgjzpv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vrrvwuuxcw .gt_row {
-  padding-top: 4px;
-  padding-bottom: 4px;
+#irlvwgjzpv .gt_row {
+  padding-top: 1px;
+  padding-bottom: 1px;
   padding-left: 5px;
   padding-right: 5px;
   margin: 10px;
   border-top-style: solid;
-  border-top-width: white;
-  border-top-color: #FFFFFF;
+  border-top-width: 1px;
+  border-top-color: #000000;
   border-left-style: none;
   border-left-width: 1px;
-  border-left-color: #D3D3D3;
+  border-left-color: #000000;
   border-right-style: none;
   border-right-width: 1px;
-  border-right-color: #D3D3D3;
+  border-right-color: #000000;
   vertical-align: middle;
   overflow-x: hidden;
 }
 
-#vrrvwuuxcw .gt_stub {
+#irlvwgjzpv .gt_stub {
   color: #333333;
-  background-color: #F6F6F6;
+  background-color: #FFFFFF;
   font-size: 100%;
   font-weight: initial;
   text-transform: inherit;
   border-right-style: solid;
   border-right-width: 2px;
-  border-right-color: #D3D3D3;
+  border-right-color: #000000;
   padding-left: 5px;
   padding-right: 5px;
 }
 
-#vrrvwuuxcw .gt_stub_row_group {
+#irlvwgjzpv .gt_stub_row_group {
   color: #333333;
-  background-color: #F6F6F6;
+  background-color: #FFFFFF;
   font-size: 100%;
   font-weight: initial;
   text-transform: inherit;
@@ -2692,17 +2605,17 @@ A note on document types
   vertical-align: top;
 }
 
-#vrrvwuuxcw .gt_row_group_first td {
-  border-top-width: 1px;
+#irlvwgjzpv .gt_row_group_first td {
+  border-top-width: 2px;
 }
 
-#vrrvwuuxcw .gt_row_group_first th {
-  border-top-width: 1px;
+#irlvwgjzpv .gt_row_group_first th {
+  border-top-width: 2px;
 }
 
-#vrrvwuuxcw .gt_summary_row {
+#irlvwgjzpv .gt_summary_row {
   color: #333333;
-  background-color: #F6F6F6;
+  background-color: #FFFFFF;
   text-transform: inherit;
   padding-top: 8px;
   padding-bottom: 8px;
@@ -2710,16 +2623,16 @@ A note on document types
   padding-right: 5px;
 }
 
-#vrrvwuuxcw .gt_first_summary_row {
+#irlvwgjzpv .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vrrvwuuxcw .gt_first_summary_row.thick {
+#irlvwgjzpv .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vrrvwuuxcw .gt_last_summary_row {
+#irlvwgjzpv .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2729,9 +2642,9 @@ A note on document types
   border-bottom-color: #D3D3D3;
 }
 
-#vrrvwuuxcw .gt_grand_summary_row {
+#irlvwgjzpv .gt_grand_summary_row {
   color: #333333;
-  background-color: #F6F6F6;
+  background-color: #FFFFFF;
   text-transform: inherit;
   padding-top: 8px;
   padding-bottom: 8px;
@@ -2739,7 +2652,7 @@ A note on document types
   padding-right: 5px;
 }
 
-#vrrvwuuxcw .gt_first_grand_summary_row {
+#irlvwgjzpv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2749,7 +2662,7 @@ A note on document types
   border-top-color: #D3D3D3;
 }
 
-#vrrvwuuxcw .gt_last_grand_summary_row_top {
+#irlvwgjzpv .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2759,24 +2672,24 @@ A note on document types
   border-bottom-color: #D3D3D3;
 }
 
-#vrrvwuuxcw .gt_striped {
-  background-color: #ECECEC;
+#irlvwgjzpv .gt_striped {
+  background-color: #D3D3D3;
 }
 
-#vrrvwuuxcw .gt_table_body {
+#irlvwgjzpv .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
   border-bottom-style: solid;
-  border-bottom-width: 3px;
-  border-bottom-color: #FFFFFF;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
 }
 
-#vrrvwuuxcw .gt_footnotes {
+#irlvwgjzpv .gt_footnotes {
   color: #333333;
-  background-color: #F6F6F6;
+  background-color: #FFFFFF;
   border-bottom-style: none;
-  border-bottom-width: 0px;
+  border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
   border-left-style: none;
   border-left-width: 2px;
@@ -2786,7 +2699,7 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#vrrvwuuxcw .gt_footnote {
+#irlvwgjzpv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2795,11 +2708,11 @@ A note on document types
   padding-right: 5px;
 }
 
-#vrrvwuuxcw .gt_sourcenotes {
+#irlvwgjzpv .gt_sourcenotes {
   color: #333333;
-  background-color: #F6F6F6;
+  background-color: #FFFFFF;
   border-bottom-style: none;
-  border-bottom-width: 0px;
+  border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
   border-left-style: none;
   border-left-width: 2px;
@@ -2809,80 +2722,80 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#vrrvwuuxcw .gt_sourcenote {
-  font-size: 12px;
+#irlvwgjzpv .gt_sourcenote {
+  font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
 }
 
-#vrrvwuuxcw .gt_left {
+#irlvwgjzpv .gt_left {
   text-align: left;
 }
 
-#vrrvwuuxcw .gt_center {
+#irlvwgjzpv .gt_center {
   text-align: center;
 }
 
-#vrrvwuuxcw .gt_right {
+#irlvwgjzpv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vrrvwuuxcw .gt_font_normal {
+#irlvwgjzpv .gt_font_normal {
   font-weight: normal;
 }
 
-#vrrvwuuxcw .gt_font_bold {
+#irlvwgjzpv .gt_font_bold {
   font-weight: bold;
 }
 
-#vrrvwuuxcw .gt_font_italic {
+#irlvwgjzpv .gt_font_italic {
   font-style: italic;
 }
 
-#vrrvwuuxcw .gt_super {
+#irlvwgjzpv .gt_super {
   font-size: 65%;
 }
 
-#vrrvwuuxcw .gt_footnote_marks {
+#irlvwgjzpv .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vrrvwuuxcw .gt_asterisk {
+#irlvwgjzpv .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vrrvwuuxcw .gt_indent_1 {
+#irlvwgjzpv .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vrrvwuuxcw .gt_indent_2 {
+#irlvwgjzpv .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vrrvwuuxcw .gt_indent_3 {
+#irlvwgjzpv .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vrrvwuuxcw .gt_indent_4 {
+#irlvwgjzpv .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vrrvwuuxcw .gt_indent_5 {
+#irlvwgjzpv .gt_indent_5 {
   text-indent: 25px;
 }
 
-#vrrvwuuxcw .katex-display {
+#irlvwgjzpv .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#vrrvwuuxcw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#irlvwgjzpv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2890,55 +2803,43 @@ A note on document types
 <table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="header gt_col_headings">
-<th id="name" class="gt_col_heading gt_columns_bottom_border gt_left" style="text-align: left;" data-quarto-table-cell-role="th" scope="col">name</th>
-<th id="homeworld" class="gt_col_heading gt_columns_bottom_border gt_left" style="text-align: left;" data-quarto-table-cell-role="th" scope="col">homeworld</th>
+<th id="name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; border-left-width: 2px; border-left-style: solid; border-left-color: black;" scope="col">name</th>
+<th id="homeworld" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; border-right-width: 2px; border-right-style: solid; border-right-color: black;" scope="col">homeworld</th>
 </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd gt_group_heading_row">
-<td colspan="2" id="Human" class="gt_group_heading" style="text-align: left;" data-quarto-table-cell-role="th" scope="colgroup">Human</td>
+<td colspan="2" id="Human" class="gt_group_heading" data-quarto-table-cell-role="th" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 2px; border-right-style: solid; border-right-color: black;" scope="colgroup">Human</td>
 </tr>
 <tr class="even gt_row_group_first">
-<td class="gt_row gt_left" headers="Human  name" style="text-align: left; border-top-width: 0px; border-top-style: solid; border-top-color: white;">Luke Skywalker</td>
-<td class="gt_row gt_left" headers="Human  homeworld" style="text-align: left; border-top-width: 0px; border-top-style: solid; border-top-color: white;">Tatooine</td>
+<td class="gt_row gt_left" headers="Human  name" style="text-align: left; border-left-width: 2px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">Luke Skywalker</td>
+<td class="gt_row gt_left" headers="Human  homeworld" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 2px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">Tatooine</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left gt_striped" style="text-align: left;" headers="Human  name">Darth Vader</td>
-<td class="gt_row gt_left gt_striped" style="text-align: left;" headers="Human  homeworld">Tatooine</td>
+<td class="gt_row gt_left gt_striped" headers="Human  name" style="text-align: left; border-left-width: 2px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">Darth Vader</td>
+<td class="gt_row gt_left gt_striped" headers="Human  homeworld" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 2px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">Tatooine</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" style="text-align: left;" headers="Human  name">Leia Organa</td>
-<td class="gt_row gt_left" style="text-align: left;" headers="Human  homeworld">Alderaan</td>
+<td class="gt_row gt_left" headers="Human  name" style="text-align: left; border-left-width: 2px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">Leia Organa</td>
+<td class="gt_row gt_left" headers="Human  homeworld" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 2px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">Alderaan</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left gt_striped" style="text-align: left;" headers="Human  name">Obi-Wan Kenobi</td>
-<td class="gt_row gt_left gt_striped" style="text-align: left;" headers="Human  homeworld">Stewjon</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" style="text-align: left;" headers="Human  name">Anakin Skywalker</td>
-<td class="gt_row gt_left" style="text-align: left;" headers="Human  homeworld">Tatooine</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left gt_striped" style="text-align: left;" headers="Human  name">Han Solo</td>
-<td class="gt_row gt_left gt_striped" style="text-align: left;" headers="Human  homeworld">Corellia</td>
+<td class="gt_row gt_left gt_striped" headers="Human  name" style="text-align: left; border-left-width: 2px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: black;">Han Solo</td>
+<td class="gt_row gt_left gt_striped" headers="Human  homeworld" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 2px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: black;">Corellia</td>
 </tr>
 <tr class="even gt_group_heading_row">
-<td colspan="2" id="Droid" class="gt_group_heading" style="text-align: left;" data-quarto-table-cell-role="th" scope="colgroup">Droid</td>
+<td colspan="2" id="Droid" class="gt_group_heading" data-quarto-table-cell-role="th" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 2px; border-right-style: solid; border-right-color: black;" scope="colgroup">Droid</td>
 </tr>
 <tr class="odd gt_row_group_first">
-<td class="gt_row gt_left" style="text-align: left;" headers="Droid  name">C-3PO</td>
-<td class="gt_row gt_left" style="text-align: left;" headers="Droid  homeworld">Tatooine</td>
+<td class="gt_row gt_left" headers="Droid  name" style="text-align: left; border-left-width: 2px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">R2-D2</td>
+<td class="gt_row gt_left" headers="Droid  homeworld" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 2px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">Naboo</td>
 </tr>
-<tr class="even">
-<td class="gt_row gt_left gt_striped" style="text-align: left;" headers="Droid  name">R2-D2</td>
-<td class="gt_row gt_left gt_striped" style="text-align: left;" headers="Droid  homeworld">Naboo</td>
+<tr class="even gt_group_heading_row">
+<td colspan="2" id="Wookiee" class="gt_group_heading" data-quarto-table-cell-role="th" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 2px; border-right-style: solid; border-right-color: black;" scope="colgroup">Wookiee</td>
 </tr>
-<tr class="odd gt_group_heading_row">
-<td colspan="2" id="Wookiee" class="gt_group_heading" style="text-align: left;" data-quarto-table-cell-role="th" scope="colgroup">Wookiee</td>
-</tr>
-<tr class="even gt_row_group_first">
-<td class="gt_row gt_left" style="text-align: left;" headers="Wookiee  name">Chewbacca</td>
-<td class="gt_row gt_left" style="text-align: left;" headers="Wookiee  homeworld">Kashyyyk</td>
+<tr class="odd gt_row_group_first">
+<td class="gt_row gt_left gt_striped" headers="Wookiee  name" style="text-align: left; border-left-width: 2px; border-left-style: solid; border-left-color: black; border-right-width: 1px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">Chewbacca</td>
+<td class="gt_row gt_left gt_striped" headers="Wookiee  homeworld" style="text-align: left; border-left-width: 1px; border-left-style: solid; border-left-color: black; border-right-width: 2px; border-right-style: solid; border-right-color: black; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">Kashyyyk</td>
 </tr>
 </tbody>
 </table>
@@ -2946,26 +2847,26 @@ A note on document types
 </div>
 </div>
 <div class="quarto-layout-row">
-<div id="nrdniqdmmm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="sdfdsigius" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#nrdniqdmmm table {
+#sdfdsigius table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#nrdniqdmmm thead, #nrdniqdmmm tbody, #nrdniqdmmm tfoot, #nrdniqdmmm tr, #nrdniqdmmm td, #nrdniqdmmm th {
+#sdfdsigius thead, #sdfdsigius tbody, #sdfdsigius tfoot, #sdfdsigius tr, #sdfdsigius td, #sdfdsigius th {
   border-style: none;
 }
 
-#nrdniqdmmm p {
+#sdfdsigius p {
   margin: 0;
   padding: 0;
 }
 
-#nrdniqdmmm .gt_table {
+#sdfdsigius .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2991,12 +2892,12 @@ A note on document types
   border-left-color: #D3D3D3;
 }
 
-#nrdniqdmmm .gt_caption {
+#sdfdsigius .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#nrdniqdmmm .gt_title {
+#sdfdsigius .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3008,7 +2909,7 @@ A note on document types
   border-bottom-width: 0;
 }
 
-#nrdniqdmmm .gt_subtitle {
+#sdfdsigius .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3020,7 +2921,7 @@ A note on document types
   border-top-width: 0;
 }
 
-#nrdniqdmmm .gt_heading {
+#sdfdsigius .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -3032,13 +2933,13 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#nrdniqdmmm .gt_bottom_border {
+#sdfdsigius .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#nrdniqdmmm .gt_col_headings {
+#sdfdsigius .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3053,7 +2954,7 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#nrdniqdmmm .gt_col_heading {
+#sdfdsigius .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 12px;
@@ -3073,7 +2974,7 @@ A note on document types
   overflow-x: hidden;
 }
 
-#nrdniqdmmm .gt_column_spanner_outer {
+#sdfdsigius .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 12px;
@@ -3085,15 +2986,15 @@ A note on document types
   padding-right: 4px;
 }
 
-#nrdniqdmmm .gt_column_spanner_outer:first-child {
+#sdfdsigius .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#nrdniqdmmm .gt_column_spanner_outer:last-child {
+#sdfdsigius .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#nrdniqdmmm .gt_column_spanner {
+#sdfdsigius .gt_column_spanner {
   border-bottom-style: none;
   border-bottom-width: 1px;
   border-bottom-color: #334422;
@@ -3105,11 +3006,11 @@ A note on document types
   width: 100%;
 }
 
-#nrdniqdmmm .gt_spanner_row {
+#sdfdsigius .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#nrdniqdmmm .gt_group_heading {
+#sdfdsigius .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3135,7 +3036,7 @@ A note on document types
   text-align: left;
 }
 
-#nrdniqdmmm .gt_empty_group_heading {
+#sdfdsigius .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3150,15 +3051,15 @@ A note on document types
   vertical-align: middle;
 }
 
-#nrdniqdmmm .gt_from_md > :first-child {
+#sdfdsigius .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#nrdniqdmmm .gt_from_md > :last-child {
+#sdfdsigius .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#nrdniqdmmm .gt_row {
+#sdfdsigius .gt_row {
   padding-top: 7px;
   padding-bottom: 7px;
   padding-left: 5px;
@@ -3177,7 +3078,7 @@ A note on document types
   overflow-x: hidden;
 }
 
-#nrdniqdmmm .gt_stub {
+#sdfdsigius .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3190,7 +3091,7 @@ A note on document types
   padding-right: 5px;
 }
 
-#nrdniqdmmm .gt_stub_row_group {
+#sdfdsigius .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3204,15 +3105,15 @@ A note on document types
   vertical-align: top;
 }
 
-#nrdniqdmmm .gt_row_group_first td {
+#sdfdsigius .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#nrdniqdmmm .gt_row_group_first th {
+#sdfdsigius .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#nrdniqdmmm .gt_summary_row {
+#sdfdsigius .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3222,16 +3123,16 @@ A note on document types
   padding-right: 5px;
 }
 
-#nrdniqdmmm .gt_first_summary_row {
+#sdfdsigius .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#nrdniqdmmm .gt_first_summary_row.thick {
+#sdfdsigius .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#nrdniqdmmm .gt_last_summary_row {
+#sdfdsigius .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3241,7 +3142,7 @@ A note on document types
   border-bottom-color: #D3D3D3;
 }
 
-#nrdniqdmmm .gt_grand_summary_row {
+#sdfdsigius .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3251,7 +3152,7 @@ A note on document types
   padding-right: 5px;
 }
 
-#nrdniqdmmm .gt_first_grand_summary_row {
+#sdfdsigius .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3261,7 +3162,7 @@ A note on document types
   border-top-color: #D3D3D3;
 }
 
-#nrdniqdmmm .gt_last_grand_summary_row_top {
+#sdfdsigius .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3271,11 +3172,11 @@ A note on document types
   border-bottom-color: #D3D3D3;
 }
 
-#nrdniqdmmm .gt_striped {
+#sdfdsigius .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#nrdniqdmmm .gt_table_body {
+#sdfdsigius .gt_table_body {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3284,7 +3185,7 @@ A note on document types
   border-bottom-color: #FFFFFF;
 }
 
-#nrdniqdmmm .gt_footnotes {
+#sdfdsigius .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3298,7 +3199,7 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#nrdniqdmmm .gt_footnote {
+#sdfdsigius .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3307,7 +3208,7 @@ A note on document types
   padding-right: 5px;
 }
 
-#nrdniqdmmm .gt_sourcenotes {
+#sdfdsigius .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3321,7 +3222,7 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#nrdniqdmmm .gt_sourcenote {
+#sdfdsigius .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3329,72 +3230,72 @@ A note on document types
   padding-right: 5px;
 }
 
-#nrdniqdmmm .gt_left {
+#sdfdsigius .gt_left {
   text-align: left;
 }
 
-#nrdniqdmmm .gt_center {
+#sdfdsigius .gt_center {
   text-align: center;
 }
 
-#nrdniqdmmm .gt_right {
+#sdfdsigius .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#nrdniqdmmm .gt_font_normal {
+#sdfdsigius .gt_font_normal {
   font-weight: normal;
 }
 
-#nrdniqdmmm .gt_font_bold {
+#sdfdsigius .gt_font_bold {
   font-weight: bold;
 }
 
-#nrdniqdmmm .gt_font_italic {
+#sdfdsigius .gt_font_italic {
   font-style: italic;
 }
 
-#nrdniqdmmm .gt_super {
+#sdfdsigius .gt_super {
   font-size: 65%;
 }
 
-#nrdniqdmmm .gt_footnote_marks {
+#sdfdsigius .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#nrdniqdmmm .gt_asterisk {
+#sdfdsigius .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#nrdniqdmmm .gt_indent_1 {
+#sdfdsigius .gt_indent_1 {
   text-indent: 5px;
 }
 
-#nrdniqdmmm .gt_indent_2 {
+#sdfdsigius .gt_indent_2 {
   text-indent: 10px;
 }
 
-#nrdniqdmmm .gt_indent_3 {
+#sdfdsigius .gt_indent_3 {
   text-indent: 15px;
 }
 
-#nrdniqdmmm .gt_indent_4 {
+#sdfdsigius .gt_indent_4 {
   text-indent: 20px;
 }
 
-#nrdniqdmmm .gt_indent_5 {
+#sdfdsigius .gt_indent_5 {
   text-indent: 25px;
 }
 
-#nrdniqdmmm .katex-display {
+#sdfdsigius .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#nrdniqdmmm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#sdfdsigius div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>

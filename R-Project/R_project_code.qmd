@@ -462,9 +462,11 @@ small_star_wars %>%
 
 ```
 
-This code uses ` %>% `, which is called the `pipe operator`. [Pipes](https://www.geeksforgeeks.org/pipe-in-r/) are a bit more advanced than what we will be doing today, but their main benefit is to chain together multiple operations. 
+This code uses ` %>% `, which is called the `pipe operator`. 
 
-You can just as easily generate the same table by using the `small_star_wars` Tibble variable as the argument passed to `gt()`:
+[Pipes](https://www.geeksforgeeks.org/pipe-in-r/) are a bit more advanced than what we will be doing today, but their main benefit is to chain together multiple operations. 
+
+Since we're only running one operation, you can just as easily generate the same table by using the `small_star_wars` variable as the argument passed to `gt()`:
 ```{r}
 gt(small_star_wars)
 ```
@@ -491,8 +493,8 @@ small_star_wars %>%
   select(name, species, homeworld) %>%
   group_by(species) %>%
   gt() %>%
-  gt_theme_guardian()
-  # Same as above, just grouping by `species`
+  gt_theme_excel()
+  # Same as above, just grouping by `species` and changing the theme
 
 agg_star_wars <- starwars %>%
   # This is a bit more complicated 
