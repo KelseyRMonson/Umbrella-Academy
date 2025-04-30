@@ -7,6 +7,7 @@
 install.packages("tidyverse")
 install.packages("viridis")
 install.packages("readxl")
+install.packages("gtExtras")
 
 # Load Libraries ----
 # Every R script should include some kind of header to describe the contents of the file, followed by loading of all the packages that will be used in the script
@@ -14,7 +15,8 @@ install.packages("readxl")
 # I also think it's a good idea to include a little note next to each package so you remember what you used it for:
 library(tidyverse)  # This is a bundle of many packages for data manipulation and plotting, including the essential "ggplot2" for making plots
 library(viridis)    # Color palettes designed to improve graph readability for readers with common forms of color blindness (they also just look nice) 
-library(readxl)     # A package improving on Base-R's ability to read in datasets, especially those saved as Excel spreadsheets
+library(readxl)     # Improves on Base-R's ability to read in datasets, especially those saved as Excel spreadsheets
+library(gtExtras)   # Creates elegant summary tables
 
 # Load the Data ----
 # Follow the instructions to download and save the dataset
@@ -26,3 +28,13 @@ small_star_wars <- read_excel("input/small_star_wars.xlsx", na="NA")
 # *Hint* Remember when we learned about "tab to complete" last week? 
 # Try it here now with the "small_star_wars" variable name -- start typing "sma" and hit TAB.
 str(small_star_wars)
+
+# And summarize the dataset, first with `summary()`
+summary(small_star_wars)
+
+# Then with gtExtras, either
+small_star_wars %>% 
+  gt()
+
+# or
+gt(small_star_wars)

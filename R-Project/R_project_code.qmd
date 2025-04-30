@@ -401,6 +401,7 @@ Okay, so we now have our R Project and our fresh new script. It's time to begin!
 library(tidyverse)
 library(viridis)
 library(readxl)
+library(gtExtras)
 
 ```
 
@@ -446,4 +447,83 @@ str(small_star_wars)
 
 We can see that `str()` gives us more information than just the data type of each variable -- we can now see that this is a **Tibble** (a fancy version of a **Data Frame**). 
 
-**Tibbles** and **Data Frames** can contain variables of different types -- you can see that this contains both numeric and character variables. 
+**Tibbles** and **Data Frames** can contain variables of different types -- you can see that this contains both numeric and character variables.
+
+To get a general idea of what your Tibble looks like, you can use the `summary()` function:
+```{r}
+summary(small_star_wars)
+```
+
+There is a package called `gtExtras` that creates very nice looking summary tables with very simple code:
+```{r}
+
+small_star_wars %>% 
+  gt()
+
+```
+
+This code uses ` %>% `, which is called the `pipe operator`. [Pipes](https://www.geeksforgeeks.org/pipe-in-r/) are a bit more advanced than what we will be doing today, but their main benefit is to chain together multiple operations. 
+
+You can just as easily generate the same table by using the `small_star_wars` Tibble variable as the argument passed to `gt()`:
+```{r}
+gt(small_star_wars)
+```
+
+With `gtExtras`, you can do some cool things with the pipe ` %>% ` to subset and group specific variables together quickly, and plot continuous variables right in your table (while applying some interesting visual styles): 
+
+```{r}
+#| layout: [[45,-1, 45], [100]]
+#| code-fold: true
+#| code-summary: "Show the code"
+
+# These codes are more complex, but I'm including them here for extra credit in case anyone is curious to see how it's done (and how relatively easy it is).
+
+small_star_wars %>%
+  select(name, species, homeworld) %>% 
+  # Here we select the subset of the total variables we want to include
+  group_by(homeworld) %>% 
+  # Group them together by one of those variables (here `homeworld`)
+  gt() %>%
+  gt_theme_pff() 
+  # Plot, and then apply a theme
+
+small_star_wars %>%
+  select(name, species, homeworld) %>%
+  group_by(species) %>%
+  gt() %>%
+  gt_theme_guardian()
+  # Same as above, just grouping by `species`
+
+agg_star_wars <- starwars %>%
+  # This is a bit more complicated 
+  # To show more interesting distributions, I'm using the whole `starwars` dataset to include more data points
+  filter(species %in% c("Human", "Droid", "Gungan")) %>% 
+  # I'm filtering to just a few species that have more than 2 entries
+  select(species, height, mass, birth_year) %>% 
+  # Selecting the variables we want to include and grouping by species
+  group_by(species) %>%   
+  # To make the plots, gtExtras requires your continuous variables to be in list form, so we do that using `summarize` and `list`
+  summarize(
+    Height = list(height),  
+    Weight = list(mass),    
+    Born = list(birth_year) 
+    # This generates a list, by our grouping variable, of each observation's height, mass, and birth year
+  ) # And wesave all this as an "aggregated" dataset named `agg_star_wars`
+
+agg_star_wars %>%
+  gt() %>%
+  gt_plt_dist(        
+    Height,
+    type = "density" 
+    # This is the code to generate the distribution plots, with arguments to tell it what type of plot we want
+  ) %>%
+  gt_plt_dist(
+    Weight,
+    type = "boxplot"
+  ) %>%
+  gt_plt_dist(
+    Born,
+    type = "rug_strip"
+  ) %>% 
+  gt_theme_nytimes()
+```
