@@ -495,7 +495,7 @@ small_star_wars %>%
 With `gtExtras`, you can do some cool things, like grouping specific variables together and plotting continuous variables right in your table (while applying some interesting visual styles): 
 
 ```{r}
-#| layout: [[45,-1, 45], [100]]
+#| layout: [[45,-1, 45, -1, 45], [100]]
 #| code-fold: true
 #| code-summary: "Show the code"
 
@@ -516,6 +516,13 @@ small_star_wars %>%
   gt() %>%
   gt_theme_excel()
   # Same as above, just grouping by `species` and changing the theme
+
+small_star_wars %>%
+  select(name, species, hair_color) %>%
+  group_by(species) %>%
+  gt() %>%
+  gt_theme_dot_matrix()
+  # Same as above, just looking at hair color and changing the theme
 
 agg_star_wars <- starwars %>%
   # This is a bit more complicated 
