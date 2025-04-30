@@ -471,7 +471,28 @@ Since we're only running one operation, you can just as easily generate the same
 gt(small_star_wars)
 ```
 
-With `gtExtras`, you can do some cool things with the pipe ` %>% ` to subset and group specific variables together quickly, and plot continuous variables right in your table (while applying some interesting visual styles): 
+:::{.callout-tip collapse=true}
+##### A bit more on pipes
+Here is a simple example of how pipes can be useful. 
+
+If you want to apply a theme to make your `gtExtras` tables look like they do on the New York Times or ESPN, you could use either of these lines of code.
+
+Which is easier for you to read and understand?
+```{r}
+#| layout-nrow: 2
+
+# No pipe:
+gt_theme_nytimes(gt(small_star_wars))
+
+# With pipe:
+small_star_wars %>% 
+  gt() %>% 
+  gt_theme_espn()
+```
+
+:::
+
+With `gtExtras`, you can do some cool things, like grouping specific variables together and plotting continuous variables right in your table (while applying some interesting visual styles): 
 
 ```{r}
 #| layout: [[45,-1, 45], [100]]
@@ -510,7 +531,7 @@ agg_star_wars <- starwars %>%
     Weight = list(mass),    
     Born = list(birth_year) 
     # This generates a list, by our grouping variable, of each observation's height, mass, and birth year
-  ) # And wesave all this as an "aggregated" dataset named `agg_star_wars`
+  ) # And we save all this as an "aggregated" dataset named `agg_star_wars`
 
 agg_star_wars %>%
   gt() %>%
