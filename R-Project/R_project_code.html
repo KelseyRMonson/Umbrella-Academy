@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Kelsey Monson">
-<meta name="dcterms.date" content="2025-04-28">
+<meta name="dcterms.date" content="2025-04-30">
 <meta name="keywords" content="R, Data Analysis, Data Viz">
 <meta name="description" content="This is an exercise to help ‘wet lab’ scientists feel comfortable manipulating data and creating common charts in R">
 
@@ -128,7 +128,7 @@ background: #f0f3f5;
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">April 28, 2025</p>
+        <p class="date">April 30, 2025</p>
       </div>
     </div>
     
@@ -621,15 +621,18 @@ A note on document types
 </section>
 <section id="exercise" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="exercise"><span class="header-section-number">2</span> Exercise</h2>
+<p>As I mentioned at the beginning of this document, our goal today is to learn some helpful R codes to generate beautiful plots.</p>
+<p>Since you all have different projects and datasets (some of which may not even exist yet!), we will use some example data for the exercise.</p>
 <p>Some packages (and Base-R) include their own test data. This is useful when you want to see what a package is capable of, and is especially good for testing specific functions. If the package documentation shows you how to run functions using test data that you can download too, you can both recreate the example they are showing you and more easily apply it to your own data.</p>
-<p>We will use the <code>starwars</code> dataset from the <code>tidyverse</code> package as our example data today.</p>
+<p>We will use the <code>starwars</code> test dataset from the <code>tidyverse</code> package as our example data today.</p>
 <section id="getting-started" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="getting-started"><span class="header-section-number">2.1</span> Getting Started</h3>
 <p>I’ve created an <a href="Getting_Started_with_R_script.R">R Script</a> that includes the code necessary to generate the plots for this exercise. Go ahead and open that script now.</p>
+<p>You can use this script as a template/cheat sheet to work off of as you build your own script today, but the best way to learn to code is to type out the commands yourself to start building your muscle memory 💪</p>
+<p>So you can copy/paste long package, variable, and file names, but it’s a good idea to type out functions and commands so you understand and begin to rememebr the syntax.</p>
 <section id="install-and-load-packages-download-data" class="level4" data-number="2.1.1">
 <h4 data-number="2.1.1" class="anchored" data-anchor-id="install-and-load-packages-download-data"><span class="header-section-number">2.1.1</span> Install and Load Packages, Download Data</h4>
-<p>Please download and load the packages that we will use today.</p>
-<p>As I noted, you don’t need to save the <code>install.packages()</code> commands to your actual script since you won’t need to run them again.</p>
+<p>Please download and load the packages that we will use today (listed at the top of the script).</p>
 <p>While we will use the <code>starwars</code> dataset built into the <code>tidyverse</code>, you will eventually need to know how to load in your own data to R, so I saved a small version of the dataset to teach you to do just that.</p>
 <p>Download the <a href="input/small_star_wars.xlsx">dataset</a> from the GitHub:</p>
 <p><img src="assets/Download_Data.png" class="img-fluid" alt="Navigate to the input folder, select the file, and select “Copy raw file.”"> Then create a folder in your own project directory called <code>input</code> and save the file there.</p>
@@ -637,6 +640,7 @@ A note on document types
 <div class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>small_star_wars <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"input/small_star_wars.xlsx"</span>, <span class="at">na=</span><span class="st">"NA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>If you followed the directions to create your R Project, you should be able to execute the code exactly as written (this is the power of not needing to include <code>setwd()</code> in your code!).</p>
 </section>
 <section id="explore-the-data" class="level4" data-number="2.1.2">
 <h4 data-number="2.1.2" class="anchored" data-anchor-id="explore-the-data"><span class="header-section-number">2.1.2</span> Explore the Data</h4>

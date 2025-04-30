@@ -404,18 +404,24 @@ library(readxl)
 
 ```
 
+As I mentioned at the beginning of this document, our goal today is to learn some helpful R codes to generate beautiful plots. 
+
+Since you all have different projects and datasets (some of which may not even exist yet!), we will use some example data for the exercise.
+
 Some packages (and Base-R) include their own test data. This is useful when you want to see what a package is capable of, and is especially good for testing specific functions. If the package documentation shows you how to run functions using test data that you can download too, you can both recreate the example they are showing you and more easily apply it to your own data. 
 
-We will use the `starwars` dataset from the `tidyverse` package as our example data today. 
+We will use the `starwars` test dataset from the `tidyverse` package as our example data today. 
 
 ### Getting Started
-I've created an [R Script](Getting_Started_with_R_script.R) that includes the code necessary to generate the plots for this exercise. Go ahead and open that script now.
+I've created an [R Script](Getting_Started_with_R_script.R) that includes the code necessary to generate the plots for this exercise. Go ahead and open that script now. 
+
+You can use this script as a template/cheat sheet to work off of as you build your own script today, but the best way to learn to code is to type out the commands yourself to start building your muscle memory 💪
+
+So you can copy/paste long package, variable, and file names, but it's a good idea to type out functions and commands so you understand and begin to rememebr the syntax. 
 
 #### Install and Load Packages, Download Data
 
-Please download and load the packages that we will use today. 
-
-As I noted, you don't need to save the `install.packages()` commands to your actual script since you won't need to run them again. 
+Please download and load the packages that we will use today (listed at the top of the script). 
 
 While we will use the `starwars` dataset built into the `tidyverse`, you will eventually need to know how to load in your own data to R, so I saved a small version of the dataset to teach you to do just that.
 
@@ -428,6 +434,8 @@ Reading in the data should now look like:
 ```{r}
 small_star_wars <- read_excel("input/small_star_wars.xlsx", na="NA")
 ```
+
+If you followed the directions to create your R Project, you should be able to execute the code exactly as written (this is the power of not needing to include `setwd()` in  your code!).
 
 #### Explore the Data
 
