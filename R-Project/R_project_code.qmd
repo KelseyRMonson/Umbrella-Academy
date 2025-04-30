@@ -558,4 +558,7 @@ agg_star_wars %>%
   gt_theme_nytimes()
 ```
 
-You don't have to get as fancy as that, but try making a table with a fun theme! To see the available themes, use the `??` keyword search: `??gt_theme`
+You don't have to get as fancy as that, but try making a table with a fun theme! 
+
+To see the available themes, use the `??` keyword search: `??gt_theme`
+
