@@ -454,7 +454,7 @@ To get a general idea of what your Tibble looks like, you can use the `summary()
 summary(small_star_wars)
 ```
 
-There is a package called `gtExtras` that creates very nice looking summary tables with very simple code:
+There is a package called `gtExtras` that creates nice looking summary tables with very simple code:
 ```{r}
 
 small_star_wars %>% 
@@ -557,3 +557,5 @@ agg_star_wars %>%
   ) %>% 
   gt_theme_nytimes()
 ```
+
+You don't have to get as fancy as that, but try making a table with a fun theme! To see the available themes, use the `??` keyword search: `??gt_theme`
