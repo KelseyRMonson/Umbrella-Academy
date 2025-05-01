@@ -39,13 +39,11 @@ editor: visual
 
 ## Introduction
 
-The goal of **The Umbrella Academy** is to familiarize "wet lab" scientists with useful "dry lab" tools. Therefore, this exercise is geared primarily towards basic data manipulation to generate aesthetically pleasing plots in R.
+**The Umbrella Academy** aims to introduce "wet lab" scientists to useful "dry lab" tools. Therefore, this exercise is designed to enable students to generate aesthetically pleasing plots in R. 
 
-R is an excellent tool for generating beautiful data visualizations, and is much more flexible and customizable than other tools like Excel or GraphPad.
+While it has many functions (too many to cover int today's course), R is an excellent tool for generating beautiful data visualizations. It's much more flexible and customizable than other tools like Excel or GraphPad, plus it's free and open-source, unlike pricey proprietary statistical software like SAS or STATA.
 
-Another major benefit of R is that it is free to use and open source, unlike other proprietary statistical computing software like SAS or STATA.
-
-But first, before we dive into the exercise itself, let's familiarize ourselves with some basics of working with R in RStudio.
+Before diving into the exercise, let's cover the basics of using R and RStudio.
 
 ### R and RStudio
 
@@ -61,11 +59,11 @@ According to its creators,
 
 But what does that mean in practice?
 
-You might have run R after you installed it, and seen something like this, magically transporting yourself to circa 2004:
+Launching R might remind you of the early 2000s with its retro interface:
 
 ![**Base R GUI.** This always reminds me of an AIM chat window (if anyone is old enough to remember that).](assets/RGui.png)
 
-This is "Base-R," and it's not especially user-friendly (where are you even supposed to start? how do you run a command?). While it's perfectly functional, it's not the ideal way to interact with R.
+"Base-R" is not especially user-friendly (where do you even begin? how do you run a command?). While it's perfectly functional, it's not the ideal way to interact with R.
 
 Enter: **RStudio**.
 
@@ -73,48 +71,48 @@ I'm writing this exercise in RStudio right now, see? ![RStudio screenshot](asset
 
 To be honest, I've been coding in R since 2017 and have never once written a script or performed an analysis in Base-R.
 
-Maybe you can see why -- RStudio is what's called an **"integrative development environment" (IDE).**
+Maybe you can see why -- RStudio is an **"integrative development environment" (IDE).**
 
-This goes beyond even a "graphical user interface" (GUI), in that it provides tools to write, execute, and debug R code, manage the objects and variables you create, keep track of your files and projects, render plots, read help documentation... the list goes on.
+It's more than a "graphical user interface" (GUI) -- RStudio lets you write, run, and debug R code, manage files and variables with ease, render plots, read help documentation... the list goes on.
 
 We'll explore RStudio in depth throughout the exercise, but first we need to learn a bit more about how R works.
 
 ### Data Types and Variables
 
-Every basic programming class with include this section (in fact, if you completed your [homework](https://vscodeedu.com/courses/intro-to-python) this should look quite familiar, though R and Python are slightly different in this regard).
+This section might feel familiar if you've taken a basic programming class (or done your [homework](https://vscodeedu.com/courses/intro-to-python), though R and Python differ a bit).
 
 I'll try to make this brief:
 
 #### Variable Structures in R
 
--   **Data Frame:** A table-like structure with rows and columns. Each column can store a different data type, making it ideal for organizing datasets.
--   **Tibble:** A modern version of a data frame, offering improved printing behavior and no row names by default.
--   **Vector:** A one-dimensional collection that holds elements of the same data type.
--   **List:** An ordered collection that can store elements of different types, allowing greater flexibility.
--   **Matrix:** A two-dimensional version of a vector with rows and columns, where all elements share the same type.
--   **Array:** A multi-dimensional collection, similar to a matrix but capable of handling more than two dimensions.
+-   **Data Frame:** A table with rows and columns. Each column can store different data types, making it ideal for organizing datasets.
+-   **Tibble:** A modernized Data Frame. Your data looks prettier when printed and there are no row names by default.
+-   **Vector:** A one-dimensional collection with elements of the same data type.
+-   **List:** An ordered collection that can store mixed data types.
+-   **Matrix:** A two-dimensional Vector with rows and columns, with elements of the same type.
+-   **Array:** Like a Matrix but can handle more than two dimensions.
 
-You will likely most often be working with **Data Frames** or **Tibbles** to create figures, but will probably use all of the variable types at one point or another.
+You'll most often use **Data Frames** or **Tibbles** to create figures, but will use the variable types at one point or another.
 
 #### Data Types in R
 
--   **Numeric:** The default type used for numbers, including decimals.
--   **Factor:** A special structure for categorical data that defines a limited set of values.
--   **Integer:** Whole numbers explicitly defined with an "L" suffix (e.g., 10L).
--   **Logical:** Represents Boolean values: TRUE or FALSE.
--   **Character:** Text strings used to represent words or sentences.
--   **Complex:** Numbers that include both a real and an imaginary component (e.g., 2+3i).
--   **Raw:** Used for storing raw byte data.
+-   **Numeric:** The default for numbers, including decimals.
+-   **Factor:** A special structure for categorical data with defined values.
+-   **Integer:** Whole numbers (can be explicitly defined with an "L" suffix, e.g., `10L`).
+-   **Logical:** Boolean values: TRUE or FALSE.
+-   **Character:** Text strings.
+-   **Complex:** Numbers with both real and imaginary components (e.g., `2+3i`).
+-   **Raw:** Raw byte data.
 
-Some of these you won't interact with much (I've never worked with Complex or Raw data, I don't think...), others are pretty essential. **Factors** are especially important, and we will discuss them more later.
+**Numeric**, **Factor**, and **Character** variables are essential for plotting data. **Factors** are especially important -- we'll explore them more soon.
 
 These definitions are drawn from [this R Workshop GitHub](https://github.com/MVesuviusC/R_workshop/tree/main), which inspired a few other sections of this class (thank you, [MVesuviusC](https://github.com/MVesuviusC)!).
 
 #### The `str()` function
 
-There is an extremely useful function in R to tell you the structure of an object: `str()`
+The `str()` function reveals an object's structure.
 
-Here I'm going to show the difference between a **Numeric** variable and an **Integer**, by creating two **Vectors**:
+Let's compare a **Numeric** variable and an **Integer** by creating two **Vectors**:
 
 ```{r}
 # Create the vectors
@@ -126,13 +124,13 @@ str(num)
 str(int)
 ```
 
-Breaking down the above code, we
+Breaking it down, we
 
-1.  Created the variables using `<-`, otherwise known as the `assignment operator`
-2.  Combined the numbers/integers and passed them to our new variables using the combine function `c()`
-3.  Checked their structure by passing the object (either `num` or `int`) to the `str()` function.
+1.  Created the variables using `<-` (the `assignment operator`).
+2.  Used the combine function `c()` to combine numbers/integers into new variables.
+3.  Passed each variable to `str()` to check its structure.
 
-If you want, you can *coerce* a data type into another one.
+You can also *coerce* one data type into another.
 
 ```{r}
 # Let's say I actually wanted `num` to be an integer:
@@ -144,7 +142,7 @@ num <- as.character(num)
 str(num)
 ```
 
-But, oops, actually, just kidding, I really wanted `num` to be numeric. We can change it back:
+But, oops, just kidding, I actually wanted `num` to be numeric. We can change it back:
 
 ```{r}
 num <- as.numeric(num)
@@ -165,33 +163,32 @@ number <- as.numeric(number)
 str(number)
 ```
 
-R isn't reading and evaluating our characters to assume what they might mean, so it isn't going to automatically convert `one` into `1`.
+R isn't reading and interpreting what our characters might mean, so it isn't going to automatically convert `one` into `1`.
 
-If you have numeric variables in your dataset, it's best to save them initially as numbers in your raw data, and treat them as either numeric or integer variables in R.
+If you have numeric variables in your dataset, it's best to save them as numbers in your raw data and treat them as either numeric or integer variables in R.
 
 #### Why use **Factors**?
 
 ::: callout-caution
-**The default behavior in R is to treat text variables alphabetically** unless we specify otherwise.
+**R treats text variables alphabetically by default** unless we specify otherwise.
 
 Here's an example where that might become confusing.
 
-Say we had a dataset from a contest, where participants could come in first, second, third, or fourth.
+Say we had a dataset from a contest, where participants could place first, second, third, or fourth.
 
 ```{r}
 rankings <- c("first","second","third","fourth")
-# If we look at the structure of our variable, we see them in the order we would expect...
+# Using `str()` shows the expected order...
 str(rankings)
 
-# But if we use the table() function to summarize the data, we see it lists them alphabetically
+# But using the `table()` function to summarize the data lists them alphabetically:
 table(rankings)
 
 ```
-
-How do we fix this if we want them to be ordered logically, from first to fourth?
+How do we fix this to order them logically?
 :::
 
-This is where the **Factor** variable type comes in. We can specify that this categorical variable is a factor, and tell it the levels we expect:
+We use the **Factor** variable type! It lets us specify the expected levels of our categorical data:
 
 ```{r}
 rankings <- as.factor(rankings)
@@ -203,7 +200,7 @@ table(rankings)
 rankings <- factor(rankings, levels=c("first","second","third","fourth"))
 table(rankings)
 
-# We can set the levels to be whatever we want -- for example, we could list them backwards:
+# We can set the levels to be whatever we want -- for example, we could reverse them:
 rankings <- factor(rankings, levels=c("fourth","third","second","first"))
 table(rankings)
 ```
@@ -211,9 +208,9 @@ table(rankings)
 ::: {.callout-tip collapse="true"}
 ##### Extra Credit
 
-Why did the `str()` function print the rankings in the correct order the very first time, even though using the `table()` function showed that R was treating them alphabetically?
+Why did `str()` print the rankings in the correct order the very first time, even though `table()` showed that R was treating them alphabetically?
 
-Because when we created the `rankings` variable, we entered the variable names in the logical order. If we had created the variable with them out of order, they would have printed out of order, but R would still treat them alphabetically:
+It's because we entered the variable names in the logical order when we created the `rankings` variable. If we had created the variable with them out of order, `str()` would print them out of order, but R would still treat them alphabetically:
 
 ```{r}
 rankings <- c("third","second","fourth","first")
