@@ -420,9 +420,11 @@ You can use this script as a template/cheat sheet to work off of as you build yo
 
 So you can copy/paste long package, variable, and file names, but it's a good idea to type out functions and commands so you understand and begin to rememebr the syntax. 
 
+I've put a ▶️ icon at each step where you will need to write in your script.
+
 #### Install and Load Packages, Download Data
 
-Please download and load the packages that we will use today (listed at the top of the script). 
+▶️ Please download and load the packages that we will use today (listed at the top of the script). 
 
 While we will use the `starwars` dataset built into the `tidyverse`, you will eventually need to know how to load in your own data to R, so I saved a small version of the dataset to teach you to do just that.
 
@@ -431,7 +433,7 @@ Download the [dataset](input/small_star_wars.xlsx) from the GitHub:
 ![Navigate to the *input* folder, select the file, and select "Copy raw file."](assets/Download_Data.png)
 Then create a folder in your own project directory called `input` and save the file there.
 
-Reading in the data should now look like:
+▶️ Reading in the data should now look like:
 ```{r}
 small_star_wars <- read_excel("input/small_star_wars.xlsx", na="NA")
 ```
@@ -440,7 +442,9 @@ If you followed the directions to create your R Project, you should be able to e
 
 #### Explore the Data
 
-This dataset is more complicated than the vectors I created earlier. What does it look like if we run `str()` on this?
+This dataset is more complicated than the vectors I created earlier. 
+
+▶️ What does it look like if we run `str()` on this?
 ```{r}
 str(small_star_wars)
 ```
@@ -449,7 +453,7 @@ We can see that `str()` gives us more information than just the data type of eac
 
 **Tibbles** and **Data Frames** can contain variables of different types -- you can see that this contains both numeric and character variables.
 
-To get a general idea of what your Tibble looks like, you can use the `summary()` function:
+▶️ To get a general idea of what your Tibble looks like, you can use the `summary()` function:
 ```{r}
 summary(small_star_wars)
 ```
@@ -558,7 +562,52 @@ agg_star_wars %>%
   gt_theme_nytimes()
 ```
 
-You don't have to get as fancy as that, but try making a table with a fun theme! 
+▶️ You don't have to get as fancy as that, but try making a table with a fun theme! 
 
 To see the available themes, use the `??` keyword search: `??gt_theme`
 
+#### `table()`
+Remember when I used the `table()` function to show you that R was treating character variables alphabetically?
+
+`table()` is actually a very useful function for creating frequency tables (showing you how many of one variable or a combination of variables are present).
+
+Let's use this function to see how many of each species are in our dataset.
+
+In R, when we want to select just one part of a Data Frame or Tibble, we use the `selection operator`, represented by `$`. 
+
+▶️ Let's select just the `species` variable from our Tibble to create a table with one row:
+```{r}
+table(small_star_wars$species)
+```
+
+What if we wanted to layer on some additional information? We can make a 2x2 table (or 3x3 in this case) by separating the two variables with a comma. 
+
+▶️ Let's look at both species and hair color:
+```{r}
+table(small_star_wars$hair_color, small_star_wars$species)
+```
+
+:::{.callout-warning}
+Note that R2-D2's hair (or lack thereof) is indicated in the dataset as `NA`:
+
+```{r}
+#| echo: false
+small_star_wars %>%
+  filter(species %in% c("Droid")) %>% 
+  select(name, species, hair_color) %>%
+  gt() %>%
+  gt_theme_nytimes()
+
+```
+
+When we create a table with `table()`, `NA`s are not included, **but there is no flag to alert us that an observation has been dropped due to `NA`s.**
+
+If we only looked at this table, we might think there were no droids in our dataset (poor R2-D2!):
+
+```{r}
+#| echo: false
+table(small_star_wars$hair_color, small_star_wars$species)
+```
+
+Since we already have a `none` category, and if we really wanted to ensure our friend R2 was included in our hair color table, we could recode it so that an `NA` entry for hair becomes `none`.
+:::

@@ -45,3 +45,10 @@ gt(small_star_wars)
 small_star_wars %>% 
   gt() %>% 
   gt_theme_pff()
+
+# Making Tables ----
+# Table for how many species are in our dataset
+table(small_star_wars$species)
+
+# Table for hair color and species
+table(small_star_wars$hair_color, small_star_wars$species)
