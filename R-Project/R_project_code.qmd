@@ -39,7 +39,7 @@ editor: visual
 
 ## Introduction
 
-**The Umbrella Academy** aims to introduce "wet lab" scientists to useful "dry lab" tools. Therefore, this exercise is designed to enable students to generate aesthetically pleasing plots in R. 
+**The Umbrella Academy** aims to introduce "wet lab" scientists to useful "dry lab" tools. Therefore, this exercise is designed to enable students to generate aesthetically pleasing plots in R.
 
 While it has many functions (too many to cover int today's course), R is an excellent tool for generating beautiful data visualizations. It's much more flexible and customizable than other tools like Excel or GraphPad, plus it's free and open-source, unlike pricey proprietary statistical software like SAS or STATA.
 
@@ -92,14 +92,14 @@ I'll try to make this brief:
 -   **Matrix:** A two-dimensional Vector with rows and columns, with elements of the same type.
 -   **Array:** Like a Matrix but can handle more than two dimensions.
 
-You'll most often use **Data Frames** or **Tibbles** to create figures, but will use the variable types at one point or another.
+You'll most often use **Data Frames** or **Tibbles** to create figures, but will use all the variable types at one point or another.
 
 #### Data Types in R
 
 -   **Numeric:** The default for numbers, including decimals.
 -   **Factor:** A special structure for categorical data with defined values.
 -   **Integer:** Whole numbers (can be explicitly defined with an "L" suffix, e.g., `10L`).
--   **Logical:** Boolean values: TRUE or FALSE.
+-   **Logical:** Boolean values: `TRUE` or `FALSE`.
 -   **Character:** Text strings.
 -   **Complex:** Numbers with both real and imaginary components (e.g., `2+3i`).
 -   **Raw:** Raw byte data.
@@ -116,12 +116,12 @@ Let's compare a **Numeric** variable and an **Integer** by creating two **Vector
 
 ```{r}
 # Create the vectors
-num <- c(1,2,3)
-int <- c(1L,2L,3L)
+numbr <- c(1,2,3)
+intg <- c(1L,2L,3L)
 
 # Look at their structure with `str()`
-str(num)
-str(int)
+str(numbr)
+str(intg)
 ```
 
 Breaking it down, we
@@ -133,27 +133,27 @@ Breaking it down, we
 You can also *coerce* one data type into another.
 
 ```{r}
-# Let's say I actually wanted `num` to be an integer:
-num <- as.integer(num)
-str(num)
+# Let's say I actually wanted `numbr` to be an integer:
+numbr <- as.integer(numbr)
+str(numbr)
 
 # Or even a character:
-num <- as.character(num)
-str(num)
+numbr <- as.character(numbr)
+str(numbr)
 ```
 
-But, oops, just kidding, I actually wanted `num` to be numeric. We can change it back:
+But, oops, just kidding, I actually wanted `numbr` to be numeric. We can change it back:
 
 ```{r}
-num <- as.numeric(num)
-str(num)
+numbr <- as.numeric(numbr)
+str(numbr)
 ```
 
 ::: callout-warning
 **Be careful not to coerce a variable into an impossible data type!**
 :::
 
-Note what happens if we try to coerce a character vector into a numeric vector, even if we know that the character *could* represent a number:
+Note what happens if we try to coerce a character vector into a numeric vector, even if the character *could* represent a number:
 
 ```{r}
 number <- c("one","two","three")
@@ -185,6 +185,7 @@ str(rankings)
 table(rankings)
 
 ```
+
 How do we fix this to order them logically?
 :::
 
@@ -192,7 +193,7 @@ We use the **Factor** variable type! It lets us specify the expected levels of o
 
 ```{r}
 rankings <- as.factor(rankings)
-# If we just coerce the variable into a factor, we still have the same problem, because R doesn't know that we want them in order:
+# If we just make the variable a factor, we still have the same problem:
 str(rankings)
 table(rankings)
 
@@ -210,7 +211,9 @@ table(rankings)
 
 Why did `str()` print the rankings in the correct order the very first time, even though `table()` showed that R was treating them alphabetically?
 
-It's because we entered the variable names in the logical order when we created the `rankings` variable. If we had created the variable with them out of order, `str()` would print them out of order, but R would still treat them alphabetically:
+Because we entered the names in the logical order when we created the `rankings` variable. 
+
+If we had created the variable with them out of order, `str()` would print them out of order, but R would still treat them alphabetically:
 
 ```{r}
 rankings <- c("third","second","fourth","first")
@@ -230,17 +233,18 @@ R has a robust help system -- just prepend a `?` to a function's name.
 
 You can search for help in two ways:
 
--   Single question mark: `?`
+-   **Single question mark: `?`**
 
     -   Displays help documentation for a specific function.
-    -   Example: `?mean()` shows the documentation for Base-Rs `mean` function.
-    -   This type of search is best if you know a function's name 
+    -   *Example*: `?mean()` shows the documentation for Base-R's `mean` function.
+    -   This type of search is best if you know a function's name
 
--   Double question mark: `??`
+-   **Double question mark: `??`**
 
     -   Searches help documentation for keyword(s).
-    -   Example: `??mean()` finds all functions (and their documentation) containing `mean` and returns a list that you can select from.
-    -   This type of search is useful when you know *what* you want, but not the exact function name. It's also useful to see if there are multiple options with similar functions to choose from.
+    -   *Example*: `??mean()` finds all functions (and their documentation) containing `mean` and returns a list that you can select from.
+    -   This type of search is useful when you know *what* you want, but not the exact function name. 
+    - It's also useful to see if there are multiple functions that do similar things (so you can pick the best one for your needs).
     -   Works best if you use specific keywords since many functions share common words.
 
 `?` is especially useful for checking a function’s arguments (what goes inside the parentheses) and their defaults.
@@ -260,16 +264,16 @@ These tasks require diverse skills and expertise to program and execute. Thanks 
 So how do we get these packages?
 
 -   Almost all packages can be installed with `install.packages("package_name")`.
--   Some bioinformatics-specific tools need to be installed from [Bioconductor](https://www.bioconductor.org/) using `BiocManager::install("package_name")`.
+-   Some bioinformatics tools need to be installed from [Bioconductor](https://www.bioconductor.org/) using `BiocManager::install("package_name")`.
 -   Some packages can be installed directly from GitHub using `devtools::install_github("package_name")`.
 
 To load and use a downloaded package, use `library(package_name)`.
 
 ::: callout-note
-#### A few notes on packages
+#### Quick notes on packages
 
--   When installing a package, the package name must be enclosed in quotes.
--   When loading a package, you don't need quotes around the name.
+-   When installing a package, enclose the name in quotes: `("package_name")`.
+-   When loading a package, you don't need the quotes: `(package_name)`.
 -   You don't need to *download* a package more than once (though you may need to update it).
 -   However, you must *load* a package every time before you can use it.
 :::
@@ -290,11 +294,11 @@ getwd()
 
 You can see I'm currently in my project directory on the Zamarin Lab computer.
 
-The syntax for commands in R is typically the `function` followed by the arguments to the function in parentheses `(arguments)`.
+R syntax is typically the `function` followed by the arguments to the function in parentheses: `(arguments)`.
 
-With `getwd()`, we're asking the question of what directory we're in, so we aren't giving it any arguments. 
+With `getwd()`, we're asking what directory we're in, so we aren't giving it any arguments.
 
-But if we want to *change* the directory, we can use `setwd()`, giving it the path of the directory we want to move to:
+But if we want to *change* the directory, we can use `setwd()`, specifying the path we want to move to:
 
 ```{r}
 setwd("C:/Users/Zamarin Lab/Documents/GitHub/Umbrella-Academy/R-Project")
@@ -310,15 +314,15 @@ setwd("C:/Users/Zamarin Lab/Documents/GitHub/Umbrella-Academy/R-Project")
 
 Some people strongly believe you should never use `setwd()` in your R scripts. In fact, they even threaten to [come to your office and set your computer on fire🔥](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/).
 
-Rather, they argue for making a folder for your specific project and then creating an R Project (or similar, but for our purposes we will discuss R Projects).
+Rather, they argue for making a folder for your specific project and creating an R Project.
 
 ::: {.callout-tip collapse="true"}
 ##### What is an R Project?
 
--   A file with the `.Rproj` file extension that functions with RStudio and is associated with a directory
--   They “know” which files are relevant to a project: when you open the project, RStudio will load those files automatically
--   They automatically set your working directory to the project folder -- no need to use `setwd()` (and have our computers set on fire🔥)
--   This keeps files organized and reproducible, even if you move directories or switch computers.
+-   A file with the `.Rproj` extension that is associated with a directory
+-   “Knows” which files are relevant to a project: when you open the project, RStudio will load those files automatically
+-   Automatically sets your working directory to the project folder -- no need to use `setwd()` (and have our computers set on fire🔥)
+-   Keeps files organized and reproducible, even if you move directories or switch computers.
 
 Adapted from [*Communicate Data with R*](https://communicate-data-with-r.netlify.app/).
 :::
@@ -356,13 +360,13 @@ Now you should see something like this:
 -   **Console**: You can enter and run commands, but they are not saved for future use. (This is the same as in Base-R)
 -   **Source**: Write and run scripts.
     -   Can also be opened in Base-R, but there's no "Run" button to execute your code.
-    -   That said, it's much faster and easier to use a keyboard shortcut to execute your codes -- just type `CTRL + Enter`.
+    -   That said, it's much better to use a keyboard shortcut to execute your codes -- just type `CTRL + Enter`.
     -   Try that now by typing `getwd()`, followed by `CTRL + Enter`.
-      -   This will work in either the **Console** or the **Source**.
-      -   If you ran it in the **Console**, you'll note that the command disappeared. Try using the `Up` arrow to retrieve the command and run it again!
--   **Environment/History**: Tracks variables and command history. 
-    - We haven't created any variables (yet) to go into the **Environment**
-    - But check out the **History** tab -- you should see the `getwd()` command(s) you just ran!
+    -   This will work in either the **Console** or the **Source**.
+    -   If you ran it in the **Console**, you'll note that the command disappeared. Try using the `Up` arrow to retrieve the command and run it again!
+-   **Environment/History**: Tracks variables and command history.
+    -   We haven't created any variables (yet) to go into the **Environment**
+    -   But check out the **History** tab -- you should see the `getwd()` command(s) you just ran!
 -   **Files, Plots, Packages, etc.**: Manage files, visualizations, and installed packages. This will also look fairly empty, but not for long!
 
 #### RStudio Projects
@@ -380,8 +384,6 @@ Now we'll go back and create a new R script in our project folder.
 ::: {.callout-note collapse="true"}
 ##### A note on document types
 
-For this exercise, we will be using an R script to write and execute our code.
-
 There are other document types, like R Markdown, or the newer Quarto (this is actually a Quarto document). These file types are a bit more advanced and require you to know Markdown syntax, but can be very helpful for real projects. You can combine code, text, and output seamlessly, which is good for presentation and reproducibility.
 
 If you want to learn more, I highly recommend this course, [*Productive R Workflow*](https://www.productive-r-workflow.com/). Contact me if you are interested; the creator offers group rates for teams.
@@ -390,6 +392,7 @@ If you want to learn more, I highly recommend this course, [*Productive R Workfl
 Okay, so we now have our R Project and our fresh new script. It's time to begin!
 
 ## Exercise
+
 ```{r}
 #| echo: false
 #| warning: false
@@ -401,60 +404,64 @@ library(gtExtras)
 
 ```
 
-As I mentioned at the beginning of this document, our goal today is to learn some helpful R codes to generate beautiful plots. 
+As I mentioned at the beginning of this document, our goal today is to learn some helpful R codes to generate beautiful plots.
 
 Since you all have different projects and datasets (some of which may not even exist yet!), we will use some example data for the exercise.
 
-Some packages (and Base-R) include their own test data. This is useful when you want to see what a package is capable of, and is especially good for testing specific functions. If the package documentation shows you how to run functions using test data that you can download too, you can both recreate the example they are showing you and more easily apply it to your own data. 
+Some packages (and Base-R) include their own test data. This is useful when you want to see what a package is capable of, and is especially good for testing specific functions. If the package documentation shows you how to run functions using test data that you can download too, you can both recreate the example they are showing you and more easily apply it to your own data.
 
-We will use the `starwars` test dataset from the `tidyverse` package as our example data today. 
+We will use the `starwars` test dataset from the `tidyverse` package as our example data today.
 
 ### Getting Started
-I've created an [R Script](Getting_Started_with_R_script.R) that includes the code necessary to generate the plots for this exercise. Go ahead and open that script now. 
+
+I've created an [R Script](Getting_Started_with_R_script.R) that includes the code necessary to generate the plots for this exercise. Go ahead and open that script now.
 
 You can use this script as a template/cheat sheet to work off of as you build your own script today, but the best way to learn to code is to type out the commands yourself to start building your muscle memory 💪
 
-So you can copy/paste long package, variable, and file names, but it's a good idea to type out functions and commands so you understand and begin to rememebr the syntax. 
+So you can copy/paste long package, variable, and file names, but it's a good idea to type out functions and commands so you understand and begin to rememebr the syntax.
 
 I've put a ▶️ icon at each step where you will need to write in your script.
 
 #### Install and Load Packages, Download Data
 
-▶️ Please download and load the packages that we will use today (listed at the top of the script). 
+▶️ Please download and load the packages that we will use today (listed at the top of the script).
 
 While we will use the `starwars` dataset built into the `tidyverse`, you will eventually need to know how to load in your own data to R, so I saved a small version of the dataset to teach you to do just that.
 
 Download the [dataset](input/small_star_wars.xlsx) from the GitHub:
 
-![Navigate to the *input* folder, select the file, and select "Copy raw file."](assets/Download_Data.png)
-Then create a folder in your own project directory called `input` and save the file there.
+![Navigate to the input folder, select the file, and select "Copy raw file."](assets/Download_Data.png) Then create a folder in your own project directory called `input` and save the file there.
 
 ▶️ Reading in the data should now look like:
+
 ```{r}
 small_star_wars <- read_excel("input/small_star_wars.xlsx", na="NA")
 ```
 
-If you followed the directions to create your R Project, you should be able to execute the code exactly as written (this is the power of not needing to include `setwd()` in  your code!).
+If you followed the directions to create your R Project, you should be able to execute the code exactly as written (this is the power of not needing to include `setwd()` in your code!).
 
 #### Explore the Data
 
-This dataset is more complicated than the vectors I created earlier. 
+This dataset is more complicated than the vectors I created earlier.
 
 ▶️ What does it look like if we run `str()` on this?
+
 ```{r}
 str(small_star_wars)
 ```
 
-We can see that `str()` gives us more information than just the data type of each variable -- we can now see that this is a **Tibble** (a fancy version of a **Data Frame**). 
+We can see that `str()` gives us more information than just the data type of each variable -- we can now see that this is a **Tibble** (a fancy version of a **Data Frame**).
 
 **Tibbles** and **Data Frames** can contain variables of different types -- you can see that this contains both numeric and character variables.
 
 ▶️ To get a general idea of what your Tibble looks like, you can use the `summary()` function:
+
 ```{r}
 summary(small_star_wars)
 ```
 
 There is a package called `gtExtras` that creates nice looking summary tables with very simple code:
+
 ```{r}
 
 small_star_wars %>% 
@@ -462,22 +469,25 @@ small_star_wars %>%
 
 ```
 
-This code uses ` %>% `, which is called the `pipe operator`. 
+This code uses `%>%`, which is called the `pipe operator`.
 
-[Pipes](https://www.geeksforgeeks.org/pipe-in-r/) are a bit more advanced than what we will be doing today, but their main benefit is to chain together multiple operations. 
+[Pipes](https://www.geeksforgeeks.org/pipe-in-r/) are a bit more advanced than what we will be doing today, but their main benefit is to chain together multiple operations.
 
 Since we're only running one operation, you can just as easily generate the same table by using the `small_star_wars` variable as the argument passed to `gt()`:
+
 ```{r}
 gt(small_star_wars)
 ```
 
-:::{.callout-tip collapse=true}
+::: {.callout-tip collapse="true"}
 ##### A bit more on pipes
-Here is a simple example of how pipes can be useful. 
+
+Here is a simple example of how pipes can be useful.
 
 If you want to apply a theme to make your `gtExtras` tables look like they do on the New York Times or ESPN, you could use either of these lines of code.
 
 Which is easier for you to read and understand?
+
 ```{r}
 #| layout-nrow: 2
 
@@ -489,10 +499,9 @@ small_star_wars %>%
   gt() %>% 
   gt_theme_espn()
 ```
-
 :::
 
-With `gtExtras`, you can do some cool things, like grouping specific variables together and plotting continuous variables right in your table (while applying some interesting visual styles): 
+With `gtExtras`, you can do some cool things, like grouping specific variables together and plotting continuous variables right in your table (while applying some interesting visual styles):
 
 ```{r}
 #| layout: [[45,-1, 45, -1, 45], [100]]
@@ -558,32 +567,35 @@ agg_star_wars %>%
   gt_theme_nytimes()
 ```
 
-▶️ You don't have to get as fancy as that, but try making a table with a fun theme! 
+▶️ You don't have to get as fancy as that, but try making a table with a fun theme!
 
 To see the available themes, use the `??` keyword search: `??gt_theme`
 
 #### `table()`
+
 Remember when I used the `table()` function to show you that R was treating character variables alphabetically?
 
 `table()` is actually a very useful function for creating frequency tables (showing you how many of one variable or a combination of variables are present).
 
 Let's use this function to see how many of each species are in our dataset.
 
-In R, when we want to select just one part of a Data Frame or Tibble, we use the `selection operator`, represented by `$`. 
+In R, when we want to select just one part of a Data Frame or Tibble, we use the `selection operator`, represented by `$`.
 
 ▶️ Let's select just the `species` variable from our Tibble to create a table with one row:
+
 ```{r}
 table(small_star_wars$species)
 ```
 
-What if we wanted to layer on some additional information? We can make a 2x2 table (or 3x3 in this case) by separating the two variables with a comma. 
+What if we wanted to layer on some additional information? We can make a 2x2 table (or 3x3 in this case) by separating the two variables with a comma.
 
 ▶️ Let's look at both species and hair color:
+
 ```{r}
 table(small_star_wars$hair_color, small_star_wars$species)
 ```
 
-:::{.callout-warning}
+::: callout-warning
 Note that R2-D2's hair (or lack thereof) is indicated in the dataset as `NA`:
 
 ```{r}
