@@ -8,13 +8,9 @@ These activities include:
 - ☑️Executing array jobs (using the LSF job scheduler) on Minerva, Mount Sinai's HPC.
 - 📊Aggregating quality control reports using MultiQC
 
-By the end of this exercise, you will be able to run [fastp](https://github.com/OpenGene/fastp), a "tool designed to provide ultrafast all-in-one preprocessing and quality control for FastQ data," on four RNA-seq .fastq files and aggregate the QC documents using [MultiQC](https://github.com/MultiQC/MultiQC), a "tool to create a single report with interactive plots for multiple bioinformatics analyses across many samples."
-
-**fastp citation:**
->Shifu Chen. 2023. Ultrafast one-pass FASTQ data preprocessing, quality control, and deduplication using fastp. *iMeta* 2: e107. [DOI](https://doi.org/10.1002/imt2.107)
-
-**MultiQC citation**
->Philip Ewels, Måns Magnusson, Sverker Lundin, Max Käller, MultiQC: summarize analysis results for multiple tools and samples in a single report, *Bioinformatics*, October 2016, [DOI](https://doi.org/10.1093/bioinformatics/btw354)
+By the end of this exercise, you will be able to:
+- Run [fastp](https://github.com/OpenGene/fastp), a "tool designed to provide ultrafast all-in-one preprocessing and quality control for FastQ data," on four RNA-seq .fastq files
+- Aggregate the QC documents using [MultiQC](https://github.com/MultiQC/MultiQC), a "tool to create a single report with interactive plots for multiple bioinformatics analyses across many samples."
 
 ## Step 1: Locate the Data
 Using `cd` (change directory), navigate to the `master_data` folder on Minerva containing the raw .fastq files for the exercise:
@@ -24,7 +20,7 @@ cd /sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy
 ```
 *If you are following along on GitHub, these files can be found in the `master_data` [folder](master_data) within this directory.*
 
-These .fastqs are adapted from the [NF-core test data repository](https://github.com/nf-core/test-datasets/tree/rnaseq). Samples are from S. cerevisiae (yeast) and are 101bp paired-end strand-specific RNA-seq files, sub-sampled to 50,000 reads.
+These .fastqs are from S. cerevisiae (yeast) samples and are 101bp paired-end strand-specific RNA-seq files, sub-sampled to 50,000 reads (from [NF-core test data repository](https://github.com/nf-core/test-datasets/tree/rnaseq)).
 
 <!-- HTML_START -->
 <details>
@@ -68,7 +64,7 @@ cd ..
 ## Step 2: Create a Sample List
 Next, we create a sample list pointing to the names and locations of the raw .fastq files. This will tell your script what files to look for and where they are stored.
 
-Run the command `printf '%s\n' "$PWD"/* >FastP_practice_samplelist_${MY_NAME}.txt`.
+Run `printf '%s\n' "$PWD"/* >FastP_practice_samplelist_${MY_NAME}.txt`.
 
 Replace `${MY_NAME}` with, you guessed it, your name. For example, mine is:
 ``` Shell
@@ -78,7 +74,8 @@ For the rest of the exercise, we'll just refer to this file as `"samplelist.txt"
 
 Let's break down the command:
 - `printf '%s\n':`
-        The `printf` command is used to format and print text. The format string `'%s\n'` specifies that it should print a string (`%s`) followed by a new line (`\n`).    
+  - `printf` is used to format and print text.
+  - The format string `'%s\n'` specifies that it should print a string (`%s`) followed by a new line (`\n`).
 - `"$PWD"/*:`
         This is the path to the current working directory (`$PWD`) followed by an asterisk (`*`). The asterisk is a wildcard character that matches any file or directory within the current directory. Because we navigated to the `/sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy` folder, this is the working directory that will be printed, followed by the contents of the directory, which are the subfolders containing the .fastq files for each sample.
 - `>samplelist.txt:`
