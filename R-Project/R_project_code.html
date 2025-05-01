@@ -160,6 +160,7 @@ background: #f0f3f5;
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"><span class="header-section-number">2</span> Exercise</a>
   <ul class="collapse">
   <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started"><span class="header-section-number">2.1</span> Getting Started</a></li>
+  <li><a href="#time-to-plot" id="toc-time-to-plot" class="nav-link" data-scroll-target="#time-to-plot"><span class="header-section-number">2.2</span> Time to Plot!</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -298,11 +299,8 @@ Warning
 <div class="cell-output cell-output-stdout">
 <pre><code> chr [1:3] "one" "two" "three"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>number <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(number)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: NAs introduced by coercion</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(number)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>number <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(number)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(number)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> num [1:3] NA NA NA</code></pre>
 </div>
@@ -326,14 +324,14 @@ Caution
 <p>Here’s an example where that might become confusing.</p>
 <p>Say we had a dataset from a contest, where participants could place first, second, third, or fourth.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"first"</span>,<span class="st">"second"</span>,<span class="st">"third"</span>,<span class="st">"fourth"</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Using `str()` shows the expected order...</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"first"</span>,<span class="st">"second"</span>,<span class="st">"third"</span>,<span class="st">"fourth"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Using `str()` shows the expected order...</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> chr [1:4] "first" "second" "third" "fourth"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># But using the `table()` function to summarize the data lists them alphabetically:</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># But using the `table()` function to summarize the data lists them alphabetically:</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>rankings
  first fourth second  third 
@@ -345,29 +343,29 @@ Caution
 </div>
 <p>We use the <strong>Factor</strong> variable type! It lets us specify the expected levels of our categorical data:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(rankings)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># If we just make the variable a factor, we still have the same problem:</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(rankings)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># If we just make the variable a factor, we still have the same problem:</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> Factor w/ 4 levels "first","fourth",..: 1 3 4 2</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>rankings
  first fourth second  third 
      1      1      1      1 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instead, we can explicitly tell it the order we want with the "levels" argument:</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> <span class="fu">factor</span>(rankings, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"first"</span>,<span class="st">"second"</span>,<span class="st">"third"</span>,<span class="st">"fourth"</span>))</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instead, we can explicitly tell it the order we want with the "levels" argument:</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> <span class="fu">factor</span>(rankings, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"first"</span>,<span class="st">"second"</span>,<span class="st">"third"</span>,<span class="st">"fourth"</span>))</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>rankings
  first second  third fourth 
      1      1      1      1 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can set the levels to be whatever we want -- for example, we could reverse them:</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> <span class="fu">factor</span>(rankings, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"fourth"</span>,<span class="st">"third"</span>,<span class="st">"second"</span>,<span class="st">"first"</span>))</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can set the levels to be whatever we want -- for example, we could reverse them:</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> <span class="fu">factor</span>(rankings, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"fourth"</span>,<span class="st">"third"</span>,<span class="st">"second"</span>,<span class="st">"first"</span>))</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>rankings
 fourth  third second  first 
@@ -390,14 +388,14 @@ Extra Credit
 <p>Because we entered the names in the logical order when we created the <code>rankings</code> variable.</p>
 <p>If we had created the variable with them out of order, <code>str()</code> would print them out of order, but R would still treat them alphabetically:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"third"</span>,<span class="st">"second"</span>,<span class="st">"fourth"</span>,<span class="st">"first"</span>)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Prints the character variable in the silly order we supplied...</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>rankings <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"third"</span>,<span class="st">"second"</span>,<span class="st">"fourth"</span>,<span class="st">"first"</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Prints the character variable in the silly order we supplied...</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> chr [1:4] "third" "second" "fourth" "first"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># But still treats it alphabetically</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># But still treats it alphabetically</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rankings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>rankings
  first fourth second  third 
@@ -473,7 +471,7 @@ Quick notes on packages
 <p>Remember in our <a href="../Command-Line/Command_Line_Exercise.md">last lesson</a> when we learned <code>pwd</code> to see our HPC directory?</p>
 <p>There is a similar command in R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "C:/Users/Zamarin Lab/Documents/GitHub/Umbrella-Academy/R-Project"</code></pre>
 </div>
@@ -483,7 +481,7 @@ Quick notes on packages
 <p>With <code>getwd()</code>, we’re asking what directory we’re in, so we aren’t giving it any arguments.</p>
 <p>But if we want to <em>change</em> the directory, we can use <code>setwd()</code>, specifying the path we want to move to:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/Users/Zamarin Lab/Documents/GitHub/Umbrella-Academy/R-Project"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/Users/Zamarin Lab/Documents/GitHub/Umbrella-Academy/R-Project"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -640,7 +638,7 @@ A note on document types
 <p><img src="assets/Download_Data.png" class="img-fluid" alt="Navigate to the input folder, select the file, and select “Copy raw file.”"> Create a folder in your project directory called <code>input</code> and save the file there.</p>
 <p>▶️ Then, read in the data with this command:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>small_star_wars <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"input/small_star_wars.xlsx"</span>, <span class="at">na=</span><span class="st">"NA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>small_star_wars <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"input/small_star_wars.xlsx"</span>, <span class="at">na=</span><span class="st">"NA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If you set up your R Project correctly, this code will run as-is (no need for <code>setwd()</code>!).</p>
 </section>
@@ -649,7 +647,7 @@ A note on document types
 <p>This dataset is more complicated than the vectors I created earlier.</p>
 <p>▶️ What does it look like if we run <code>str()</code> on this?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(small_star_wars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(small_star_wars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tibble [6 × 10] (S3: tbl_df/tbl/data.frame)
  $ name      : chr [1:6] "Luke Skywalker" "R2-D2" "Darth Vader" "Leia Organa" ...
@@ -667,7 +665,7 @@ A note on document types
 <p>This shows that it’s a <strong>Tibble</strong> (an upgraded <strong>Data Frame</strong>) containing both numeric and character variables.</p>
 <p>▶️ Use <code>summary()</code> for a quick overview:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(small_star_wars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(small_star_wars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     name               height           mass        hair_color       
  Length:6           Min.   : 96.0   Min.   : 32.0   Length:6          
@@ -694,26 +692,26 @@ A note on document types
 </div>
 <p>You can also use the <code>gtExtras</code> package to create a polished summary table with very simple code:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>small_star_wars <span class="sc">%&gt;%</span> </span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>small_star_wars <span class="sc">%&gt;%</span> </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="ratnurptep" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ratnurptep table {
+<div id="lzseoatgak" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lzseoatgak table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ratnurptep thead, #ratnurptep tbody, #ratnurptep tfoot, #ratnurptep tr, #ratnurptep td, #ratnurptep th {
+#lzseoatgak thead, #lzseoatgak tbody, #lzseoatgak tfoot, #lzseoatgak tr, #lzseoatgak td, #lzseoatgak th {
   border-style: none;
 }
 
-#ratnurptep p {
+#lzseoatgak p {
   margin: 0;
   padding: 0;
 }
 
-#ratnurptep .gt_table {
+#lzseoatgak .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -739,12 +737,12 @@ A note on document types
   border-left-color: #D3D3D3;
 }
 
-#ratnurptep .gt_caption {
+#lzseoatgak .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ratnurptep .gt_title {
+#lzseoatgak .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -756,7 +754,7 @@ A note on document types
   border-bottom-width: 0;
 }
 
-#ratnurptep .gt_subtitle {
+#lzseoatgak .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -768,7 +766,7 @@ A note on document types
   border-top-width: 0;
 }
 
-#ratnurptep .gt_heading {
+#lzseoatgak .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -780,13 +778,13 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#ratnurptep .gt_bottom_border {
+#lzseoatgak .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ratnurptep .gt_col_headings {
+#lzseoatgak .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -801,7 +799,7 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#ratnurptep .gt_col_heading {
+#lzseoatgak .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -821,7 +819,7 @@ A note on document types
   overflow-x: hidden;
 }
 
-#ratnurptep .gt_column_spanner_outer {
+#lzseoatgak .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -833,15 +831,15 @@ A note on document types
   padding-right: 4px;
 }
 
-#ratnurptep .gt_column_spanner_outer:first-child {
+#lzseoatgak .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ratnurptep .gt_column_spanner_outer:last-child {
+#lzseoatgak .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ratnurptep .gt_column_spanner {
+#lzseoatgak .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -853,11 +851,11 @@ A note on document types
   width: 100%;
 }
 
-#ratnurptep .gt_spanner_row {
+#lzseoatgak .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ratnurptep .gt_group_heading {
+#lzseoatgak .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -883,7 +881,7 @@ A note on document types
   text-align: left;
 }
 
-#ratnurptep .gt_empty_group_heading {
+#lzseoatgak .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -898,15 +896,15 @@ A note on document types
   vertical-align: middle;
 }
 
-#ratnurptep .gt_from_md > :first-child {
+#lzseoatgak .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ratnurptep .gt_from_md > :last-child {
+#lzseoatgak .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ratnurptep .gt_row {
+#lzseoatgak .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -925,7 +923,7 @@ A note on document types
   overflow-x: hidden;
 }
 
-#ratnurptep .gt_stub {
+#lzseoatgak .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -938,7 +936,7 @@ A note on document types
   padding-right: 5px;
 }
 
-#ratnurptep .gt_stub_row_group {
+#lzseoatgak .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -952,15 +950,15 @@ A note on document types
   vertical-align: top;
 }
 
-#ratnurptep .gt_row_group_first td {
+#lzseoatgak .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ratnurptep .gt_row_group_first th {
+#lzseoatgak .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ratnurptep .gt_summary_row {
+#lzseoatgak .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -970,16 +968,16 @@ A note on document types
   padding-right: 5px;
 }
 
-#ratnurptep .gt_first_summary_row {
+#lzseoatgak .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ratnurptep .gt_first_summary_row.thick {
+#lzseoatgak .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ratnurptep .gt_last_summary_row {
+#lzseoatgak .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -989,7 +987,7 @@ A note on document types
   border-bottom-color: #D3D3D3;
 }
 
-#ratnurptep .gt_grand_summary_row {
+#lzseoatgak .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -999,7 +997,7 @@ A note on document types
   padding-right: 5px;
 }
 
-#ratnurptep .gt_first_grand_summary_row {
+#lzseoatgak .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1009,7 +1007,7 @@ A note on document types
   border-top-color: #D3D3D3;
 }
 
-#ratnurptep .gt_last_grand_summary_row_top {
+#lzseoatgak .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1019,11 +1017,11 @@ A note on document types
   border-bottom-color: #D3D3D3;
 }
 
-#ratnurptep .gt_striped {
+#lzseoatgak .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ratnurptep .gt_table_body {
+#lzseoatgak .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1032,7 +1030,7 @@ A note on document types
   border-bottom-color: #D3D3D3;
 }
 
-#ratnurptep .gt_footnotes {
+#lzseoatgak .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1046,7 +1044,7 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#ratnurptep .gt_footnote {
+#lzseoatgak .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1055,7 +1053,7 @@ A note on document types
   padding-right: 5px;
 }
 
-#ratnurptep .gt_sourcenotes {
+#lzseoatgak .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1069,7 +1067,7 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#ratnurptep .gt_sourcenote {
+#lzseoatgak .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1077,72 +1075,72 @@ A note on document types
   padding-right: 5px;
 }
 
-#ratnurptep .gt_left {
+#lzseoatgak .gt_left {
   text-align: left;
 }
 
-#ratnurptep .gt_center {
+#lzseoatgak .gt_center {
   text-align: center;
 }
 
-#ratnurptep .gt_right {
+#lzseoatgak .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ratnurptep .gt_font_normal {
+#lzseoatgak .gt_font_normal {
   font-weight: normal;
 }
 
-#ratnurptep .gt_font_bold {
+#lzseoatgak .gt_font_bold {
   font-weight: bold;
 }
 
-#ratnurptep .gt_font_italic {
+#lzseoatgak .gt_font_italic {
   font-style: italic;
 }
 
-#ratnurptep .gt_super {
+#lzseoatgak .gt_super {
   font-size: 65%;
 }
 
-#ratnurptep .gt_footnote_marks {
+#lzseoatgak .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ratnurptep .gt_asterisk {
+#lzseoatgak .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ratnurptep .gt_indent_1 {
+#lzseoatgak .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ratnurptep .gt_indent_2 {
+#lzseoatgak .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ratnurptep .gt_indent_3 {
+#lzseoatgak .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ratnurptep .gt_indent_4 {
+#lzseoatgak .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ratnurptep .gt_indent_5 {
+#lzseoatgak .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ratnurptep .katex-display {
+#lzseoatgak .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ratnurptep div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#lzseoatgak div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1244,25 +1242,25 @@ A note on document types
 <p>This code uses the pipe operator (<code>%&gt;%</code>) to chain together operations. <a href="https://www.geeksforgeeks.org/pipe-in-r/">Pipes</a> are useful but a bit advanced.</p>
 <p>Since we’re only running one operation, you can generate the same table using the <code>small_star_wars</code> variable as the argument passed to <code>gt()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(small_star_wars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(small_star_wars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="cthsvtcaji" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#cthsvtcaji table {
+<div id="pcmubojxqv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pcmubojxqv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#cthsvtcaji thead, #cthsvtcaji tbody, #cthsvtcaji tfoot, #cthsvtcaji tr, #cthsvtcaji td, #cthsvtcaji th {
+#pcmubojxqv thead, #pcmubojxqv tbody, #pcmubojxqv tfoot, #pcmubojxqv tr, #pcmubojxqv td, #pcmubojxqv th {
   border-style: none;
 }
 
-#cthsvtcaji p {
+#pcmubojxqv p {
   margin: 0;
   padding: 0;
 }
 
-#cthsvtcaji .gt_table {
+#pcmubojxqv .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1288,12 +1286,12 @@ A note on document types
   border-left-color: #D3D3D3;
 }
 
-#cthsvtcaji .gt_caption {
+#pcmubojxqv .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#cthsvtcaji .gt_title {
+#pcmubojxqv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1305,7 +1303,7 @@ A note on document types
   border-bottom-width: 0;
 }
 
-#cthsvtcaji .gt_subtitle {
+#pcmubojxqv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1317,7 +1315,7 @@ A note on document types
   border-top-width: 0;
 }
 
-#cthsvtcaji .gt_heading {
+#pcmubojxqv .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1329,13 +1327,13 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#cthsvtcaji .gt_bottom_border {
+#pcmubojxqv .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#cthsvtcaji .gt_col_headings {
+#pcmubojxqv .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1350,7 +1348,7 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#cthsvtcaji .gt_col_heading {
+#pcmubojxqv .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1370,7 +1368,7 @@ A note on document types
   overflow-x: hidden;
 }
 
-#cthsvtcaji .gt_column_spanner_outer {
+#pcmubojxqv .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1382,15 +1380,15 @@ A note on document types
   padding-right: 4px;
 }
 
-#cthsvtcaji .gt_column_spanner_outer:first-child {
+#pcmubojxqv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#cthsvtcaji .gt_column_spanner_outer:last-child {
+#pcmubojxqv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#cthsvtcaji .gt_column_spanner {
+#pcmubojxqv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1402,11 +1400,11 @@ A note on document types
   width: 100%;
 }
 
-#cthsvtcaji .gt_spanner_row {
+#pcmubojxqv .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#cthsvtcaji .gt_group_heading {
+#pcmubojxqv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1432,7 +1430,7 @@ A note on document types
   text-align: left;
 }
 
-#cthsvtcaji .gt_empty_group_heading {
+#pcmubojxqv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1447,15 +1445,15 @@ A note on document types
   vertical-align: middle;
 }
 
-#cthsvtcaji .gt_from_md > :first-child {
+#pcmubojxqv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#cthsvtcaji .gt_from_md > :last-child {
+#pcmubojxqv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#cthsvtcaji .gt_row {
+#pcmubojxqv .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1474,7 +1472,7 @@ A note on document types
   overflow-x: hidden;
 }
 
-#cthsvtcaji .gt_stub {
+#pcmubojxqv .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1487,7 +1485,7 @@ A note on document types
   padding-right: 5px;
 }
 
-#cthsvtcaji .gt_stub_row_group {
+#pcmubojxqv .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1501,15 +1499,15 @@ A note on document types
   vertical-align: top;
 }
 
-#cthsvtcaji .gt_row_group_first td {
+#pcmubojxqv .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#cthsvtcaji .gt_row_group_first th {
+#pcmubojxqv .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#cthsvtcaji .gt_summary_row {
+#pcmubojxqv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1519,16 +1517,16 @@ A note on document types
   padding-right: 5px;
 }
 
-#cthsvtcaji .gt_first_summary_row {
+#pcmubojxqv .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#cthsvtcaji .gt_first_summary_row.thick {
+#pcmubojxqv .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#cthsvtcaji .gt_last_summary_row {
+#pcmubojxqv .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1538,7 +1536,7 @@ A note on document types
   border-bottom-color: #D3D3D3;
 }
 
-#cthsvtcaji .gt_grand_summary_row {
+#pcmubojxqv .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1548,7 +1546,7 @@ A note on document types
   padding-right: 5px;
 }
 
-#cthsvtcaji .gt_first_grand_summary_row {
+#pcmubojxqv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1558,7 +1556,7 @@ A note on document types
   border-top-color: #D3D3D3;
 }
 
-#cthsvtcaji .gt_last_grand_summary_row_top {
+#pcmubojxqv .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1568,11 +1566,11 @@ A note on document types
   border-bottom-color: #D3D3D3;
 }
 
-#cthsvtcaji .gt_striped {
+#pcmubojxqv .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#cthsvtcaji .gt_table_body {
+#pcmubojxqv .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1581,7 +1579,7 @@ A note on document types
   border-bottom-color: #D3D3D3;
 }
 
-#cthsvtcaji .gt_footnotes {
+#pcmubojxqv .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1595,7 +1593,7 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#cthsvtcaji .gt_footnote {
+#pcmubojxqv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1604,7 +1602,7 @@ A note on document types
   padding-right: 5px;
 }
 
-#cthsvtcaji .gt_sourcenotes {
+#pcmubojxqv .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1618,7 +1616,7 @@ A note on document types
   border-right-color: #D3D3D3;
 }
 
-#cthsvtcaji .gt_sourcenote {
+#pcmubojxqv .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1626,72 +1624,72 @@ A note on document types
   padding-right: 5px;
 }
 
-#cthsvtcaji .gt_left {
+#pcmubojxqv .gt_left {
   text-align: left;
 }
 
-#cthsvtcaji .gt_center {
+#pcmubojxqv .gt_center {
   text-align: center;
 }
 
-#cthsvtcaji .gt_right {
+#pcmubojxqv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#cthsvtcaji .gt_font_normal {
+#pcmubojxqv .gt_font_normal {
   font-weight: normal;
 }
 
-#cthsvtcaji .gt_font_bold {
+#pcmubojxqv .gt_font_bold {
   font-weight: bold;
 }
 
-#cthsvtcaji .gt_font_italic {
+#pcmubojxqv .gt_font_italic {
   font-style: italic;
 }
 
-#cthsvtcaji .gt_super {
+#pcmubojxqv .gt_super {
   font-size: 65%;
 }
 
-#cthsvtcaji .gt_footnote_marks {
+#pcmubojxqv .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#cthsvtcaji .gt_asterisk {
+#pcmubojxqv .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#cthsvtcaji .gt_indent_1 {
+#pcmubojxqv .gt_indent_1 {
   text-indent: 5px;
 }
 
-#cthsvtcaji .gt_indent_2 {
+#pcmubojxqv .gt_indent_2 {
   text-indent: 10px;
 }
 
-#cthsvtcaji .gt_indent_3 {
+#pcmubojxqv .gt_indent_3 {
   text-indent: 15px;
 }
 
-#cthsvtcaji .gt_indent_4 {
+#pcmubojxqv .gt_indent_4 {
   text-indent: 20px;
 }
 
-#cthsvtcaji .gt_indent_5 {
+#pcmubojxqv .gt_indent_5 {
   text-indent: 25px;
 }
 
-#cthsvtcaji .katex-display {
+#pcmubojxqv .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#cthsvtcaji div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#pcmubojxqv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1806,34 +1804,34 @@ A bit more on pipes (<code>%&gt;%</code>)
 <p>Consider the below code:</p>
 <p>You can apply a theme to make your <code>gtExtras</code> tables look like they do on the New York Times or ESPN using either of these lines of code.</p>
 <p>Which is easier for you to read and understand?</p>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># No pipe:</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gt_theme_nytimes</span>(<span class="fu">gt</span>(small_star_wars))</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co"># With pipe:</span></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>small_star_wars <span class="sc">%&gt;%</span> </span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_theme_espn</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># No pipe:</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gt_theme_nytimes</span>(<span class="fu">gt</span>(small_star_wars))</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co"># With pipe:</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>small_star_wars <span class="sc">%&gt;%</span> </span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_theme_espn</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel" data-layout-nrow="2">
 <div class="quarto-layout-row">
-<div id="pplaxhrkny" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="onzwdcecem" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#pplaxhrkny table {
+#onzwdcecem table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#pplaxhrkny thead, #pplaxhrkny tbody, #pplaxhrkny tfoot, #pplaxhrkny tr, #pplaxhrkny td, #pplaxhrkny th {
+#onzwdcecem thead, #onzwdcecem tbody, #onzwdcecem tfoot, #onzwdcecem tr, #onzwdcecem td, #onzwdcecem th {
   border-style: none;
 }
 
-#pplaxhrkny p {
+#onzwdcecem p {
   margin: 0;
   padding: 0;
 }
 
-#pplaxhrkny .gt_table {
+#onzwdcecem .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1859,12 +1857,12 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-left-color: #D3D3D3;
 }
 
-#pplaxhrkny .gt_caption {
+#onzwdcecem .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#pplaxhrkny .gt_title {
+#onzwdcecem .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1876,7 +1874,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-bottom-width: 0;
 }
 
-#pplaxhrkny .gt_subtitle {
+#onzwdcecem .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1888,7 +1886,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-top-width: 0;
 }
 
-#pplaxhrkny .gt_heading {
+#onzwdcecem .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -1900,13 +1898,13 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-right-color: #D3D3D3;
 }
 
-#pplaxhrkny .gt_bottom_border {
+#onzwdcecem .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pplaxhrkny .gt_col_headings {
+#onzwdcecem .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1921,7 +1919,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-right-color: #D3D3D3;
 }
 
-#pplaxhrkny .gt_col_heading {
+#onzwdcecem .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 12px;
@@ -1941,7 +1939,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   overflow-x: hidden;
 }
 
-#pplaxhrkny .gt_column_spanner_outer {
+#onzwdcecem .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 12px;
@@ -1953,15 +1951,15 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 4px;
 }
 
-#pplaxhrkny .gt_column_spanner_outer:first-child {
+#onzwdcecem .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pplaxhrkny .gt_column_spanner_outer:last-child {
+#onzwdcecem .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pplaxhrkny .gt_column_spanner {
+#onzwdcecem .gt_column_spanner {
   border-bottom-style: none;
   border-bottom-width: 1px;
   border-bottom-color: #334422;
@@ -1973,11 +1971,11 @@ A bit more on pipes (<code>%&gt;%</code>)
   width: 100%;
 }
 
-#pplaxhrkny .gt_spanner_row {
+#onzwdcecem .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#pplaxhrkny .gt_group_heading {
+#onzwdcecem .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2003,7 +2001,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   text-align: left;
 }
 
-#pplaxhrkny .gt_empty_group_heading {
+#onzwdcecem .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2018,15 +2016,15 @@ A bit more on pipes (<code>%&gt;%</code>)
   vertical-align: middle;
 }
 
-#pplaxhrkny .gt_from_md > :first-child {
+#onzwdcecem .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pplaxhrkny .gt_from_md > :last-child {
+#onzwdcecem .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pplaxhrkny .gt_row {
+#onzwdcecem .gt_row {
   padding-top: 7px;
   padding-bottom: 7px;
   padding-left: 5px;
@@ -2045,7 +2043,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   overflow-x: hidden;
 }
 
-#pplaxhrkny .gt_stub {
+#onzwdcecem .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2058,7 +2056,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 5px;
 }
 
-#pplaxhrkny .gt_stub_row_group {
+#onzwdcecem .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2072,15 +2070,15 @@ A bit more on pipes (<code>%&gt;%</code>)
   vertical-align: top;
 }
 
-#pplaxhrkny .gt_row_group_first td {
+#onzwdcecem .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#pplaxhrkny .gt_row_group_first th {
+#onzwdcecem .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#pplaxhrkny .gt_summary_row {
+#onzwdcecem .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2090,16 +2088,16 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 5px;
 }
 
-#pplaxhrkny .gt_first_summary_row {
+#onzwdcecem .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#pplaxhrkny .gt_first_summary_row.thick {
+#onzwdcecem .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#pplaxhrkny .gt_last_summary_row {
+#onzwdcecem .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2109,7 +2107,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-bottom-color: #D3D3D3;
 }
 
-#pplaxhrkny .gt_grand_summary_row {
+#onzwdcecem .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2119,7 +2117,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 5px;
 }
 
-#pplaxhrkny .gt_first_grand_summary_row {
+#onzwdcecem .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2129,7 +2127,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-top-color: #D3D3D3;
 }
 
-#pplaxhrkny .gt_last_grand_summary_row_top {
+#onzwdcecem .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2139,11 +2137,11 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-bottom-color: #D3D3D3;
 }
 
-#pplaxhrkny .gt_striped {
+#onzwdcecem .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pplaxhrkny .gt_table_body {
+#onzwdcecem .gt_table_body {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2152,7 +2150,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-bottom-color: #FFFFFF;
 }
 
-#pplaxhrkny .gt_footnotes {
+#onzwdcecem .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2166,7 +2164,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-right-color: #D3D3D3;
 }
 
-#pplaxhrkny .gt_footnote {
+#onzwdcecem .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2175,7 +2173,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 5px;
 }
 
-#pplaxhrkny .gt_sourcenotes {
+#onzwdcecem .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2189,7 +2187,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-right-color: #D3D3D3;
 }
 
-#pplaxhrkny .gt_sourcenote {
+#onzwdcecem .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2197,72 +2195,72 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 5px;
 }
 
-#pplaxhrkny .gt_left {
+#onzwdcecem .gt_left {
   text-align: left;
 }
 
-#pplaxhrkny .gt_center {
+#onzwdcecem .gt_center {
   text-align: center;
 }
 
-#pplaxhrkny .gt_right {
+#onzwdcecem .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pplaxhrkny .gt_font_normal {
+#onzwdcecem .gt_font_normal {
   font-weight: normal;
 }
 
-#pplaxhrkny .gt_font_bold {
+#onzwdcecem .gt_font_bold {
   font-weight: bold;
 }
 
-#pplaxhrkny .gt_font_italic {
+#onzwdcecem .gt_font_italic {
   font-style: italic;
 }
 
-#pplaxhrkny .gt_super {
+#onzwdcecem .gt_super {
   font-size: 65%;
 }
 
-#pplaxhrkny .gt_footnote_marks {
+#onzwdcecem .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#pplaxhrkny .gt_asterisk {
+#onzwdcecem .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#pplaxhrkny .gt_indent_1 {
+#onzwdcecem .gt_indent_1 {
   text-indent: 5px;
 }
 
-#pplaxhrkny .gt_indent_2 {
+#onzwdcecem .gt_indent_2 {
   text-indent: 10px;
 }
 
-#pplaxhrkny .gt_indent_3 {
+#onzwdcecem .gt_indent_3 {
   text-indent: 15px;
 }
 
-#pplaxhrkny .gt_indent_4 {
+#onzwdcecem .gt_indent_4 {
   text-indent: 20px;
 }
 
-#pplaxhrkny .gt_indent_5 {
+#onzwdcecem .gt_indent_5 {
   text-indent: 25px;
 }
 
-#pplaxhrkny .katex-display {
+#onzwdcecem .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#pplaxhrkny div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#onzwdcecem div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2361,24 +2359,24 @@ A bit more on pipes (<code>%&gt;%</code>)
 </div>
 </div>
 <div class="quarto-layout-row">
-<div id="bnsdnxounw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="butxtgklxg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#bnsdnxounw table {
+#butxtgklxg table {
   font-family: Lato, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#bnsdnxounw thead, #bnsdnxounw tbody, #bnsdnxounw tfoot, #bnsdnxounw tr, #bnsdnxounw td, #bnsdnxounw th {
+#butxtgklxg thead, #butxtgklxg tbody, #butxtgklxg tfoot, #butxtgklxg tr, #butxtgklxg td, #butxtgklxg th {
   border-style: none;
 }
 
-#bnsdnxounw p {
+#butxtgklxg p {
   margin: 0;
   padding: 0;
 }
 
-#bnsdnxounw .gt_table {
+#butxtgklxg .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2404,12 +2402,12 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-left-color: #D3D3D3;
 }
 
-#bnsdnxounw .gt_caption {
+#butxtgklxg .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#bnsdnxounw .gt_title {
+#butxtgklxg .gt_title {
   color: #333333;
   font-size: 24px;
   font-weight: initial;
@@ -2421,7 +2419,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-bottom-width: 0;
 }
 
-#bnsdnxounw .gt_subtitle {
+#butxtgklxg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2433,7 +2431,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-top-width: 0;
 }
 
-#bnsdnxounw .gt_heading {
+#butxtgklxg .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -2445,13 +2443,13 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-right-color: #D3D3D3;
 }
 
-#bnsdnxounw .gt_bottom_border {
+#butxtgklxg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#bnsdnxounw .gt_col_headings {
+#butxtgklxg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2466,7 +2464,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-right-color: #D3D3D3;
 }
 
-#bnsdnxounw .gt_col_heading {
+#butxtgklxg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -2486,7 +2484,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   overflow-x: hidden;
 }
 
-#bnsdnxounw .gt_column_spanner_outer {
+#butxtgklxg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -2498,15 +2496,15 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 4px;
 }
 
-#bnsdnxounw .gt_column_spanner_outer:first-child {
+#butxtgklxg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#bnsdnxounw .gt_column_spanner_outer:last-child {
+#butxtgklxg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#bnsdnxounw .gt_column_spanner {
+#butxtgklxg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2518,11 +2516,11 @@ A bit more on pipes (<code>%&gt;%</code>)
   width: 100%;
 }
 
-#bnsdnxounw .gt_spanner_row {
+#butxtgklxg .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#bnsdnxounw .gt_group_heading {
+#butxtgklxg .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2548,7 +2546,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   text-align: left;
 }
 
-#bnsdnxounw .gt_empty_group_heading {
+#butxtgklxg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2563,15 +2561,15 @@ A bit more on pipes (<code>%&gt;%</code>)
   vertical-align: middle;
 }
 
-#bnsdnxounw .gt_from_md > :first-child {
+#butxtgklxg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#bnsdnxounw .gt_from_md > :last-child {
+#butxtgklxg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#bnsdnxounw .gt_row {
+#butxtgklxg .gt_row {
   padding-top: 7px;
   padding-bottom: 7px;
   padding-left: 5px;
@@ -2590,7 +2588,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   overflow-x: hidden;
 }
 
-#bnsdnxounw .gt_stub {
+#butxtgklxg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -2603,7 +2601,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 5px;
 }
 
-#bnsdnxounw .gt_stub_row_group {
+#butxtgklxg .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2617,15 +2615,15 @@ A bit more on pipes (<code>%&gt;%</code>)
   vertical-align: top;
 }
 
-#bnsdnxounw .gt_row_group_first td {
+#butxtgklxg .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#bnsdnxounw .gt_row_group_first th {
+#butxtgklxg .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#bnsdnxounw .gt_summary_row {
+#butxtgklxg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2635,16 +2633,16 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 5px;
 }
 
-#bnsdnxounw .gt_first_summary_row {
+#butxtgklxg .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#bnsdnxounw .gt_first_summary_row.thick {
+#butxtgklxg .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#bnsdnxounw .gt_last_summary_row {
+#butxtgklxg .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2654,7 +2652,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-bottom-color: #D3D3D3;
 }
 
-#bnsdnxounw .gt_grand_summary_row {
+#butxtgklxg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2664,7 +2662,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 5px;
 }
 
-#bnsdnxounw .gt_first_grand_summary_row {
+#butxtgklxg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2674,7 +2672,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-top-color: #D3D3D3;
 }
 
-#bnsdnxounw .gt_last_grand_summary_row_top {
+#butxtgklxg .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2684,11 +2682,11 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-bottom-color: #D3D3D3;
 }
 
-#bnsdnxounw .gt_striped {
+#butxtgklxg .gt_striped {
   background-color: #FAFAFA;
 }
 
-#bnsdnxounw .gt_table_body {
+#butxtgklxg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2697,7 +2695,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-bottom-color: #D3D3D3;
 }
 
-#bnsdnxounw .gt_footnotes {
+#butxtgklxg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2711,7 +2709,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-right-color: #D3D3D3;
 }
 
-#bnsdnxounw .gt_footnote {
+#butxtgklxg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2720,7 +2718,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 5px;
 }
 
-#bnsdnxounw .gt_sourcenotes {
+#butxtgklxg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2734,7 +2732,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-right-color: #D3D3D3;
 }
 
-#bnsdnxounw .gt_sourcenote {
+#butxtgklxg .gt_sourcenote {
   font-size: 12px;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2742,72 +2740,72 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 5px;
 }
 
-#bnsdnxounw .gt_left {
+#butxtgklxg .gt_left {
   text-align: left;
 }
 
-#bnsdnxounw .gt_center {
+#butxtgklxg .gt_center {
   text-align: center;
 }
 
-#bnsdnxounw .gt_right {
+#butxtgklxg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#bnsdnxounw .gt_font_normal {
+#butxtgklxg .gt_font_normal {
   font-weight: normal;
 }
 
-#bnsdnxounw .gt_font_bold {
+#butxtgklxg .gt_font_bold {
   font-weight: bold;
 }
 
-#bnsdnxounw .gt_font_italic {
+#butxtgklxg .gt_font_italic {
   font-style: italic;
 }
 
-#bnsdnxounw .gt_super {
+#butxtgklxg .gt_super {
   font-size: 65%;
 }
 
-#bnsdnxounw .gt_footnote_marks {
+#butxtgklxg .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#bnsdnxounw .gt_asterisk {
+#butxtgklxg .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#bnsdnxounw .gt_indent_1 {
+#butxtgklxg .gt_indent_1 {
   text-indent: 5px;
 }
 
-#bnsdnxounw .gt_indent_2 {
+#butxtgklxg .gt_indent_2 {
   text-indent: 10px;
 }
 
-#bnsdnxounw .gt_indent_3 {
+#butxtgklxg .gt_indent_3 {
   text-indent: 15px;
 }
 
-#bnsdnxounw .gt_indent_4 {
+#butxtgklxg .gt_indent_4 {
   text-indent: 20px;
 }
 
-#bnsdnxounw .gt_indent_5 {
+#butxtgklxg .gt_indent_5 {
   text-indent: 25px;
 }
 
-#bnsdnxounw .katex-display {
+#butxtgklxg .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#bnsdnxounw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#butxtgklxg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2912,84 +2910,84 @@ A bit more on pipes (<code>%&gt;%</code>)
 <p>With <code>gtExtras</code>, you can do some cool things, like grouping specific variables together and plotting continuous variables right in your table. You can also apply some interesting visual styles:</p>
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># These codes are more complex, but I'm including them here for extra credit in case anyone is curious to see how it's done (and how relatively easy it is).</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>small_star_wars <span class="sc">%&gt;%</span></span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, species, homeworld) <span class="sc">%&gt;%</span> </span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Here we select the subset of the total variables we want to include</span></span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(homeworld) <span class="sc">%&gt;%</span> </span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Group them together by one of those variables (here `homeworld`)</span></span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_theme_pff</span>() </span>
-<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Plot, and then apply a theme</span></span>
-<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>small_star_wars <span class="sc">%&gt;%</span></span>
-<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, species, homeworld) <span class="sc">%&gt;%</span></span>
-<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
-<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_theme_excel</span>()</span>
-<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Same as above, just grouping by `species` and changing the theme</span></span>
-<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>small_star_wars <span class="sc">%&gt;%</span></span>
-<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, species, hair_color) <span class="sc">%&gt;%</span></span>
-<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
-<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_theme_dot_matrix</span>()</span>
-<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Same as above, just looking at hair color and changing the theme</span></span>
-<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a>agg_star_wars <span class="ot">&lt;-</span> starwars <span class="sc">%&gt;%</span></span>
-<span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This is a bit more complicated </span></span>
-<span id="cb44-28"><a href="#cb44-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># To show more interesting distributions, I'm using the whole `starwars` dataset to include more data points</span></span>
-<span id="cb44-29"><a href="#cb44-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Human"</span>, <span class="st">"Droid"</span>, <span class="st">"Gungan"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb44-30"><a href="#cb44-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># I'm filtering to just a few species that have more than 2 entries</span></span>
-<span id="cb44-31"><a href="#cb44-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, height, mass, birth_year) <span class="sc">%&gt;%</span> </span>
-<span id="cb44-32"><a href="#cb44-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Selecting the variables we want to include and grouping by species</span></span>
-<span id="cb44-33"><a href="#cb44-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span>   </span>
-<span id="cb44-34"><a href="#cb44-34" aria-hidden="true" tabindex="-1"></a>  <span class="co"># To make the plots, gtExtras requires your continuous variables to be in list form, so we do that using `summarize` and `list`</span></span>
-<span id="cb44-35"><a href="#cb44-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb44-36"><a href="#cb44-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">Height =</span> <span class="fu">list</span>(height),  </span>
-<span id="cb44-37"><a href="#cb44-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">Weight =</span> <span class="fu">list</span>(mass),    </span>
-<span id="cb44-38"><a href="#cb44-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">Born =</span> <span class="fu">list</span>(birth_year) </span>
-<span id="cb44-39"><a href="#cb44-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># This generates a list, by our grouping variable, of each observation's height, mass, and birth year</span></span>
-<span id="cb44-40"><a href="#cb44-40" aria-hidden="true" tabindex="-1"></a>  ) <span class="co"># And we save all this as an "aggregated" dataset named `agg_star_wars`</span></span>
-<span id="cb44-41"><a href="#cb44-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-42"><a href="#cb44-42" aria-hidden="true" tabindex="-1"></a>agg_star_wars <span class="sc">%&gt;%</span></span>
-<span id="cb44-43"><a href="#cb44-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb44-44"><a href="#cb44-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_plt_dist</span>(        </span>
-<span id="cb44-45"><a href="#cb44-45" aria-hidden="true" tabindex="-1"></a>    Height,</span>
-<span id="cb44-46"><a href="#cb44-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"density"</span> </span>
-<span id="cb44-47"><a href="#cb44-47" aria-hidden="true" tabindex="-1"></a>    <span class="co"># This is the code to generate the distribution plots, with arguments to tell it what type of plot we want</span></span>
-<span id="cb44-48"><a href="#cb44-48" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb44-49"><a href="#cb44-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_plt_dist</span>(</span>
-<span id="cb44-50"><a href="#cb44-50" aria-hidden="true" tabindex="-1"></a>    Weight,</span>
-<span id="cb44-51"><a href="#cb44-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"boxplot"</span></span>
-<span id="cb44-52"><a href="#cb44-52" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb44-53"><a href="#cb44-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_plt_dist</span>(</span>
-<span id="cb44-54"><a href="#cb44-54" aria-hidden="true" tabindex="-1"></a>    Born,</span>
-<span id="cb44-55"><a href="#cb44-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"rug_strip"</span></span>
-<span id="cb44-56"><a href="#cb44-56" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb44-57"><a href="#cb44-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_theme_nytimes</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># These codes are more complex, but I'm including them here for extra credit in case anyone is curious to see how it's done (and how relatively easy it is).</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>small_star_wars <span class="sc">%&gt;%</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, species, homeworld) <span class="sc">%&gt;%</span> </span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Here we select the subset of the total variables we want to include</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(homeworld) <span class="sc">%&gt;%</span> </span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Group them together by one of those variables (here `homeworld`)</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_theme_pff</span>() </span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Plot, and then apply a theme</span></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>small_star_wars <span class="sc">%&gt;%</span></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, species, homeworld) <span class="sc">%&gt;%</span></span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_theme_excel</span>()</span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Same as above, just grouping by `species` and changing the theme</span></span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>small_star_wars <span class="sc">%&gt;%</span></span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, species, hair_color) <span class="sc">%&gt;%</span></span>
+<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
+<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_theme_dot_matrix</span>()</span>
+<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Same as above, just looking at hair color and changing the theme</span></span>
+<span id="cb42-25"><a href="#cb42-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-26"><a href="#cb42-26" aria-hidden="true" tabindex="-1"></a>agg_star_wars <span class="ot">&lt;-</span> starwars <span class="sc">%&gt;%</span></span>
+<span id="cb42-27"><a href="#cb42-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This is a bit more complicated </span></span>
+<span id="cb42-28"><a href="#cb42-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># To show more interesting distributions, I'm using the whole `starwars` dataset to include more data points</span></span>
+<span id="cb42-29"><a href="#cb42-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Human"</span>, <span class="st">"Droid"</span>, <span class="st">"Gungan"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb42-30"><a href="#cb42-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># I'm filtering to just a few species that have more than 2 entries</span></span>
+<span id="cb42-31"><a href="#cb42-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, height, mass, birth_year) <span class="sc">%&gt;%</span> </span>
+<span id="cb42-32"><a href="#cb42-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Selecting the variables we want to include and grouping by species</span></span>
+<span id="cb42-33"><a href="#cb42-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span>   </span>
+<span id="cb42-34"><a href="#cb42-34" aria-hidden="true" tabindex="-1"></a>  <span class="co"># To make the plots, gtExtras requires your continuous variables to be in list form, so we do that using `summarize` and `list`</span></span>
+<span id="cb42-35"><a href="#cb42-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb42-36"><a href="#cb42-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">Height =</span> <span class="fu">list</span>(height),  </span>
+<span id="cb42-37"><a href="#cb42-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">Weight =</span> <span class="fu">list</span>(mass),    </span>
+<span id="cb42-38"><a href="#cb42-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">Born =</span> <span class="fu">list</span>(birth_year) </span>
+<span id="cb42-39"><a href="#cb42-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># This generates a list, by our grouping variable, of each observation's height, mass, and birth year</span></span>
+<span id="cb42-40"><a href="#cb42-40" aria-hidden="true" tabindex="-1"></a>  ) <span class="co"># And we save all this as an "aggregated" dataset named `agg_star_wars`</span></span>
+<span id="cb42-41"><a href="#cb42-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-42"><a href="#cb42-42" aria-hidden="true" tabindex="-1"></a>agg_star_wars <span class="sc">%&gt;%</span></span>
+<span id="cb42-43"><a href="#cb42-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb42-44"><a href="#cb42-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_plt_dist</span>(        </span>
+<span id="cb42-45"><a href="#cb42-45" aria-hidden="true" tabindex="-1"></a>    Height,</span>
+<span id="cb42-46"><a href="#cb42-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"density"</span> </span>
+<span id="cb42-47"><a href="#cb42-47" aria-hidden="true" tabindex="-1"></a>    <span class="co"># This is the code to generate the distribution plots, with arguments to tell it what type of plot we want</span></span>
+<span id="cb42-48"><a href="#cb42-48" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb42-49"><a href="#cb42-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_plt_dist</span>(</span>
+<span id="cb42-50"><a href="#cb42-50" aria-hidden="true" tabindex="-1"></a>    Weight,</span>
+<span id="cb42-51"><a href="#cb42-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"boxplot"</span></span>
+<span id="cb42-52"><a href="#cb42-52" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb42-53"><a href="#cb42-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_plt_dist</span>(</span>
+<span id="cb42-54"><a href="#cb42-54" aria-hidden="true" tabindex="-1"></a>    Born,</span>
+<span id="cb42-55"><a href="#cb42-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"rug_strip"</span></span>
+<span id="cb42-56"><a href="#cb42-56" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb42-57"><a href="#cb42-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_theme_nytimes</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell quarto-layout-panel" data-layout="[[45,-1,45,-1,45],[100]]">
 <div class="quarto-layout-row">
-<div id="qoowntaqps" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="mioaynloib" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#qoowntaqps table {
+#mioaynloib table {
   font-family: Roboto, system-ui, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qoowntaqps thead, #qoowntaqps tbody, #qoowntaqps tfoot, #qoowntaqps tr, #qoowntaqps td, #qoowntaqps th {
+#mioaynloib thead, #mioaynloib tbody, #mioaynloib tfoot, #mioaynloib tr, #mioaynloib td, #mioaynloib th {
   border-style: none;
 }
 
-#qoowntaqps p {
+#mioaynloib p {
   margin: 0;
   padding: 0;
 }
 
-#qoowntaqps .gt_table {
+#mioaynloib .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3015,12 +3013,12 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-left-color: #D3D3D3;
 }
 
-#qoowntaqps .gt_caption {
+#mioaynloib .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qoowntaqps .gt_title {
+#mioaynloib .gt_title {
   color: #333333;
   font-size: 30px;
   font-weight: bold;
@@ -3032,7 +3030,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-bottom-width: 0;
 }
 
-#qoowntaqps .gt_subtitle {
+#mioaynloib .gt_subtitle {
   color: #333333;
   font-size: 16px;
   font-weight: initial;
@@ -3044,7 +3042,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-top-width: 0;
 }
 
-#qoowntaqps .gt_heading {
+#mioaynloib .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -3056,13 +3054,13 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-right-color: #D3D3D3;
 }
 
-#qoowntaqps .gt_bottom_border {
+#mioaynloib .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qoowntaqps .gt_col_headings {
+#mioaynloib .gt_col_headings {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: rgba(255, 255, 255, 0);
@@ -3077,7 +3075,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-right-color: #D3D3D3;
 }
 
-#qoowntaqps .gt_col_heading {
+#mioaynloib .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -3097,7 +3095,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   overflow-x: hidden;
 }
 
-#qoowntaqps .gt_column_spanner_outer {
+#mioaynloib .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -3109,15 +3107,15 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 4px;
 }
 
-#qoowntaqps .gt_column_spanner_outer:first-child {
+#mioaynloib .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qoowntaqps .gt_column_spanner_outer:last-child {
+#mioaynloib .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qoowntaqps .gt_column_spanner {
+#mioaynloib .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 3px;
   border-bottom-color: rgba(255, 255, 255, 0);
@@ -3129,11 +3127,11 @@ A bit more on pipes (<code>%&gt;%</code>)
   width: 100%;
 }
 
-#qoowntaqps .gt_spanner_row {
+#mioaynloib .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qoowntaqps .gt_group_heading {
+#mioaynloib .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3159,7 +3157,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   text-align: left;
 }
 
-#qoowntaqps .gt_empty_group_heading {
+#mioaynloib .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3174,15 +3172,15 @@ A bit more on pipes (<code>%&gt;%</code>)
   vertical-align: middle;
 }
 
-#qoowntaqps .gt_from_md > :first-child {
+#mioaynloib .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qoowntaqps .gt_from_md > :last-child {
+#mioaynloib .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qoowntaqps .gt_row {
+#mioaynloib .gt_row {
   padding-top: 6px;
   padding-bottom: 6px;
   padding-left: 5px;
@@ -3201,7 +3199,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   overflow-x: hidden;
 }
 
-#qoowntaqps .gt_stub {
+#mioaynloib .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -3214,7 +3212,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 5px;
 }
 
-#qoowntaqps .gt_stub_row_group {
+#mioaynloib .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3228,15 +3226,15 @@ A bit more on pipes (<code>%&gt;%</code>)
   vertical-align: top;
 }
 
-#qoowntaqps .gt_row_group_first td {
+#mioaynloib .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qoowntaqps .gt_row_group_first th {
+#mioaynloib .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qoowntaqps .gt_summary_row {
+#mioaynloib .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3246,16 +3244,16 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 5px;
 }
 
-#qoowntaqps .gt_first_summary_row {
+#mioaynloib .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qoowntaqps .gt_first_summary_row.thick {
+#mioaynloib .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qoowntaqps .gt_last_summary_row {
+#mioaynloib .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3265,7 +3263,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-bottom-color: #D3D3D3;
 }
 
-#qoowntaqps .gt_grand_summary_row {
+#mioaynloib .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3275,7 +3273,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 5px;
 }
 
-#qoowntaqps .gt_first_grand_summary_row {
+#mioaynloib .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3285,7 +3283,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-top-color: #D3D3D3;
 }
 
-#qoowntaqps .gt_last_grand_summary_row_top {
+#mioaynloib .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3295,11 +3293,11 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-bottom-color: #D3D3D3;
 }
 
-#qoowntaqps .gt_striped {
+#mioaynloib .gt_striped {
   background-color: #F5F5F5;
 }
 
-#qoowntaqps .gt_table_body {
+#mioaynloib .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3308,7 +3306,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-bottom-color: #D3D3D3;
 }
 
-#qoowntaqps .gt_footnotes {
+#mioaynloib .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3322,7 +3320,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-right-color: #D3D3D3;
 }
 
-#qoowntaqps .gt_footnote {
+#mioaynloib .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3331,7 +3329,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 5px;
 }
 
-#qoowntaqps .gt_sourcenotes {
+#mioaynloib .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3345,7 +3343,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-right-color: #D3D3D3;
 }
 
-#qoowntaqps .gt_sourcenote {
+#mioaynloib .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3353,72 +3351,72 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 5px;
 }
 
-#qoowntaqps .gt_left {
+#mioaynloib .gt_left {
   text-align: left;
 }
 
-#qoowntaqps .gt_center {
+#mioaynloib .gt_center {
   text-align: center;
 }
 
-#qoowntaqps .gt_right {
+#mioaynloib .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qoowntaqps .gt_font_normal {
+#mioaynloib .gt_font_normal {
   font-weight: normal;
 }
 
-#qoowntaqps .gt_font_bold {
+#mioaynloib .gt_font_bold {
   font-weight: bold;
 }
 
-#qoowntaqps .gt_font_italic {
+#mioaynloib .gt_font_italic {
   font-style: italic;
 }
 
-#qoowntaqps .gt_super {
+#mioaynloib .gt_super {
   font-size: 65%;
 }
 
-#qoowntaqps .gt_footnote_marks {
+#mioaynloib .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qoowntaqps .gt_asterisk {
+#mioaynloib .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qoowntaqps .gt_indent_1 {
+#mioaynloib .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qoowntaqps .gt_indent_2 {
+#mioaynloib .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qoowntaqps .gt_indent_3 {
+#mioaynloib .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qoowntaqps .gt_indent_4 {
+#mioaynloib .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qoowntaqps .gt_indent_5 {
+#mioaynloib .gt_indent_5 {
   text-indent: 25px;
 }
 
-#qoowntaqps .katex-display {
+#mioaynloib .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#qoowntaqps div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#mioaynloib div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -3477,23 +3475,23 @@ A bit more on pipes (<code>%&gt;%</code>)
 <div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 0.7%;justify-content: flex-start;">
 <p>&nbsp;</p>
 </div>
-<div id="tfpmrmcmsz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#tfpmrmcmsz table {
+<div id="wqobjrelyp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wqobjrelyp table {
   font-family: Calibri, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#tfpmrmcmsz thead, #tfpmrmcmsz tbody, #tfpmrmcmsz tfoot, #tfpmrmcmsz tr, #tfpmrmcmsz td, #tfpmrmcmsz th {
+#wqobjrelyp thead, #wqobjrelyp tbody, #wqobjrelyp tfoot, #wqobjrelyp tr, #wqobjrelyp td, #wqobjrelyp th {
   border-style: none;
 }
 
-#tfpmrmcmsz p {
+#wqobjrelyp p {
   margin: 0;
   padding: 0;
 }
 
-#tfpmrmcmsz .gt_table {
+#wqobjrelyp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3519,12 +3517,12 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-left-color: #000000;
 }
 
-#tfpmrmcmsz .gt_caption {
+#wqobjrelyp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#tfpmrmcmsz .gt_title {
+#wqobjrelyp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3536,7 +3534,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-bottom-width: 0;
 }
 
-#tfpmrmcmsz .gt_subtitle {
+#wqobjrelyp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3548,7 +3546,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-top-width: 0;
 }
 
-#tfpmrmcmsz .gt_heading {
+#wqobjrelyp .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -3560,13 +3558,13 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-right-color: #D3D3D3;
 }
 
-#tfpmrmcmsz .gt_bottom_border {
+#wqobjrelyp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #000000;
 }
 
-#tfpmrmcmsz .gt_col_headings {
+#wqobjrelyp .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3581,7 +3579,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-right-color: #D3D3D3;
 }
 
-#tfpmrmcmsz .gt_col_heading {
+#wqobjrelyp .gt_col_heading {
   color: #FFFFFF;
   background-color: #000000;
   font-size: 85%;
@@ -3601,7 +3599,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   overflow-x: hidden;
 }
 
-#tfpmrmcmsz .gt_column_spanner_outer {
+#wqobjrelyp .gt_column_spanner_outer {
   color: #FFFFFF;
   background-color: #000000;
   font-size: 85%;
@@ -3613,15 +3611,15 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 4px;
 }
 
-#tfpmrmcmsz .gt_column_spanner_outer:first-child {
+#wqobjrelyp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tfpmrmcmsz .gt_column_spanner_outer:last-child {
+#wqobjrelyp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tfpmrmcmsz .gt_column_spanner {
+#wqobjrelyp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #000000;
@@ -3633,11 +3631,11 @@ A bit more on pipes (<code>%&gt;%</code>)
   width: 100%;
 }
 
-#tfpmrmcmsz .gt_spanner_row {
+#wqobjrelyp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#tfpmrmcmsz .gt_group_heading {
+#wqobjrelyp .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3663,7 +3661,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   text-align: left;
 }
 
-#tfpmrmcmsz .gt_empty_group_heading {
+#wqobjrelyp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3678,15 +3676,15 @@ A bit more on pipes (<code>%&gt;%</code>)
   vertical-align: middle;
 }
 
-#tfpmrmcmsz .gt_from_md > :first-child {
+#wqobjrelyp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tfpmrmcmsz .gt_from_md > :last-child {
+#wqobjrelyp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tfpmrmcmsz .gt_row {
+#wqobjrelyp .gt_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -3705,7 +3703,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   overflow-x: hidden;
 }
 
-#tfpmrmcmsz .gt_stub {
+#wqobjrelyp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3718,7 +3716,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 5px;
 }
 
-#tfpmrmcmsz .gt_stub_row_group {
+#wqobjrelyp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3732,15 +3730,15 @@ A bit more on pipes (<code>%&gt;%</code>)
   vertical-align: top;
 }
 
-#tfpmrmcmsz .gt_row_group_first td {
+#wqobjrelyp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#tfpmrmcmsz .gt_row_group_first th {
+#wqobjrelyp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#tfpmrmcmsz .gt_summary_row {
+#wqobjrelyp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3750,16 +3748,16 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 5px;
 }
 
-#tfpmrmcmsz .gt_first_summary_row {
+#wqobjrelyp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#tfpmrmcmsz .gt_first_summary_row.thick {
+#wqobjrelyp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#tfpmrmcmsz .gt_last_summary_row {
+#wqobjrelyp .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3769,7 +3767,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-bottom-color: #D3D3D3;
 }
 
-#tfpmrmcmsz .gt_grand_summary_row {
+#wqobjrelyp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3779,7 +3777,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 5px;
 }
 
-#tfpmrmcmsz .gt_first_grand_summary_row {
+#wqobjrelyp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3789,7 +3787,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-top-color: #D3D3D3;
 }
 
-#tfpmrmcmsz .gt_last_grand_summary_row_top {
+#wqobjrelyp .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3799,11 +3797,11 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-bottom-color: #D3D3D3;
 }
 
-#tfpmrmcmsz .gt_striped {
+#wqobjrelyp .gt_striped {
   background-color: #D3D3D3;
 }
 
-#tfpmrmcmsz .gt_table_body {
+#wqobjrelyp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3812,7 +3810,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-bottom-color: #D3D3D3;
 }
 
-#tfpmrmcmsz .gt_footnotes {
+#wqobjrelyp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3826,7 +3824,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-right-color: #D3D3D3;
 }
 
-#tfpmrmcmsz .gt_footnote {
+#wqobjrelyp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3835,7 +3833,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 5px;
 }
 
-#tfpmrmcmsz .gt_sourcenotes {
+#wqobjrelyp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3849,7 +3847,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-right-color: #D3D3D3;
 }
 
-#tfpmrmcmsz .gt_sourcenote {
+#wqobjrelyp .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3857,72 +3855,72 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 5px;
 }
 
-#tfpmrmcmsz .gt_left {
+#wqobjrelyp .gt_left {
   text-align: left;
 }
 
-#tfpmrmcmsz .gt_center {
+#wqobjrelyp .gt_center {
   text-align: center;
 }
 
-#tfpmrmcmsz .gt_right {
+#wqobjrelyp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tfpmrmcmsz .gt_font_normal {
+#wqobjrelyp .gt_font_normal {
   font-weight: normal;
 }
 
-#tfpmrmcmsz .gt_font_bold {
+#wqobjrelyp .gt_font_bold {
   font-weight: bold;
 }
 
-#tfpmrmcmsz .gt_font_italic {
+#wqobjrelyp .gt_font_italic {
   font-style: italic;
 }
 
-#tfpmrmcmsz .gt_super {
+#wqobjrelyp .gt_super {
   font-size: 65%;
 }
 
-#tfpmrmcmsz .gt_footnote_marks {
+#wqobjrelyp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#tfpmrmcmsz .gt_asterisk {
+#wqobjrelyp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#tfpmrmcmsz .gt_indent_1 {
+#wqobjrelyp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#tfpmrmcmsz .gt_indent_2 {
+#wqobjrelyp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#tfpmrmcmsz .gt_indent_3 {
+#wqobjrelyp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#tfpmrmcmsz .gt_indent_4 {
+#wqobjrelyp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#tfpmrmcmsz .gt_indent_5 {
+#wqobjrelyp .gt_indent_5 {
   text-indent: 25px;
 }
 
-#tfpmrmcmsz .katex-display {
+#wqobjrelyp .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#tfpmrmcmsz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#wqobjrelyp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -3975,23 +3973,23 @@ A bit more on pipes (<code>%&gt;%</code>)
 <div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 0.7%;justify-content: flex-start;">
 <p>&nbsp;</p>
 </div>
-<div id="mismbtyqwr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#mismbtyqwr table {
+<div id="fixnbqyhsy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fixnbqyhsy table {
   font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#mismbtyqwr thead, #mismbtyqwr tbody, #mismbtyqwr tfoot, #mismbtyqwr tr, #mismbtyqwr td, #mismbtyqwr th {
+#fixnbqyhsy thead, #fixnbqyhsy tbody, #fixnbqyhsy tfoot, #fixnbqyhsy tr, #fixnbqyhsy td, #fixnbqyhsy th {
   border-style: none;
 }
 
-#mismbtyqwr p {
+#fixnbqyhsy p {
   margin: 0;
   padding: 0;
 }
 
-#mismbtyqwr .gt_table {
+#fixnbqyhsy .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -4017,12 +4015,12 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-left-color: #D3D3D3;
 }
 
-#mismbtyqwr .gt_caption {
+#fixnbqyhsy .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#mismbtyqwr .gt_title {
+#fixnbqyhsy .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -4034,7 +4032,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-bottom-width: 0;
 }
 
-#mismbtyqwr .gt_subtitle {
+#fixnbqyhsy .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -4046,7 +4044,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-top-width: 0;
 }
 
-#mismbtyqwr .gt_heading {
+#fixnbqyhsy .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -4058,13 +4056,13 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-right-color: #D3D3D3;
 }
 
-#mismbtyqwr .gt_bottom_border {
+#fixnbqyhsy .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #FFFFFF;
 }
 
-#mismbtyqwr .gt_col_headings {
+#fixnbqyhsy .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4079,7 +4077,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-right-color: #D3D3D3;
 }
 
-#mismbtyqwr .gt_col_heading {
+#fixnbqyhsy .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 85%;
@@ -4099,7 +4097,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   overflow-x: hidden;
 }
 
-#mismbtyqwr .gt_column_spanner_outer {
+#fixnbqyhsy .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 85%;
@@ -4111,15 +4109,15 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 4px;
 }
 
-#mismbtyqwr .gt_column_spanner_outer:first-child {
+#fixnbqyhsy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mismbtyqwr .gt_column_spanner_outer:last-child {
+#fixnbqyhsy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mismbtyqwr .gt_column_spanner {
+#fixnbqyhsy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #000000;
@@ -4131,11 +4129,11 @@ A bit more on pipes (<code>%&gt;%</code>)
   width: 100%;
 }
 
-#mismbtyqwr .gt_spanner_row {
+#fixnbqyhsy .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#mismbtyqwr .gt_group_heading {
+#fixnbqyhsy .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4161,7 +4159,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   text-align: left;
 }
 
-#mismbtyqwr .gt_empty_group_heading {
+#fixnbqyhsy .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -4176,15 +4174,15 @@ A bit more on pipes (<code>%&gt;%</code>)
   vertical-align: middle;
 }
 
-#mismbtyqwr .gt_from_md > :first-child {
+#fixnbqyhsy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mismbtyqwr .gt_from_md > :last-child {
+#fixnbqyhsy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mismbtyqwr .gt_row {
+#fixnbqyhsy .gt_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -4203,7 +4201,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   overflow-x: hidden;
 }
 
-#mismbtyqwr .gt_stub {
+#fixnbqyhsy .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4216,7 +4214,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 5px;
 }
 
-#mismbtyqwr .gt_stub_row_group {
+#fixnbqyhsy .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4230,15 +4228,15 @@ A bit more on pipes (<code>%&gt;%</code>)
   vertical-align: top;
 }
 
-#mismbtyqwr .gt_row_group_first td {
+#fixnbqyhsy .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#mismbtyqwr .gt_row_group_first th {
+#fixnbqyhsy .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#mismbtyqwr .gt_summary_row {
+#fixnbqyhsy .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4248,16 +4246,16 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 5px;
 }
 
-#mismbtyqwr .gt_first_summary_row {
+#fixnbqyhsy .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#mismbtyqwr .gt_first_summary_row.thick {
+#fixnbqyhsy .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#mismbtyqwr .gt_last_summary_row {
+#fixnbqyhsy .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4267,7 +4265,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-bottom-color: #D3D3D3;
 }
 
-#mismbtyqwr .gt_grand_summary_row {
+#fixnbqyhsy .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4277,7 +4275,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 5px;
 }
 
-#mismbtyqwr .gt_first_grand_summary_row {
+#fixnbqyhsy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4287,7 +4285,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-top-color: #D3D3D3;
 }
 
-#mismbtyqwr .gt_last_grand_summary_row_top {
+#fixnbqyhsy .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4297,11 +4295,11 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-bottom-color: #D3D3D3;
 }
 
-#mismbtyqwr .gt_striped {
+#fixnbqyhsy .gt_striped {
   background-color: #B5DBB6;
 }
 
-#mismbtyqwr .gt_table_body {
+#fixnbqyhsy .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4310,7 +4308,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-bottom-color: #D3D3D3;
 }
 
-#mismbtyqwr .gt_footnotes {
+#fixnbqyhsy .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4324,7 +4322,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-right-color: #D3D3D3;
 }
 
-#mismbtyqwr .gt_footnote {
+#fixnbqyhsy .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -4333,7 +4331,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 5px;
 }
 
-#mismbtyqwr .gt_sourcenotes {
+#fixnbqyhsy .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4347,7 +4345,7 @@ A bit more on pipes (<code>%&gt;%</code>)
   border-right-color: #D3D3D3;
 }
 
-#mismbtyqwr .gt_sourcenote {
+#fixnbqyhsy .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -4355,72 +4353,72 @@ A bit more on pipes (<code>%&gt;%</code>)
   padding-right: 5px;
 }
 
-#mismbtyqwr .gt_left {
+#fixnbqyhsy .gt_left {
   text-align: left;
 }
 
-#mismbtyqwr .gt_center {
+#fixnbqyhsy .gt_center {
   text-align: center;
 }
 
-#mismbtyqwr .gt_right {
+#fixnbqyhsy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mismbtyqwr .gt_font_normal {
+#fixnbqyhsy .gt_font_normal {
   font-weight: normal;
 }
 
-#mismbtyqwr .gt_font_bold {
+#fixnbqyhsy .gt_font_bold {
   font-weight: bold;
 }
 
-#mismbtyqwr .gt_font_italic {
+#fixnbqyhsy .gt_font_italic {
   font-style: italic;
 }
 
-#mismbtyqwr .gt_super {
+#fixnbqyhsy .gt_super {
   font-size: 65%;
 }
 
-#mismbtyqwr .gt_footnote_marks {
+#fixnbqyhsy .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#mismbtyqwr .gt_asterisk {
+#fixnbqyhsy .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#mismbtyqwr .gt_indent_1 {
+#fixnbqyhsy .gt_indent_1 {
   text-indent: 5px;
 }
 
-#mismbtyqwr .gt_indent_2 {
+#fixnbqyhsy .gt_indent_2 {
   text-indent: 10px;
 }
 
-#mismbtyqwr .gt_indent_3 {
+#fixnbqyhsy .gt_indent_3 {
   text-indent: 15px;
 }
 
-#mismbtyqwr .gt_indent_4 {
+#fixnbqyhsy .gt_indent_4 {
   text-indent: 20px;
 }
 
-#mismbtyqwr .gt_indent_5 {
+#fixnbqyhsy .gt_indent_5 {
   text-indent: 25px;
 }
 
-#mismbtyqwr .katex-display {
+#fixnbqyhsy .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#mismbtyqwr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#fixnbqyhsy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 
@@ -4476,26 +4474,26 @@ tbody tr:last-child {
 </div>
 </div>
 <div class="quarto-layout-row">
-<div id="ctzmtvbjlf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="wilskmrvyj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#ctzmtvbjlf table {
+#wilskmrvyj table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ctzmtvbjlf thead, #ctzmtvbjlf tbody, #ctzmtvbjlf tfoot, #ctzmtvbjlf tr, #ctzmtvbjlf td, #ctzmtvbjlf th {
+#wilskmrvyj thead, #wilskmrvyj tbody, #wilskmrvyj tfoot, #wilskmrvyj tr, #wilskmrvyj td, #wilskmrvyj th {
   border-style: none;
 }
 
-#ctzmtvbjlf p {
+#wilskmrvyj p {
   margin: 0;
   padding: 0;
 }
 
-#ctzmtvbjlf .gt_table {
+#wilskmrvyj .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -4521,12 +4519,12 @@ tbody tr:last-child {
   border-left-color: #D3D3D3;
 }
 
-#ctzmtvbjlf .gt_caption {
+#wilskmrvyj .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ctzmtvbjlf .gt_title {
+#wilskmrvyj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -4538,7 +4536,7 @@ tbody tr:last-child {
   border-bottom-width: 0;
 }
 
-#ctzmtvbjlf .gt_subtitle {
+#wilskmrvyj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -4550,7 +4548,7 @@ tbody tr:last-child {
   border-top-width: 0;
 }
 
-#ctzmtvbjlf .gt_heading {
+#wilskmrvyj .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -4562,13 +4560,13 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#ctzmtvbjlf .gt_bottom_border {
+#wilskmrvyj .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ctzmtvbjlf .gt_col_headings {
+#wilskmrvyj .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4583,7 +4581,7 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#ctzmtvbjlf .gt_col_heading {
+#wilskmrvyj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 12px;
@@ -4603,7 +4601,7 @@ tbody tr:last-child {
   overflow-x: hidden;
 }
 
-#ctzmtvbjlf .gt_column_spanner_outer {
+#wilskmrvyj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 12px;
@@ -4615,15 +4613,15 @@ tbody tr:last-child {
   padding-right: 4px;
 }
 
-#ctzmtvbjlf .gt_column_spanner_outer:first-child {
+#wilskmrvyj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ctzmtvbjlf .gt_column_spanner_outer:last-child {
+#wilskmrvyj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ctzmtvbjlf .gt_column_spanner {
+#wilskmrvyj .gt_column_spanner {
   border-bottom-style: none;
   border-bottom-width: 1px;
   border-bottom-color: #334422;
@@ -4635,11 +4633,11 @@ tbody tr:last-child {
   width: 100%;
 }
 
-#ctzmtvbjlf .gt_spanner_row {
+#wilskmrvyj .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ctzmtvbjlf .gt_group_heading {
+#wilskmrvyj .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4665,7 +4663,7 @@ tbody tr:last-child {
   text-align: left;
 }
 
-#ctzmtvbjlf .gt_empty_group_heading {
+#wilskmrvyj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -4680,15 +4678,15 @@ tbody tr:last-child {
   vertical-align: middle;
 }
 
-#ctzmtvbjlf .gt_from_md > :first-child {
+#wilskmrvyj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ctzmtvbjlf .gt_from_md > :last-child {
+#wilskmrvyj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ctzmtvbjlf .gt_row {
+#wilskmrvyj .gt_row {
   padding-top: 7px;
   padding-bottom: 7px;
   padding-left: 5px;
@@ -4707,7 +4705,7 @@ tbody tr:last-child {
   overflow-x: hidden;
 }
 
-#ctzmtvbjlf .gt_stub {
+#wilskmrvyj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4720,7 +4718,7 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#ctzmtvbjlf .gt_stub_row_group {
+#wilskmrvyj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4734,15 +4732,15 @@ tbody tr:last-child {
   vertical-align: top;
 }
 
-#ctzmtvbjlf .gt_row_group_first td {
+#wilskmrvyj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ctzmtvbjlf .gt_row_group_first th {
+#wilskmrvyj .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ctzmtvbjlf .gt_summary_row {
+#wilskmrvyj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4752,16 +4750,16 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#ctzmtvbjlf .gt_first_summary_row {
+#wilskmrvyj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ctzmtvbjlf .gt_first_summary_row.thick {
+#wilskmrvyj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ctzmtvbjlf .gt_last_summary_row {
+#wilskmrvyj .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4771,7 +4769,7 @@ tbody tr:last-child {
   border-bottom-color: #D3D3D3;
 }
 
-#ctzmtvbjlf .gt_grand_summary_row {
+#wilskmrvyj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4781,7 +4779,7 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#ctzmtvbjlf .gt_first_grand_summary_row {
+#wilskmrvyj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4791,7 +4789,7 @@ tbody tr:last-child {
   border-top-color: #D3D3D3;
 }
 
-#ctzmtvbjlf .gt_last_grand_summary_row_top {
+#wilskmrvyj .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4801,11 +4799,11 @@ tbody tr:last-child {
   border-bottom-color: #D3D3D3;
 }
 
-#ctzmtvbjlf .gt_striped {
+#wilskmrvyj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ctzmtvbjlf .gt_table_body {
+#wilskmrvyj .gt_table_body {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4814,7 +4812,7 @@ tbody tr:last-child {
   border-bottom-color: #FFFFFF;
 }
 
-#ctzmtvbjlf .gt_footnotes {
+#wilskmrvyj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4828,7 +4826,7 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#ctzmtvbjlf .gt_footnote {
+#wilskmrvyj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -4837,7 +4835,7 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#ctzmtvbjlf .gt_sourcenotes {
+#wilskmrvyj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4851,7 +4849,7 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#ctzmtvbjlf .gt_sourcenote {
+#wilskmrvyj .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -4859,72 +4857,72 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#ctzmtvbjlf .gt_left {
+#wilskmrvyj .gt_left {
   text-align: left;
 }
 
-#ctzmtvbjlf .gt_center {
+#wilskmrvyj .gt_center {
   text-align: center;
 }
 
-#ctzmtvbjlf .gt_right {
+#wilskmrvyj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ctzmtvbjlf .gt_font_normal {
+#wilskmrvyj .gt_font_normal {
   font-weight: normal;
 }
 
-#ctzmtvbjlf .gt_font_bold {
+#wilskmrvyj .gt_font_bold {
   font-weight: bold;
 }
 
-#ctzmtvbjlf .gt_font_italic {
+#wilskmrvyj .gt_font_italic {
   font-style: italic;
 }
 
-#ctzmtvbjlf .gt_super {
+#wilskmrvyj .gt_super {
   font-size: 65%;
 }
 
-#ctzmtvbjlf .gt_footnote_marks {
+#wilskmrvyj .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ctzmtvbjlf .gt_asterisk {
+#wilskmrvyj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ctzmtvbjlf .gt_indent_1 {
+#wilskmrvyj .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ctzmtvbjlf .gt_indent_2 {
+#wilskmrvyj .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ctzmtvbjlf .gt_indent_3 {
+#wilskmrvyj .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ctzmtvbjlf .gt_indent_4 {
+#wilskmrvyj .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ctzmtvbjlf .gt_indent_5 {
+#wilskmrvyj .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ctzmtvbjlf .katex-display {
+#wilskmrvyj .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ctzmtvbjlf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#wilskmrvyj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -5023,12 +5021,12 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In R, when we want to select just one part of a multi-part variable (like a Data Frame or Tibble), we use the <code>selection operator</code>, represented by <code>$</code>.</p>
+<p>In R, when we want to select just one part of a multi-part variable (like a Data Frame or Tibble), we use the selection operator: <code>$</code>.</p>
 </div>
 </div>
 <p>▶️ Let’s select just the <code>species</code> variable from our Tibble to create a table with one row:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(small_star_wars<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(small_star_wars<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   Droid   Human Wookiee 
@@ -5038,7 +5036,7 @@ Tip
 <p>What if we wanted to add additional information? We can make a multi-dimensional table by separating the two variables with a comma.</p>
 <p>▶️ Let’s look at both species and hair color:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(small_star_wars<span class="sc">$</span>hair_color, small_star_wars<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(small_star_wars<span class="sc">$</span>hair_color, small_star_wars<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       
         Droid Human Wookiee
@@ -5060,26 +5058,26 @@ Handling Missing Data
 <p>Note that R2-D2’s hair (or lack thereof) is recorded as <code>NA</code>:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="ypibiqkvwg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="vggzatqajb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#ypibiqkvwg table {
+#vggzatqajb table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ypibiqkvwg thead, #ypibiqkvwg tbody, #ypibiqkvwg tfoot, #ypibiqkvwg tr, #ypibiqkvwg td, #ypibiqkvwg th {
+#vggzatqajb thead, #vggzatqajb tbody, #vggzatqajb tfoot, #vggzatqajb tr, #vggzatqajb td, #vggzatqajb th {
   border-style: none;
 }
 
-#ypibiqkvwg p {
+#vggzatqajb p {
   margin: 0;
   padding: 0;
 }
 
-#ypibiqkvwg .gt_table {
+#vggzatqajb .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -5105,12 +5103,12 @@ Handling Missing Data
   border-left-color: #D3D3D3;
 }
 
-#ypibiqkvwg .gt_caption {
+#vggzatqajb .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ypibiqkvwg .gt_title {
+#vggzatqajb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -5122,7 +5120,7 @@ Handling Missing Data
   border-bottom-width: 0;
 }
 
-#ypibiqkvwg .gt_subtitle {
+#vggzatqajb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -5134,7 +5132,7 @@ Handling Missing Data
   border-top-width: 0;
 }
 
-#ypibiqkvwg .gt_heading {
+#vggzatqajb .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -5146,13 +5144,13 @@ Handling Missing Data
   border-right-color: #D3D3D3;
 }
 
-#ypibiqkvwg .gt_bottom_border {
+#vggzatqajb .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ypibiqkvwg .gt_col_headings {
+#vggzatqajb .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -5167,7 +5165,7 @@ Handling Missing Data
   border-right-color: #D3D3D3;
 }
 
-#ypibiqkvwg .gt_col_heading {
+#vggzatqajb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 12px;
@@ -5187,7 +5185,7 @@ Handling Missing Data
   overflow-x: hidden;
 }
 
-#ypibiqkvwg .gt_column_spanner_outer {
+#vggzatqajb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 12px;
@@ -5199,15 +5197,15 @@ Handling Missing Data
   padding-right: 4px;
 }
 
-#ypibiqkvwg .gt_column_spanner_outer:first-child {
+#vggzatqajb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ypibiqkvwg .gt_column_spanner_outer:last-child {
+#vggzatqajb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ypibiqkvwg .gt_column_spanner {
+#vggzatqajb .gt_column_spanner {
   border-bottom-style: none;
   border-bottom-width: 1px;
   border-bottom-color: #334422;
@@ -5219,11 +5217,11 @@ Handling Missing Data
   width: 100%;
 }
 
-#ypibiqkvwg .gt_spanner_row {
+#vggzatqajb .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ypibiqkvwg .gt_group_heading {
+#vggzatqajb .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5249,7 +5247,7 @@ Handling Missing Data
   text-align: left;
 }
 
-#ypibiqkvwg .gt_empty_group_heading {
+#vggzatqajb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -5264,15 +5262,15 @@ Handling Missing Data
   vertical-align: middle;
 }
 
-#ypibiqkvwg .gt_from_md > :first-child {
+#vggzatqajb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ypibiqkvwg .gt_from_md > :last-child {
+#vggzatqajb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ypibiqkvwg .gt_row {
+#vggzatqajb .gt_row {
   padding-top: 7px;
   padding-bottom: 7px;
   padding-left: 5px;
@@ -5291,7 +5289,7 @@ Handling Missing Data
   overflow-x: hidden;
 }
 
-#ypibiqkvwg .gt_stub {
+#vggzatqajb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5304,7 +5302,7 @@ Handling Missing Data
   padding-right: 5px;
 }
 
-#ypibiqkvwg .gt_stub_row_group {
+#vggzatqajb .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5318,15 +5316,15 @@ Handling Missing Data
   vertical-align: top;
 }
 
-#ypibiqkvwg .gt_row_group_first td {
+#vggzatqajb .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ypibiqkvwg .gt_row_group_first th {
+#vggzatqajb .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ypibiqkvwg .gt_summary_row {
+#vggzatqajb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -5336,16 +5334,16 @@ Handling Missing Data
   padding-right: 5px;
 }
 
-#ypibiqkvwg .gt_first_summary_row {
+#vggzatqajb .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ypibiqkvwg .gt_first_summary_row.thick {
+#vggzatqajb .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ypibiqkvwg .gt_last_summary_row {
+#vggzatqajb .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5355,7 +5353,7 @@ Handling Missing Data
   border-bottom-color: #D3D3D3;
 }
 
-#ypibiqkvwg .gt_grand_summary_row {
+#vggzatqajb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -5365,7 +5363,7 @@ Handling Missing Data
   padding-right: 5px;
 }
 
-#ypibiqkvwg .gt_first_grand_summary_row {
+#vggzatqajb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5375,7 +5373,7 @@ Handling Missing Data
   border-top-color: #D3D3D3;
 }
 
-#ypibiqkvwg .gt_last_grand_summary_row_top {
+#vggzatqajb .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5385,11 +5383,11 @@ Handling Missing Data
   border-bottom-color: #D3D3D3;
 }
 
-#ypibiqkvwg .gt_striped {
+#vggzatqajb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ypibiqkvwg .gt_table_body {
+#vggzatqajb .gt_table_body {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -5398,7 +5396,7 @@ Handling Missing Data
   border-bottom-color: #FFFFFF;
 }
 
-#ypibiqkvwg .gt_footnotes {
+#vggzatqajb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -5412,7 +5410,7 @@ Handling Missing Data
   border-right-color: #D3D3D3;
 }
 
-#ypibiqkvwg .gt_footnote {
+#vggzatqajb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -5421,7 +5419,7 @@ Handling Missing Data
   padding-right: 5px;
 }
 
-#ypibiqkvwg .gt_sourcenotes {
+#vggzatqajb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -5435,7 +5433,7 @@ Handling Missing Data
   border-right-color: #D3D3D3;
 }
 
-#ypibiqkvwg .gt_sourcenote {
+#vggzatqajb .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -5443,72 +5441,72 @@ Handling Missing Data
   padding-right: 5px;
 }
 
-#ypibiqkvwg .gt_left {
+#vggzatqajb .gt_left {
   text-align: left;
 }
 
-#ypibiqkvwg .gt_center {
+#vggzatqajb .gt_center {
   text-align: center;
 }
 
-#ypibiqkvwg .gt_right {
+#vggzatqajb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ypibiqkvwg .gt_font_normal {
+#vggzatqajb .gt_font_normal {
   font-weight: normal;
 }
 
-#ypibiqkvwg .gt_font_bold {
+#vggzatqajb .gt_font_bold {
   font-weight: bold;
 }
 
-#ypibiqkvwg .gt_font_italic {
+#vggzatqajb .gt_font_italic {
   font-style: italic;
 }
 
-#ypibiqkvwg .gt_super {
+#vggzatqajb .gt_super {
   font-size: 65%;
 }
 
-#ypibiqkvwg .gt_footnote_marks {
+#vggzatqajb .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ypibiqkvwg .gt_asterisk {
+#vggzatqajb .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ypibiqkvwg .gt_indent_1 {
+#vggzatqajb .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ypibiqkvwg .gt_indent_2 {
+#vggzatqajb .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ypibiqkvwg .gt_indent_3 {
+#vggzatqajb .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ypibiqkvwg .gt_indent_4 {
+#vggzatqajb .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ypibiqkvwg .gt_indent_5 {
+#vggzatqajb .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ypibiqkvwg .katex-display {
+#vggzatqajb .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ypibiqkvwg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#vggzatqajb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -5544,13 +5542,13 @@ Handling Missing Data
   none      0     1       0</code></pre>
 </div>
 </div>
-<p>Since we already have a <code>none</code> category, and if we wanted to ensure our friend R2 was included in our hair color table, we could recode it so that an <code>NA</code> entry for hair becomes <code>none</code>.</p>
+<p>Since we already have a <code>none</code> category, and if we wanted to ensure our friend R2 was included in our hair color table, we could recode it so that an <code>NA</code> entry for hair becomes <code>none</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Recode NA values using replace_na()</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>small_star_wars <span class="ot">&lt;-</span> small_star_wars <span class="sc">%&gt;%</span></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hair_color =</span> <span class="fu">replace_na</span>(hair_color, <span class="st">"none"</span>))</span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(small_star_wars<span class="sc">$</span>hair_color, small_star_wars<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Recode NA values using replace_na()</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>small_star_wars <span class="ot">&lt;-</span> small_star_wars <span class="sc">%&gt;%</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hair_color =</span> <span class="fu">replace_na</span>(hair_color, <span class="st">"none"</span>))</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(small_star_wars<span class="sc">$</span>hair_color, small_star_wars<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       
         Droid Human Wookiee
@@ -5562,6 +5560,63 @@ Handling Missing Data
 </div>
 </div>
 </section>
+</section>
+<section id="time-to-plot" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="time-to-plot"><span class="header-section-number">2.2</span> Time to Plot!</h3>
+<p>Now it’s time to learn how to make some common plots in R!</p>
+<p>You can make plots with R’s built-in functions, but they aren’t especially pretty:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="R_project_code_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>But with certain packages, they can be quite beautiful!</p>
+<p>This is the same scatter plot built using <code>ggplot2</code>, the gold-standard package for making plots in R.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># I'm filtering the full `starwars` dataset to remove Jabba the Hutt</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>starwars_noHutt <span class="ot">&lt;-</span> starwars <span class="sc">%&gt;%</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">!=</span> <span class="st">"Hutt"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, height, mass, birth_year)  </span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="co"># classic scatterplot :</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(starwars_noHutt, <span class="fu">aes</span>(<span class="at">x =</span> mass, <span class="at">y =</span> height, <span class="at">color =</span> species, <span class="at">size =</span> birth_year)) <span class="sc">+</span></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="cn">NA</span>, <span class="dv">230</span>) <span class="sc">+</span></span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="cn">NA</span>, <span class="dv">140</span>) <span class="sc">+</span></span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">begin =</span> <span class="dv">0</span>, <span class="at">end =</span> <span class="dv">1</span>, <span class="at">option =</span> <span class="st">"D"</span>, <span class="at">aesthetics =</span> <span class="st">"color"</span>, <span class="at">discrete =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(</span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Weight"</span>,</span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Height"</span></span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
+<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a><span class="co"># with marginal histogram</span></span>
+<span id="cb50-20"><a href="#cb50-20" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggMarginal</span>(p, <span class="at">type=</span><span class="st">"histogram"</span>)</span>
+<span id="cb50-21"><a href="#cb50-21" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb50-22"><a href="#cb50-22" aria-hidden="true" tabindex="-1"></a><span class="co"># marginal density</span></span>
+<span id="cb50-23"><a href="#cb50-23" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggMarginal</span>(p, <span class="at">type=</span><span class="st">"density"</span>)</span>
+<span id="cb50-24"><a href="#cb50-24" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb50-25"><a href="#cb50-25" aria-hidden="true" tabindex="-1"></a><span class="co"># marginal boxplot</span></span>
+<span id="cb50-26"><a href="#cb50-26" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggMarginal</span>(p, <span class="at">type=</span><span class="st">"boxplot"</span>)</span>
+<span id="cb50-27"><a href="#cb50-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-28"><a href="#cb50-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-29"><a href="#cb50-29" aria-hidden="true" tabindex="-1"></a>p3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="R_project_code_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 </section>
 

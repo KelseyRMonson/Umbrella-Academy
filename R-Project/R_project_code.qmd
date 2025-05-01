@@ -34,6 +34,8 @@ format:
     code-overflow: wrap
     
 fig-cap-location: margin
+execute: 
+  warning: false
 editor: visual
 ---
 
@@ -401,12 +403,13 @@ library(tidyverse)
 library(viridis)
 library(readxl)
 library(gtExtras)
+library(ggExtra)
 
 ```
 
-As I mentioned at the beginning of this document, our goal today is to learn some helpful R codes to generate beautiful plots.
+Our goal today is to learn helpful R code to generate beautiful plots.
 
-Since you all have different projects and datasets (some of which may not even exist yet!), we will use some example data for the exercise.
+To make things simple, we will use some example data for the exercise.
 
 Many packages (and Base-R) include test datasets, which are great for exploring functions and testing code.
 
@@ -416,7 +419,7 @@ We will use the `starwars` test dataset from the `tidyverse` package as our exam
 
 I've created an [R Script](Getting_Started_with_R_script.R) with the code needed for this exercise. Go ahead and open that script now.
 
-You can use this script as a template/cheat sheet as you build your own script, but the best way to learn to code is to type out the commands yourself to start building your muscle memory 💪
+You can use it as a template as you write your script, but try typing out the commands to build muscle memory 💪
 
 You can copy/paste long names for packages, variables, and files, but typing out functions helps you remember the syntax.
 
@@ -567,18 +570,16 @@ agg_star_wars %>%
 
 ▶️ Try making a table with a fun theme!
 
-Use `??gt_theme` to explore available themes.
+**Hint:** Use `??gt_theme` to explore available themes.
 
 #### `table()`
-
-Remember when I used `table()` to show you that R was treating character variables alphabetically?
 
 `table()` is great for creating frequency tables (showing you how many of one variable or a combination of variables are present).
 
 Let's use this function to see how many of each species are in our dataset.
 
 :::{.callout-tip}
-In R, when we want to select just one part of a multi-part variable (like a Data Frame or Tibble), we use the `selection operator`, represented by `$`.
+In R, when we want to select just one of a multi-part variable (like a Data Frame or Tibble), we use the selection operator: `$`.
 :::
 
 ▶️ Let's select just the `species` variable from our Tibble to create a table with one row:
@@ -596,7 +597,7 @@ table(small_star_wars$hair_color, small_star_wars$species)
 ```
 
 ::: callout-warning
-### Handling Missing Data
+##### Handling Missing Data
 Note that R2-D2's hair (or lack thereof) is recorded as `NA`:
 
 ```{r}
@@ -618,7 +619,7 @@ If we only looked at this table, we might think there were no droids in our data
 table(small_star_wars$hair_color, small_star_wars$species)
 ```
 
-Since we already have a `none` category, and if we wanted to ensure our friend R2 was included in our hair color table, we could recode it so that an `NA` entry for hair becomes `none`:
+Since we already have a `none` category, and if we want to ensure our friend R2 is included in our hair color table, we could recode it so that an `NA` entry for hair becomes `none`:
 
 ```{r}
 # Recode NA values using replace_na()
@@ -628,3 +629,62 @@ small_star_wars <- small_star_wars %>%
 table(small_star_wars$hair_color, small_star_wars$species)
 ```
 :::
+
+### Time to Plot!
+
+Now it's time to learn how to make some common plots in R!
+
+You can make plots with R's built-in functions, but they aren't especially pretty:
+```{r}
+#| echo: false
+
+# I'm filtering the full `starwars` dataset to remove Jabba the Hutt
+starwars_noHutt <- starwars %>%
+  filter(species != "Hutt") %>% 
+  select(species, height, mass, birth_year)  
+
+plot(starwars_noHutt$height, starwars_noHutt$mass)
+
+```
+
+But with certain packages, they can be quite beautiful! 
+
+This is plotting the same data using `ggplot2`, the gold-standard package for making plots in R:
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+
+# First, I'm filtering the full `starwars` dataset to remove Jabba the Hutt
+# (I did this to make the Base-R plot too, but I'm including this step here so you can see how I did it)
+starwars_noHutt <- starwars %>%
+  filter(species != "Hutt") %>% 
+  select(species, height, mass, birth_year)  
+ 
+# I'm creating a scatter plot with mass and height on the x- and y-axes, colored by species, and with point size representing birth year:
+p <- ggplot(starwars_noHutt, aes(x = mass, y = height, color = species, size = birth_year)) +
+  geom_point() +
+  ylim(NA, 230) +
+  xlim(NA, 140) +
+  scale_color_viridis(alpha = 0.7, begin = 0, end = 1, option = "D", aesthetics = "color", discrete = TRUE) +
+  theme_light() +
+      labs(
+        x = "Weight",
+        y = "Height"
+    ) +
+  theme(legend.position = "none")
+
+# You can also add elements to show the marginal distributions of the x and y variables
+# I'm showing you code for three options, but I only printed the boxplot in the document
+
+# with marginal histogram
+p1 <- ggMarginal(p, type="histogram")
+ 
+# marginal density
+p2 <- ggMarginal(p, type="density")
+ 
+# marginal boxplot
+p3 <- ggMarginal(p, type="boxplot")
+
+p3
+```
