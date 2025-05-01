@@ -342,7 +342,7 @@ When you launch RStudio, you will see three panes (or windows).
 
 In an ideal world, running your code from start to finish should produce the same result every time.
 
-However, RStudios defaults to *restoring your previous workspace*. Your previous workspace might include objects or data from a different project or version of your code, making it difficult to reproduce your results consistently. More on this [here](https://www.sesync.org/resources/tips-smooth-rstudio-workflow-and-reproducible-r-code).
+However, RStudio defaults to *restoring your previous workspace*. Your previous workspace might include objects or data from a different project or version of your code, making it difficult to reproduce your results consistently. More on this [here](https://www.sesync.org/resources/tips-smooth-rstudio-workflow-and-reproducible-r-code).
 
 **To turn off workspace saving and loading:**
 
@@ -480,8 +480,6 @@ gt(small_star_wars)
 
 ::: {.callout-tip collapse="true"}
 ##### A bit more on pipes (`%>%`)
-
-Pipes make code easier to read.
 
 Consider the below code:
 
@@ -627,7 +625,9 @@ small_star_wars <- small_star_wars %>%
   mutate(hair_color = replace_na(hair_color, "none"))
 
 table(small_star_wars$hair_color, small_star_wars$species)
+
 ```
+There he is! 🤖
 :::
 
 ### Time to Plot!
