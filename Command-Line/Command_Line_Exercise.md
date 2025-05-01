@@ -1,6 +1,6 @@
 # "Getting Started with The Command Line" Exercise
 
-This is an exercise to get people familiar with common bioinformatics command line activities on a High Performance Computing (HPC) cluster.
+This exercise introduces common bioinformatics command line activities on a High-Performance Computing (HPC) cluster.
 
 These activities include:
 - 🗺️Navigating the command line
@@ -17,14 +17,14 @@ By the end of this exercise, you will be able to run [fastp](https://github.com/
 >Philip Ewels, Måns Magnusson, Sverker Lundin, Max Käller, MultiQC: summarize analysis results for multiple tools and samples in a single report, *Bioinformatics*, October 2016, [DOI](https://doi.org/10.1093/bioinformatics/btw354)
 
 ## Step 1: Locate the Data
-Using `cd` (change directory), navigate to the `master_data` folder on Minerva containing the raw .fastq files we will use in the exercise:
+Using `cd` (change directory), navigate to the `master_data` folder on Minerva containing the raw .fastq files for the exercise:
 
 ``` Shell
 cd /sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy
 ```
 *If you are following along on GitHub, these files can be found in the `master_data` [folder](master_data) within this directory.*
 
-These .fastqs are truncated test data adapted from the [NF-core test data repository](https://github.com/nf-core/test-datasets/tree/rnaseq). Samples are from S. cerevisiae (yeast), and are 101bp paired-end strand-specific RNA-seq files, sub-sampled to 50,000 reads.
+These .fastqs are adapted from the [NF-core test data repository](https://github.com/nf-core/test-datasets/tree/rnaseq). Samples are from S. cerevisiae (yeast) and are 101bp paired-end strand-specific RNA-seq files, sub-sampled to 50,000 reads.
 
 <!-- HTML_START -->
 <details>
@@ -47,10 +47,10 @@ These .fastqs are truncated test data adapted from the [NF-core test data reposi
 </details>
 <!-- HTML_END -->
 
-Each subfolder within the `/sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy` directory contains the .fastq files for each of the four samples we are using for this example. 
+Each subfolder contains the .fastq files for each of the four samples we are using for this exercise. 
 
 >💡**Tip**: As you move throughout your directories, creating and modifying files, it can become confusing.
-> - If you ever get lost or disoriented in your file structure, just type `pwd` (for "print working directory"). This will output the full path of your current directory.
+> - If you get lost or disoriented, just type `pwd` (for "print working directory"). This will output the full path of your current directory.
 > - You can also type `ls` to list all the files in your current directory. Try it out now!
 
 Let's look inside one of the subfolders:
@@ -58,7 +58,7 @@ Let's look inside one of the subfolders:
 cd SRR6357070
 ls
 ```
-You'll notice there are actually two .fastq files for each sample. These files come from paired-end, strand-specific RNA-seq, so read 1 is the forward read and read 2 is the reverse read. 
+You'll notice there are two .fastq files for each sample. These files come from paired-end, strand-specific RNA-seq, so read 1 is the forward read and read 2 is the reverse read. 
 
 Let's go back to the main data folder. This command moves us one folder up in the file hierarchy:
 ``` Shell
@@ -66,15 +66,15 @@ cd ..
 ```
 
 ## Step 2: Create a Sample List
-Next we create a sample list pointing to the names and locations of the raw .fastq files. This will tell your script what files to look for and where they are stored.
+Next, we create a sample list pointing to the names and locations of the raw .fastq files. This will tell your script what files to look for and where they are stored.
 
-To do this, we will run the command `printf '%s\n' "$PWD"/* >FastP_practice_samplelist_${MY_NAME}.txt`, replacing `${MY_NAME}` with, you guessed it, your name. 
+Run the command `printf '%s\n' "$PWD"/* >FastP_practice_samplelist_${MY_NAME}.txt`.
 
-So mine will look like: 
+Replace `${MY_NAME}` with, you guessed it, your name. For example, mine is:
 ``` Shell
 printf '%s\n' "$PWD"/* >FastP_practice_samplelist_Kelsey.txt
 ```
-For simplicity, for the rest of the exercise, I will just refer to this file as `"samplelist.txt"`
+For the rest of the exercise, we'll just refer to this file as `"samplelist.txt"`
 
 Let's break down the command:
 - `printf '%s\n':`
