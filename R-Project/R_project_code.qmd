@@ -39,13 +39,11 @@ editor: visual
 
 ## Introduction
 
-The goal of **The Umbrella Academy** is to familiarize "wet lab" scientists with useful "dry lab" tools. Therefore, this exercise is geared primarily towards basic data manipulation to generate aesthetically pleasing plots in R.
+**The Umbrella Academy** aims to introduce "wet lab" scientists to useful "dry lab" tools. Therefore, this exercise is designed to enable students to generate aesthetically pleasing plots in R. 
 
-R is an excellent tool for generating beautiful data visualizations, and is much more flexible and customizable than other tools like Excel or GraphPad.
+While it has many functions (too many to cover int today's course), R is an excellent tool for generating beautiful data visualizations. It's much more flexible and customizable than other tools like Excel or GraphPad, plus it's free and open-source, unlike pricey proprietary statistical software like SAS or STATA.
 
-Another major benefit of R is that it is free to use and open source, unlike other proprietary statistical computing software like SAS or STATA.
-
-But first, before we dive into the exercise itself, let's familiarize ourselves with some basics of working with R in RStudio.
+Before diving into the exercise, let's cover the basics of using R and RStudio.
 
 ### R and RStudio
 
@@ -61,11 +59,11 @@ According to its creators,
 
 But what does that mean in practice?
 
-You might have run R after you installed it, and seen something like this, magically transporting yourself to circa 2004:
+Launching R might remind you of the early 2000s with its retro interface:
 
 ![**Base R GUI.** This always reminds me of an AIM chat window (if anyone is old enough to remember that).](assets/RGui.png)
 
-This is "Base-R," and it's not especially user-friendly (where are you even supposed to start? how do you run a command?). While it's perfectly functional, it's not the ideal way to interact with R.
+"Base-R" is not especially user-friendly (where do you even begin? how do you run a command?). While it's perfectly functional, it's not the ideal way to interact with R.
 
 Enter: **RStudio**.
 
@@ -73,48 +71,48 @@ I'm writing this exercise in RStudio right now, see? ![RStudio screenshot](asset
 
 To be honest, I've been coding in R since 2017 and have never once written a script or performed an analysis in Base-R.
 
-Maybe you can see why -- RStudio is what's called an **"integrative development environment" (IDE).**
+Maybe you can see why -- RStudio is an **"integrative development environment" (IDE).**
 
-This goes beyond even a "graphical user interface" (GUI), in that it provides tools to write, execute, and debug R code, manage the objects and variables you create, keep track of your files and projects, render plots, read help documentation... the list goes on.
+It's more than a "graphical user interface" (GUI) -- RStudio lets you write, run, and debug R code, manage files and variables with ease, render plots, read help documentation... the list goes on.
 
 We'll explore RStudio in depth throughout the exercise, but first we need to learn a bit more about how R works.
 
 ### Data Types and Variables
 
-Every basic programming class with include this section (in fact, if you completed your [homework](https://vscodeedu.com/courses/intro-to-python) this should look quite familiar, though R and Python are slightly different in this regard).
+This section might feel familiar if you've taken a basic programming class (or done your [homework](https://vscodeedu.com/courses/intro-to-python), though R and Python differ a bit).
 
 I'll try to make this brief:
 
 #### Variable Structures in R
 
--   **Data Frame:** A table-like structure with rows and columns. Each column can store a different data type, making it ideal for organizing datasets.
--   **Tibble:** A modern version of a data frame, offering improved printing behavior and no row names by default.
--   **Vector:** A one-dimensional collection that holds elements of the same data type.
--   **List:** An ordered collection that can store elements of different types, allowing greater flexibility.
--   **Matrix:** A two-dimensional version of a vector with rows and columns, where all elements share the same type.
--   **Array:** A multi-dimensional collection, similar to a matrix but capable of handling more than two dimensions.
+-   **Data Frame:** A table with rows and columns. Each column can store different data types, making it ideal for organizing datasets.
+-   **Tibble:** A modernized Data Frame. Your data looks prettier when printed and there are no row names by default.
+-   **Vector:** A one-dimensional collection with elements of the same data type.
+-   **List:** An ordered collection that can store mixed data types.
+-   **Matrix:** A two-dimensional Vector with rows and columns, with elements of the same type.
+-   **Array:** Like a Matrix but can handle more than two dimensions.
 
-You will likely most often be working with **Data Frames** or **Tibbles** to create figures, but will probably use all of the variable types at one point or another.
+You'll most often use **Data Frames** or **Tibbles** to create figures, but will use the variable types at one point or another.
 
 #### Data Types in R
 
--   **Numeric:** The default type used for numbers, including decimals.
--   **Factor:** A special structure for categorical data that defines a limited set of values.
--   **Integer:** Whole numbers explicitly defined with an "L" suffix (e.g., 10L).
--   **Logical:** Represents Boolean values: TRUE or FALSE.
--   **Character:** Text strings used to represent words or sentences.
--   **Complex:** Numbers that include both a real and an imaginary component (e.g., 2+3i).
--   **Raw:** Used for storing raw byte data.
+-   **Numeric:** The default for numbers, including decimals.
+-   **Factor:** A special structure for categorical data with defined values.
+-   **Integer:** Whole numbers (can be explicitly defined with an "L" suffix, e.g., `10L`).
+-   **Logical:** Boolean values: TRUE or FALSE.
+-   **Character:** Text strings.
+-   **Complex:** Numbers with both real and imaginary components (e.g., `2+3i`).
+-   **Raw:** Raw byte data.
 
-Some of these you won't interact with much (I've never worked with Complex or Raw data, I don't think...), others are pretty essential. **Factors** are especially important, and we will discuss them more later.
+**Numeric**, **Factor**, and **Character** variables are essential for plotting data. **Factors** are especially important -- we'll explore them more soon.
 
 These definitions are drawn from [this R Workshop GitHub](https://github.com/MVesuviusC/R_workshop/tree/main), which inspired a few other sections of this class (thank you, [MVesuviusC](https://github.com/MVesuviusC)!).
 
 #### The `str()` function
 
-There is an extremely useful function in R to tell you the structure of an object: `str()`
+The `str()` function reveals an object's structure.
 
-Here I'm going to show the difference between a **Numeric** variable and an **Integer**, by creating two **Vectors**:
+Let's compare a **Numeric** variable and an **Integer** by creating two **Vectors**:
 
 ```{r}
 # Create the vectors
@@ -126,13 +124,13 @@ str(num)
 str(int)
 ```
 
-Breaking down the above code, we
+Breaking it down, we
 
-1.  Created the variables using `<-`, otherwise known as the `assignment operator`
-2.  Combined the numbers/integers and passed them to our new variables using the combine function `c()`
-3.  Checked their structure by passing the object (either `num` or `int`) to the `str()` function.
+1.  Created the variables using `<-` (the `assignment operator`).
+2.  Used the combine function `c()` to combine numbers/integers into new variables.
+3.  Passed each variable to `str()` to check its structure.
 
-If you want, you can *coerce* a data type into another one.
+You can also *coerce* one data type into another.
 
 ```{r}
 # Let's say I actually wanted `num` to be an integer:
@@ -144,7 +142,7 @@ num <- as.character(num)
 str(num)
 ```
 
-But, oops, actually, just kidding, I really wanted `num` to be numeric. We can change it back:
+But, oops, just kidding, I actually wanted `num` to be numeric. We can change it back:
 
 ```{r}
 num <- as.numeric(num)
@@ -165,33 +163,32 @@ number <- as.numeric(number)
 str(number)
 ```
 
-R isn't reading and evaluating our characters to assume what they might mean, so it isn't going to automatically convert `one` into `1`.
+R isn't reading and interpreting what our characters might mean, so it isn't going to automatically convert `one` into `1`.
 
-If you have numeric variables in your dataset, it's best to save them initially as numbers in your raw data, and treat them as either numeric or integer variables in R.
+If you have numeric variables in your dataset, it's best to save them as numbers in your raw data and treat them as either numeric or integer variables in R.
 
 #### Why use **Factors**?
 
 ::: callout-caution
-**The default behavior in R is to treat text variables alphabetically** unless we specify otherwise.
+**R treats text variables alphabetically by default** unless we specify otherwise.
 
 Here's an example where that might become confusing.
 
-Say we had a dataset from a contest, where participants could come in first, second, third, or fourth.
+Say we had a dataset from a contest, where participants could place first, second, third, or fourth.
 
 ```{r}
 rankings <- c("first","second","third","fourth")
-# If we look at the structure of our variable, we see them in the order we would expect...
+# Using `str()` shows the expected order...
 str(rankings)
 
-# But if we use the table() function to summarize the data, we see it lists them alphabetically
+# But using the `table()` function to summarize the data lists them alphabetically:
 table(rankings)
 
 ```
-
-How do we fix this if we want them to be ordered logically, from first to fourth?
+How do we fix this to order them logically?
 :::
 
-This is where the **Factor** variable type comes in. We can specify that this categorical variable is a factor, and tell it the levels we expect:
+We use the **Factor** variable type! It lets us specify the expected levels of our categorical data:
 
 ```{r}
 rankings <- as.factor(rankings)
@@ -203,7 +200,7 @@ table(rankings)
 rankings <- factor(rankings, levels=c("first","second","third","fourth"))
 table(rankings)
 
-# We can set the levels to be whatever we want -- for example, we could list them backwards:
+# We can set the levels to be whatever we want -- for example, we could reverse them:
 rankings <- factor(rankings, levels=c("fourth","third","second","first"))
 table(rankings)
 ```
@@ -211,9 +208,9 @@ table(rankings)
 ::: {.callout-tip collapse="true"}
 ##### Extra Credit
 
-Why did the `str()` function print the rankings in the correct order the very first time, even though using the `table()` function showed that R was treating them alphabetically?
+Why did `str()` print the rankings in the correct order the very first time, even though `table()` showed that R was treating them alphabetically?
 
-Because when we created the `rankings` variable, we entered the variable names in the logical order. If we had created the variable with them out of order, they would have printed out of order, but R would still treat them alphabetically:
+It's because we entered the variable names in the logical order when we created the `rankings` variable. If we had created the variable with them out of order, `str()` would print them out of order, but R would still treat them alphabetically:
 
 ```{r}
 rankings <- c("third","second","fourth","first")
@@ -229,49 +226,50 @@ Changing the levels of your **Factor** variables can be very useful when it come
 
 ### Getting Help
 
-R has a very robust help system, and it's as easy as prepending a `?` to the name of a function.
+R has a robust help system -- just prepend a `?` to a function's name.
 
-There are actually two ways to search for help:
+You can search for help in two ways:
 
 -   Single question mark: `?`
 
-    -   Displays the help documentation for a specific function.
-    -   e.g. `?mean()` will show you the help documents for the Base-R function `mean` (for calculating means).
-    -   This type of search is best if you are looking for information on a specific function that you know the name of (for example, if you are trying to recreate a figure using code you found online and want to know what a specific function does).
+    -   Displays help documentation for a specific function.
+    -   Example: `?mean()` shows the documentation for Base-Rs `mean` function.
+    -   This type of search is best if you know a function's name 
 
 -   Double question mark: `??`
 
-    -   Searches the help documentation for the keyword you provide.
-    -   e.g. `??mean()` will look for all the functions (and their documentation) that include the word `mean` and will return a list that you can select from.
-    -   Because this searches documentation for your keyword(s) and not just function names, this is a good option if you know *what* you want a function to do, even if you don't know its name, and/or you want to see if there are multiple functions to choose from.
-    -   This type search of works better if you use more specific keywords, since many functions share common words.
+    -   Searches help documentation for keyword(s).
+    -   Example: `??mean()` finds all functions (and their documentation) containing `mean` and returns a list that you can select from.
+    -   This type of search is useful when you know *what* you want, but not the exact function name. It's also useful to see if there are multiple options with similar functions to choose from.
+    -   Works best if you use specific keywords since many functions share common words.
 
-One of the most useful reasons to use `?` is because, in addition to giving you general information about how a function works, it tells you the possible arguments (what can go inside the parentheses) as well as any default behavior.
+`?` is especially useful for checking a function’s arguments (what goes inside the parentheses) and their defaults.
 
-I use `?` almost every time I'm coding in R -- sometimes just to see what other cool things a function I'm using can do!
+I use `?` all the time -- sometimes just to see what other cool things a function I'm using can do!
 
 ### Packages
 
-Did you notice how I specified above that `mean()` is a function in Base-R? R comes ready-made with a number of essential statistical and graphical functions built into it.
+Did you notice I specified that `mean()` is a function in Base-R? R comes ready-made with many essential statistical and graphical functions.
 
-But one of the best things about R is that there is a huge community of other R users who create **packages**, basically collections of related functions to do specific things in R.
+But one of the best things about R is the community of other users who create **packages** -- collections of related functions to do specific things in R.
 
-This is how people can use R to calculate differential gene expression from RNA-seq data, plot complex microbiome phylogenetic trees, use machine learning tools to make sophisticated predictive statistical models, and more.
+R Packages let you do things like calculate RNA-seq gene expression, plot microbiome phylogenetic trees, use machine learning to create statistical models, and more.
 
-These tasks are all very different and require diverse skills and expertise to program and execute. But with the broad and brilliant user base of R, there are people who make packages to do each of these things (and so much more!).
+These tasks require diverse skills and expertise to program and execute. Thanks to R's broad user base, people make packages to do each of these things (and so much more!).
 
 So how do we get these packages?
 
--   Almost all packages can be installed with the intuitively named `install.packages("package_name")` function.
+-   Almost all packages can be installed with `install.packages("package_name")`.
 -   Some bioinformatics-specific tools need to be installed from [Bioconductor](https://www.bioconductor.org/) using `BiocManager::install("package_name")`.
 -   Some packages can be installed directly from GitHub using `devtools::install_github("package_name")`.
--   To load and use a downloaded package, use `library(package_name)`.
+
+To load and use a downloaded package, use `library(package_name)`.
 
 ::: callout-note
 #### A few notes on packages
 
 -   When installing a package, the package name must be enclosed in quotes.
--   When loading a package, you do not need to use quotes around the name.
+-   When loading a package, you don't need quotes around the name.
 -   You don't need to *download* a package more than once (though you may need to update it).
 -   However, you must *load* a package every time before you can use it.
 :::
@@ -282,7 +280,7 @@ Now that you understand the basics, it's time to dive in!
 
 #### Working directories
 
-Remember in our [last lesson](../Command-Line/Command_Line_Exercise.md) when we learned the command `pwd` to see what directory we were in on the HPC?
+Remember in our [last lesson](../Command-Line/Command_Line_Exercise.md) when we learned `pwd` to see our HPC directory?
 
 There is a similar command in R:
 
@@ -294,62 +292,60 @@ You can see I'm currently in my project directory on the Zamarin Lab computer.
 
 The syntax for commands in R is typically the `function` followed by the arguments to the function in parentheses `(arguments)`.
 
-With `getwd()`, we're asking the question of what directory we're in, so we aren't giving it any arguments. But if we want to *change* the directory, we can use the below command, giving it the path of the directory we want to move to:
+With `getwd()`, we're asking the question of what directory we're in, so we aren't giving it any arguments. 
+
+But if we want to *change* the directory, we can use `setwd()`, giving it the path of the directory we want to move to:
 
 ```{r}
 setwd("C:/Users/Zamarin Lab/Documents/GitHub/Umbrella-Academy/R-Project")
 ```
 
 ::: callout-note
-`getwd()` is short for "**get** working directory" (whereas `pwd` was "**print** working directory").
+`getwd()` = "**get** working directory"
 
-`setwd()` is short for "**set** working directory."
-
-You can remember these since "set" and "get" rhyme!
+`setwd()` = "**set** working directory"
 :::
 
 #### R Projects
 
-Some people believe very strongly that you should never include `setwd()` in your R scripts. In fact, they even threaten to [come to your office and set your computer on fire🔥](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/).
+Some people strongly believe you should never use `setwd()` in your R scripts. In fact, they even threaten to [come to your office and set your computer on fire🔥](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/).
 
-Rather, they argue that it is much better to create a folder for the specific project you are working on, and then create an R Project (or similar, but for our purposes we will discuss R Projects).
+Rather, they argue for making a folder for your specific project and then creating an R Project (or similar, but for our purposes we will discuss R Projects).
 
 ::: {.callout-tip collapse="true"}
 ##### What is an R Project?
 
--   A type of file that functions with RStudio
--   They have the `.Rproj` file extension
--   R projects are each associated with a directory
--   They are useful when working with many files for one purpose, hence the name “project”
+-   A file with the `.Rproj` file extension that functions with RStudio and is associated with a directory
 -   They “know” which files are relevant to a project: when you open the project, RStudio will load those files automatically
--   If we are working in an R project, our working directory is automatically set as the folder that the project is associated with -- so no need to use `setwd()` (and have our computers set on fire🔥)
--   This is especially useful if you need to move your project directory or change computers -- you don't have to rewrite the path to your working directory if the project moves, which is really beneficial for collaboration and reproducibility
+-   They automatically set your working directory to the project folder -- no need to use `setwd()` (and have our computers set on fire🔥)
+-   This keeps files organized and reproducible, even if you move directories or switch computers.
 
-Adapted from [*Communicate Data with R*](https://communicate-data-with-r.netlify.app/) -- full post and more info [here](https://communicate-data-with-r.netlify.app/docs/baser/workingprojects/).
+Adapted from [*Communicate Data with R*](https://communicate-data-with-r.netlify.app/).
 :::
 
-For this exercise, we will create an R Project, just to teach best practices.
+To teach best practices, we will create an R Project for this exercise.
 
 #### RStudio Windows
 
-If you launch RStudio now, you will see three panes (or windows).
+When you launch RStudio, you will see three panes (or windows).
 
 ::: {.callout-caution collapse="true"}
 ##### Before we progress...
 
-...we need to turn off a few RStudio defaults that will make our lives better.
+...we need to turn off a few RStudio defaults.
 
-Basically, in an ideal world, you should be able to run all your code from start to finish and get the same result.
+In an ideal world, running your code from start to finish should produce the same result every time.
 
-However, RStudio's default behavior is to *restore your previous workspace*. This can cause problems since your previous workspace might include objects or data from a different project or version of your code, making it difficult to reproduce your results consistently. More on this [here](https://www.sesync.org/resources/tips-smooth-rstudio-workflow-and-reproducible-r-code).
+However, RStudios defaults to *restoring your previous workspace*. Your previous workspace might include objects or data from a different project or version of your code, making it difficult to reproduce your results consistently. More on this [here](https://www.sesync.org/resources/tips-smooth-rstudio-workflow-and-reproducible-r-code).
 
 **To turn off workspace saving and loading:**
 
--   Tools -\> Global Options -\> General -\> Uncheck “Restore .RData into workspace at startup”
--   Tools -\> Global Options -\> General -\> Change “Save workspace to .RData on exit” to “Never” ![](assets/Global_Options.png)
+-   Go to **Tools -\> Global Options -\> General**
+-   Uncheck “Restore .RData into workspace at startup”
+-   Change “Save workspace to .RData on exit” to “Never” ![](assets/Global_Options.png)
 :::
 
-Now that we've turned off those defaults, let's create a new script so you can see all four of the typical windows you will be working with when coding in RStudio:
+Now that we've turned off those defaults, let's create a new script:
 
 ![Create a new script by going to File -\> New File -\> R Script](assets/New_File.png)
 
@@ -357,19 +353,19 @@ Now you should see something like this:
 
 ![**The four RStudio windows.** Yours may be in a different orientation than in this figure. These images and annotations are from the silly yet useful book [*YaRrr! The Pirate’s Guide to R*](https://bookdown.org/ndphillips/YaRrr/)](https://bookdown.org/ndphillips/YaRrr/images/RStudio_Screenshot_Labels.png)
 
--   The **Console** is the same as if you had just launched Base-R -- you can enter and run commands here, but they will not be stored for future use.
--   The **Source** section (with your new script) can also be generated in Base-R
-    -   However, there's no "Run" button in Base-R to run your code.
+-   **Console**: You can enter and run commands, but they are not saved for future use. (This is the same as in Base-R)
+-   **Source**: Write and run scripts.
+    -   Can also be opened in Base-R, but there's no "Run" button to execute your code.
     -   That said, it's much faster and easier to use a keyboard shortcut to execute your codes -- just type `CTRL + Enter`.
     -   Try that now by typing `getwd()`, followed by `CTRL + Enter`.
-    -   This will work in either the **Console** or the **Source**.
-    -   If you ran it in the **Console**, you'll note that the command disappeared. Try using the `Up` arrow to retrieve the command and run it again!
--   We haven't created any variables (yet) to go into the **Environment**, but check out the **History** tab -- you should see the `getwd()` command(s) you just ran!
--   The last window with **Files, Plots, Packages, etc.** will also look fairly empty, but not for long!
+      -   This will work in either the **Console** or the **Source**.
+      -   If you ran it in the **Console**, you'll note that the command disappeared. Try using the `Up` arrow to retrieve the command and run it again!
+-   **Environment/History**: Tracks variables and command history. 
+    - We haven't created any variables (yet) to go into the **Environment**
+    - But check out the **History** tab -- you should see the `getwd()` command(s) you just ran!
+-   **Files, Plots, Packages, etc.**: Manage files, visualizations, and installed packages. This will also look fairly empty, but not for long!
 
 #### RStudio Projects
-
-As promised, we will create an R Project for this exercise.
 
 Go ahead and close your new script containing the brilliant and groundbreaking code you just wrote (`getwd()`), no need to save it.
 
@@ -386,7 +382,7 @@ Now we'll go back and create a new R script in our project folder.
 
 For this exercise, we will be using an R script to write and execute our code.
 
-There are other document types, like R Markdown, or the newer Quarto (this is actually a Quarto document). These file types are a bit more advanced and require you to know Markdown syntax, but can be very helpful for actual projects. They allow you to combine code, text, and output very seamlessly, which is good for reproducibility.
+There are other document types, like R Markdown, or the newer Quarto (this is actually a Quarto document). These file types are a bit more advanced and require you to know Markdown syntax, but can be very helpful for real projects. You can combine code, text, and output seamlessly, which is good for presentation and reproducibility.
 
 If you want to learn more, I highly recommend this course, [*Productive R Workflow*](https://www.productive-r-workflow.com/). Contact me if you are interested; the creator offers group rates for teams.
 :::
