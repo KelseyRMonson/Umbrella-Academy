@@ -499,7 +499,7 @@ small_star_wars %>%
 ```
 :::
 
-With `gtExtras`, you can do some cool things, like grouping specific variables together and plotting continuous variables right in your table (while applying some interesting visual styles):
+With `gtExtras`, you can do some cool things, like grouping specific variables together and plotting continuous variables right in your table. You can also apply some interesting visual styles:
 
 ```{r}
 #| layout: [[45,-1, 45, -1, 45], [100]]
@@ -565,15 +565,15 @@ agg_star_wars %>%
   gt_theme_nytimes()
 ```
 
-▶️ You don't have to get as fancy as that, but try making a table with a fun theme!
+▶️ Try making a table with a fun theme!
 
-To see the available themes, use the `??` keyword search: `??gt_theme`
+Use `??gt_theme` to explore available themes.
 
 #### `table()`
 
 Remember when I used the `table()` function to show you that R was treating character variables alphabetically?
 
-`table()` is actually a very useful function for creating frequency tables (showing you how many of one variable or a combination of variables are present).
+`table()` is great for creating frequency tables (showing you how many of one variable or a combination of variables are present).
 
 Let's use this function to see how many of each species are in our dataset.
 
@@ -585,7 +585,7 @@ In R, when we want to select just one part of a Data Frame or Tibble, we use the
 table(small_star_wars$species)
 ```
 
-What if we wanted to layer on some additional information? We can make a 2x2 table (or 3x3 in this case) by separating the two variables with a comma.
+What if we wanted to add additional information? We can make a multi-dimensional table by separating the two variables with a comma.
 
 ▶️ Let's look at both species and hair color:
 
@@ -594,7 +594,8 @@ table(small_star_wars$hair_color, small_star_wars$species)
 ```
 
 ::: callout-warning
-Note that R2-D2's hair (or lack thereof) is indicated in the dataset as `NA`:
+### Handling Missing Data
+Note that R2-D2's hair (or lack thereof) is recorded as `NA`:
 
 ```{r}
 #| echo: false
@@ -606,7 +607,7 @@ small_star_wars %>%
 
 ```
 
-When we create a table with `table()`, `NA`s are not included, **but there is no flag to alert us that an observation has been dropped due to `NA`s.**
+When using `table()`, `NA`s are excluded, **but we are not alerted that an observation has been dropped.**
 
 If we only looked at this table, we might think there were no droids in our dataset (poor R2-D2!):
 
@@ -615,5 +616,5 @@ If we only looked at this table, we might think there were no droids in our data
 table(small_star_wars$hair_color, small_star_wars$species)
 ```
 
-Since we already have a `none` category, and if we really wanted to ensure our friend R2 was included in our hair color table, we could recode it so that an `NA` entry for hair becomes `none`.
+Since we already have a `none` category, and if we wanted to ensure our friend R2 was included in our hair color table, we could recode it so that an `NA` entry for hair becomes `none`.
 :::
