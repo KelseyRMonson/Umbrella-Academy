@@ -280,7 +280,7 @@ Now that you understand the basics, it's time to dive in!
 
 #### Working directories
 
-Remember in our [last lesson](../Command-Line/Command_Line_Exercise.md) when we learned the command `pwd` to see what directory we were in on the HPC?
+Remember in our [last lesson](../Command-Line/Command_Line_Exercise.md) when we learned `pwd` to see our HPC directory?
 
 There is a similar command in R:
 
@@ -292,62 +292,60 @@ You can see I'm currently in my project directory on the Zamarin Lab computer.
 
 The syntax for commands in R is typically the `function` followed by the arguments to the function in parentheses `(arguments)`.
 
-With `getwd()`, we're asking the question of what directory we're in, so we aren't giving it any arguments. But if we want to *change* the directory, we can use the below command, giving it the path of the directory we want to move to:
+With `getwd()`, we're asking the question of what directory we're in, so we aren't giving it any arguments. 
+
+But if we want to *change* the directory, we can use `setwd()`, giving it the path of the directory we want to move to:
 
 ```{r}
 setwd("C:/Users/Zamarin Lab/Documents/GitHub/Umbrella-Academy/R-Project")
 ```
 
 ::: callout-note
-`getwd()` is short for "**get** working directory" (whereas `pwd` was "**print** working directory").
+`getwd()` = "**get** working directory"
 
-`setwd()` is short for "**set** working directory."
-
-You can remember these since "set" and "get" rhyme!
+`setwd()` = "**set** working directory"
 :::
 
 #### R Projects
 
-Some people believe very strongly that you should never include `setwd()` in your R scripts. In fact, they even threaten to [come to your office and set your computer on fire🔥](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/).
+Some people strongly believe you should never use `setwd()` in your R scripts. In fact, they even threaten to [come to your office and set your computer on fire🔥](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/).
 
-Rather, they argue that it is much better to create a folder for the specific project you are working on, and then create an R Project (or similar, but for our purposes we will discuss R Projects).
+Rather, they argue for making a folder for your specific project and then creating an R Project (or similar, but for our purposes we will discuss R Projects).
 
 ::: {.callout-tip collapse="true"}
 ##### What is an R Project?
 
--   A type of file that functions with RStudio
--   They have the `.Rproj` file extension
--   R projects are each associated with a directory
--   They are useful when working with many files for one purpose, hence the name “project”
+-   A file with the `.Rproj` file extension that functions with RStudio and is associated with a directory
 -   They “know” which files are relevant to a project: when you open the project, RStudio will load those files automatically
--   If we are working in an R project, our working directory is automatically set as the folder that the project is associated with -- so no need to use `setwd()` (and have our computers set on fire🔥)
--   This is especially useful if you need to move your project directory or change computers -- you don't have to rewrite the path to your working directory if the project moves, which is really beneficial for collaboration and reproducibility
+-   They automatically set your working directory to the project folder -- no need to use `setwd()` (and have our computers set on fire🔥)
+-   This keeps files organized and reproducible, even if you move directories or switch computers.
 
-Adapted from [*Communicate Data with R*](https://communicate-data-with-r.netlify.app/) -- full post and more info [here](https://communicate-data-with-r.netlify.app/docs/baser/workingprojects/).
+Adapted from [*Communicate Data with R*](https://communicate-data-with-r.netlify.app/).
 :::
 
-For this exercise, we will create an R Project, just to teach best practices.
+To teach best practices, we will create an R Project for this exercise.
 
 #### RStudio Windows
 
-If you launch RStudio now, you will see three panes (or windows).
+When you launch RStudio, you will see three panes (or windows).
 
 ::: {.callout-caution collapse="true"}
 ##### Before we progress...
 
-...we need to turn off a few RStudio defaults that will make our lives better.
+...we need to turn off a few RStudio defaults.
 
-Basically, in an ideal world, you should be able to run all your code from start to finish and get the same result.
+In an ideal world, running your code from start to finish should produce the same result every time.
 
-However, RStudio's default behavior is to *restore your previous workspace*. This can cause problems since your previous workspace might include objects or data from a different project or version of your code, making it difficult to reproduce your results consistently. More on this [here](https://www.sesync.org/resources/tips-smooth-rstudio-workflow-and-reproducible-r-code).
+However, RStudios defaults to *restoring your previous workspace*. Your previous workspace might include objects or data from a different project or version of your code, making it difficult to reproduce your results consistently. More on this [here](https://www.sesync.org/resources/tips-smooth-rstudio-workflow-and-reproducible-r-code).
 
 **To turn off workspace saving and loading:**
 
--   Tools -\> Global Options -\> General -\> Uncheck “Restore .RData into workspace at startup”
--   Tools -\> Global Options -\> General -\> Change “Save workspace to .RData on exit” to “Never” ![](assets/Global_Options.png)
+-   Go to **Tools -\> Global Options -\> General**
+-   Uncheck “Restore .RData into workspace at startup”
+-   Change “Save workspace to .RData on exit” to “Never” ![](assets/Global_Options.png)
 :::
 
-Now that we've turned off those defaults, let's create a new script so you can see all four of the typical windows you will be working with when coding in RStudio:
+Now that we've turned off those defaults, let's create a new script:
 
 ![Create a new script by going to File -\> New File -\> R Script](assets/New_File.png)
 
@@ -355,19 +353,19 @@ Now you should see something like this:
 
 ![**The four RStudio windows.** Yours may be in a different orientation than in this figure. These images and annotations are from the silly yet useful book [*YaRrr! The Pirate’s Guide to R*](https://bookdown.org/ndphillips/YaRrr/)](https://bookdown.org/ndphillips/YaRrr/images/RStudio_Screenshot_Labels.png)
 
--   The **Console** is the same as if you had just launched Base-R -- you can enter and run commands here, but they will not be stored for future use.
--   The **Source** section (with your new script) can also be generated in Base-R
-    -   However, there's no "Run" button in Base-R to run your code.
+-   **Console**: You can enter and run commands, but they are not saved for future use. (This is the same as in Base-R)
+-   **Source**: Write and run scripts.
+    -   Can also be opened in Base-R, but there's no "Run" button to execute your code.
     -   That said, it's much faster and easier to use a keyboard shortcut to execute your codes -- just type `CTRL + Enter`.
     -   Try that now by typing `getwd()`, followed by `CTRL + Enter`.
-    -   This will work in either the **Console** or the **Source**.
-    -   If you ran it in the **Console**, you'll note that the command disappeared. Try using the `Up` arrow to retrieve the command and run it again!
--   We haven't created any variables (yet) to go into the **Environment**, but check out the **History** tab -- you should see the `getwd()` command(s) you just ran!
--   The last window with **Files, Plots, Packages, etc.** will also look fairly empty, but not for long!
+      -   This will work in either the **Console** or the **Source**.
+      -   If you ran it in the **Console**, you'll note that the command disappeared. Try using the `Up` arrow to retrieve the command and run it again!
+-   **Environment/History**: Tracks variables and command history. 
+    - We haven't created any variables (yet) to go into the **Environment**
+    - But check out the **History** tab -- you should see the `getwd()` command(s) you just ran!
+-   **Files, Plots, Packages, etc.**: Manage files, visualizations, and installed packages. This will also look fairly empty, but not for long!
 
 #### RStudio Projects
-
-As promised, we will create an R Project for this exercise.
 
 Go ahead and close your new script containing the brilliant and groundbreaking code you just wrote (`getwd()`), no need to save it.
 
@@ -384,7 +382,7 @@ Now we'll go back and create a new R script in our project folder.
 
 For this exercise, we will be using an R script to write and execute our code.
 
-There are other document types, like R Markdown, or the newer Quarto (this is actually a Quarto document). These file types are a bit more advanced and require you to know Markdown syntax, but can be very helpful for actual projects. They allow you to combine code, text, and output very seamlessly, which is good for reproducibility.
+There are other document types, like R Markdown, or the newer Quarto (this is actually a Quarto document). These file types are a bit more advanced and require you to know Markdown syntax, but can be very helpful for real projects. You can combine code, text, and output seamlessly, which is good for presentation and reproducibility.
 
 If you want to learn more, I highly recommend this course, [*Productive R Workflow*](https://www.productive-r-workflow.com/). Contact me if you are interested; the creator offers group rates for teams.
 :::
