@@ -467,9 +467,7 @@ small_star_wars %>%
 
 ```
 
-This code uses the pipe operator (`%>%`) to chain together operations.
-
-[Pipes](https://www.geeksforgeeks.org/pipe-in-r/) are useful but a bit advanced.
+This code uses the pipe operator (`%>%`) to chain together operations. [Pipes](https://www.geeksforgeeks.org/pipe-in-r/) are useful but a bit advanced.
 
 Since we're only running one operation, you can generate the same table using the `small_star_wars` variable as the argument passed to `gt()`:
 
@@ -478,9 +476,11 @@ gt(small_star_wars)
 ```
 
 ::: {.callout-tip collapse="true"}
-##### A bit more on pipes
+##### A bit more on pipes (`%>%`)
 
-Pipes (`%>%`) make code easier to read.
+Pipes make code easier to read.
+
+Consider the below code:
 
 You can apply a theme to make your `gtExtras` tables look like they do on the New York Times or ESPN using either of these lines of code.
 
@@ -571,13 +571,15 @@ Use `??gt_theme` to explore available themes.
 
 #### `table()`
 
-Remember when I used the `table()` function to show you that R was treating character variables alphabetically?
+Remember when I used `table()` to show you that R was treating character variables alphabetically?
 
 `table()` is great for creating frequency tables (showing you how many of one variable or a combination of variables are present).
 
 Let's use this function to see how many of each species are in our dataset.
 
-In R, when we want to select just one part of a Data Frame or Tibble, we use the `selection operator`, represented by `$`.
+:::{.callout-tip}
+In R, when we want to select just one part of a multi-part variable (like a Data Frame or Tibble), we use the `selection operator`, represented by `$`.
+:::
 
 ▶️ Let's select just the `species` variable from our Tibble to create a table with one row:
 
@@ -616,5 +618,13 @@ If we only looked at this table, we might think there were no droids in our data
 table(small_star_wars$hair_color, small_star_wars$species)
 ```
 
-Since we already have a `none` category, and if we wanted to ensure our friend R2 was included in our hair color table, we could recode it so that an `NA` entry for hair becomes `none`.
+Since we already have a `none` category, and if we wanted to ensure our friend R2 was included in our hair color table, we could recode it so that an `NA` entry for hair becomes `none`:
+
+```{r}
+# Recode NA values using replace_na()
+small_star_wars <- small_star_wars %>%
+  mutate(hair_color = replace_na(hair_color, "none"))
+
+table(small_star_wars$hair_color, small_star_wars$species)
+```
 :::
