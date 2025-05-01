@@ -226,49 +226,50 @@ Changing the levels of your **Factor** variables can be very useful when it come
 
 ### Getting Help
 
-R has a very robust help system, and it's as easy as prepending a `?` to the name of a function.
+R has a robust help system -- just prepend a `?` to a function's name.
 
-There are actually two ways to search for help:
+You can search for help in two ways:
 
 -   Single question mark: `?`
 
-    -   Displays the help documentation for a specific function.
-    -   e.g. `?mean()` will show you the help documents for the Base-R function `mean` (for calculating means).
-    -   This type of search is best if you are looking for information on a specific function that you know the name of (for example, if you are trying to recreate a figure using code you found online and want to know what a specific function does).
+    -   Displays help documentation for a specific function.
+    -   Example: `?mean()` shows the documentation for Base-Rs `mean` function.
+    -   This type of search is best if you know a function's name 
 
 -   Double question mark: `??`
 
-    -   Searches the help documentation for the keyword you provide.
-    -   e.g. `??mean()` will look for all the functions (and their documentation) that include the word `mean` and will return a list that you can select from.
-    -   Because this searches documentation for your keyword(s) and not just function names, this is a good option if you know *what* you want a function to do, even if you don't know its name, and/or you want to see if there are multiple functions to choose from.
-    -   This type search of works better if you use more specific keywords, since many functions share common words.
+    -   Searches help documentation for keyword(s).
+    -   Example: `??mean()` finds all functions (and their documentation) containing `mean` and returns a list that you can select from.
+    -   This type of search is useful when you know *what* you want, but not the exact function name. It's also useful to see if there are multiple options with similar functions to choose from.
+    -   Works best if you use specific keywords since many functions share common words.
 
-One of the most useful reasons to use `?` is because, in addition to giving you general information about how a function works, it tells you the possible arguments (what can go inside the parentheses) as well as any default behavior.
+`?` is especially useful for checking a function’s arguments (what goes inside the parentheses) and their defaults.
 
-I use `?` almost every time I'm coding in R -- sometimes just to see what other cool things a function I'm using can do!
+I use `?` all the time -- sometimes just to see what other cool things a function I'm using can do!
 
 ### Packages
 
-Did you notice how I specified above that `mean()` is a function in Base-R? R comes ready-made with a number of essential statistical and graphical functions built into it.
+Did you notice I specified that `mean()` is a function in Base-R? R comes ready-made with many essential statistical and graphical functions.
 
-But one of the best things about R is that there is a huge community of other R users who create **packages**, basically collections of related functions to do specific things in R.
+But one of the best things about R is the community of other users who create **packages** -- collections of related functions to do specific things in R.
 
-This is how people can use R to calculate differential gene expression from RNA-seq data, plot complex microbiome phylogenetic trees, use machine learning tools to make sophisticated predictive statistical models, and more.
+R Packages let you do things like calculate RNA-seq gene expression, plot microbiome phylogenetic trees, use machine learning to create statistical models, and more.
 
-These tasks are all very different and require diverse skills and expertise to program and execute. But with the broad and brilliant user base of R, there are people who make packages to do each of these things (and so much more!).
+These tasks require diverse skills and expertise to program and execute. Thanks to R's broad user base, people make packages to do each of these things (and so much more!).
 
 So how do we get these packages?
 
--   Almost all packages can be installed with the intuitively named `install.packages("package_name")` function.
+-   Almost all packages can be installed with `install.packages("package_name")`.
 -   Some bioinformatics-specific tools need to be installed from [Bioconductor](https://www.bioconductor.org/) using `BiocManager::install("package_name")`.
 -   Some packages can be installed directly from GitHub using `devtools::install_github("package_name")`.
--   To load and use a downloaded package, use `library(package_name)`.
+
+To load and use a downloaded package, use `library(package_name)`.
 
 ::: callout-note
 #### A few notes on packages
 
 -   When installing a package, the package name must be enclosed in quotes.
--   When loading a package, you do not need to use quotes around the name.
+-   When loading a package, you don't need quotes around the name.
 -   You don't need to *download* a package more than once (though you may need to update it).
 -   However, you must *load* a package every time before you can use it.
 :::
