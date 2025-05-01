@@ -1,6 +1,6 @@
 # "Getting Started with The Command Line" Exercise
 
-This is an exercise to get people familiar with common bioinformatics command line activities on a High Performance Computing (HPC) cluster.
+This exercise introduces common bioinformatics command line activities on a High-Performance Computing (HPC) cluster.
 
 These activities include:
 - 🗺️Navigating the command line
@@ -8,23 +8,19 @@ These activities include:
 - ☑️Executing array jobs (using the LSF job scheduler) on Minerva, Mount Sinai's HPC.
 - 📊Aggregating quality control reports using MultiQC
 
-By the end of this exercise, you will be able to run [fastp](https://github.com/OpenGene/fastp), a "tool designed to provide ultrafast all-in-one preprocessing and quality control for FastQ data," on four RNA-seq .fastq files and aggregate the QC documents using [MultiQC](https://github.com/MultiQC/MultiQC), a "tool to create a single report with interactive plots for multiple bioinformatics analyses across many samples."
-
-**fastp citation:**
->Shifu Chen. 2023. Ultrafast one-pass FASTQ data preprocessing, quality control, and deduplication using fastp. *iMeta* 2: e107. [DOI](https://doi.org/10.1002/imt2.107)
-
-**MultiQC citation**
->Philip Ewels, Måns Magnusson, Sverker Lundin, Max Käller, MultiQC: summarize analysis results for multiple tools and samples in a single report, *Bioinformatics*, October 2016, [DOI](https://doi.org/10.1093/bioinformatics/btw354)
+By the end of this exercise, you will be able to:
+- Run [fastp](https://github.com/OpenGene/fastp), a "tool designed to provide ultrafast all-in-one preprocessing and quality control for FastQ data," on four RNA-seq .fastq files
+- Aggregate the QC documents using [MultiQC](https://github.com/MultiQC/MultiQC), a "tool to create a single report with interactive plots for multiple bioinformatics analyses across many samples."
 
 ## Step 1: Locate the Data
-Using `cd` (change directory), navigate to the `master_data` folder on Minerva containing the raw .fastq files we will use in the exercise:
+Using `cd` (change directory), navigate to the `master_data` folder on Minerva containing the raw .fastq files for the exercise:
 
 ``` Shell
 cd /sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy
 ```
 *If you are following along on GitHub, these files can be found in the `master_data` [folder](master_data) within this directory.*
 
-These .fastqs are truncated test data adapted from the [NF-core test data repository](https://github.com/nf-core/test-datasets/tree/rnaseq). Samples are from S. cerevisiae (yeast), and are 101bp paired-end strand-specific RNA-seq files, sub-sampled to 50,000 reads.
+These .fastqs are from S. cerevisiae (yeast) samples and are 101bp paired-end strand-specific RNA-seq files, sub-sampled to 50,000 reads (from [NF-core test data repository](https://github.com/nf-core/test-datasets/tree/rnaseq)).
 
 <!-- HTML_START -->
 <details>
@@ -47,10 +43,10 @@ These .fastqs are truncated test data adapted from the [NF-core test data reposi
 </details>
 <!-- HTML_END -->
 
-Each subfolder within the `/sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy` directory contains the .fastq files for each of the four samples we are using for this example. 
+Each subfolder contains the .fastq files for each of the four samples we are using for this exercise. 
 
 >💡**Tip**: As you move throughout your directories, creating and modifying files, it can become confusing.
-> - If you ever get lost or disoriented in your file structure, just type `pwd` (for "print working directory"). This will output the full path of your current directory.
+> - If you get lost or disoriented, just type `pwd` (for "print working directory"). This will output the full path of your current directory.
 > - You can also type `ls` to list all the files in your current directory. Try it out now!
 
 Let's look inside one of the subfolders:
@@ -58,7 +54,7 @@ Let's look inside one of the subfolders:
 cd SRR6357070
 ls
 ```
-You'll notice there are actually two .fastq files for each sample. These files come from paired-end, strand-specific RNA-seq, so read 1 is the forward read and read 2 is the reverse read. 
+You'll notice there are two .fastq files for each sample. These files come from paired-end, strand-specific RNA-seq, so read 1 is the forward read and read 2 is the reverse read. 
 
 Let's go back to the main data folder. This command moves us one folder up in the file hierarchy:
 ``` Shell
@@ -66,35 +62,47 @@ cd ..
 ```
 
 ## Step 2: Create a Sample List
-Next we create a sample list pointing to the names and locations of the raw .fastq files. This will tell your script what files to look for and where they are stored.
+Next, we create a sample list pointing to the names and locations of the raw .fastq files. This will tell your script what files to look for and where they are stored.
 
-To do this, we will run the command `printf '%s\n' "$PWD"/* >FastP_practice_samplelist_${MY_NAME}.txt`, replacing `${MY_NAME}` with, you guessed it, your name. 
+Run `printf '%s\n' "$PWD"/* >FastP_practice_samplelist_<MY_NAME>.txt`.
 
-So mine will look like: 
+Replace `<MY_NAME>` with, you guessed it, your name. For example, mine is:
 ``` Shell
 printf '%s\n' "$PWD"/* >FastP_practice_samplelist_Kelsey.txt
 ```
-For simplicity, for the rest of the exercise, I will just refer to this file as `"samplelist.txt"`
+For the rest of the exercise, we'll just refer to this file as `"samplelist.txt"`
 
-Let's break down the command:
-- `printf '%s\n':`
-        The `printf` command is used to format and print text. The format string `'%s\n'` specifies that it should print a string (`%s`) followed by a new line (`\n`).    
-- `"$PWD"/*:`
-        This is the path to the current working directory (`$PWD`) followed by an asterisk (`*`). The asterisk is a wildcard character that matches any file or directory within the current directory. Because we navigated to the `/sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy` folder, this is the working directory that will be printed, followed by the contents of the directory, which are the subfolders containing the .fastq files for each sample.
-- `>samplelist.txt:`
-        The "output redirection operator" (`>`) sends the output of a command to a file instead of printing it in the terminal. You decide the file's name and extension. Here we are creating a .txt file. 
->⚠️<ins>**Important**:</ins> If the file does not exist, defining the name and the file extension in the command will create a new file. But if you use the name of a file that already exists, **this command will overwrite the contents of an existing file if it has the same name.** Be careful when using `>`.  
-            
-- So, putting it all together, this command will:
-    
-    - *Expand the wildcard:*
-        The `*` wildcard will be expanded to match all files and directories in the current working directory.
-        
-    - *Print the paths:*
-        For each file or directory matched, the `printf` command will print its full path, followed by a new line.
+<!-- HTML_START -->
+<details>
+  <summary><b>Breaking down the command</b></summary>
+
+- **`printf '%s\n'`**
+  - `printf`: used to format and print text.
+  - Format string `'%s\n'`: specifies that it should print a string (`%s`) followed by a new line (`\n`).
+- **`"$PWD"/*`**
+  - `$PWD`: path to the current working directory
+  - `*`: the asterisk is a wildcard character that matches any file or directory within the current directory.
+    - We are in the `/sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy` folder; this is the working directory that will be printed
+    - This will be followed by the contents of the directory, which are the subfolders containing the .fastq files for each sample.
+- **`>samplelist.txt`**
+  - Output redirection operator `>`: sends the output of a command to a file instead of printing it in the terminal.
+  - You decide the file's name and extension. Here we are creating a .txt file. 
+</details>
+
+Putting it all together, this command will:
+  - *Expand the wildcard:*
+      The `*` wildcard will be expanded to match all files and directories in the current working directory.
       
-    - *Save to a text file:*
-        Instead of displaying the output of the command in the terminal, `>` will redirect the output to a new file, `samplelist.txt`.
+  - *Print the paths:*
+      For each file or directory matched, the `printf` command will print its full path, followed by a new line.
+    
+  - *Save to a text file:*
+      Instead of displaying the output of the command in the terminal, `>` will redirect the output to a new file, `samplelist.txt`.
+    
+>⚠️**Important**: Be careful when using `>`  
+> - If a file with the same name does not exist, defining the name and the file extension in the command will create a new file.
+> - If you use the name of a file that already exists, **this command will overwrite the contents of the existing file.** 
+
 
 ## Step 3: Modify your Sample List
 The sample list you just created will look like this:
@@ -107,7 +115,7 @@ The sample list you just created will look like this:
 | /sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy/SRR6357072 |
 | /sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy/SRR6357073 |
 
-You will note that the first line contains a `README.txt` file. This is a file in the `/sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy` folder that includes some sample information (the "Sample details" in Step 1).
+Note that the first line contains a `README.txt` file. This is a file in the `/sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy` folder that includes some sample details.
 
 It is good practice to have README files in your master data folders so you and current/future lab members know what the files are, where the data comes from, what species it is, the read length, etc. 
 
@@ -127,16 +135,16 @@ Once the file is open, use the arrow keys to navigate to the line we wish to rem
 To save and quit: `ctrl + o` ("Write Out" the file, saving the output), `Enter` (when prompted to provide the file name to be written, we hit Enter to keep the same name), and `ctrl + x` (exit `nano`).
 
 ## Step 4: Create the Script
-Navigate to the `Scripts` directory and create your own subdirectory using the `mkdir` (make directory) command:
+Navigate to the `Scripts` directory and create your own subdirectory using `mkdir` (make directory):
 ``` Shell
 cd /sc/arion/projects/NGSCRC/Scripts/Umbrella_Academy
 
 mkdir Kelsey
 ```
-We will need the sample list to be in the same folder as the script, but it's currently still in the `master_data` folder where it was made. We will use `mv` to move your sample list to the directory you just created. 
+We need the sample list in the same folder as the script, but it's currently still in the `master_data` folder where it was made. We will use `mv` to *move* your sample list to the directory you just created. 
 
-Because we have navigated to the `Scripts` directory, we need to append the location of the sample list to this command in order to locate it.
-The command will look like `${path to sample list}/FastP_practice_samplelist_${MY_NAME}.txt ${MY_NAME}`:
+Because we have navigated to the `Scripts` directory, we need to append the location of the sample list to this command to locate it.
+The command will look like `${path to sample list}/FastP_practice_samplelist_<MY_NAME>.txt <MY_NAME>`:
 ``` Shell
 mv /sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy/FastP_practice_samplelist_Kelsey.txt Kelsey
 ```
@@ -152,7 +160,7 @@ mv /sc/arion/projects/NGSCRC/master_data/test/Umbrella_Academy/FastP_practice_sa
 
 Now, make a copy of the `FastP_practice_annotated.sh` script using `cp`. 
 
-In one step, you can also append your name to the end of the file and move it into the subdirectory that you just created. The command will look like `cp FastP_practice_annotated.sh ${MY_NAME}/FastP_practice_${MY_NAME}.sh`:
+In one step, you can also append your name to the end of the file and move it into the subdirectory that you just created. The command will look like `cp FastP_practice_annotated.sh <MY_NAME>/FastP_practice_<MY_NAME>.sh`:
 ``` Shell
 cp FastP_practice_annotated.sh Kelsey/FastP_practice_Kelsey.sh
 ```
@@ -200,13 +208,13 @@ To check on the progress of the job (whether it is pending or running, how long 
 ## Step 7: Debug (as Needed)
 Once the job has finished, we can check to see whether it was successful. 
 
-We can look at the log and error files that have now been generated in your `Scripts` folder. If we just want to look at a file and not edit it, we can use `less` to open it, and `ctrl + z` to close it.
+View the log and error files that have been generated in your `Scripts` folder. If we just want to look at a file and not edit it, we can use `less` to open it, and `ctrl + z` to close it.
 
 **Were your jobs successful? How do you know?**
 
 You can also check the actual output in the `Work` directory. We haven't been to this folder yet, but we created a new output folder in the `Work` directory in the array job script. 
 
-The command to access it will look like `cd /sc/arion/projects/NGSCRC/Work/Umbrella_Academy/trimmed_reads_practice/${MY_NAME}`. 
+The command to access it will look like `cd /sc/arion/projects/NGSCRC/Work/Umbrella_Academy/trimmed_reads_practice/<MY_NAME>`. 
 
 Is there output in the folder?
 
@@ -214,7 +222,8 @@ Is there output in the folder?
 > - Check that you updated all the sections of the script that needed to be updated. Make sure you remembered to change the `${MY_NAME}` variable to your name.
 > - Check that the variables you are calling point to real files. For example, if you named your sample list `FastP_practice_samplelist_JohnnyCoolGuy.txt` but defined the `${MY_NAME}` variable in your script as `John`, your script won't find your sample list.
 > - Make sure your sample list contains only 4 rows, one for each sample, and points to the correct sample directories for the raw .fastq files.
-> - Make sure you typed your `bsub` command correctly, including the name of your script. Make sure you are launching the job from the `Scripts` folder that contains your script. 
+> - Make sure you typed your `bsub` command correctly, including the name of your script.
+> - Make sure you are launching the job from the `Scripts` folder that contains your script. 
 
 ## Step 8: Run the Final Array Job
 Once you are satisfied that your job works for one sample, you can submit your array job for the remaining samples:
@@ -224,7 +233,7 @@ bsub -J MyArrayJob[2-4] < FastP_practice_Kelsey.sh
 > 💡**Tip:** Note that you don't have to restart the array from 1 (e.g. `MyArrayJob[1-4]`) since we've already successfully finished the first sample.
 > If you do run from `[1-4]`, note that it will overwrite your output for sample 1 from your previous job. 
 
-Check on your jobs using `bjobs` or `watch bjobs`. Now that we submitted an actual array job, you can now monitor multiple jobs at once. Are some running and some still pending? 
+Now that we submitted an actual array job, you can now monitor multiple jobs at once using `bjobs` or `watch bjobs`. Are some running and some still pending? 
 
 Once they have finished running, check the output and error files for each sample and check the output in the `Work` folder to make sure they completed successfully.
 
@@ -238,7 +247,7 @@ To run MultiQC, we will practice using an **interactive shell**, where we reques
 **Why are we doing this now?**
 
 - When we typed basic commands like `cd`, `mkdir`, `mv`, etc., we were also in an interactive shell. These commands are simple and use very little memory and computing resources, so we were able to use the login shell. That is, we didn't have to specifically request time and resources, we just used the shared resources available to everyone on the login node.
-- When we ran our array job using a shell script, we were using a non-interactive shell. We requested the resources to run our job within the body of the script, the shell ran the commands in the script, and then exited when the script finished, without us interacting with the shell.
+- When we ran our array job using a shell script, we were using a non-interactive shell. We requested the resources to run our job within the body of the script, the shell ran the commands in the script and then exited when the script finished, without us interacting with the shell.
 
 >⚠️**Important:** If you are not using a shell script and are doing anything other than very simple tasks, **you must request an interactive shell!** The HPC is a shared computing resource, and running time- and memory-intensive jobs on the login node slows things down for everyone else. Requesting an interactive node with the time and memory needed for your activity ensures HPC resources are allocated appropriately.
 
@@ -297,7 +306,7 @@ Now you can open the `multiqc_report.html` file in your browser and take a look!
 
 ## Step 12: Celebrate your Success
 ### 🎉Congratulations! 
-You successfully ran [fastp](https://github.com/OpenGene/fastp) on the HPC on 4 samples using an array job, and generated a [MultiQC](https://github.com/MultiQC/MultiQC) report! Pat yourself on the back! 👋
+You successfully ran [fastp](https://github.com/OpenGene/fastp) on the HPC using an array job, and generated a [MultiQC](https://github.com/MultiQC/MultiQC) report! Pat yourself on the back! 👋
 
 ### Learning Recap
 After completing this exercise, you learned how to:
