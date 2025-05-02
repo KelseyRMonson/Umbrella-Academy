@@ -617,10 +617,11 @@ If we only looked at this table, we might think there were no droids in our data
 table(small_star_wars$hair_color, small_star_wars$species)
 ```
 
-Since we already have a `none` category, and if we want to ensure our friend R2 is included in our hair color table, we could recode it so that an `NA` entry for hair becomes `none`:
+If we want to ensure our friend R2 is included, we could recode it so that an `NA` entry for hair becomes `none`:
 
 ```{r}
 # Recode NA values using replace_na()
+# There are many ways to do this, but this is a simple one using the tidyverse package's `mutate` function
 small_star_wars <- small_star_wars %>%
   mutate(hair_color = replace_na(hair_color, "none"))
 
@@ -635,7 +636,7 @@ There he is! 🤖
 Now it's time to learn how to make some common plots in R!
 
 You can make plots with R's built-in functions, but they aren't especially pretty:
-```{r}
+```{r fig.cap="This is a simple scatterplot showing Star Wars charater Height vs. Weight using the Base-R `plot()` function. <br><br>*Note: I dropped Jabba the Hutt from this analysis since he's such a big boi.*"}
 #| echo: false
 
 # I'm filtering the full `starwars` dataset to remove Jabba the Hutt
@@ -643,7 +644,7 @@ starwars_noHutt <- starwars %>%
   filter(species != "Hutt") %>% 
   select(species, height, mass, birth_year)  
 
-plot(starwars_noHutt$height, starwars_noHutt$mass)
+plot(starwars_noHutt$mass, starwars_noHutt$height)
 
 ```
 
@@ -651,7 +652,7 @@ But with certain packages, they can be quite beautiful!
 
 This is plotting the same data using `ggplot2`, the gold-standard package for making plots in R:
 
-```{r}
+```{r fig.cap="This is the same Height vs. Weight scatterplot made with `ggplot2`. <br><br>I've also added boxplots showing the marginal distribution of each variable, and point size and color now represent species."}
 #| code-fold: true
 #| code-summary: "Show the code"
 
@@ -661,16 +662,15 @@ starwars_noHutt <- starwars %>%
   filter(species != "Hutt") %>% 
   select(species, height, mass, birth_year)  
  
-# I'm creating a scatter plot with mass and height on the x- and y-axes, colored by species, and with point size representing birth year:
-p <- ggplot(starwars_noHutt, aes(x = mass, y = height, color = species, size = birth_year)) +
+# I'm creating a scatterplot with mass and height on the x- and y-axes, and with color and point size representing species:
+p <- ggplot(starwars_noHutt, aes(x = mass, y = height, color = species, size = species)) +
   geom_point() +
-  ylim(NA, 230) +
-  xlim(NA, 140) +
-  scale_color_viridis(alpha = 0.7, begin = 0, end = 1, option = "D", aesthetics = "color", discrete = TRUE) +
+  ylim(NA, 250) +
+  scale_color_viridis(alpha = 0.5, begin = 0, end = 1, option = "D", aesthetics = "color", discrete = TRUE) +
   theme_light() +
       labs(
-        x = "Weight",
-        y = "Height"
+        x = "Weight (kg)",
+        y = "Height (cm)"
     ) +
   theme(legend.position = "none")
 
@@ -684,7 +684,8 @@ p1 <- ggMarginal(p, type="histogram")
 p2 <- ggMarginal(p, type="density")
  
 # marginal boxplot
-p3 <- ggMarginal(p, type="boxplot")
+# I'm making the main plot 10x bigger than the marginal, and increasing the transparency of the outlier points
+p3 <- ggMarginal(p, type="boxplot", size=10, alpha=0.5)
 
 p3
 ```
