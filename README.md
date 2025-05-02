@@ -13,8 +13,6 @@ A 10-week course created by [Kelsey Monson](https://github.com/KelseyRMonson) to
 ## What is hosted on the GitHub?
 Here you will find the code for the hands-on exercises to get students comfortable using the [command line](Command-Line) and [R](R-Project) (🚧). It also includes an exercise to practice [data cleaning](tbd) (🚧).
 
-This also includes a helpful resource for codes for commonly used [R plots](tbd) (🚧) and a command line ["cheat sheet"](Command-Line/command_line_cheat_sheet.md) to keep on hand.
-
 ## Course Schedule
 
 | Course    | Description |
