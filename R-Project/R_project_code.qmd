@@ -631,6 +631,15 @@ table(small_star_wars$hair_color, small_star_wars$species)
 There he is! 🤖
 :::
 
+▶️ Try making your own table looking at new variables.
+
+**Hint:** If you forget what other variables are in our dataset, you could run `str()` or `summary()`. 
+
+But you can also use one of the best features of RStudio: The **Environment** Tab!
+
+![Click the arrow next to your Tibble's name to expand the details for a quick peek. <br>Or, click the little table icon on the right to open it in its own tab.](assets/Environment.png)
+
+
 ### Time to Plot!
 
 Now it's time to learn how to make some common plots in R!
@@ -689,3 +698,31 @@ p3 <- ggMarginal(p, type="boxplot", size=10, alpha=0.5)
 
 p3
 ```
+
+#### Anatomy of a `ggplot`
+
+It helps to think of the structure of a `ggplot` like adding layers to a "base" graph. 
+
+All `ggplot`s start with, well, `ggplot()`!
+
+Try just calling the `ggplot()` function on its own:
+```{r}
+ggplot()
+```
+
+
+<!-- ggplot(                         # This makes your "canvas" -->
+<!--     data_frame_here,            # The data you're using - must be a long form data.frame or tibble -->
+<!--     aes(                        # "Aesthetics" - x, y, colors, etc  - Applies to all layers unless overwritten -->
+<!--         x = x here,             # The name of the column that has your x values - note: don't put this in quotes -->
+<!--         y = y here,             # The name of the column that has your y values -->
+<!--         other stuff             # You can specify a lot of things here - check the documentation -->
+<!--     ) -->
+<!-- ) + -->
+<!--     layer_1 +                       # Layers can be things like geom_point(), geom_line(), geom_boxplot(), etc -->
+<!--     layer_2 +                       # You can add multiple different types of geoms, or even multiple of the same type -->
+<!--     layer_3 + -->
+<!--     other_stuff +                   # You can add other things like themes, labels, etc -->
+<!--     more_stuff + -->
+<!--     change_how_something_looks + -->
+<!--     modify_the_plot_somehow         -->
