@@ -85,3 +85,44 @@ ggplot(
   )
 ) +
   geom_col()
+
+# Colorblind-friendly plot with cleaner background:
+ggplot(
+  small_star_wars,
+  aes(
+    x=name,
+    y=height,
+    fill=species
+  )
+) +
+  geom_col() +
+  scale_color_viridis(alpha=0.7, begin = 0, end = 1, option = "D", aesthetics = "fill", discrete = TRUE) +
+  # `alpha` adds a bit of transparency, which makes it less harsh (ranges from 0.1 (very faint) to 1 (opaque))
+  # `begin` and `end` specify the range of colors within the palette (ranges from 0-1)
+  # `option` selects which of the 8 palettes to use
+  # `aesthetics` tells us which of the `aes()` should map to this palette 
+  # `discrete` specifies if the aesthetic is discrete or continuous
+  theme_light()
+
+# Adding captions
+ggplot(
+  small_star_wars,
+  aes(
+    x=name,
+    y=height,
+    fill=species
+  )
+) +
+  geom_col() +
+  scale_color_viridis(alpha=0.7, begin = 0, end = 1, option = "D", aesthetics = "fill", discrete = TRUE) +
+  theme_light() +
+  labs(
+    x="Character Name",
+    y="Height (cm)",
+    fill="Star Wars \nSpecies",
+    title="Star Wars Character Height",
+    subtitle="Character height (in cm) for six primary Star Wars characters, colored by species",
+    # Add your name to the caption
+    caption = "Created by me, <Your Name Here>!"
+  )
+ 
