@@ -46,9 +46,42 @@ small_star_wars %>%
   gt() %>% 
   gt_theme_pff()
 
-# Making Tables ----
+##### Your themed `gt()` summary table goes here! #####
+
+
+
+# Using `table()` ----
 # Table for how many species are in our dataset
 table(small_star_wars$species)
 
 # Table for hair color and species
 table(small_star_wars$hair_color, small_star_wars$species)
+
+##### Your `table()` contingency table goes here! #####
+
+
+
+# Plotting with ggplot2 ----
+# Try running `ggplot()` alone:
+ggplot()
+
+# Making a simple bar plot of the heights of each character in our dataset:
+ggplot(
+  small_star_wars,
+  aes(
+    x=name,
+    y=height
+  )
+) +
+  geom_col()
+
+# Coloring the bars by species:
+ggplot(
+  small_star_wars,
+  aes(
+    x=name,
+    y=height,
+    fill=species
+  )
+) +
+  geom_col()

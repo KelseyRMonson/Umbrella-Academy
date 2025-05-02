@@ -637,7 +637,7 @@ There he is! 🤖
 
 But you can also use one of the best features of RStudio: The **Environment** Tab!
 
-![Click the arrow next to your Tibble's name to expand the details for a quick peek. <br>Or, click the little table icon on the right to open it in its own tab.](assets/Environment.png)
+![Click the arrow next to your Tibble's name to expand the details for a quick peek. <br><br>Or, click the little table icon on the right to open it in its own tab.](assets/Environment.png)
 
 
 ### Time to Plot!
@@ -705,10 +705,80 @@ It helps to think of the structure of a `ggplot` like adding layers to a "base" 
 
 All `ggplot`s start with, well, `ggplot()`!
 
-Try just calling the `ggplot()` function on its own:
-```{r}
+▶️ Try just calling the `ggplot()` function on its own:
+```{r fig.cap="This is like the canvas upon which your `ggplot` is built!"}
 ggplot()
 ```
+
+Next, you specify the data (either a Data Frame or Tibble) that you will be using for your plot. 
+
+We'll stick with our `small_star_wars` Tibble for now to illustrate how to build the plot. 
+
+If you just type `ggplot(small_star_wars)`, you'll get the same blank canvas. 
+
+To specify *what* you want to plot, use the `aes()` argument. This is the *aesthetics* we are applying to our plot, and includes things like which variables to include and what colors should represent.
+
+Let's pick two random variables for our x and y values and specify them using `aes()`:
+```{r}
+ggplot(
+  small_star_wars,
+  aes(
+    x=name,
+    y=height
+  )
+)
+```
+
+Ok, we have our canvas and we know what we want to plot. Now we have to decide how to plot it!
+
+We need to layer on an argument to tell `ggplot()` what kind of plot we want. 
+
+▶️ Let's make a simple bar plot:
+```{r}
+ggplot(
+  small_star_wars,
+  aes(
+    x=name,
+    y=height
+  )
+) +
+  geom_col()
+```
+
+This looks fine, but a bit boring. We can go back to the `aes()` argument and add some more aesthetics. 
+
+▶️ Let's color the bars by species using the `fill` argument:
+```{r}
+ggplot(
+  small_star_wars,
+  aes(
+    x=name,
+    y=height,
+    fill=species
+  )
+) +
+  geom_col()
+```
+
+:::{.callout-warning}
+
+The default colors in `ggplot2` are not especailly colorblind-friendly.
+
+:::
+
+Using a tool called [Coblis](https://www.color-blindness.com/coblis-color-blindness-simulator/), you can simulate how different types of colorblindness affect how colors appear. 
+
+Here I'm simulating Green-Blind/Deuteranopia and Blue-Blind/Tritanopia, respectively:
+
+::: {layout-ncol=2}
+
+![](assets/Coblis1.png)
+
+![](assets/Coblis2.png)
+:::
+
+To address this, I really like the `viridis` package, which has very nicely curated palettes that are all colorblind-friendly.
+
 
 
 <!-- ggplot(                         # This makes your "canvas" -->
@@ -725,4 +795,4 @@ ggplot()
 <!--     other_stuff +                   # You can add other things like themes, labels, etc -->
 <!--     more_stuff + -->
 <!--     change_how_something_looks + -->
-<!--     modify_the_plot_somehow         -->
+<!--     modify_the_plot_somehow -->
