@@ -104,6 +104,20 @@ ggplot(
   # `discrete` specifies if the aesthetic is discrete or continuous
   theme_light()
 
+# Ordering by descending height
+ggplot(
+  small_star_wars,
+  aes(
+    x=fct_reorder(name, desc(height)),
+    y=height,
+    fill=species
+  )
+) +
+  geom_col() +
+  scale_color_viridis(alpha=0.7, begin = 0, end = 1, option = "D", aesthetics = "fill", discrete = TRUE) +
+  theme_light()
+
+
 # Adding captions
 ggplot(
   small_star_wars,
@@ -124,5 +138,26 @@ ggplot(
     subtitle="Character height (in cm) for six primary Star Wars characters, colored by species",
     # Add your name to the caption
     caption = "Created by me, <Your Name Here>!"
+  )
+ 
+
+
+
+ggplot(                         # Create your canvas
+  small_star_wars,            # Specify your dataset
+  aes(                        # Define your aesthetics
+    x = fct_reorder(name, height),             # What you are plotting on the x-axis
+    y = height,             # What you are plotting on the y-axis
+    fill=species,
+    size=homeworld # You can include lots of other things in aes()
+  )                           # Up to this point is the base upon which you can add many more layers
+) +
+  geom_col() +                       # Layers can be things like geom_col, geom_point(), geom_line(), geom_boxplot(), etc
+  geom_point(color="lightblue") +                       # You can add multiple different types of geoms, or even multiple of the same type
+  scale_color_viridis(alpha=0.7, begin = 0.2, end = 0.5, option = "A", aesthetics = "fill", discrete = TRUE) +
+  theme_bw() +
+  theme(
+    legend.key = element_rect(fill = NA, color = NA), # Remove background and border
+    legend.title = element_blank() # Optional: remove the legend title
   )
  
