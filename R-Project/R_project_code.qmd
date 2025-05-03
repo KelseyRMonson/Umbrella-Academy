@@ -643,7 +643,7 @@ But you can also use one of the best features of RStudio: The **Environment** Ta
 
 ### Time to Plot!
 
-Now it's time to learn how to make some common plots in R!
+Now let's learn how to make some common plots in R!
 
 You can make plots with R's built-in functions, but they aren't especially pretty:
 ```{r fig.cap="This is a simple scatterplot showing Star Wars charater Height vs. Weight using the Base-R `plot()` function. <br><br>*Note: I dropped Jabba the Hutt from this analysis since he's such a big boi.*"}
@@ -658,16 +658,14 @@ plot(starwars_noHutt$mass, starwars_noHutt$height)
 
 ```
 
-But with certain packages, they can be quite beautiful! 
-
-This is plotting the same data using `ggplot2`, the gold-standard package for making plots in R:
+Using packages like `ggplot2` (the gold standard for making plots in R), they can be quite beautiful! 
 
 ```{r fig.cap="This is the same Height vs. Weight scatterplot made with `ggplot2`. <br><br>I've also added boxplots showing the marginal distribution of each variable, and point size and color now represent species."}
 #| code-fold: true
 #| code-summary: "Show the code"
 
-# First, I'm filtering the full `starwars` dataset to remove Jabba the Hutt
-# (I did this to make the Base-R plot too, but I'm including this step here so you can see how I did it)
+# Filter the `starwars` dataset to remove Jabba the Hutt
+# (I did this to make the Base-R plot too, but I'm including it here so you can see how I did it)
 starwars_noHutt <- starwars %>%
   filter(species != "Hutt") %>% 
   select(species, height, mass, birth_year)  
@@ -702,22 +700,20 @@ p3
 
 #### Anatomy of a `ggplot`
 
-It helps to think of the structure of a `ggplot` like adding layers to a "base" graph. 
+Creating a `ggplot` is like adding layers to a "base" graph.
 
-All `ggplot`s start with, well, `ggplot()`!
-
-▶️ Try just calling the `ggplot()` function on its own:
+▶️ Try calling `ggplot()` on its own:
 ```{r fig.cap="This is like the canvas upon which your `ggplot` is built!"}
 ggplot()
 ```
 
-Next, you specify the data (either a Data Frame or Tibble) that you will be using for your plot. 
+Next, specify the data (either a Data Frame or Tibble) for your plot. 
 
 We'll stick with our `small_star_wars` Tibble for now to illustrate how to build the plot. 
 
-If you just type `ggplot(small_star_wars)`, you'll get the same blank canvas. 
+If you just type `ggplot(small_star_wars)`, you'll get the same blank canvas because we haven't defined *what* to plot. 
 
-To specify *what* you want to plot, use the `aes()` argument. This is the *aesthetics* we are applying to our plot, and includes things like which variables to include and what colors should represent.
+To specify this, use the `aes()` argument to map the *aesthetics* -- like variables applied to axes or colors.
 
 Let's pick two random variables for our x and y values and specify them using `aes()`:
 ```{r}
@@ -730,11 +726,11 @@ ggplot(
 )
 ```
 
-Ok, we have our canvas and we know what we want to plot. Now we have to decide how to plot it!
+Ok, now that we have our canvas and variables, let's choose how to plot the data!
 
 We need to layer on an argument to tell `ggplot()` what kind of plot we want. 
 
-▶️ Let's make a simple bar plot:
+▶️ Let's start with a simple bar plot:
 ```{r}
 ggplot(
   small_star_wars,
@@ -748,7 +744,7 @@ ggplot(
 
 This looks fine, but a bit boring. We can go back to the `aes()` argument and add some more aesthetics. 
 
-▶️ Let's color the bars by species using the `fill` argument:
+▶️ Color the bars by species using `fill`:
 ```{r}
 ggplot(
   small_star_wars,
@@ -763,11 +759,11 @@ ggplot(
 
 :::{.callout-warning}
 
-The default colors in `ggplot2` are not especailly colorblind-friendly.
+**The default colors in `ggplot2` aren't very colorblind-friendly.**
 
 :::
 
-Using a tool called [Coblis](https://www.color-blindness.com/coblis-color-blindness-simulator/), you can simulate how different types of colorblindness affect how colors appear. 
+[Coblis](https://www.color-blindness.com/coblis-color-blindness-simulator/) is a tool to simulate how colors appear with various types of colorblindness. 
 
 Here I'm simulating Green-Blind/Deuteranopia and Blue-Blind/Tritanopia, respectively:
 
@@ -778,7 +774,7 @@ Here I'm simulating Green-Blind/Deuteranopia and Blue-Blind/Tritanopia, respecti
 ![](assets/Coblis2.png)
 :::
 
-To address this, I really like the `viridis` package, which has very nicely curated palettes that are all colorblind-friendly. They also read well in grayscale and B&W.
+To address this, I really like the `viridis` package, which has nicely curated palettes that are colorblind-friendly. They also read well in grayscale and B&W.
 
 This is the palette I used for the scatterplot earlier:
 
@@ -790,7 +786,7 @@ show_col(pal_viridis()(12))
 
 ```
 
-▶️ Let's also get rid of `ggplot`'s default gray background, which adds unnecessary visual clutter. We can do this using a `theme()`:
+▶️ Let's simplify the plot by removing `ggplot`'s default gray background. We can do this using a `theme()`:
 
 ```{r}
 #| code-fold: true
@@ -817,20 +813,19 @@ This is already starting to look pretty nice, and it's much more colorblind-frie
 ![](assets/Coblis4.png)
 :::
 
-You can see that R is doing its default behavior of ordering the variables on the x-axis alphabetically. 
+You can see R is defaulting to ordering the variables on the x-axis alphabetically. 
 
 By chance, they are nearly in perfect descending order, but what if we wanted to order it precisely?
 
 With only six samples, we could coerce `name` into a factor and then set the levels manually based on the heights we observe. But this is impractical as sample size increases, and also leaves room for human error. 
 
-Here's a simple code to automatically reorder a factor based on the value of another variable:
+Here's a simple code to dynamically reorder a factor based on the value of another variable:
 
 ```{r}
-# First we have to make `name` a factor:
+# First convert `name` to a factor:
 small_star_wars$name <- as.factor(small_star_wars$name)
 
-# Then we use `fct_reorder()` from the `forcats` package (which comes with the `tidyverse` package)
-# We specify that we want them in descending order (ascending is the default)
+# Use `fct_reorder()` from the `forcats` package to order by `height` (descending)
 ggplot(
   small_star_wars,
   aes(
@@ -846,7 +841,7 @@ ggplot(
 
 Lastly, a plot is only as good as its labels
 
-▶️ Let's make ours clearer and more polished by setting them with `labs()`
+▶️ Add polished labels using `labs()`
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
