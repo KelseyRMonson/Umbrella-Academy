@@ -945,3 +945,52 @@ ggplot(
     subtitle = "Bar and point colors mapped to species and homeworld, respectively"
   )
 ```
+
+Now that we have the basic structure, let's see how to make several other common plots.
+
+### Discrete Variables
+Let's continue on with plotting discrete/categorical values.
+
+#### More bar plots
+We used `geom_col()` for our bar plot, but we could also use `geom_bar()`
+
+```{r}
+# If we use `stat="identity"` with `geom_bar()`, we can generate the same plot
+
+ggplot(
+  small_star_wars,
+  aes(
+    x = fct_reorder(name, desc(height)),
+    y = height,
+    fill = species
+  )
+) +
+  geom_bar(stat="identity")
+```
+
+Let's use `geom_bar()` to plot height by species, instead of name.
+```{r}
+ggplot(
+  small_star_wars,
+  aes(
+    x = species,
+    y = height
+  )
+) +
+  geom_bar(stat="identity", position="dodge") +
+  scale_color_viridis(option = "C", alpha = 0.9, begin = 0.1, end = 0.9, discrete=TRUE)
+
+
+ggplot(
+  small_star_wars,
+  aes(
+    x = species,
+    y = height,
+    fill = name
+  )
+) +
+  geom_bar(stat="identity", position="dodge") +
+  scale_fill_viridis(option = "C", alpha = 0.9, begin = 0.1, end = 0.9, discrete=TRUE)
+
+
+```
