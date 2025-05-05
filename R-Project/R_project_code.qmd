@@ -1072,7 +1072,9 @@ ggplot(
   )
 ```
 
-Maybe you're interested in the species and sex distribution of height for our characters -- but now we're running into quite a few variables. That's where `facet_wrap()` comes in. It allows you to split out graphs with your variable of interest, to better visualize multi*faceted* data (get it?).
+Maybe you're interested in the species **and** sex distribution of height for all of our characters -- but now we're running into quite a few variables. 
+
+That's where `facet_wrap()` comes in. It allows you to split out graphs with your variable of interest, to better visualize multi*faceted* data (get it?).
 
 ▶️ Plot height by species, separated by sex, with character names indicated by color
 ```{r}
