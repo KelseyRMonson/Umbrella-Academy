@@ -870,39 +870,33 @@ ggplot(
   )
 ```
 
+##### Putting it all together
 To summarize, this is the basic structure of a `ggplot`:
 
 ```{r}
+#| output: false
 
-ggplot(
-  small_star_wars,            # Specify your dataset
-  aes(                        # Define your aesthetics
-    x = fct_reorder(name, height),    # What you are plotting on the x-axis
-    y = height,                      # What you are plotting on the y-axis
-    fill = species                # You can include lots of other things in aes()
+ggplot(               # Create your canvas
+  small_star_wars,    # Specify your dataset
+  aes(                # Define your aesthetics
+    x = name,         # X-axis variable
+    y = height,       # Y-axis variable
+    fill = species,
+    size=homeworld    # Other aesthetics (there are many options)
   )                           
-) +
-  geom_col() +                       # Layers can be things like geom_col, geom_point(), geom_line(), geom_boxplot(), etc
-  geom_point(                         # You can add multiple different types of geoms, or even multiple of the same type
-    aes(color = homeworld, size = homeworld) # Map both color and size to the same variable (homeworld)
+) +                   # This is the base upon which to add layers
+  geom_col() +        # Layers must include your plot type
+  geom_point(         # You can add multiple different geoms, or even multiple of the same type
+    aes(
+      color = homeworld, 
+      size = homeworld) # And each geom can have its own aes()
   ) +  
-  scale_fill_viridis_d(option = "D", alpha = 0.8, begin = 0.2, end = 0.5) +
-  scale_color_viridis_d(option = "C", alpha = 0.9, begin = 0.1, end = 0.9) +
-  guides(
-    fill = guide_legend(override.aes = list(shape = NA)), # Remove points from species legend
-    color = guide_legend(title = "Homeworld"),            # Customize homeworld legend
-    size = guide_legend(title = "Homeworld")              # Combine size and color legend for homeworld
-  ) +
-  theme_bw() +                       # Apply a simple theme
-  theme(
-    legend.key = element_rect(fill = NA, color = NA),  # Remove legend background
-    legend.title = element_blank()                    # Optional: remove legend title
-  ) +
-  labs(
+  theme_bw() +        # I recommend always including a theme to follow good design principles
+  labs(               # And always label your graph
     x = "Character Name",
     y = "Height (cm)",
     fill = "Species",
-    title = "Star Wars Character Heights with Dynamic Scales",
+    title = "Star Wars Character Heights (in cm)",
     subtitle = "Bar and point colors mapped to species and homeworld, respectively"
   )
 
@@ -910,3 +904,42 @@ ggplot(
 ```
 
 
+```{r}
+#| code-fold: true
+#| code-summary: "Show the full code"
+
+# I cheated a bit to make the summary section easier to read
+# (There are some quirks in the way that the legend is rendered for multiple geoms that require more code to clean up)
+# But here is the code you need to reproduce the figure in the exercise:
+
+ggplot(
+  small_star_wars,
+  aes(
+    x = fct_reorder(name, desc(height)),
+    y = height,
+    fill = species
+  )
+) +
+  geom_col() +
+  geom_point(
+    aes(color = homeworld, size = homeworld) # Map both color and size to the same variable (homeworld)
+  ) +
+  scale_fill_viridis_d(option = "D", alpha = 0.8, begin = 0.2, end = 0.5) + # Set "fill" colors (species)
+  scale_color_viridis_d(option = "C", alpha = 0.9, begin = 0.1, end = 0.9) + # set "color" colors (homeworld)
+  guides(
+    fill = guide_legend(override.aes = list(shape = NA)), # Remove points from species legend
+    color = guide_legend(title = "Homeworld"), # Customize homeworld legend
+    size = guide_legend(title = "Homeworld") # Combine size and color legend for homeworld
+  ) +
+  theme_bw() + # Apply a simple theme
+  theme(
+    legend.key = element_rect(fill = NA, color = NA) # Remove legend background
+  ) +
+  labs(
+    x = "Character Name",
+    y = "Height (cm)",
+    fill = "Species",
+    title = "Star Wars Character Heights (in cm)",
+    subtitle = "Bar and point colors mapped to species and homeworld, respectively"
+  )
+```
