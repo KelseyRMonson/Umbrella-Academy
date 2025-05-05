@@ -946,15 +946,17 @@ ggplot(
   )
 ```
 
-Now that we have the basic structure, let's see how to make several other common plots.
+Now you know the building blocks for creating a plot using `ggplot2`!
+
+Let's use those blocks to build some other common plots.
 
 ### Discrete Variables
-Let's continue on with plotting discrete/categorical values.
+Let's continue plotting discrete (categorical) values.
 
-#### More bar plots
-We used `geom_col()` for our bar plot, but we could also use `geom_bar()`. 
+#### Exploring bar plots
+We used `geom_col()` for our bar plot, but `geom_bar()` is a flexible alternative. 
 
-If we use `stat="identity"` with `geom_bar()`, we can generate the same plot
+Using `stat="identity"` with `geom_bar()`, we can generate the same plot:
 
 ```{r}
 #| code-fold: true
@@ -978,7 +980,7 @@ ggplot(
   )
 ```
 
-▶️ Let's use `geom_bar()` to plot height by species, instead of name.
+▶️ Now let's use `geom_bar()` to plot height by species, instead of by name.
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -1000,9 +1002,9 @@ ggplot(
   )
 
 ```
-This sums the heights of all the humans in the dataset, which is not especially informative. 
+This sums the heights of all the humans in the dataset (not very informative). 
 
-So what's a better way to plot this?
+What's a better way to plot this?
 
 ▶️ We can plot species on the x-axis but fill by name to get a stacked bar plot, or use `position="dodge"`to plot the names side-by-side
 ```{r}
@@ -1124,3 +1126,12 @@ ggplot(
     title = "Character Height by Sex within Each Species"
   )
 ```
+
+## Placeholder for tomorrow
+### Time Series and Continuous Variables 
+Let's move on to plotting continuous variables and time series.
+#### Scatterplots 
+Scatterplots effectively visualize relationships between two continuous variables.
+### More (including box and violin plots, heatmap)
+### Final Thoughts 
+By now, you should feel comfortable building a variety of plots in R using ggplot2. Feel free to revisit this guide as you apply these skills to your own data.
