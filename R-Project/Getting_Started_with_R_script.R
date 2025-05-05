@@ -104,6 +104,11 @@ ggplot(
   # `discrete` specifies if the aesthetic is discrete or continuous
   theme_light()
 
+
+##### Your plot with a bespoke color scheme goes here! #####
+
+
+
 # Ordering by descending height
 ggplot(
   small_star_wars,
@@ -118,7 +123,7 @@ ggplot(
   theme_light()
 
 
-# Adding captions
+# Adding labels -- update your name in the caption!
 ggplot(
   small_star_wars,
   aes(

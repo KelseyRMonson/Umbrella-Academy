@@ -815,6 +815,8 @@ This is already starting to look pretty nice, and it's much more colorblind-frie
 ![](assets/Coblis4.png)
 :::
 
+▶️ Play around with the color scheme by adjusting the `begin` and `end` numbers, as well as the `option` to change the scale itself. Use `alpha` to change the opacity.
+
 ##### Order your variables
 You can see R is defaulting to ordering the variables on the x-axis alphabetically. 
 
@@ -843,7 +845,7 @@ ggplot(
 ```
 
 ##### Add your labels
-Lastly, a plot is only as good as its labels
+Lastly, a plot is only as good as its labels!
 
 ▶️ Add polished labels using `labs()`
 ```{r}
