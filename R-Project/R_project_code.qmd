@@ -912,7 +912,7 @@ ggplot(               # Create your canvas
 
 # I cheated a bit to make the summary section easier to read
 # (There are some quirks in the way that the legend is rendered for multiple geoms that require more code to clean up)
-# But here is the code you need to reproduce the figure in the exercise:
+# But here is the code you need to reproduce the figure below:
 
 ggplot(
   small_star_wars,
@@ -952,10 +952,13 @@ Now that we have the basic structure, let's see how to make several other common
 Let's continue on with plotting discrete/categorical values.
 
 #### More bar plots
-We used `geom_col()` for our bar plot, but we could also use `geom_bar()`
+We used `geom_col()` for our bar plot, but we could also use `geom_bar()`. 
+
+If we use `stat="identity"` with `geom_bar()`, we can generate the same plot
 
 ```{r}
-# If we use `stat="identity"` with `geom_bar()`, we can generate the same plot
+#| code-fold: true
+#| code-summary: "Show the code"
 
 ggplot(
   small_star_wars,
@@ -977,6 +980,8 @@ ggplot(
 
 ▶️ Let's use `geom_bar()` to plot height by species, instead of name.
 ```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
 ggplot(
   small_star_wars,
   aes(
@@ -1035,5 +1040,85 @@ ggplot(
     x = "Species",
     y = "Height (cm)",
     fill = "Character Name"
+  )
+```
+
+We can also plot bar charts as a percentage of the total. 
+
+That doesn't make much sense to do using height, but what if we wanted to show the sex distribution by species?
+
+▶️ Make a plot with percentage on the y-axis by changing `position="dodge"` to `position="fill"`
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+ggplot(
+  small_star_wars,
+  aes(
+    x = species,
+    fill= sex
+  )
+) +
+  geom_bar(position="fill") +
+  scale_y_continuous(labels = scales::percent) +  # This argument makes the y-axis be in % (otherwise it will go from 0-1)
+  scale_fill_viridis(option = "C", begin = 0.1, end = 0.9, discrete=TRUE) +
+  theme_light() +
+  labs(
+    x = "Species",
+    y = "Sex (% of Total)",
+    fill = "Sex",
+    title = "Proportion of Sex within Each Species",
+    subtitle = "Bar plot showing the percentage breakdown of sex by species"
+  )
+```
+
+Maybe you're interested in the species and sex distribution of height for our characters -- but now we're running into quite a few variables. That's where `facet_wrap()` comes in. It allows you to split out graphs with your variable of interest, to better visualize multi*faceted* data (get it?).
+
+▶️ Plot height by species, separated by sex, with character names indicated by color
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+ggplot(
+  small_star_wars,
+  aes(
+    x = fct_reorder(species, desc(height)),
+    y = height,
+    fill= fct_reorder(name, desc(height))
+  )
+) +
+  geom_bar(stat="identity", position="dodge") +
+  scale_fill_viridis(option = "C", begin = 0.1, end = 0.9, discrete=TRUE) +
+  facet_wrap(~sex) +
+  theme_light() +
+  labs(
+    x = "Species",
+    y = "Height (in cm)",
+    fill = "Name",
+    title = "Character Height by Sex within Each Species"
+  )
+  
+```
+
+To streamline the plot, you can include `scales="free_x` in your `facet_wrap()` argument to drop the unused species in each group:
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+ggplot(
+  small_star_wars,
+  aes(
+    x = fct_reorder(species, desc(height)),
+    y = height,
+    fill= fct_reorder(name, desc(height))
+  )
+) +
+  geom_bar(stat="identity", position="dodge") +
+  scale_fill_viridis(option = "C", begin = 0.1, end = 0.9, discrete=TRUE) +
+  facet_wrap(~sex, scales ="free_x") +
+  theme_light() +
+  labs(
+    x = "Species",
+    y = "Height (in cm)",
+    fill = "Name",
+    title = "Character Height by Sex within Each Species"
   )
 ```

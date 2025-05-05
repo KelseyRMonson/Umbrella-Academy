@@ -145,6 +145,7 @@ ggplot(
     caption = "Created by me, <Your Name Here>!"
   )
 
+# Fun with bar plots ----
 # Using geom_bar()
 ggplot(
   small_star_wars,
@@ -163,8 +164,7 @@ ggplot(
     fill = "Species"
   )
 
-# Stacked bar plots or adjacent bar plots
-# Stacked
+# Stacked bar plot
 ggplot(
   small_star_wars,
   aes(
@@ -182,7 +182,7 @@ ggplot(
     fill = "Species"
   )
 
-# Adjacent
+# Adjacent bar plots
 ggplot(
   small_star_wars,
   aes(
@@ -200,3 +200,64 @@ ggplot(
     fill = "Species"
   )
  
+# Percentage bar plot
+ggplot(
+  small_star_wars,
+  aes(
+    x = species,
+    fill= sex
+  )
+) +
+  geom_bar(position="fill") +
+  scale_y_continuous(labels = scales::percent) +
+  scale_fill_viridis(option = "C", begin = 0.1, end = 0.9, discrete=TRUE) +
+  theme_light() +
+  labs(
+    x = "Species",
+    y = "Sex (% of Total)",
+    fill = "Sex",
+    title = "Proportion of Sex within Each Species",
+    subtitle = "Bar plot showing the percentage breakdown of sex by species"
+  )
+
+
+# Faceting
+ggplot(
+  small_star_wars,
+  aes(
+    x = fct_reorder(species, desc(height)),
+    y = height,
+    fill= fct_reorder(name, desc(height))
+  )
+) +
+  geom_bar(stat="identity", position="dodge") +
+  scale_fill_viridis(option = "C", begin = 0.1, end = 0.9, discrete=TRUE) +
+  facet_wrap(~sex) +
+  theme_light() +
+  labs(
+    x = "Species",
+    y = "Height (in cm)",
+    fill = "Name",
+    title = "Character Height by Sex within Each Species"
+  )
+
+# Dropping unused factors when faceting
+ggplot(
+  small_star_wars,
+  aes(
+    x = fct_reorder(species, desc(height)),
+    y = height,
+    fill= fct_reorder(name, desc(height))
+  )
+) +
+  geom_bar(stat="identity", position="dodge") +
+  scale_fill_viridis(option = "C", begin = 0.1, end = 0.9, discrete=TRUE) +
+  facet_wrap(~sex, scales ="free_x") +
+  theme_light() +
+  labs(
+    x = "Species",
+    y = "Height (in cm)",
+    fill = "Name",
+    title = "Character Height by Sex within Each Species"
+  )
+
