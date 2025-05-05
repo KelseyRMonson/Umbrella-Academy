@@ -144,4 +144,59 @@ ggplot(
     # Add your name to the caption
     caption = "Created by me, <Your Name Here>!"
   )
+
+# Using geom_bar()
+ggplot(
+  small_star_wars,
+  aes(
+    x = fct_reorder(species, desc(height)),
+    y = height,
+    fill= species
+  )
+) +
+  geom_bar(stat="identity") +
+  scale_fill_viridis(option = "C", begin = 0.1, end = 0.9, discrete=TRUE) +
+  theme_light() +
+  labs(
+    x = "Species",
+    y = "Height (cm)",
+    fill = "Species"
+  )
+
+# Stacked bar plots or adjacent bar plots
+# Stacked
+ggplot(
+  small_star_wars,
+  aes(
+    x = fct_reorder(species, desc(height)),
+    y = height,
+    fill= name
+  )
+) +
+  geom_bar(stat="identity") +
+  scale_fill_viridis(option = "C", begin = 0.1, end = 0.9, discrete=TRUE) +
+  theme_light() +
+  labs(
+    x = "Species",
+    y = "Height (cm)",
+    fill = "Species"
+  )
+
+# Adjacent
+ggplot(
+  small_star_wars,
+  aes(
+    x = fct_reorder(species, desc(height)),
+    y = height,
+    fill= name
+  )
+) +
+  geom_bar(stat="identity", position="dodge") +
+  scale_fill_viridis(option = "C", begin = 0.1, end = 0.9, discrete=TRUE) +
+  theme_light() +
+  labs(
+    x = "Species",
+    y = "Height (cm)",
+    fill = "Species"
+  )
  

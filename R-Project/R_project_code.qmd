@@ -965,32 +965,75 @@ ggplot(
     fill = species
   )
 ) +
-  geom_bar(stat="identity")
+  geom_bar(stat="identity") +
+  scale_color_viridis(alpha=0.7, begin = 0, end = 1, option = "D", aesthetics = "fill", discrete = TRUE) +
+  theme_light() +
+  labs(
+    x = "Character Name",
+    y = "Height (cm)",
+    fill = "Species"
+  )
 ```
 
-Let's use `geom_bar()` to plot height by species, instead of name.
+▶️ Let's use `geom_bar()` to plot height by species, instead of name.
 ```{r}
 ggplot(
   small_star_wars,
   aes(
-    x = species,
-    y = height
+    x = fct_reorder(species, desc(height)),
+    y = height,
+    fill= species
   )
 ) +
-  geom_bar(stat="identity", position="dodge") +
-  scale_color_viridis(option = "C", alpha = 0.9, begin = 0.1, end = 0.9, discrete=TRUE)
+  geom_bar(stat="identity") +
+  scale_fill_viridis(option = "C", begin = 0.1, end = 0.9, discrete=TRUE) +
+  theme_light() +
+  labs(
+    x = "Species",
+    y = "Height (cm)",
+    fill = "Species"
+  )
 
+```
+This sums the heights of all the humans in the dataset, which is not especially informative. 
+
+So what's a better way to plot this?
+
+▶️ We can plot species on the x-axis but fill by name to get a stacked bar plot, or use `position="dodge"`to plot the names side-by-side
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+ggplot(
+  small_star_wars,
+  aes(
+    x = fct_reorder(species, desc(height)),
+    y = height,
+    fill= fct_reorder(name, desc(height)) # Sorting the fill factor by height as well plots them in order by descending height within the grouping
+  )
+) +
+  geom_bar(stat="identity") +
+  scale_fill_viridis(option = "C", begin = 0.1, end = 0.9, discrete=TRUE) +
+  theme_light() +
+  labs(
+    x = "Species",
+    y = "Height (cm)",
+    fill = "Character Name"
+  )
 
 ggplot(
   small_star_wars,
   aes(
-    x = species,
+    x = fct_reorder(species, desc(height)),
     y = height,
-    fill = name
+    fill= fct_reorder(name, desc(height))
   )
 ) +
   geom_bar(stat="identity", position="dodge") +
-  scale_fill_viridis(option = "C", alpha = 0.9, begin = 0.1, end = 0.9, discrete=TRUE)
-
-
+  scale_fill_viridis(option = "C", begin = 0.1, end = 0.9, discrete=TRUE) +
+  theme_light() +
+  labs(
+    x = "Species",
+    y = "Height (cm)",
+    fill = "Character Name"
+  )
 ```
