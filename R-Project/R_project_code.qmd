@@ -132,6 +132,8 @@ Breaking it down, we
 2.  Used the combine function `c()` to combine numbers/integers into new variables.
 3.  Passed each variable to `str()` to check its structure.
 
+R syntax is typically the `function` followed by the arguments to the function in parentheses: `(arguments)`.
+
 You can also *coerce* one data type into another.
 
 ```{r}
@@ -188,7 +190,7 @@ table(rankings)
 
 ```
 
-How do we fix this to order them logically?
+**How do we fix this to order them logically?**
 :::
 
 We use the **Factor** variable type! It lets us specify the expected levels of our categorical data:
@@ -219,9 +221,9 @@ If we had created the variable with them out of order, `str()` would print them 
 
 ```{r}
 rankings <- c("third","second","fourth","first")
-# Prints the character variable in the silly order we supplied...
+# Prints the silly order we supplied...
 str(rankings)
-# But still treats it alphabetically
+# ...but still treats it alphabetically
 table(rankings)
 
 ```
@@ -296,11 +298,7 @@ getwd()
 
 You can see I'm currently in my project directory on the Zamarin Lab computer.
 
-R syntax is typically the `function` followed by the arguments to the function in parentheses: `(arguments)`.
-
-With `getwd()`, we're asking what directory we're in, so we aren't giving it any arguments.
-
-But if we want to *change* the directory, we can use `setwd()`, specifying the path we want to move to:
+If we want to *change* the directory, we can use `setwd()`, specifying the path we want to move to:
 
 ```{r}
 setwd("C:/Users/Zamarin Lab/Documents/GitHub/Umbrella-Academy/R-Project")
@@ -482,9 +480,9 @@ gt(small_star_wars)
 ::: {.callout-tip collapse="true"}
 ##### A bit more on pipes (`%>%`)
 
-Consider the below code:
+Using the code below, you can apply a theme to make your `gtExtras` tables look like they do on the New York Times or ESPN.
 
-You can apply a theme to make your `gtExtras` tables look like they do on the New York Times or ESPN using either of these lines of code.
+Here I've given you two examples, one with a pipe and one without.
 
 Which is easier for you to read and understand?
 
@@ -501,7 +499,7 @@ small_star_wars %>%
 ```
 :::
 
-With `gtExtras`, you can do some cool things, like grouping specific variables together and plotting continuous variables right in your table. You can also apply some interesting visual styles:
+With `gtExtras`, you can do some cool things, like grouping variables together and plotting continuous variables right in your table. You can also apply some interesting visual styles:
 
 ```{r}
 #| layout: [[45,-1, 45, -1, 45], [100]]
@@ -573,7 +571,7 @@ agg_star_wars %>%
 
 #### `table()`
 
-`table()` is great for creating frequency tables (showing you how many of one variable or a combination of variables are present).
+`table()` is great for creating frequency tables, showing you how many of one variable (or a combination of variables) are present.
 
 Let's use this function to see how many of each species are in our dataset.
 
@@ -702,6 +700,8 @@ p3
 
 Creating a `ggplot` is like adding layers to a "base" graph.
 
+##### Create the canvas and add aesthetics
+
 ▶️ Try calling `ggplot()` on its own:
 ```{r fig.cap="This is like the canvas upon which your `ggplot` is built!"}
 ggplot()
@@ -713,7 +713,7 @@ We'll stick with our `small_star_wars` Tibble for now to illustrate how to build
 
 If you just type `ggplot(small_star_wars)`, you'll get the same blank canvas because we haven't defined *what* to plot. 
 
-To specify this, use the `aes()` argument to map the *aesthetics* -- like variables applied to axes or colors.
+To specify this, use the `aes()` argument to map the graph's **aesthetics** -- like variables applied to axes or colors.
 
 Let's pick two random variables for our x and y values and specify them using `aes()`:
 ```{r}
@@ -726,6 +726,7 @@ ggplot(
 )
 ```
 
+##### Select your plot
 Ok, now that we have our canvas and variables, let's choose how to plot the data!
 
 We need to layer on an argument to tell `ggplot()` what kind of plot we want. 
@@ -757,6 +758,7 @@ ggplot(
   geom_col()
 ```
 
+##### Adjust your colors 
 :::{.callout-warning}
 
 **The default colors in `ggplot2` aren't very colorblind-friendly.**
@@ -765,7 +767,7 @@ ggplot(
 
 [Coblis](https://www.color-blindness.com/coblis-color-blindness-simulator/) is a tool to simulate how colors appear with various types of colorblindness. 
 
-Here I'm simulating Green-Blind/Deuteranopia and Blue-Blind/Tritanopia, respectively:
+Here I'm simulating **Green-Blind/Deuteranopia** and **Blue-Blind/Tritanopia**, respectively:
 
 ::: {layout-ncol=2}
 
@@ -774,9 +776,9 @@ Here I'm simulating Green-Blind/Deuteranopia and Blue-Blind/Tritanopia, respecti
 ![](assets/Coblis2.png)
 :::
 
-To address this, I really like the `viridis` package, which has nicely curated palettes that are colorblind-friendly. They also read well in grayscale and B&W.
+To address this, I really like the `viridis` package, which has nicely curated palettes that are more accessible and also read well in grayscale.
 
-This is the palette I used for the scatterplot earlier:
+This is the palette I used for the scatterplot earlier -- let's apply it to our bar graph too:
 
 ```{r}
 #| echo: false
@@ -786,7 +788,7 @@ show_col(pal_viridis()(12))
 
 ```
 
-▶️ Let's simplify the plot by removing `ggplot`'s default gray background. We can do this using a `theme()`:
+▶️ Let's also simplify the plot by removing `ggplot`'s default gray background. We can do this using a `theme()`:
 
 ```{r}
 #| code-fold: true
@@ -813,6 +815,7 @@ This is already starting to look pretty nice, and it's much more colorblind-frie
 ![](assets/Coblis4.png)
 :::
 
+##### Order your variables
 You can see R is defaulting to ordering the variables on the x-axis alphabetically. 
 
 By chance, they are nearly in perfect descending order, but what if we wanted to order it precisely?
@@ -839,6 +842,7 @@ ggplot(
   theme_light()
 ```
 
+##### Add your labels
 Lastly, a plot is only as good as its labels
 
 ▶️ Add polished labels using `labs()`
