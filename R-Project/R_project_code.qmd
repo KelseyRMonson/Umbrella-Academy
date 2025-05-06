@@ -475,7 +475,7 @@ gt(small_star_wars)
 ```
 
 ::: {.callout-tip collapse="true"}
-##### A bit more on pipes (`%>%`)
+#### A bit more on pipes (`%>%`)
 
 Using the code below, you can apply a theme to make your `gtExtras` tables look like they do on the New York Times or ESPN.
 
@@ -693,11 +693,11 @@ p3 <- ggMarginal(p, type="boxplot", size=10, alpha=0.5)
 p3
 ```
 
-#### Anatomy of a `ggplot`
+### Anatomy of a `ggplot`
 
 Creating a `ggplot` is like adding layers to a "base" graph.
 
-##### Create the canvas and add aesthetics
+#### Create the canvas and add aesthetics
 
 ▶️ Try calling `ggplot()` on its own:
 ```{r fig.cap="This is like the canvas upon which your `ggplot` is built!"}
@@ -723,7 +723,7 @@ ggplot(
 )
 ```
 
-##### Select your plot
+#### Select your plot
 Ok, now that we have our canvas and variables, let's choose how to plot the data!
 
 We need to layer on an argument to tell `ggplot()` what kind of plot we want. 
@@ -755,7 +755,7 @@ ggplot(
   geom_col()
 ```
 
-##### Adjust your colors 
+#### Adjust your colors 
 :::{.callout-warning}
 
 **The default colors in `ggplot2` aren't very colorblind-friendly.**
@@ -813,7 +813,7 @@ This is already starting to look pretty nice, and it's much more colorblind-frie
 
 ▶️ Play around with the color scheme by adjusting the `begin` and `end` numbers, as well as the `option` to change the scale itself. Use `alpha` to change the opacity.
 
-##### Order your variables
+#### Order your variables
 You can see R is defaulting to ordering the variables on the x-axis alphabetically. 
 
 By chance, they are nearly in perfect descending order, but what if we wanted to order it precisely?
@@ -840,7 +840,7 @@ ggplot(
   theme_light()
 ```
 
-##### Add your labels
+#### Add your labels
 Lastly, a plot is only as good as its labels!
 
 ▶️ Add polished labels using `labs()`
@@ -868,7 +868,7 @@ ggplot(
   )
 ```
 
-##### Putting it all together
+### Putting it all together
 To summarize, this is the basic structure of a `ggplot`:
 
 ```{r}
@@ -949,7 +949,7 @@ Let's use those blocks to build some other common plots.
 ## Discrete Variables
 Let's continue plotting discrete (categorical) values.
 
-#### Exploring bar plots
+### Exploring bar plots
 We used `geom_col()` for our bar plot, but `geom_bar()` is a flexible alternative. 
 
 Using `stat="identity"` with `geom_bar()`, we can generate the same plot:
@@ -1127,7 +1127,7 @@ ggplot(
   )
 ```
 
-#### Lollipop Plots
+### Lollipop Plots
 Lollipop plots are modified bar plots with a cleaner aesthetic: 
 ```{r}
 #| code-fold: true
@@ -1169,7 +1169,7 @@ ggplot(
   coord_flip()
 
 ```
-#### Box plots and (their superior cousin) Violin plots
+### Box plots and (their superior cousin) Violin plots
 :::{.callout-warning}
 Box plots are useful for showing variable distributions, but they can hide important trends in your data.
 :::
@@ -1218,7 +1218,7 @@ ggplot( aes(x=name, y=value, fill=name)) +
 We can see that group `C` is much smaller, and `B` seems to have a bimodal distribution, both of which are important to consider when interpreting the data.
 
 :::{.callout-caution collapse=true}
-##### A quick warning about `ggplot()` layers
+#### A quick warning about `ggplot()` layers
 Because a `ggplot` is built iteratively, the order you add each geom matters. 
 
 Look what happens if we add the jitter first, before the box plot:
