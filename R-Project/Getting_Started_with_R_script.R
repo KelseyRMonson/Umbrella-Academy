@@ -267,8 +267,8 @@ ggplot(
   aes(
     x=name,
     y=height)) +
-  geom_segment( aes(x=name, xend=name, y=0, yend=height), color="skyblue") +
-  geom_point(color="blue", size=4, alpha=0.6) + 
+  geom_segment( aes(x=name, xend=name, y=0, yend=height), color="skyblue") + # You can also set colors using text or Hex codes
+  geom_point(color="#433E85FF", size=4, alpha=0.6) + 
   theme_classic() +
   labs(
     x = "Species",

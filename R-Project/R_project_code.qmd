@@ -1138,14 +1138,19 @@ ggplot(
     x=name,
     y=height)) +
   geom_segment( aes(x=name, xend=name, y=0, yend=height), color="skyblue") +
-  geom_point(color="blue", size=4, alpha=0.6) + 
+  geom_point(color="#433E85FF", size=4, alpha=0.6) + 
   theme_classic() +
   labs(
     x = "Species",
     y = "Height (in cm)"
   )
 ```
-A tip if you have especially long categorical variable names is to flip the x- and y-axes.
+:::{.callout-tip}
+To improve readability for long categorical variable names, flip the x- and y-axes.
+
+This also works if you have many individual samples. 
+
+:::
 
 ▶️ Make a flipped-coordinate lollipop plot using `coord_flip()`
 ```{r}
@@ -1156,8 +1161,8 @@ ggplot(
   aes(
     x=name,
     y=height)) +
-  geom_segment( aes(x=name, xend=name, y=0, yend=height), color="skyblue") +
-  geom_point(color="blue", size=4, alpha=0.6) + 
+  geom_segment( aes(x=name, xend=name, y=0, yend=height), color="skyblue") + # You can also set colors using text or Hex codes
+  geom_point(color="#433E85FF", size=4, alpha=0.6) + 
   theme_classic() +
   labs(
     x = "Species",
@@ -1166,6 +1171,102 @@ ggplot(
   coord_flip()
 
 ```
+#### Box plots and (their superior cousin) Violin plots
+:::{.callout-warning}
+Box plots are great for showing the distribution of a variable, **but you should very rarely (if ever) use a plain box plot.**
+:::
+This is because they can mask underlying trends in a distribution that are essential for proper data interpretation.
+
+To illustrate this phenomenon, I'm using a dummy dataset (from [this](https://www.data-to-viz.com/caveat/boxplot.html) excellent explanation of the dangers of box plots).
+```{r}
+#| echo: false
+# create a dataset
+data <- data.frame(
+  name=c( rep("A",500), rep("B",500), rep("B",500), rep("C",20), rep('D', 100)  ),
+  value=c( rnorm(500, 10, 5), rnorm(500, 13, 1), rnorm(500, 18, 1), rnorm(20, 25, 4), rnorm(100, 12, 1) )
+)
+
+# Plot
+data %>%
+  ggplot( aes(x=name, y=value, fill=name)) +
+    geom_boxplot() +
+    scale_fill_viridis(discrete = TRUE) +
+    theme_light() +
+    theme(
+      legend.position="none",
+      plot.title = element_text(size=11)
+    ) +
+    ggtitle("A somewhat misleading box plot") +
+    xlab("")
+```
+Now let's plot each individual point too. 
+
+To prevent the points from overlapping too much, we can use `geom_jitter()` to randomly disperse them a bit:
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+data %>% 
+ggplot( aes(x=name, y=value, fill=name)) +
+    geom_boxplot() +
+    scale_fill_viridis(discrete = TRUE) +
+    geom_jitter(color="darkgrey", size=0.7, alpha=0.6) +
+    theme_light() +
+    theme(
+      legend.position="none",
+      plot.title = element_text(size=11)
+    ) +
+    ggtitle("A box plot with jitter") +
+    xlab("")
+```
+Now, we can see that the sample size for group `C` is much smaller, and `B` seems to have a bimodal distribution, both of which are important to consider when interpreting the data.
+
+:::{.callout-caution collapse=true}
+##### A quick warning about `ggplot()` layers
+Because a `ggplot` is built iteratively, the order you add each geom matters. 
+
+Look what happens if we add the jitter first, before the box plot:
+```{r}
+data %>%
+  ggplot(aes(x = name, y = value, fill = name)) +
+  geom_jitter(color = "grey", size = 0.7, alpha = 0.6) + # Jitter first
+  geom_boxplot() +                                       # Then box plot
+  scale_fill_viridis(discrete = TRUE) +
+  theme_light() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(size = 11)
+  ) +
+  ggtitle("Jitter first, then box plot") +
+  xlab("")
+```
+The points are plotted first, and are covered by the boxes, preventing us from fully visualizing the distribution.
+:::
+
+If we want to really visualize the distribution of the data, instead of just using our eyes, we use a violin plot!
+```{r fig.cap="I'm not just saying that violin plots are superior because I play the violin -- but it doesn't hurt! 🎻"}
+#| warning: false
+#| code-fold: true
+#| code-summary: "Show the code"
+# sample size
+sample_size = data %>% group_by(name) %>% summarize(num=n())
+
+# Plot
+data %>%
+  left_join(sample_size) %>%
+  mutate(myaxis = paste0(name, "\n", "n=", num)) %>%
+  ggplot( aes(x=myaxis, y=value, fill=name)) +
+    geom_violin(width=1.4) +
+    geom_boxplot(width=0.1, color="grey", alpha=0.2) +
+    scale_fill_viridis(discrete = TRUE) +
+    theme_light() +
+    theme(
+      legend.position="none",
+      plot.title = element_text(size=11)
+    ) +
+    ggtitle("A violin plot") +
+    xlab("")
+```
+
 
 ## Continuous Variables
  
