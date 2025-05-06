@@ -43,7 +43,7 @@ editor: visual
 
 **The Umbrella Academy** aims to introduce "wet lab" scientists to useful "dry lab" tools. Therefore, this exercise is designed to enable students to generate aesthetically pleasing plots in R.
 
-While it has many functions (too many to cover int today's course), R is an excellent tool for generating beautiful data visualizations. It's much more flexible and customizable than other tools like Excel or GraphPad, plus it's free and open-source, unlike pricey proprietary statistical software like SAS or STATA.
+While it has many functions (too many to cover in today's course), R is an excellent tool for generating beautiful data visualizations. It's much more flexible and customizable than other tools like Excel or GraphPad, plus it's free and open-source, unlike pricey proprietary statistical software like SAS or STATA.
 
 Before diving into the exercise, let's cover the basics of using R and RStudio.
 
@@ -77,7 +77,7 @@ Maybe you can see why -- RStudio is an **"integrative development environment" (
 
 It's more than a "graphical user interface" (GUI) -- RStudio lets you write, run, and debug R code, manage files and variables with ease, render plots, read help documentation... the list goes on.
 
-We'll explore RStudio in depth throughout the exercise, but first we need to learn a bit more about how R works.
+We'll explore RStudio in depth throughout the exercise, but first, we need to learn a bit more about how R works.
 
 ### Data Types and Variables
 
@@ -128,7 +128,7 @@ str(intg)
 
 Breaking it down, we
 
-1.  Created the variables using `<-` (the `assignment operator`).
+1.  Created the variables using `<-` (the "assignment operator").
 2.  Used the combine function `c()` to combine numbers/integers into new variables.
 3.  Passed each variable to `str()` to check its structure.
 
@@ -375,7 +375,7 @@ Go ahead and close your new script containing the brilliant and groundbreaking c
 
 Now, create a new project and new directory:
 
-![Create a new project by going to File -\> New Project. Then create a New Directory, and finally New Project.](assets/New_Proj.png)
+![Create a new project by going to File -\> New Project. Then create a New Directory, and finally a New Project.](assets/New_Proj.png)
 
 You can name your new directory whatever you'd like, as long as you remember it's for this project.
 
@@ -584,7 +584,7 @@ table(small_star_wars$species)
 
 What if we wanted to add additional information? We can make a multi-dimensional table by separating the two variables with a comma.
 
-▶️ Let's look at both species and hair color:
+▶️ Let's look at both `species` and `hair color`:
 
 ```{r}
 table(small_star_wars$hair_color, small_star_wars$species)
@@ -641,7 +641,7 @@ But you can also use one of the best features of RStudio: The **Environment** Ta
 Now let's learn how to make some common plots in R!
 
 You can make plots with R's built-in functions, but they aren't especially pretty:
-```{r fig.cap="This is a simple scatter plot showing Star Wars charater Height vs. Weight using the Base-R `plot()` function. <br><br>*Note: I dropped Jabba the Hutt from this analysis since he's such a big boi.*"}
+```{r fig.cap="This is a simple scatter plot showing Star Wars character Height vs. Weight using the Base-R `plot()` function. <br><br>*Note: I dropped Jabba the Hutt from this analysis since he's such a big boi.*"}
 #| echo: false
 
 # I'm filtering the full `starwars` dataset to remove Jabba the Hutt
@@ -1002,7 +1002,7 @@ This sums the heights of all the humans in the dataset (not very informative).
 
 What's a better way to plot this?
 
-▶️ We can plot species on the x-axis but fill by name to get a stacked bar plot, or use `position="dodge"`to plot the names side-by-side
+▶️ We can plot species on the x-axis but fill by name to get a stacked bar plot... 
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -1011,7 +1011,7 @@ ggplot(
   aes(
     x = fct_reorder(species, desc(height)),
     y = height,
-    fill= fct_reorder(name, desc(height)) # Sorting the fill factor by height as well plots them in order by descending height within the grouping
+    fill= fct_reorder(name, desc(height)) # Sorting the fill factor by height also plots them in order by descending height within the grouping
   )
 ) +
   geom_bar(stat="identity") +
@@ -1022,7 +1022,11 @@ ggplot(
     y = "Height (cm)",
     fill = "Character Name"
   )
-
+```
+▶️ ...or use `position="dodge"` to plot the names side-by-side
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
 ggplot(
   small_star_wars,
   aes(
@@ -1043,7 +1047,7 @@ ggplot(
 
 We can also plot bar charts as a percentage of the total. 
 
-That doesn't make much sense to do using height, but what if we wanted to show the sex distribution by species?
+That doesn't make much sense for height, but what if we wanted to show the sex distribution by species?
 
 ▶️ Make a plot with percentage on the y-axis by changing `position="dodge"` to `position="fill"`
 
@@ -1074,7 +1078,7 @@ Maybe you're interested in the species **and** sex distribution of height for al
 
 That's where `facet_wrap()` comes in. It allows you to split out graphs with your variable of interest, to better visualize multi*faceted* data (get it?).
 
-▶️ Plot height by species, separated by sex, with character names indicated by color
+▶️ Plot `height` by `species`, separated by `sex`, with character `names` indicated by color
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -1420,7 +1424,7 @@ ggplot(filtered_star_wars,
 Like I did before, you can add additional information.
 
 ▶️ Let's map `species` to color and `birth year` to size:
-```{r fig.cap="Note that `birth year` is missing for several entries, so this plot looks slightly different than the previous one, with fewer points plotted. <br><br>*That's a downside to layering on additional datapoints in an imperfect dataset with missing data (which most are!).*"}
+```{r fig.cap= "Note that `birth year` is missing for several entries, so this plot looks slightly different than the previous one, with fewer points plotted. <br><br>*That's a downside to layering on additional variables in an imperfect dataset with missing data (which most are!).*"}
 #| code-fold: true
 #| code-summary: "Show the code"
 ggplot(filtered_star_wars, aes(x = mass, y = height, color = species, size = birth_year)) +
