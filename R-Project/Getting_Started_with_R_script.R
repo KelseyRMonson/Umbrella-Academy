@@ -261,3 +261,17 @@ ggplot(
     title = "Character Height by Sex within Each Species"
   )
 
+# Lollipop plot
+ggplot(
+  small_star_wars, 
+  aes(
+    x=name,
+    y=height)) +
+  geom_segment( aes(x=name, xend=name, y=0, yend=height), color="skyblue") +
+  geom_point(color="blue", size=4, alpha=0.6) + 
+  theme_classic() +
+  labs(
+    x = "Species",
+    y = "Height (in cm)"
+  ) +
+  coord_flip()

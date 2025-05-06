@@ -1127,11 +1127,56 @@ ggplot(
   )
 ```
 
+#### Lollipop Plots
+You can make a type of modified bar plot called a lollipop plot:
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+ggplot(
+  small_star_wars, 
+  aes(
+    x=name,
+    y=height)) +
+  geom_segment( aes(x=name, xend=name, y=0, yend=height), color="skyblue") +
+  geom_point(color="blue", size=4, alpha=0.6) + 
+  theme_classic() +
+  labs(
+    x = "Species",
+    y = "Height (in cm)"
+  )
+```
+A tip if you have especially long categorical variable names is to flip the x- and y-axes.
+
+▶️ Make a flipped-coordinate lollipop plot using `coord_flip()`
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+ggplot(
+  small_star_wars, 
+  aes(
+    x=name,
+    y=height)) +
+  geom_segment( aes(x=name, xend=name, y=0, yend=height), color="skyblue") +
+  geom_point(color="blue", size=4, alpha=0.6) + 
+  theme_classic() +
+  labs(
+    x = "Species",
+    y = "Height (in cm)"
+  ) +
+  coord_flip()
+
+```
+
+## Continuous Variables
+ 
+Let's move on to plotting continuous variables.
+
 ## Placeholder for tomorrow
-### Time Series and Continuous Variables 
-Let's move on to plotting continuous variables and time series.
+
 #### Scatterplots 
 Scatterplots effectively visualize relationships between two continuous variables.
+
 ### More (including box and violin plots, heatmap)
+
 ### Final Thoughts 
 By now, you should feel comfortable building a variety of plots in R using ggplot2. Feel free to revisit this guide as you apply these skills to your own data.
