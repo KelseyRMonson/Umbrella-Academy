@@ -1126,7 +1126,7 @@ ggplot(
 ```
 
 #### Lollipop Plots
-You can make a type of modified bar plot called a lollipop plot:
+Lollipop plots are modified bar plots with a cleaner aesthetic: 
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -1144,13 +1144,11 @@ ggplot(
   )
 ```
 :::{.callout-tip}
-To improve readability for long categorical variable names, flip the x- and y-axes.
-
-This also works if you have many individual samples. 
+For better readability with long category names or numerous samples, flip the x- and y-axes using `coord_flip()`
 
 :::
 
-▶️ Make a flipped-coordinate lollipop plot using `coord_flip()`
+▶️ Make a flipped-coordinate lollipop plot
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -1171,9 +1169,8 @@ ggplot(
 ```
 #### Box plots and (their superior cousin) Violin plots
 :::{.callout-warning}
-Box plots are great for showing the distribution of a variable, **but you should very rarely (if ever) use a plain box plot.**
+Box plots are useful for showing variable distributions, but they can hide important trends in your data.
 :::
-This is because they can mask underlying trends in a distribution that are essential for proper data interpretation.
 
 To illustrate this phenomenon, I'm using a dummy dataset (from [this](https://www.data-to-viz.com/caveat/boxplot.html) excellent explanation of the dangers of box plots).
 ```{r}
@@ -1197,9 +1194,9 @@ data %>%
     ggtitle("A somewhat misleading box plot") +
     xlab("")
 ```
-Now let's plot each individual point too. 
+Let's get a better sense of the true distribution by plotting individual points.
 
-To prevent the points from overlapping too much, we can use `geom_jitter()` to randomly disperse them a bit:
+To prevent the points from overlapping too much, we can use `geom_jitter()` to randomly disperse them:
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -1216,7 +1213,7 @@ ggplot( aes(x=name, y=value, fill=name)) +
     ggtitle("A box plot with jitter") +
     xlab("")
 ```
-Now, we can see that the sample size for group `C` is much smaller, and `B` seems to have a bimodal distribution, both of which are important to consider when interpreting the data.
+We can see that group `C` is much smaller, and `B` seems to have a bimodal distribution, both of which are important to consider when interpreting the data.
 
 :::{.callout-caution collapse=true}
 ##### A quick warning about `ggplot()` layers
@@ -1237,10 +1234,10 @@ data %>%
   ggtitle("Jitter first, then box plot") +
   xlab("")
 ```
-The points are plotted first, and are covered by the boxes, preventing us from fully visualizing the distribution.
+The points are plotted first and are covered by the boxes, preventing us from fully visualizing the distribution.
 :::
 
-If we want to really visualize the distribution of the data, we use a violin plot!
+Violin plots provide a fuller view of the distribution:
 ```{r fig.cap="I'm not just saying that violin plots are superior because I play the violin -- but it doesn't hurt! 🎻"}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -1263,11 +1260,9 @@ data %>%
     ggtitle("A violin plot") +
     xlab("")
 ```
-A downside of violin plots is that they don't convey differences in sample size very well. 
+A downside of violin plots is that they don't convey differences in sample size very well.
 
-The plot above includes some code to add the sample size below each categorical value.
-
-But there's a special plot called a Raincloud Plot that uses box plots, individual observations, *and* distribution plots to show all the information at once:
+There's a special plot called a Raincloud Plot that uses box plots, individual observations, *and* distribution plots to show all the information at once:
 
 ```{r}
 #| code-fold: true
@@ -1307,7 +1302,9 @@ data %>%
   xlab("")
 ```
 
-For your practice, let's use the full `starwars` dataset this time, to give us a larger sample size, and plot height by character sex, to give us more observations by group.
+For your practice, let's use the full `starwars` dataset this time, to give us a larger sample size, 
+
+Let's plot height by character sex, to give us more observations per group.
 
 Here's the plain box plot -- I won't have you plot this so you don't learn bad habits 😈
 ```{r}
