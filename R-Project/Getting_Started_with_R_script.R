@@ -320,3 +320,35 @@ ggplot(
     title = "Star Wars Height by Character Sex",
     subtitle = "Violin Plot with Superimposed Box Plot"
   ) 
+
+# Scatter plots ----
+# Height vs weight 
+# We will keep using our filtered full `starwars` dataset for this one
+ggplot(filtered_star_wars, 
+       aes(x = mass, 
+           y = height, 
+           color=mass)
+) +
+  geom_point(size=3) +     # You can set the size of the points
+  ylim(NA, 250) +          # You can also change the limits of the x and y axes
+  scale_color_viridis(alpha = 0.5, begin = 1, end = 0, option = "D", aesthetics = "color", discrete = FALSE) +
+  theme_light() +
+  labs(
+    x = "Weight (kg)",
+    y = "Height (cm)",
+    color = "Weight (kg)",
+    title = "Star Wars Character Height and Weight"
+  ) 
+
+# Adding species (color) and birth year (size)
+ggplot(filtered_star_wars, aes(x = mass, y = height, color = species, size = birth_year)) +
+  geom_point() +
+  ylim(NA, 230) +
+  xlim(NA, 140) +
+  scale_color_viridis(alpha = 0.5, begin = 0, end = 1, option = "D", aesthetics = "color", discrete = TRUE) +
+  theme_light() +
+  labs(
+    x = "Weight (kg)",
+    y = "Height (cm)"
+  ) +
+  theme(legend.position = "none")

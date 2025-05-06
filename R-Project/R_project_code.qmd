@@ -1151,7 +1151,7 @@ For better readability with long category names or numerous samples, flip the x-
 #| code-fold: true
 #| code-summary: "Show the code"
 ggplot(
-  starwars, 
+  small_star_wars, 
   aes(
     x=name,
     y=height)) +
@@ -1302,7 +1302,7 @@ data %>%
 
 For your practice, let's use the full `starwars` dataset this time, to give us a larger sample size, 
 
-Let's plot height by character sex, to give us more observations per group.
+Let's plot `height` by character `sex`, to give us more observations per group.
 
 Here's the plain box plot -- I won't have you plot this so you don't learn bad habits 😈
 ```{r}
@@ -1386,34 +1386,54 @@ ggplot(
  
 Let's move on to plotting continuous variables.
 
+### Histograms
+
+
 ### Scatter plots 
 Scatter plots effectively visualize relationships between two continuous variables.
 
-Let's recreate a version of the one I showed you at the beginning of the lecture
+Let's recreate a version of the one I showed you at the beginning of the lecture.
+
+▶️ Starting with a simple one: height vs weight, mapping color onto weight
 
 ```{r}
-ggplot(filtered_star_wars, aes(x = mass, y = height)) +
-  geom_point() +
+#| code-fold: true
+#| code-summary: "Show the code"
+# We will keep using our filtered full `starwars` dataset for this one
+ggplot(filtered_star_wars, 
+       aes(x = mass, 
+           y = height, 
+           color=mass)
+       ) +
+  geom_point(size=3) +
   ylim(NA, 250) +
-  scale_color_viridis(alpha = 0.5, begin = 0, end = 1, option = "D", aesthetics = "color", discrete = TRUE) +
+  scale_color_viridis(alpha = 0.5, begin = 1, end = 0, option = "D", aesthetics = "color", discrete = FALSE) +
   theme_light() +
       labs(
         x = "Weight (kg)",
-        y = "Height (cm)"
+        y = "Height (cm)",
+        color = "Weight (kg)",
+        title = "Star Wars Character Height and Weight"
     ) 
 ```
 
-```{r}
-# We will keep our filtered full `starwars` dataset for this one
-ggplot(filtered_star_wars, aes(x = mass, y = height, color = species, size = species)) +
+Like I did before, you can add additional information.
+
+▶️ Let's map `species` to color and `birth year` to size:
+```{r fig.cap="Note that `birth year` is missing for several entries, so this plot looks slightly different than the previous one, with fewer points plotted. <br><br>*That's a downside to layering on additional datapoints in an imperfect dataset with missing data (which most are!).*"}
+#| code-fold: true
+#| code-summary: "Show the code"
+ggplot(filtered_star_wars, aes(x = mass, y = height, color = species, size = birth_year)) +
   geom_point() +
-  ylim(NA, 250) +
-  scale_color_viridis(alpha = 0.5, begin = 0, end = 1, option = "D", aesthetics = "color", discrete = TRUE) +
+  ylim(NA, 230) +
+  xlim(NA, 140) +
+scale_color_viridis(alpha = 0.5, begin = 0, end = 1, option = "D", aesthetics = "color", discrete = TRUE) +
   theme_light() +
-      labs(
-        x = "Weight (kg)",
-        y = "Height (cm)"
-    ) 
+  labs(
+    x = "Weight (kg)",
+    y = "Height (cm)"
+  ) +
+  theme(legend.position = "none")
 ```
 
 
