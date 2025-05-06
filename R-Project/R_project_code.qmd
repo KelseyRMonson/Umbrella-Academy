@@ -391,7 +391,7 @@ If you want to learn more, I highly recommend this course, [*Productive R Workfl
 
 Okay, so we now have our R Project and our fresh new script. It's time to begin!
 
-## Exercise
+## Getting Started
 
 ```{r}
 #| echo: false
@@ -413,7 +413,7 @@ Many packages (and Base-R) include test datasets, which are great for exploring 
 
 We will use the `starwars` test dataset from the `tidyverse` package as our example data today.
 
-### Getting Started
+### First steps
 
 I've created an [R Script](Getting_Started_with_R_script.R) with the code needed for this exercise. Go ahead and open that script now.
 
@@ -422,8 +422,6 @@ You can use it as a template as you write your script, but try typing out the co
 You can copy/paste long names for packages, variables, and files, but typing out functions helps you remember the syntax.
 
 Look for ▶️ icons to know when need to write in your script.
-
-#### Install and Load Packages, Download Data
 
 ▶️ First, install and load the required packages (listed at the top of the script).
 
@@ -441,7 +439,7 @@ small_star_wars <- read_excel("input/small_star_wars.xlsx", na="NA")
 
 If you set up your R Project correctly, this code will run as-is (no need for `setwd()`!).
 
-#### Explore the Data
+### Explore the Data
 
 This dataset is more complicated than the vectors I created earlier.
 
@@ -638,7 +636,7 @@ But you can also use one of the best features of RStudio: The **Environment** Ta
 ![Click the arrow next to your Tibble's name to expand the details for a quick peek. <br><br>Or, click the little table icon on the right to open it in its own tab.](assets/Environment.png)
 
 
-### Time to Plot!
+## Time to Plot!
 
 Now let's learn how to make some common plots in R!
 
@@ -948,7 +946,7 @@ Now you know the building blocks for creating a plot using `ggplot2`!
 
 Let's use those blocks to build some other common plots.
 
-### Discrete Variables
+## Discrete Variables
 Let's continue plotting discrete (categorical) values.
 
 #### Exploring bar plots
@@ -1396,7 +1394,7 @@ Let's move on to plotting continuous variables.
 #### Scatterplots 
 Scatterplots effectively visualize relationships between two continuous variables.
 
-### More (including box and violin plots, heatmap)
+### More (heatmap)
 
 ### Final Thoughts 
 By now, you should feel comfortable building a variety of plots in R using ggplot2. Feel free to revisit this guide as you apply these skills to your own data.
