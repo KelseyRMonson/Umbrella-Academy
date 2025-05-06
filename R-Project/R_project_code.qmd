@@ -641,7 +641,7 @@ But you can also use one of the best features of RStudio: The **Environment** Ta
 Now let's learn how to make some common plots in R!
 
 You can make plots with R's built-in functions, but they aren't especially pretty:
-```{r fig.cap="This is a simple scatterplot showing Star Wars charater Height vs. Weight using the Base-R `plot()` function. <br><br>*Note: I dropped Jabba the Hutt from this analysis since he's such a big boi.*"}
+```{r fig.cap="This is a simple scatter plot showing Star Wars charater Height vs. Weight using the Base-R `plot()` function. <br><br>*Note: I dropped Jabba the Hutt from this analysis since he's such a big boi.*"}
 #| echo: false
 
 # I'm filtering the full `starwars` dataset to remove Jabba the Hutt
@@ -655,7 +655,7 @@ plot(starwars_noHutt$mass, starwars_noHutt$height)
 
 Using packages like `ggplot2` (the gold standard for making plots in R), they can be quite beautiful! 
 
-```{r fig.cap="This is the same Height vs. Weight scatterplot made with `ggplot2`. <br><br>I've also added boxplots showing the marginal distribution of each variable, and point size and color now represent species."}
+```{r fig.cap="This is the same Height vs. Weight scatter plot made with `ggplot2`. <br><br>I've also added boxplots showing the marginal distribution of each variable, and point size and color now represent species."}
 #| code-fold: true
 #| code-summary: "Show the code"
 
@@ -665,7 +665,7 @@ starwars_noHutt <- starwars %>%
   filter(species != "Hutt") %>% 
   select(species, height, mass, birth_year)  
  
-# I'm creating a scatterplot with mass and height on the x- and y-axes, and with color and point size representing species:
+# I'm creating a scatter plot with mass and height on the x- and y-axes, and with color and point size representing species:
 p <- ggplot(starwars_noHutt, aes(x = mass, y = height, color = species, size = species)) +
   geom_point() +
   ylim(NA, 250) +
@@ -775,7 +775,7 @@ Here I'm simulating **Green-Blind/Deuteranopia** and **Blue-Blind/Tritanopia**, 
 
 To address this, I really like the `viridis` package, which has nicely curated palettes that are more accessible and also read well in grayscale.
 
-This is the palette I used for the scatterplot earlier -- let's apply it to our bar graph too:
+This is the palette I used for the scatter plot earlier -- let's apply it to our bar graph too:
 
 ```{r}
 #| echo: false
@@ -1151,7 +1151,7 @@ For better readability with long category names or numerous samples, flip the x-
 #| code-fold: true
 #| code-summary: "Show the code"
 ggplot(
-  small_star_wars, 
+  starwars, 
   aes(
     x=name,
     y=height)) +
@@ -1386,12 +1386,40 @@ ggplot(
  
 Let's move on to plotting continuous variables.
 
-## Placeholder for tomorrow
+### Scatter plots 
+Scatter plots effectively visualize relationships between two continuous variables.
 
-#### Scatterplots 
-Scatterplots effectively visualize relationships between two continuous variables.
+Let's recreate a version of the one I showed you at the beginning of the lecture
+
+```{r}
+ggplot(filtered_star_wars, aes(x = mass, y = height)) +
+  geom_point() +
+  ylim(NA, 250) +
+  scale_color_viridis(alpha = 0.5, begin = 0, end = 1, option = "D", aesthetics = "color", discrete = TRUE) +
+  theme_light() +
+      labs(
+        x = "Weight (kg)",
+        y = "Height (cm)"
+    ) 
+```
+
+```{r}
+# We will keep our filtered full `starwars` dataset for this one
+ggplot(filtered_star_wars, aes(x = mass, y = height, color = species, size = species)) +
+  geom_point() +
+  ylim(NA, 250) +
+  scale_color_viridis(alpha = 0.5, begin = 0, end = 1, option = "D", aesthetics = "color", discrete = TRUE) +
+  theme_light() +
+      labs(
+        x = "Weight (kg)",
+        y = "Height (cm)"
+    ) 
+```
+
 
 ### More (heatmap)
+
+## Placeholder for tomorrow
 
 ### Final Thoughts 
 By now, you should feel comfortable building a variety of plots in R using ggplot2. Feel free to revisit this guide as you apply these skills to your own data.
