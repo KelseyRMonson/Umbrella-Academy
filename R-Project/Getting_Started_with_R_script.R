@@ -275,3 +275,48 @@ ggplot(
     y = "Height (in cm)"
   ) +
   coord_flip()
+
+
+# Box and Violin Plots ----
+#We will use the full `starwars` dataset now
+# There are a few NAs for height and sex in the full dataset -- filter those out first
+# Our friend Jabba is also the only hermaphrodite in the data, so let's filter them out too, for plotting purposes
+filtered_star_wars <- starwars %>% filter(!is.na(sex), !is.na(height), species!="Hutt")
+
+# Box Plot with jitter
+ggplot( 
+  filtered_star_wars,
+  aes(x=sex, y=height, fill=sex)) +
+  geom_boxplot() +
+  scale_fill_viridis(alpha=0.7, begin = 0.2, end = 0.7, option = "D", aesthetics = "fill", discrete = TRUE) +
+  geom_jitter(color = "darkgray", size = 0.7, alpha = 0.7) +
+  theme_light() +
+  theme(
+    legend.position="none",
+    plot.title = element_text(size=11)
+  ) +
+  labs(
+    x = "Character Sex",
+    y = "Height (in cm)",
+    title = "Star Wars Height by Character Sex",
+    subtitle = "Box Plot with Jitter"
+  ) 
+
+# Violin plot
+ggplot( 
+  filtered_star_wars,
+  aes(x=sex, y=height, fill=sex)) +
+  geom_violin(width=1.4) +
+  geom_boxplot(width=0.1, color="darkgrey", alpha=0.2) +
+  scale_fill_viridis(alpha=0.7, begin = 0.2, end = 0.7, option = "D", aesthetics = "fill", discrete = TRUE) +
+  theme_light() +
+  theme(
+    legend.position="none",
+    plot.title = element_text(size=11)
+  ) +
+  labs(
+    x = "Character Sex",
+    y = "Height (in cm)",
+    title = "Star Wars Height by Character Sex",
+    subtitle = "Violin Plot with Superimposed Box Plot"
+  ) 

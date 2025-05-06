@@ -395,7 +395,6 @@ Okay, so we now have our R Project and our fresh new script. It's time to begin!
 
 ```{r}
 #| echo: false
-#| warning: false
 
 library(tidyverse)
 library(viridis)
@@ -782,7 +781,6 @@ This is the palette I used for the scatterplot earlier -- let's apply it to our 
 
 ```{r}
 #| echo: false
-#| warning: false
 
 show_col(pal_viridis()(12))
 
@@ -1242,9 +1240,8 @@ data %>%
 The points are plotted first, and are covered by the boxes, preventing us from fully visualizing the distribution.
 :::
 
-If we want to really visualize the distribution of the data, instead of just using our eyes, we use a violin plot!
+If we want to really visualize the distribution of the data, we use a violin plot!
 ```{r fig.cap="I'm not just saying that violin plots are superior because I play the violin -- but it doesn't hurt! 🎻"}
-#| warning: false
 #| code-fold: true
 #| code-summary: "Show the code"
 # sample size
@@ -1266,7 +1263,129 @@ data %>%
     ggtitle("A violin plot") +
     xlab("")
 ```
+A downside of violin plots is that they don't convey differences in sample size very well. 
 
+The plot above includes some code to add the sample size below each categorical value.
+
+But there's a special plot called a Raincloud Plot that uses box plots, individual observations, *and* distribution plots to show all the information at once:
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+library(ggdist)
+# Plot
+data %>%
+  ggplot(aes(x = factor(name), y = value, fill = factor(name))) +
+  
+  # Add half-violin from {ggdist} package
+  stat_halfeye(
+    adjust = 0.5,
+    justification = -0.2,
+    .width = 0,
+    point_colour = NA
+  ) +
+  
+  geom_boxplot(
+    width = 0.12,
+    outlier.color = NA,
+    alpha = 0.5
+  ) +
+  
+  stat_dots(
+    side = "left",
+    justification = 1.1,
+    binwidth = NA
+  ) +
+  
+  scale_fill_viridis(discrete = TRUE) +
+  theme_light() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(size = 11)
+  ) +
+  ggtitle("A raincloud plot example") +
+  xlab("")
+```
+
+For your practice, let's use the full `starwars` dataset this time, to give us a larger sample size, and plot height by character sex, to give us more observations by group.
+
+Here's the plain box plot -- I won't have you plot this so you don't learn bad habits 😈
+```{r}
+#| echo: false
+# There are a few NAs for height and sex in the full dataset -- filter those out first.
+# Our friend Jabba is also the only hermaphrodite in the data, so let's filter them out too, for plotting purposes
+filtered_star_wars <- starwars %>% filter(!is.na(sex), !is.na(height), species!="Hutt")
+
+# Plain Box Plot
+ggplot( 
+  filtered_star_wars,
+  aes(x=sex, y=height, fill=sex)) +
+    geom_boxplot() +
+    scale_fill_viridis(alpha=0.7, begin = 0.2, end = 0.7, option = "D", aesthetics = "fill", discrete = TRUE) +
+    theme_light() +
+    theme(
+      legend.position="none",
+      plot.title = element_text(size=11)
+    ) +
+    labs(
+    x = "Character Sex",
+    y = "Height (in cm)",
+    title = "Star Wars Height by Character Sex",
+    subtitle = "Plain Box Plot"
+  ) 
+```
+
+▶️ Try plotting a box plot with `geom_jitter()`:
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+# There are a few NAs for height and sex in the full dataset -- filter those out first.
+# Our friend Jabba is also the only hermaphrodite in the data, so let's filter them out too, for plotting purposes
+filtered_star_wars <- starwars %>% filter(!is.na(sex), !is.na(height), species!="Hutt")
+
+# Box Plot with jitter
+ggplot( 
+  filtered_star_wars,
+  aes(x=sex, y=height, fill=sex)) +
+    geom_boxplot() +
+    scale_fill_viridis(alpha=0.7, begin = 0.2, end = 0.7, option = "D", aesthetics = "fill", discrete = TRUE) +
+    geom_jitter(color = "darkgray", size = 0.7, alpha = 0.7) +
+    theme_light() +
+    theme(
+      legend.position="none",
+      plot.title = element_text(size=11)
+    ) +
+    labs(
+    x = "Character Sex",
+    y = "Height (in cm)",
+    title = "Star Wars Height by Character Sex",
+    subtitle = "Box Plot with Jitter"
+  ) 
+```
+▶️ Now try a violin plot!
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+
+# Violin plot
+ggplot( 
+  filtered_star_wars,
+  aes(x=sex, y=height, fill=sex)) +
+    geom_violin(width=1.4) +
+    geom_boxplot(width=0.1, color="darkgrey", alpha=0.2) +
+    scale_fill_viridis(alpha=0.7, begin = 0.2, end = 0.7, option = "D", aesthetics = "fill", discrete = TRUE) +
+    theme_light() +
+    theme(
+      legend.position="none",
+      plot.title = element_text(size=11)
+    ) +
+    labs(
+    x = "Character Sex",
+    y = "Height (in cm)",
+    title = "Star Wars Height by Character Sex",
+    subtitle = "Violin Plot with Superimposed Box Plot"
+  ) 
+```
 
 ## Continuous Variables
  
