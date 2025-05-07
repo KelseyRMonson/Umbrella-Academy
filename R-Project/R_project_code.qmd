@@ -402,6 +402,7 @@ library(readxl)
 library(gtExtras)
 library(ggExtra)
 library(scales)
+library(pheatmap)
 
 ```
 
@@ -1188,6 +1189,8 @@ To illustrate this, I'm using a dummy dataset (from [this](https://www.data-to-v
 ```{r}
 #| echo: false
 # create a dataset
+# Set seed to avoid data being re-randomized every time
+set.seed(100)
 data <- data.frame(
   name=c( rep("A",500), rep("B",500), rep("B",500), rep("C",20), rep('D', 100)  ),
   value=c( rnorm(500, 10, 5), rnorm(500, 13, 1), rnorm(500, 18, 1), rnorm(20, 25, 4), rnorm(100, 12, 1) )
@@ -1597,9 +1600,41 @@ scale_color_viridis(alpha = 0.5, begin = 0, end = 1, option = "D", aesthetics = 
 ```
 
 
-### More (heatmap)
+### Heatmaps
+We'll close by making a heatmap. This is one of the few instances where a plot from Base-R outshines one from `ggplot2`.
 
-## Placeholder for tomorrow
+```{r}
+# Step 1: Prepare the data for heatmap
+# Extracting the height and weight columns as matrix
+heatmap_starwars <- species_filt_starwars %>% 
+  filter(!is.na(mass))
+heatmap_data <- as.matrix(heatmap_starwars[, c("height", "mass")])
+
+# Annotate the rows with the "names" variable
+# Replace "names" with the actual column name for the character names
+rownames(heatmap_data) <- heatmap_starwars$name
+
+
+# Step 2: Create the heatmap using pheatmap
+pheatmap(
+  heatmap_data,
+  cluster_rows = TRUE,   # Cluster rows (optional)
+  cluster_cols = FALSE,   # Do not cluster columns (optional)
+  main = "Heatmap of Height and Weight", # Title of the heatmap
+  color = colorRampPalette(c("blue", "red"))(50) # Color gradient
+)
+
+
+
+pheatmap(
+  heatmap_data,
+  cluster_rows = TRUE,   # Cluster rows (optional)
+  cluster_cols = FALSE,   # Do not cluster columns (optional)
+  scale = "column",
+  main = "Heatmap of Height and Weight" # Title of the heatmap
+  
+)
+```
 
 ### Final Thoughts 
 By now, you should feel comfortable building a variety of plots in R using ggplot2. Feel free to revisit this guide as you apply these skills to your own data.
