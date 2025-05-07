@@ -1416,7 +1416,7 @@ ggplot(
 
 ```
 
-Those "groupings" are called "bins."
+Those groupings are called "bins."
 
 Changing the bin width can dramatically change how your data looks:
 ```{r}
@@ -1431,7 +1431,7 @@ ggplot(
     plot.title = element_text(size=15)
   ) +
     labs(
-    x = "Height",
+    x = "Star Wars Character Height",
     y = "Count",
     title = "Bin Width = 3"
   ) 
@@ -1444,7 +1444,7 @@ ggplot(
     plot.title = element_text(size=15)
   ) +
     labs(
-    x = "Height",
+    x = "Star Wars Character Height",
     y = "Count",
     title = "Bin Width = 10"
   ) 
@@ -1457,7 +1457,7 @@ ggplot(
     plot.title = element_text(size=15)
   ) +
     labs(
-    x = "Height",
+    x = "Star Wars Character Height",
     y = "Count",
     title = "Bin Width = 50"
   )
@@ -1470,7 +1470,7 @@ ggplot(
     plot.title = element_text(size=15)
   ) +
     labs(
-    x = "Height",
+    x = "Star Wars Character Height",
     y = "Count",
     title = "Bin Width = 100"
   )
@@ -1496,8 +1496,58 @@ ggplot(
   ) 
 ```
 
+
 ### Density plots
 These are like smoothed histograms (without the binning).
+
+```{r fig.cap="`Density` is calculated using the *kernel density estimation*, and can be interpreted as the probability of an observation falling within a specific range of values on the x-axis. <br><br>The area under the density curve sums to 1 (a.k.a. 100% probability)."}
+#| code-fold: true
+#| code-summary: "Show the code"
+ggplot( 
+  filtered_star_wars,
+  aes(x=height)) +
+  geom_density(fill="#bbafda", color="#e9ecef", alpha=0.8) +
+  theme_light() +
+    labs(
+    x = "Height (in cm)",
+    y = "Density",
+    title = "Distribution of Star Wars Character Height"
+  )
+```
+You can plot densities for several groups at once (you can do this for histograms too, but it's easier to visualize with density maps)
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+species_filt_starwars <- filtered_star_wars %>% 
+  filter(species %in% c("Human","Droid", "Gungan"))
+
+ggplot( 
+  species_filt_starwars,
+  aes(x=height, group=species, fill=species)) +
+  geom_density(alpha=0.5) +
+  scale_fill_viridis(discrete = TRUE) +
+  theme_light() +
+  labs(
+    x = "Height (in cm)",
+    y = "Density",
+    fill="Species \nSubset",
+    title = "Distribution of Star Wars Character Height by Species"
+  ) 
+```
+
+▶️ Make a density plot for mass -- how does it compare to your histogram?
+```{r}
+ggplot( 
+  filtered_star_wars,
+  aes(x=mass)) +
+  geom_density(fill="#6397c6", color="#e9ecef", alpha=0.8) +
+  theme_light() +
+    labs(
+    x = "Weight (in kg)",
+    y = "Density",
+    title = "Distribution of Star Wars Character Weight"
+  )
+```
 
 ### Scatter plots 
 Scatter plots effectively visualize relationships between two continuous variables.

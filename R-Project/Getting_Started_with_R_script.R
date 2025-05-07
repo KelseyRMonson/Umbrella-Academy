@@ -319,7 +319,7 @@ ggplot(
     subtitle = "Violin Plot with Superimposed Box Plot"
   ) 
 
-# Histograms ----
+# Histograms and Density plots ----
 ggplot( 
   filtered_star_wars,
   aes(x=mass)) +
@@ -338,6 +338,19 @@ ggplot(
 ##### Your histograms with different bin widths go here! #####
 # Don't forget to change the label in the subtitle to reflect your new bin size.
 
+
+
+# Density plot 
+ggplot( 
+  filtered_star_wars,
+  aes(x=mass)) +
+  geom_density(fill="#6397c6", color="#e9ecef", alpha=0.8) +
+  theme_light() +
+  labs(
+    x = "Weight (in kg)",
+    y = "Density",
+    title = "Distribution of Star Wars Character Weight"
+  )
 
 # Scatter plots ----
 # Height vs weight 
@@ -370,5 +383,4 @@ ggplot(filtered_star_wars, aes(x = mass, y = height, color = species, size = bir
     y = "Height (cm)"
   ) +
   theme(legend.position = "none")
-
 
