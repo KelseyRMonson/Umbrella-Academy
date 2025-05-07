@@ -215,7 +215,7 @@ table(rankings)
 
 Why did `str()` print the rankings in the correct order the very first time, even though `table()` showed that R was treating them alphabetically?
 
-Because we entered the names in the logical order when we created the `rankings` variable. 
+Because we entered the names in the logical order when we created the `rankings` variable.
 
 If we had created the variable with them out of order, `str()` would print them out of order, but R would still treat them alphabetically:
 
@@ -247,8 +247,8 @@ You can search for help in two ways:
 
     -   Searches help documentation for keyword(s).
     -   *Example*: `??mean()` finds all functions (and their documentation) containing `mean` and returns a list that you can select from.
-    -   This type of search is useful when you know *what* you want, but not the exact function name. 
-    - It's also useful to see if there are multiple functions that do similar things (so you can pick the best one for your needs).
+    -   This type of search is useful when you know *what* you want, but not the exact function name.
+    -   It's also useful to see if there are multiple functions that do similar things (so you can pick the best one for your needs).
     -   Works best if you use specific keywords since many functions share common words.
 
 `?` is especially useful for checking a function’s arguments (what goes inside the parentheses) and their defaults.
@@ -453,7 +453,7 @@ This dataset is more complicated than the vectors I created earlier.
 str(small_star_wars)
 ```
 
-This shows that it's a **Tibble** (an upgraded **Data Frame**) containing both numeric and character variables. 
+This shows that it's a **Tibble** (an upgraded **Data Frame**) containing both numeric and character variables.
 
 ▶️ Use `summary()` for a quick overview:
 
@@ -576,7 +576,7 @@ agg_star_wars %>%
 
 Let's use this function to see how many of each species are in our dataset.
 
-:::{.callout-tip}
+::: callout-tip
 In R, when we want to select just one of a multi-part variable (like a Data Frame or Tibble), we use the selection operator: `$`.
 :::
 
@@ -596,6 +596,7 @@ table(small_star_wars$hair_color, small_star_wars$species)
 
 ::: callout-warning
 ##### Handling Missing Data
+
 Note that R2-D2's hair (or lack thereof) is recorded as `NA`:
 
 ```{r}
@@ -628,23 +629,24 @@ small_star_wars <- small_star_wars %>%
 table(small_star_wars$hair_color, small_star_wars$species)
 
 ```
+
 There he is! 🤖
 :::
 
 ▶️ Try making your own table looking at new variables.
 
-**Hint:** If you forget what other variables are in our dataset, you could run `str()` or `summary()`. 
+**Hint:** If you forget what other variables are in our dataset, you could run `str()` or `summary()`.
 
 But you can also use one of the best features of RStudio: The **Environment** Tab!
 
 ![Click the arrow next to your Tibble's name to expand the details for a quick peek. <br><br>Or, click the little table icon on the right to open it in its own tab.](assets/Environment.png)
-
 
 ## Time to Plot!
 
 Now let's learn how to make some common plots in R!
 
 You can make plots with R's built-in functions, but they aren't especially pretty:
+
 ```{r fig.cap="This is a simple scatter plot showing Star Wars character Height vs. Weight using the Base-R `plot()` function. <br><br>*Note: I dropped Jabba the Hutt from this analysis since he's such a big boi.*"}
 #| echo: false
 
@@ -657,7 +659,7 @@ plot(starwars_noHutt$mass, starwars_noHutt$height)
 
 ```
 
-Using packages like `ggplot2` (the gold standard for making plots in R), they can be quite beautiful! 
+Using packages like `ggplot2` (the gold standard for making plots in R), they can be quite beautiful!
 
 ```{r fig.cap="This is the same Height vs. Weight scatter plot made with `ggplot2`. <br><br>I've also added boxplots showing the marginal distribution of each variable, and point size and color now represent species."}
 #| code-fold: true
@@ -704,19 +706,21 @@ Creating a `ggplot` is like adding layers to a "base" graph.
 #### Create the canvas and add aesthetics
 
 ▶️ Try calling `ggplot()` on its own:
+
 ```{r fig.cap="This is like the canvas upon which your `ggplot` is built!"}
 ggplot()
 ```
 
-Next, specify the data (either a Data Frame or Tibble) for your plot. 
+Next, specify the data (either a Data Frame or Tibble) for your plot.
 
-We'll stick with our `small_star_wars` Tibble for now to illustrate how to build the plot. 
+We'll stick with our `small_star_wars` Tibble for now to illustrate how to build the plot.
 
-If you just type `ggplot(small_star_wars)`, you'll get the same blank canvas because we haven't defined *what* to plot. 
+If you just type `ggplot(small_star_wars)`, you'll get the same blank canvas because we haven't defined *what* to plot.
 
 To specify this, use the `aes()` argument to map the graph's **aesthetics** -- like variables applied to axes or colors.
 
 Let's pick two random variables for our x and y values and specify them using `aes()`:
+
 ```{r}
 ggplot(
   small_star_wars,
@@ -728,11 +732,13 @@ ggplot(
 ```
 
 #### Select your plot
+
 Ok, now that we have our canvas and variables, let's choose how to plot the data!
 
-We need to layer on an argument to tell `ggplot()` what kind of plot we want. 
+We need to layer on an argument to tell `ggplot()` what kind of plot we want.
 
 ▶️ Let's start with a simple bar plot:
+
 ```{r}
 ggplot(
   small_star_wars,
@@ -744,9 +750,10 @@ ggplot(
   geom_col()
 ```
 
-This looks fine, but a bit boring. We can go back to the `aes()` argument and add some more aesthetics. 
+This looks fine, but a bit boring. We can go back to the `aes()` argument and add some more aesthetics.
 
 ▶️ Color the bars by species using `fill`:
+
 ```{r}
 ggplot(
   small_star_wars,
@@ -759,19 +766,17 @@ ggplot(
   geom_col()
 ```
 
-#### Adjust your colors 
-:::{.callout-warning}
+#### Adjust your colors
 
+::: callout-warning
 **The default colors in `ggplot2` aren't very colorblind-friendly.**
-
 :::
 
-[Coblis](https://www.color-blindness.com/coblis-color-blindness-simulator/) is a tool to simulate how colors appear with various types of colorblindness. 
+[Coblis](https://www.color-blindness.com/coblis-color-blindness-simulator/) is a tool to simulate how colors appear with various types of colorblindness.
 
 Here I'm simulating **Green-Blind/Deuteranopia** and **Blue-Blind/Tritanopia**, respectively:
 
-::: {layout-ncol=2}
-
+::: {layout-ncol="2"}
 ![](assets/Coblis1.png)
 
 ![](assets/Coblis2.png)
@@ -808,8 +813,7 @@ ggplot(
 
 This is already starting to look pretty nice, and it's much more colorblind-friendly:
 
-::: {layout-ncol=2}
-
+::: {layout-ncol="2"}
 ![](assets/Coblis3.png)
 
 ![](assets/Coblis4.png)
@@ -818,11 +822,12 @@ This is already starting to look pretty nice, and it's much more colorblind-frie
 ▶️ Play around with the color scheme by adjusting the `begin` and `end` numbers, as well as the `option` to change the scale itself. Use `alpha` to change the opacity.
 
 #### Order your variables
-You can see R is defaulting to ordering the variables on the x-axis alphabetically. 
+
+You can see R is defaulting to ordering the variables on the x-axis alphabetically.
 
 By chance, they are nearly in perfect descending order, but what if we wanted to order it precisely?
 
-With only six samples, we could coerce `name` into a factor and then set the levels manually based on the heights we observe. But this is impractical as sample size increases, and also leaves room for human error. 
+With only six samples, we could coerce `name` into a factor and then set the levels manually based on the heights we observe. But this is impractical as sample size increases, and also leaves room for human error.
 
 Here's a simple code to dynamically reorder a factor based on the value of another variable:
 
@@ -845,9 +850,11 @@ ggplot(
 ```
 
 #### Add your labels
+
 Lastly, a plot is only as good as its labels!
 
 ▶️ Add polished labels using `labs()`
+
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -873,6 +880,7 @@ ggplot(
 ```
 
 ### Putting it all together
+
 To summarize, this is the basic structure of a `ggplot`:
 
 ```{r}
@@ -904,7 +912,6 @@ ggplot(               # Create your canvas
 
 
 ```
-
 
 ```{r}
 #| code-fold: true
@@ -951,10 +958,12 @@ Now you know the building blocks for creating a plot using `ggplot2`!
 Let's use those blocks to build some other common plots.
 
 ## Discrete Variables
+
 Let's continue plotting discrete (categorical) values.
 
 ### Exploring bar plots
-We used `geom_col()` for our bar plot, but `geom_bar()` is a flexible alternative. 
+
+We used `geom_col()` for our bar plot, but `geom_bar()` is a flexible alternative.
 
 Using `stat="identity"` with `geom_bar()`, we can generate the same plot:
 
@@ -981,6 +990,7 @@ ggplot(
 ```
 
 ▶️ Now let's use `geom_bar()` to plot height by species, instead of by name.
+
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -1002,11 +1012,13 @@ ggplot(
   )
 
 ```
-This sums the heights of all the humans in the dataset (not very informative). 
+
+This sums the heights of all the humans in the dataset (not very informative).
 
 What's a better way to plot this?
 
-▶️ We can plot species on the x-axis but fill by name to get a stacked bar plot... 
+▶️ We can plot species on the x-axis but fill by name to get a stacked bar plot...
+
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -1027,7 +1039,9 @@ ggplot(
     fill = "Character Name"
   )
 ```
+
 ▶️ ...or use `position="dodge"` to plot the names side-by-side
+
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -1049,7 +1063,7 @@ ggplot(
   )
 ```
 
-We can also plot bar charts as a percentage of the total. 
+We can also plot bar charts as a percentage of the total.
 
 That doesn't make much sense for height, but what if we wanted to show the sex distribution by species?
 
@@ -1078,11 +1092,12 @@ ggplot(
   )
 ```
 
-Maybe you're interested in the species **and** sex distribution of height for all of our characters -- but now we're running into quite a few variables. 
+Maybe you're interested in the species **and** sex distribution of height for all of our characters -- but now we're running into quite a few variables.
 
 That's where `facet_wrap()` comes in. It allows you to split out graphs with your variable of interest, to better visualize multi*faceted* data (get it?).
 
 ▶️ Plot `height` by `species`, separated by `sex`, with character `names` indicated by color
+
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -1108,6 +1123,7 @@ ggplot(
 ```
 
 To streamline the plot, you can include `scales="free_x` in your `facet_wrap()` argument to drop the unused species in each group:
+
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -1132,9 +1148,11 @@ ggplot(
 ```
 
 ### Lollipop Plots
+
 Lollipop plots are modified bar plots with a cleaner aesthetic.
 
 ▶️ Try making one yourself:
+
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -1152,7 +1170,8 @@ ggplot(
     y = "Height (in cm)"
   )
 ```
-:::{.callout-tip}
+
+::: callout-tip
 For better readability with long category names or numerous samples, flip the x- and y-axes using `coord_flip()`
 
 ```{r}
@@ -1175,7 +1194,6 @@ ggplot(
   coord_flip()
 
 ```
-
 :::
 
 ### Box plots and Violin plots
@@ -1184,11 +1202,12 @@ When you want to plot a variable's distribution, box plots are a good option.
 
 However...
 
-:::{.callout-warning}
+::: callout-warning
 Box plots can hide important trends in your data.
 :::
 
 To illustrate this, I'm using a dummy dataset (from [this](https://www.data-to-viz.com/caveat/boxplot.html) excellent explanation of the dangers of box plots).
+
 ```{r}
 #| echo: false
 # create a dataset
@@ -1212,9 +1231,11 @@ data %>%
     ggtitle("A somewhat misleading box plot") +
     xlab("")
 ```
+
 Let's get a better sense of the true distribution by plotting individual points.
 
 To prevent the points from overlapping too much, we can use `geom_jitter()` to randomly disperse them:
+
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -1230,13 +1251,16 @@ ggplot( aes(x=name, y=value, fill=name)) +
     ggtitle("A box plot with jitter") +
     xlab("")
 ```
+
 We can see that group `C` is much smaller, and `B` seems to have a bimodal distribution, both of which are important to consider when interpreting the data.
 
-:::{.callout-caution collapse=true}
+::: {.callout-caution collapse="true"}
 #### A quick warning about `ggplot()` layers
-Because a `ggplot` is built iteratively, the order you add each geom matters. 
+
+Because a `ggplot` is built iteratively, the order you add each geom matters.
 
 Look what happens if we add the jitter first, before the box plot:
+
 ```{r}
 data %>%
   ggplot(aes(x = name, y = value, fill = name)) +
@@ -1250,10 +1274,12 @@ data %>%
   ggtitle("Jitter first, then box plot") +
   xlab("")
 ```
+
 The points are plotted first and are covered by the boxes, preventing us from fully visualizing the distribution.
 :::
 
 Violin plots provide a fuller view of the distribution:
+
 ```{r fig.cap="I'm not just saying that violin plots are superior because I play the violin -- but it doesn't hurt! 🎻"}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -1276,6 +1302,7 @@ data %>%
     ggtitle("A violin plot") +
     xlab("")
 ```
+
 A downside of violin plots is that they don't convey differences in sample size very well.
 
 There's a special composite plot called a Raincloud Plot that uses box plots, individual observations, *and* distribution plots to show all the information at once:
@@ -1316,11 +1343,12 @@ data %>%
   xlab("")
 ```
 
-For your practice, let's use the full `starwars` dataset this time, to give us a larger sample size, 
+For your practice, let's use the full `starwars` dataset this time, to give us a larger sample size,
 
 Let's plot `height` by character `sex`, to give us more observations per group.
 
 Here's the plain box plot -- I won't have you plot this so you don't learn bad habits 😈
+
 ```{r}
 #| echo: false
 # There are a few NAs for height and sex in the full dataset -- filter those out first.
@@ -1346,6 +1374,7 @@ ggplot(
 ```
 
 ▶️ Try plotting a box plot with `geom_jitter()`:
+
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -1371,7 +1400,9 @@ ggplot(
     subtitle = "Box Plot with Jitter"
   ) 
 ```
+
 ▶️ Now try a violin plot!
+
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -1396,13 +1427,15 @@ ggplot(
 ```
 
 ## Continuous Variables
- 
+
 Let's move on to plotting continuous variables.
 
 ### Histograms
+
 Histograms are like bar plots, but for continuous variables instead of categorical ones.
 
 Here, we're plotting `height` on the x-axis now, and counting the observations at each height grouping on the y-axis.
+
 ```{r}
 #| echo: false
 ggplot( 
@@ -1424,6 +1457,7 @@ ggplot(
 Those groupings are called "bins."
 
 Changing the bin width can dramatically change how your data looks:
+
 ```{r}
 #| echo: false
 #| layout-ncol: 2
@@ -1484,6 +1518,7 @@ ggplot(
 The bin width corresponds to the size of the grouping on the x-axis. For `binwidth=100` above, for example, each bin spans 100 cm.
 
 ▶️ Try it yourself using `mass` (weight) instead of `height` and try out different bin sizes.
+
 ```{r}
 ggplot( 
   filtered_star_wars,
@@ -1501,8 +1536,8 @@ ggplot(
   ) 
 ```
 
-
 ### Density plots
+
 These are like smoothed histograms (without the binning).
 
 ```{r fig.cap="`Density` is calculated using the *kernel density estimation*, and can be interpreted as the probability of an observation falling within a specific range of values on the x-axis. <br><br>The area under the density curve sums to 1 (a.k.a. 100% probability)."}
@@ -1519,7 +1554,9 @@ ggplot(
     title = "Distribution of Star Wars Character Height"
   )
 ```
+
 You can plot densities for several groups at once (you can do this for histograms too, but it's easier to visualize with density maps)
+
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -1541,6 +1578,7 @@ ggplot(
 ```
 
 ▶️ Make a density plot for `mass` -- how does it compare to your histogram?
+
 ```{r}
 ggplot( 
   filtered_star_wars,
@@ -1554,7 +1592,8 @@ ggplot(
   )
 ```
 
-### Scatter plots 
+### Scatter plots
+
 Scatter plots effectively visualize relationships between two continuous variables.
 
 Let's recreate a simple of the one I showed you at the beginning of the lecture.
@@ -1587,6 +1626,7 @@ Like I did before, you can add additional information.
 When you map a variable to the size of the dot, a "scatter plot" technically becomes a "bubble plot."
 
 ▶️ Let's map `species` to color and `birth year` to size to make a bubble plot:
+
 ```{r fig.cap= "`birth year` is missing for several entries, so fewer points are plotted. <br><br>*That's a downside to plotting additional variables when there is missing data (which is most datasets!).*"}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -1603,9 +1643,9 @@ scale_color_viridis(alpha = 0.5, begin = 0, end = 1, option = "D", aesthetics = 
   theme(legend.position = "none")
 ```
 
-
 ### Heatmaps
-We'll close by making a heatmap. 
+
+We'll close by making a heatmap.
 
 This is one of the few instances where `ggplot2` isn't your best plotting option.
 
@@ -1622,7 +1662,6 @@ heatmap_starwars <- species_filt_starwars %>%
 heatmap_data <- as.matrix(heatmap_starwars[, c("height", "mass")])
 
 # Annotate the rows with the "names" variable
-# Replace "names" with the actual column name for the character names
 rownames(heatmap_data) <- heatmap_starwars$name
 
 
@@ -1631,16 +1670,18 @@ pheatmap(
   heatmap_data,
   cluster_rows = FALSE,   # Cluster rows (optional)
   cluster_cols = FALSE,   # Do not cluster columns (optional)
-  main = "Heatmap of Height and Weight" # Title of the heatmap
+  main = "Heatmap of Height and Weight"
 )
 ```
 
-This looks neat, but let's make some tweaks to make it more interpretable. 
+This looks neat, but let's make some tweaks to make it more interpretable.
 
 #### Scaling
+
 First, `height` (cm) and `weight` (kg) are in different units, but the color scale is treating them the same.
 
 To address this, we can scale by column, centering and scaling each variable so that they have a mean of zero and standard deviation of one.
+
 ```{r fig.cap="Scaling is especially important for differential gene expression heatmaps, because it allows you to better compare genes with very different expression levels."}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -1655,8 +1696,9 @@ pheatmap(
 
 The interpretation of the data doesn't *change* (the high values are still high, and the low values are still low), but now all the heights don't appear higher than all the weights.
 
-:::{.callout-caution collapse="true"}
+::: {.callout-caution collapse="true"}
 ##### Caution when scaling
+
 Be careful that you are scaling the appropriate values if you apply a scaling factor.
 
 Look what happens if we scale by row instead of by column:
@@ -1671,41 +1713,46 @@ pheatmap(
   
 )
 ```
-Because the mean of height is greater than the mean of weight (because they are on different scales), all the heights are greater than all the weights. 
+
+Because the mean of height is greater than the mean of weight (because they are on different scales), all the heights are greater than all the weights.
 
 Not very informative!
 :::
 
 #### Clustering
+
 Let's also apply a clustering algorithm to determine which individuals are more similar, based on these two variables:
+
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
 pheatmap(
   heatmap_data,
-  cluster_rows = TRUE,   # Do cluster rows
-  cluster_cols = FALSE,   # Do not cluster columns
+  cluster_rows = TRUE,   
+  cluster_cols = FALSE,   
   scale = "column",
   main = "Heatmap of Height and Weight"
 )
 ```
 
-By looking at the dendogram on the left, we can get a greater appreciation for which individuals it is grouping together. 
+By looking at the dendogram on the left, we can get a greater appreciation for which individuals it is grouping together.
 
-For example, Padme and Leia are grouped together, as are R2-D2 and R5-D4.
+For example, Padmé and Leia are grouped together, as are R2-D2 and R5-D4.
 
-Hmm, that's interesting. Padme and Leia are mother and daughter, and R2-D2 and R5-D4 are both the same kind of (astromech) droid. 
+Hmm, that's interesting. Padmé and Leia are mother and daughter, and R2-D2 and R5-D4 are both the same kind of (astromech) droid.
 
-So does that mean all the groupings are meaningful?  
+So does that mean all the groupings are meaningful?
 
-Well, we can also see that Darth Vader and IG-88 are grouped together. While Darth Vader is "more machine than man" according to Obi-Wan, he's still a human, but is being grouped together with an assassin droid. 
+Well, we can also see that Darth Vader and IG-88 are grouped together. While Darth Vader is "more machine than man" according to Obi-Wan, he's still a human, but is being grouped together with an assassin droid.
 
-Plus, there's a whole mess of other groupings in the middle that are difficult to assess by eye. 
+Plus, there's a whole mess of other groupings in the middle that are difficult to assess by eye.
 
 #### Annotating
-This is where annotations come in handy. 
+
+This is where annotations come in handy.
 
 Let's create an annotation for species:
+
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -1764,13 +1811,14 @@ pheatmap(
   heatmap_data,
   annotation_row = annotations,  # Add row annotations for `species` and `sex`
   annotation_colors = annotation_colors,  # Add colors for the annotations
-  cluster_rows = TRUE,  # Cluster rows
-  cluster_cols = FALSE,  # Cluster columns
+  cluster_rows = TRUE,  
+  cluster_cols = FALSE,  
   scale="column"
 )
 ```
 
 What about homeworld?
+
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -1811,11 +1859,31 @@ pheatmap(
   heatmap_data,
   annotation_row = annotations, # Add row annotations
   annotation_colors = annotation_colors, # Add colors for the annotations
-  cluster_rows = TRUE, # Cluster rows
-  cluster_cols = FALSE, # Cluster columns
+  cluster_rows = TRUE, 
+  cluster_cols = FALSE, 
   scale = "column"
 )
 ```
 
-## Final Thoughts 
-By now, you should feel comfortable building a variety of plots in R using ggplot2. Feel free to revisit this guide as you apply these skills to your own data.
+You get the picture.
+
+▶️ Recreate the first annotated heatmap yourself, but annotate with a different variable.
+
+## Final Thoughts
+
+By now, you should feel comfortable building a variety of plots in R.
+
+Feel free to revisit this guide as you apply these skills to your own data!
+
+::: callout-note
+### Acknowledgements
+
+I've indicated throughout this document where I've borrowed definitions, examples, etc. from other sources, but the below require special shoutouts:
+
+-   [Yan Holtz](https://www.yan-holtz.com/)
+    -   I've borrowed heavily from his excellent [R Graph Gallery](https://r-graph-gallery.com/). I intended to create my own cheat-sheet for generating common R plots, but his is so comprehensive that I will just point you to this resource.
+    -   His [Productive R Workflow](https://www.productive-r-workflow.com/) course is the reason I was able to create this Quarto document and sync my local RStudio files with my GitHub. He offers discounts for groups, so contact me if you want to enroll; it's excellent.
+-   [Matt Cannon](https://github.com/MVesuviusC) (MVesuviusC)
+    -   His [R Workshop](https://github.com/MVesuviusC/R_workshop) GitHub page gave me ideas for how to structure the exercise.
+    -   I used the variable and data type definitions from his [R Cheat Sheet](https://github.com/MVesuviusC/R_workshop/blob/main/cheatsheets/R_Cheat_Sheet.md), but his [Commonly Used R Functions Cheat Sheet](https://github.com/MVesuviusC/R_workshop/blob/main/cheatsheets/R_Functions_Cheat_Sheet.md) is a great resource too.
+:::

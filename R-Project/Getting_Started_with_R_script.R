@@ -386,7 +386,7 @@ ggplot(filtered_star_wars, aes(x = mass, y = height, color = species, size = bir
   theme(legend.position = "none")
 
 
-
+# Heatmaps ----
 
 # Step 1: Prepare the data for heatmap
 # Extracting the height and weight columns as matrix
@@ -394,15 +394,17 @@ heatmap_starwars <- filtered_star_wars %>%
   filter(!is.na(mass),species %in% c("Human","Droid", "Gungan"))
 heatmap_data <- as.matrix(heatmap_starwars[, c("height", "mass")])
 
-# Annotate the rows with the "names" variable
-# Replace "names" with the actual column name for the character names
+# Step 2: Annotate the rows with the "names" variable
 rownames(heatmap_data) <- heatmap_starwars$name
 
-# Create a species annotation dataframe
-species_annotation <- data.frame(Species = heatmap_starwars$species)
-rownames(species_annotation) <- heatmap_starwars$name  # Match the rownames of the heatmap data
+##### Your annotation goes here! #####
 
-# Define colors for the species annotation
+annotations <- data.frame(Your_Variable = heatmap_starwars$Your_Variable)
+rownames(annotations) <- heatmap_starwars$name  # Match the rownames of the heatmap data
+
+##### Define the colors for your annotation #####
+
+# This is the code for `species` -- update it with your variable
 annotation_colors <- list(
   Species = c(
     "Human" = "#1f77b4",  # Blue
@@ -411,16 +413,22 @@ annotation_colors <- list(
   )
 )
 
-# Generate the heatmap with annotation
+
+##### Generate the heatmap with your annotations #####
 pheatmap(
   heatmap_data,
-  annotation_row = species_annotation,  # Add row annotations
+  annotation_row = annotations,  # Add row annotations
   annotation_colors = annotation_colors,  # Add colors for the annotations
   cluster_rows = TRUE,  # Cluster rows
   cluster_cols = FALSE,  # Cluster columns
-  show_rownames = TRUE,  # Show row names
-  show_colnames = TRUE   # Show column names
+  scale="column"
 )
+
+
+# Congratulations, you've made some beautiful plots in R!
+
+
+
 
 
 
