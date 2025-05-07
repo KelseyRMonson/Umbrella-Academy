@@ -292,8 +292,7 @@ ggplot(
   geom_jitter(color = "darkgray", size = 0.7, alpha = 0.7) +
   theme_light() +
   theme(
-    legend.position="none",
-    plot.title = element_text(size=11)
+    legend.position="none"
   ) +
   labs(
     x = "Character Sex",
@@ -311,8 +310,7 @@ ggplot(
   scale_fill_viridis(alpha=0.7, begin = 0.2, end = 0.7, option = "D", aesthetics = "fill", discrete = TRUE) +
   theme_light() +
   theme(
-    legend.position="none",
-    plot.title = element_text(size=11)
+    legend.position="none"
   ) +
   labs(
     x = "Character Sex",
@@ -320,6 +318,26 @@ ggplot(
     title = "Star Wars Height by Character Sex",
     subtitle = "Violin Plot with Superimposed Box Plot"
   ) 
+
+# Histograms ----
+ggplot( 
+  filtered_star_wars,
+  aes(x=mass)) +
+  geom_histogram( binwidth=20, fill="#6fa8dc", color="#e9ecef", alpha=0.9) +
+  theme_light() +
+  theme(
+    plot.title = element_text(size=15)
+  ) +
+  labs(
+    x = "Mass (in kg)",
+    y = "Count",
+    title = "Star Wars Character Weight",
+    subtitle = "Bin Width = 20"
+  ) 
+
+##### Your histograms with different bin widths go here! #####
+# Don't forget to change the label in the subtitle to reflect your new bin size.
+
 
 # Scatter plots ----
 # Height vs weight 
@@ -352,3 +370,5 @@ ggplot(filtered_star_wars, aes(x = mass, y = height, color = species, size = bir
     y = "Height (cm)"
   ) +
   theme(legend.position = "none")
+
+

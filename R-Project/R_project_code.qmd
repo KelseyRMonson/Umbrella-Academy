@@ -1416,9 +1416,84 @@ ggplot(
 
 ```
 
-Those "groupings" are called "bins," and changing the bin width can dramatically change how your data looks:
-```{r}
+Those "groupings" are called "bins."
 
+Changing the bin width can dramatically change how your data looks:
+```{r}
+#| echo: false
+#| layout-ncol: 2
+ggplot( 
+  filtered_star_wars,
+  aes(x=height)) +
+  geom_histogram( binwidth=3, fill="#d2e8e3", color="#e9ecef", alpha=0.9) +
+  theme_light() +
+  theme(
+    plot.title = element_text(size=15)
+  ) +
+    labs(
+    x = "Height",
+    y = "Count",
+    title = "Bin Width = 3"
+  ) 
+ggplot( 
+  filtered_star_wars,
+  aes(x=height)) +
+  geom_histogram( binwidth=10, fill="#b4d9d0", color="#e9ecef", alpha=0.9) +
+  theme_light() +
+  theme(
+    plot.title = element_text(size=15)
+  ) +
+    labs(
+    x = "Height",
+    y = "Count",
+    title = "Bin Width = 10"
+  ) 
+ggplot( 
+  filtered_star_wars,
+  aes(x=height)) +
+  geom_histogram( binwidth=50, fill="#548f81", color="#e9ecef", alpha=0.9) +
+  theme_light() +
+  theme(
+    plot.title = element_text(size=15)
+  ) +
+    labs(
+    x = "Height",
+    y = "Count",
+    title = "Bin Width = 50"
+  )
+ggplot( 
+  filtered_star_wars,
+  aes(x=height)) +
+  geom_histogram( binwidth=100, fill="#345951", color="#e9ecef", alpha=0.9) +
+  theme_light() +
+  theme(
+    plot.title = element_text(size=15)
+  ) +
+    labs(
+    x = "Height",
+    y = "Count",
+    title = "Bin Width = 100"
+  )
+```
+
+The bin width corresponds to the size of the grouping on the x-axis. For `binwidth=100`, for example, each bin spans 100 cm.
+
+▶️ Try it yourself using `mass` (weight) instead of `height` and try out different bin sizes
+```{r}
+ggplot( 
+  filtered_star_wars,
+  aes(x=mass)) +
+  geom_histogram( binwidth=20, fill="#6fa8dc", color="#e9ecef", alpha=0.9) +
+  theme_light() +
+  theme(
+    plot.title = element_text(size=15)
+  ) +
+    labs(
+    x = "Mass (in kg)",
+    y = "Count",
+    title = "Star Wars Character Weight",
+    subtitle = "Bin Width = 20"
+  ) 
 ```
 
 ### Density plots
