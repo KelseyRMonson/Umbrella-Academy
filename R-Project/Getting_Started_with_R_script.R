@@ -8,16 +8,17 @@ install.packages("tidyverse")
 install.packages("gtExtras")
 install.packages("viridis")
 install.packages("readxl")
+install.packages("pheatmap")
 
 # Load Libraries ----
 # Every R script should include some kind of header to describe the contents of the file, followed by loading of all the packages that will be used in the script
 
 # I also think it's a good idea to include a little note next to each package so you remember what you used it for:
+library(readxl) # Improves on Base-R's ability to read in datasets, especially those saved as Excel spreadsheets
 library(tidyverse) # This is a bundle of many packages for data manipulation and plotting, including the essential "ggplot2" for making plots
 library(gtExtras) # Creates elegant summary tables
 library(viridis) # Color palettes designed to improve graph readability for readers with common forms of color blindness (they also just look nice)
-library(readxl) # Improves on Base-R's ability to read in datasets, especially those saved as Excel spreadsheets
-
+library(pheatmap) # Creates heatmaps
 
 # Load the Data ----
 # Follow the instructions to download and save the dataset
@@ -383,4 +384,44 @@ ggplot(filtered_star_wars, aes(x = mass, y = height, color = species, size = bir
     y = "Height (cm)"
   ) +
   theme(legend.position = "none")
+
+
+
+
+# Step 1: Prepare the data for heatmap
+# Extracting the height and weight columns as matrix
+heatmap_starwars <- filtered_star_wars %>% 
+  filter(!is.na(mass),species %in% c("Human","Droid", "Gungan"))
+heatmap_data <- as.matrix(heatmap_starwars[, c("height", "mass")])
+
+# Annotate the rows with the "names" variable
+# Replace "names" with the actual column name for the character names
+rownames(heatmap_data) <- heatmap_starwars$name
+
+# Create a species annotation dataframe
+species_annotation <- data.frame(Species = heatmap_starwars$species)
+rownames(species_annotation) <- heatmap_starwars$name  # Match the rownames of the heatmap data
+
+# Define colors for the species annotation
+annotation_colors <- list(
+  Species = c(
+    "Human" = "#1f77b4",  # Blue
+    "Droid" = "#ff7f0e",  # Orange
+    "Gungan" = "#2ca02c" # Green
+  )
+)
+
+# Generate the heatmap with annotation
+pheatmap(
+  heatmap_data,
+  annotation_row = species_annotation,  # Add row annotations
+  annotation_colors = annotation_colors,  # Add colors for the annotations
+  cluster_rows = TRUE,  # Cluster rows
+  cluster_cols = FALSE,  # Cluster columns
+  show_rownames = TRUE,  # Show row names
+  show_colnames = TRUE   # Show column names
+)
+
+
+
 
