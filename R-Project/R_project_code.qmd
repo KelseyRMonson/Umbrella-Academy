@@ -405,6 +405,7 @@ library(ggExtra)
 library(scales)
 library(ggdist)
 library(pheatmap)
+library(RColorBrewer)
 
 ```
 
@@ -1636,6 +1637,7 @@ pheatmap(
 
 This looks neat, but let's make some tweaks to make it more interpretable. 
 
+#### Scaling
 First, `height` (cm) and `weight` (kg) are in different units, but the color scale is treating them the same.
 
 To address this, we can scale by column, centering and scaling each variable so that they have a mean of zero and standard deviation of one.
@@ -1654,7 +1656,7 @@ pheatmap(
 The interpretation of the data doesn't *change* (the high values are still high, and the low values are still low), but now all the heights don't appear higher than all the weights.
 
 :::{.callout-caution collapse="true"}
-#### Caution when scaling
+##### Caution when scaling
 Be careful that you are scaling the appropriate values if you apply a scaling factor.
 
 Look what happens if we scale by row instead of by column:
@@ -1674,6 +1676,7 @@ Because the mean of height is greater than the mean of weight (because they are 
 Not very informative!
 :::
 
+#### Clustering
 Let's also apply a clustering algorithm to determine which individuals are more similar, based on these two variables:
 ```{r}
 #| code-fold: true
@@ -1687,8 +1690,25 @@ pheatmap(
 )
 ```
 
-Annotate
+By looking at the dendogram on the left, we can get a greater appreciation for which individuals it is grouping together. 
+
+For example, Padme and Leia are grouped together, as are R2-D2 and R5-D4.
+
+Hmm, that's interesting. Padme and Leia are mother and daughter, and R2-D2 and R5-D4 are both the same kind of (astromech) droid. 
+
+So does that mean all the groupings are meaningful?  
+
+Well, we can also see that Darth Vader and IG-88 are grouped together. While Darth Vader is "more machine than man" according to Obi-Wan, he's still a human, but is being grouped together with an assassin droid. 
+
+Plus, there's a whole mess of other groupings in the middle that are difficult to assess by eye. 
+
+#### Annotating
+This is where annotations come in handy. 
+
+Let's create an annotation for species:
 ```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
 # Create a species annotation dataframe
 species_annotation <- data.frame(Species = heatmap_starwars$species)
 rownames(species_annotation) <- heatmap_starwars$name  # Match the rownames of the heatmap data
@@ -1708,9 +1728,92 @@ pheatmap(
   annotation_row = species_annotation,  # Add row annotations
   annotation_colors = annotation_colors,  # Add colors for the annotations
   cluster_rows = TRUE,  # Cluster rows
-  cluster_cols = TRUE,  # Cluster columns
-  show_rownames = TRUE,  # Show row names
-  show_colnames = TRUE   # Show column names
+  cluster_cols = FALSE,
+  scale="column"
+)
+```
+
+You can layer on multiple annotations -- can we glean more information by adding sex?
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+# Create an annotation dataframe for both `species` and `sex`
+annotations <- data.frame(
+  Species = heatmap_starwars$species,
+  Sex = heatmap_starwars$sex
+)
+rownames(annotations) <- heatmap_starwars$name  # Match the rownames of the heatmap data
+
+# Define colors for the annotations
+annotation_colors <- list(
+  Species = c(
+    "Human" = "#1f77b4",  # Blue
+    "Droid" = "#ff7f0e",  # Orange
+    "Gungan" = "#2ca02c" # Green
+  ),
+  Sex = c(
+    "male" = "#e377c2",   # Pink
+    "female" = "#17becf",  # Cyan
+    "none" = "gray"
+  )
+)
+
+# Generate the heatmap with annotations for both `species` and `sex`
+pheatmap(
+  heatmap_data,
+  annotation_row = annotations,  # Add row annotations for `species` and `sex`
+  annotation_colors = annotation_colors,  # Add colors for the annotations
+  cluster_rows = TRUE,  # Cluster rows
+  cluster_cols = FALSE,  # Cluster columns
+  scale="column"
+)
+```
+
+What about homeworld?
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+# Create an annotation dataframe for `species`, `sex`, and `homeworld`
+heatmap_starwars$homeworld <- as.character(heatmap_starwars$homeworld)
+
+heatmap_starwars <- heatmap_starwars %>%
+  mutate(homeworld = replace_na(homeworld, "unknown"))
+
+heatmap_starwars$homeworld <- as.factor(heatmap_starwars$homeworld)
+
+annotations <- data.frame(
+  Species = heatmap_starwars$species,
+  Sex = heatmap_starwars$sex,
+  Homeworld = heatmap_starwars$homeworld
+)
+rownames(annotations) <- heatmap_starwars$name # Match the rownames of the heatmap data
+
+
+# Define colors for categorical annotations
+annotation_colors <- list(
+  Species = c(
+    "Human" = "#1f77b4", # Blue
+    "Droid" = "#ff7f0e", # Orange
+    "Gungan" = "#2ca02c" # Green
+  ),
+  Sex = c(
+    "male" = "#e377c2", # Pink
+    "female" = "#17becf", # Cyan
+    "none" = "gray"
+  ),
+  Homeworld = viridis(length(unique(heatmap_starwars$homeworld)), option = "C", begin = 1, end = 0) # Gradient for many levels
+)
+names(annotation_colors$Homeworld) <- unique(heatmap_starwars$homeworld) # Assign colors to each homeworld
+
+# Generate the heatmap with annotations for `species`, `sex`, and `homeworld`
+pheatmap(
+  heatmap_data,
+  annotation_row = annotations, # Add row annotations
+  annotation_colors = annotation_colors, # Add colors for the annotations
+  cluster_rows = TRUE, # Cluster rows
+  cluster_cols = FALSE, # Cluster columns
+  scale = "column"
 )
 ```
 
