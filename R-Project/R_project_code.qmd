@@ -301,7 +301,7 @@ You can see I'm currently in my project directory on the Zamarin Lab computer.
 If we want to *change* the directory, we can use `setwd()`, specifying the path we want to move to:
 
 ```{r}
-setwd("C:/Users/Zamarin Lab/Documents/GitHub/Umbrella-Academy/R-Project")
+#setwd("C:/Users/Zamarin Lab/Documents/GitHub/Umbrella-Academy/R-Project")
 ```
 
 ::: callout-note
@@ -400,6 +400,7 @@ library(tidyverse)
 library(viridis)
 library(readxl)
 library(gtExtras)
+library(svglite)
 library(ggExtra)
 library(scales)
 library(ggdist)
@@ -1646,28 +1647,45 @@ pheatmap(
   cluster_rows = FALSE,   # Do not cluster rows (optional)
   cluster_cols = FALSE,   # Do not cluster columns (optional)
   scale = "column",
-  main = "Heatmap of Height and Weight" # Title of the heatmap
+  main = "Heatmap of Height and Weight"
 )
 ```
 
 The interpretation of the data doesn't *change* (the high values are still high, and the low values are still low), but now all the heights don't appear higher than all the weights.
 
-:::{.callout-caution}
+:::{.callout-caution collapse="true"}
+#### Caution when scaling
 Be careful that you are scaling the appropriate values if you apply a scaling factor.
 
-Look what happens if we scale by row (individual) instead of by column (height/weight):
+Look what happens if we scale by row instead of by column:
 
 ```{r}
 pheatmap(
   heatmap_data,
-  cluster_rows = TRUE,   # Cluster rows (optional)
-  cluster_cols = FALSE,   # Do not cluster columns (optional)
-  scale = "column",
-  main = "Heatmap of Height and Weight" # Title of the heatmap
+  cluster_rows = FALSE,
+  cluster_cols = FALSE,
+  scale = "row",
+  main = "Heatmap of Height and Weight"
   
 )
 ```
+Because the mean of height is greater than the mean of weight (because they are on different scales), all the heights are greater than all the weights. 
+
+Not very informative!
 :::
+
+Let's also apply a clustering algorithm to determine which individuals are more similar, based on these two variables:
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+pheatmap(
+  heatmap_data,
+  cluster_rows = TRUE,   # Do cluster rows
+  cluster_cols = FALSE,   # Do not cluster columns
+  scale = "column",
+  main = "Heatmap of Height and Weight"
+)
+```
 
 Annotate
 ```{r}
@@ -1696,5 +1714,5 @@ pheatmap(
 )
 ```
 
-### Final Thoughts 
+## Final Thoughts 
 By now, you should feel comfortable building a variety of plots in R using ggplot2. Feel free to revisit this guide as you apply these skills to your own data.
