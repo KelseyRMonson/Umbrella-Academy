@@ -1219,8 +1219,7 @@ ggplot( aes(x=name, y=value, fill=name)) +
     geom_jitter(color="darkgrey", size=0.7, alpha=0.6) +
     theme_light() +
     theme(
-      legend.position="none",
-      plot.title = element_text(size=11)
+      legend.position="none"
     ) +
     ggtitle("A box plot with jitter") +
     xlab("")
@@ -1240,8 +1239,7 @@ data %>%
   scale_fill_viridis(discrete = TRUE) +
   theme_light() +
   theme(
-    legend.position = "none",
-    plot.title = element_text(size = 11)
+    legend.position = "none"
   ) +
   ggtitle("Jitter first, then box plot") +
   xlab("")
@@ -1307,10 +1305,9 @@ data %>%
   scale_fill_viridis(discrete = TRUE) +
   theme_light() +
   theme(
-    legend.position = "none",
-    plot.title = element_text(size = 11)
+    legend.position = "none"
   ) +
-  ggtitle("A raincloud plot example") +
+  ggtitle("Raincloud plot") +
   xlab("")
 ```
 
@@ -1333,8 +1330,7 @@ ggplot(
     scale_fill_viridis(alpha=0.7, begin = 0.2, end = 0.7, option = "D", aesthetics = "fill", discrete = TRUE) +
     theme_light() +
     theme(
-      legend.position="none",
-      plot.title = element_text(size=11)
+      legend.position="none"
     ) +
     labs(
     x = "Character Sex",
@@ -1361,8 +1357,7 @@ ggplot(
     geom_jitter(color = "darkgray", size = 0.7, alpha = 0.7) +
     theme_light() +
     theme(
-      legend.position="none",
-      plot.title = element_text(size=11)
+      legend.position="none"
     ) +
     labs(
     x = "Character Sex",
@@ -1385,8 +1380,7 @@ ggplot(
     scale_fill_viridis(alpha=0.7, begin = 0.2, end = 0.7, option = "D", aesthetics = "fill", discrete = TRUE) +
     theme_light() +
     theme(
-      legend.position="none",
-      plot.title = element_text(size=11)
+      legend.position="none"
     ) +
     labs(
     x = "Character Sex",
@@ -1401,9 +1395,34 @@ ggplot(
 Let's move on to plotting continuous variables.
 
 ### Histograms
-Histograms are like bar plots, but for continuous variables instead of categorical ones. 
+Histograms are like bar plots, but for continuous variables instead of categorical ones.
 
+Here, we're plotting `height` on the x-axis now, and counting the observations at each height grouping on the y-axis.
+```{r}
+#| echo: false
+ggplot( 
+  filtered_star_wars,
+  aes(x=height)) +
+  geom_histogram( binwidth=20, fill="#69b3a2", color="#e9ecef", alpha=0.9) +
+  theme_light() +
+  theme(
+    plot.title = element_text(size=15)
+  ) +
+    labs(
+    x = "Height (in cm)",
+    y = "Count",
+    title = "Star Wars Character Height"
+  ) 
 
+```
+
+Those "groupings" are called "bins," and changing the bin width can dramatically change how your data looks:
+```{r}
+
+```
+
+### Density plots
+These are like smoothed histograms (without the binning).
 
 ### Scatter plots 
 Scatter plots effectively visualize relationships between two continuous variables.
