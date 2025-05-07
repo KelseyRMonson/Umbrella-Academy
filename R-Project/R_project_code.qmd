@@ -419,7 +419,7 @@ We will use the `starwars` test dataset from the `tidyverse` package as our exam
 
 ### First steps
 
-I've created an [R Script](Getting_Started_with_R_script.R) with the code needed for this exercise. Go ahead and open that script now.
+I've created an [R Script](R_code/Getting_Started_with_R_script.R) with the code needed for this exercise. Go ahead and open that script now.
 
 You can use it as a template as you write your script, but try typing out the commands to build muscle memory 💪
 
