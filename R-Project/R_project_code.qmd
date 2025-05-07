@@ -1128,7 +1128,9 @@ ggplot(
 ```
 
 ### Lollipop Plots
-Lollipop plots are modified bar plots with a cleaner aesthetic: 
+Lollipop plots are modified bar plots with a cleaner aesthetic.
+
+▶️ Try making one yourself:
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -1137,8 +1139,9 @@ ggplot(
   aes(
     x=name,
     y=height)) +
+   # You can also set colors using text or Hex codes
   geom_segment( aes(x=name, xend=name, y=0, yend=height), color="skyblue") +
-  geom_point(color="#433E85FF", size=4, alpha=0.6) + 
+  geom_point(color="#433E85FF", size=3.5, alpha=0.9) + 
   theme_classic() +
   labs(
     x = "Species",
@@ -1148,33 +1151,40 @@ ggplot(
 :::{.callout-tip}
 For better readability with long category names or numerous samples, flip the x- and y-axes using `coord_flip()`
 
-:::
-
-▶️ Make a flipped-coordinate lollipop plot
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
+starwars %>% 
+  filter(species %in% c("Human", "Droid"), !is.na(height)) %>% 
 ggplot(
-  small_star_wars, 
   aes(
-    x=name,
+    x=fct_reorder(name, height),
     y=height)) +
-  geom_segment( aes(x=name, xend=name, y=0, yend=height), color="skyblue") + # You can also set colors using text or Hex codes
-  geom_point(color="#433E85FF", size=4, alpha=0.6) + 
+  geom_segment( aes(x=fct_reorder(name, height), xend=name, y=0, yend=height), color="deepskyblue") +
+  geom_point(color="#2D708EFF", size=3.5, alpha=0.9) + 
   theme_classic() +
   labs(
     x = "Species",
-    y = "Height (in cm)"
+    y = "Height (in cm)",
+    title = "Star Wars Human and Droid Height"
   ) +
   coord_flip()
 
 ```
-### Box plots and (their superior cousin) Violin plots
-:::{.callout-warning}
-Box plots are useful for showing variable distributions, but they can hide important trends in your data.
+
 :::
 
-To illustrate this phenomenon, I'm using a dummy dataset (from [this](https://www.data-to-viz.com/caveat/boxplot.html) excellent explanation of the dangers of box plots).
+### Box plots and Violin plots
+
+When you want to plot a variable's distribution, box plots are a good option.
+
+However...
+
+:::{.callout-warning}
+Box plots can hide important trends in your data.
+:::
+
+To illustrate this, I'm using a dummy dataset (from [this](https://www.data-to-viz.com/caveat/boxplot.html) excellent explanation of the dangers of box plots).
 ```{r}
 #| echo: false
 # create a dataset
@@ -1264,7 +1274,7 @@ data %>%
 ```
 A downside of violin plots is that they don't convey differences in sample size very well.
 
-There's a special plot called a Raincloud Plot that uses box plots, individual observations, *and* distribution plots to show all the information at once:
+There's a special composite plot called a Raincloud Plot that uses box plots, individual observations, *and* distribution plots to show all the information at once:
 
 ```{r}
 #| code-fold: true
@@ -1391,6 +1401,8 @@ ggplot(
 Let's move on to plotting continuous variables.
 
 ### Histograms
+Histograms are like bar plots, but for continuous variables instead of categorical ones. 
+
 
 
 ### Scatter plots 
@@ -1424,7 +1436,7 @@ ggplot(filtered_star_wars,
 Like I did before, you can add additional information.
 
 ▶️ Let's map `species` to color and `birth year` to size:
-```{r fig.cap= "Note that `birth year` is missing for several entries, so this plot looks slightly different than the previous one, with fewer points plotted. <br><br>*That's a downside to layering on additional variables in an imperfect dataset with missing data (which most are!).*"}
+```{r fig.cap= "Note that `birth year` is missing for several entries, so this plot looks different, with fewer points plotted. <br><br>*That's a downside to plotting additional variables when there is missing data (which is most datasets!).*"}
 #| code-fold: true
 #| code-summary: "Show the code"
 ggplot(filtered_star_wars, aes(x = mass, y = height, color = species, size = birth_year)) +

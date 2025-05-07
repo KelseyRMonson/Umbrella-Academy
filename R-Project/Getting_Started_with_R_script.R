@@ -267,14 +267,14 @@ ggplot(
   aes(
     x=name,
     y=height)) +
-  geom_segment( aes(x=name, xend=name, y=0, yend=height), color="skyblue") + # You can also set colors using text or Hex codes
-  geom_point(color="#433E85FF", size=4, alpha=0.6) + 
+  # You can also set colors using text or Hex codes
+  geom_segment( aes(x=name, xend=name, y=0, yend=height), color="skyblue") +
+  geom_point(color="#433E85FF", size=3.5, alpha=0.9) + 
   theme_classic() +
   labs(
     x = "Species",
     y = "Height (in cm)"
-  ) +
-  coord_flip()
+  )
 
 
 # Box and Violin Plots ----
