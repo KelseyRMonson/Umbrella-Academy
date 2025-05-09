@@ -1432,9 +1432,9 @@ Let's move on to plotting continuous variables.
 
 ### Histograms
 
-Histograms are like bar plots, but for continuous variables instead of categorical ones.
+Histograms are like bar plots, but are for continuous instead of categorical variables.
 
-Here, we're plotting `height` on the x-axis now, and counting the observations at each height grouping on the y-axis.
+Below, `height` is plotted on the x-axis, with the y-axis representing how many observations fall within each height range (or "bin"):
 
 ```{r}
 #| echo: false
@@ -1453,8 +1453,6 @@ ggplot(
   ) 
 
 ```
-
-Those groupings are called "bins."
 
 Changing the bin width can dramatically change how your data looks:
 
@@ -1555,7 +1553,7 @@ ggplot(
   )
 ```
 
-You can plot densities for several groups at once (you can do this for histograms too, but it's easier to visualize with density maps)
+You can plot densities for several groups at once (this is possible with histograms too, but it's easier to interpret with density maps)
 
 ```{r}
 #| code-fold: true
@@ -1594,11 +1592,11 @@ ggplot(
 
 ### Scatter plots
 
-Scatter plots effectively visualize relationships between two continuous variables.
+Scatter plots visualize relationships between two continuous variables.
 
-Let's recreate a simple of the one I showed you at the beginning of the lecture.
+Let's recreate a simple version of the one I showed you at the beginning of the lecture.
 
-▶️ First plot height vs weight, mapping color onto weight
+▶️ First plot `height` vs `mass`, mapping color onto `mass`
 
 ```{r}
 #| code-fold: true
@@ -1620,8 +1618,6 @@ ggplot(filtered_star_wars,
         title = "Star Wars Character Height and Weight"
     ) 
 ```
-
-Like I did before, you can add additional information.
 
 When you map a variable to the size of the dot, a "scatter plot" technically becomes a "bubble plot."
 
@@ -1649,9 +1645,9 @@ We'll close by making a heatmap.
 
 This is one of the few instances where `ggplot2` isn't your best plotting option.
 
-While you *can* use it to make heatmaps, the appropriately named `pheatmap` (for "Pretty Heatmap") is best.
+While you *can* use it to make heatmaps, the appropriately named `pheatmap` ("Pretty Heatmap") is best.
 
-Here's a simple heatmap comparing `height` and `weight` in our dataset:
+Here's a simple heatmap comparing `height` and `mass` in our dataset:
 
 ```{r}
 #| echo: false
@@ -1678,11 +1674,11 @@ This looks neat, but let's make some tweaks to make it more interpretable.
 
 #### Scaling
 
-First, `height` (cm) and `weight` (kg) are in different units, but the color scale is treating them the same.
+First, `height` (cm) and `weight` (kg) are in different units, but the color scale treats them as being on the same continuous scale.
 
 To address this, we can scale by column, centering and scaling each variable so that they have a mean of zero and standard deviation of one.
 
-```{r fig.cap="Scaling is especially important for differential gene expression heatmaps, because it allows you to better compare genes with very different expression levels."}
+```{r fig.cap="Scaling is especially important for differential gene expression heatmaps because it allows you to better compare genes with very different expression levels."}
 #| code-fold: true
 #| code-summary: "Show the code"
 pheatmap(
@@ -1735,7 +1731,7 @@ pheatmap(
 )
 ```
 
-By looking at the dendogram on the left, we can get a greater appreciation for which individuals it is grouping together.
+By looking at the dendogram on the left, we can get a greater appreciation for which individuals it groups by similarity.
 
 For example, Padmé and Leia are grouped together, as are R2-D2 and R5-D4.
 
@@ -1743,7 +1739,7 @@ Hmm, that's interesting. Padmé and Leia are mother and daughter, and R2-D2 and 
 
 So does that mean all the groupings are meaningful?
 
-Well, we can also see that Darth Vader and IG-88 are grouped together. While Darth Vader is "more machine than man" according to Obi-Wan, he's still a human, but is being grouped together with an assassin droid.
+Well, we can also see that Darth Vader and IG-88 are grouped together. While Darth Vader is "more machine than man" according to Obi-Wan, he's still a human, but is being grouped with an assassin droid.
 
 Plus, there's a whole mess of other groupings in the middle that are difficult to assess by eye.
 
