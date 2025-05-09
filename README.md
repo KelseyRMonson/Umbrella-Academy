@@ -11,7 +11,7 @@
 A 10-week course created by [Kelsey Monson](https://github.com/KelseyRMonson) to teach **dry lab** skills to **wet lab** scientists (because an ☔ keeps you dry when it's wet, get it?)
 
 ## What is hosted on the GitHub?
-Here you will find the code for the hands-on exercises to get students comfortable using the [command line](Command-Line) and [R](R-Project) (🚧). It also includes an exercise to practice [data cleaning](tbd) (🚧).
+Here you will find the code for the hands-on exercises to get students comfortable using the [command line](Command-Line) and [R](R-Project). It also includes an exercise to practice [data cleaning](tbd) (🚧).
 
 ## Course Schedule
 
@@ -21,7 +21,7 @@ Here you will find the code for the hands-on exercises to get students comfortab
 | Class 2   | Intro to Next Generation Sequencing (NGS) |
 | Class 3   | Intro to High Performance Computing (HPC) |
 | Class 4   | [Getting Started with the Command Line](Command-Line) 💻 |
-| Class 5   | [Getting Started with R](R-Project) 💻 🚧 |
+| Class 5   | [Getting Started with R](R-Project) 💻 |
 | Class 6   | Debugging and QC |
 | Class 7   | Data Normalization and Cleaning 💻 🚧 |
 | Class 8   | Wet Lab ➡️ Dry Lab: Designing Experiments for Analytic Success |
