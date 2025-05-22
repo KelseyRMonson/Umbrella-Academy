@@ -435,9 +435,32 @@ pheatmap(
 
 ##### Pick your favorite plot from today and copy/paste the code below! #####
 
+# Create your plot object
 Your_plot <- # <paste the code for your favorite plot after the assignment operator!>
-  
 
+# Save as `.png` while creating a new output directory in your R Project:
+ggsave("YOUR_PLOT_NAME.png",
+  plot = Your_plot,
+  path = "output/figures",
+  width = 10,
+  height = 6,
+  dpi = 300,
+  units = "in",
+  bg = "white",
+  create.dir = TRUE
+)
+
+# Timestamp and save as `.pdf`
+ggsave(filename = paste0("YOUR_PLOT_NAME_", format(Sys.Date(), "%Y-%m-%d"), ".pdf"),
+       plot = Your_plot,
+       path = "output/figures",
+       width = 10,
+       height = 6,
+       dpi = 300,
+       units = "in",
+       bg = "white",
+       create.dir = TRUE
+)
 
 # Congratulations, you've made some beautiful plots in R!
 
