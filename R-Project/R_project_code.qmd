@@ -765,7 +765,7 @@ Ok, now that we have our canvas and variables, let's choose how to plot the data
 
 We need to layer on an argument to tell `ggplot()` what kind of plot we want.
 
-▶️ Let's start with a simple bar plot:
+▶️ Let's start with a simple bar plot using `geom_col()`:
 
 ```{r}
 ggplot(
@@ -855,9 +855,9 @@ You can see R is defaulting to ordering the variables on the x-axis alphabetical
 
 By chance, they are nearly in perfect descending order, but what if we wanted to order it precisely?
 
-With only six samples, we could coerce `name` into a factor and then set the levels manually based on the heights we observe. But this is impractical as sample size increases, and also leaves room for human error.
+With only six samples, we could coerce `name` into a **factor** and then set the levels manually based on the heights we observe. But this is impractical as sample size increases, and also leaves room for human error.
 
-Here's a simple code to dynamically reorder a factor based on the value of another variable:
+Here's a simple code to dynamically reorder a **factor** based on the value of another variable:
 
 ```{r}
 # First convert `name` to a factor:
@@ -1231,7 +1231,7 @@ When you want to plot a variable's distribution, box plots are a good option.
 However...
 
 ::: callout-warning
-Box plots can hide important trends in your data.
+**Box plots can hide important trends in your data.**
 :::
 
 To illustrate this, I'm using a dummy dataset (from [this](https://www.data-to-viz.com/caveat/boxplot.html) excellent explanation of the dangers of box plots).
@@ -1647,11 +1647,13 @@ ggplot(filtered_star_wars,
     ) 
 ```
 
+::: callout-note
 When you map a variable to the size of the dot, a "scatter plot" technically becomes a "bubble plot."
+:::
 
 ▶️ Let's map `species` to color and `birth year` to size to make a bubble plot:
 
-```{r fig.cap= "`birth year` is missing for several entries, so fewer points are plotted. <br><br>*That's a downside to plotting additional variables when there is missing data (which is most datasets!).*"}
+```{r fig.cap= "This plot looks different because `birth year` is missing for several entries, so fewer points are plotted. <br><br>*That's a downside to plotting additional variables when there is missing data.*"}
 #| code-fold: true
 #| code-summary: "Show the code"
 ggplot(filtered_star_wars, aes(x = mass, y = height, color = species, size = birth_year)) +
@@ -1738,7 +1740,7 @@ pheatmap(
 )
 ```
 
-Because the mean of height is greater than the mean of weight (because they are on different scales), all the heights are greater than all the weights.
+Because the mean of height is greater than the mean of weight (as they are on different scales), all the heights are greater than all the weights.
 
 Not very informative!
 :::
@@ -1914,10 +1916,11 @@ When creating a plot for lab meeting, you could save it as a `.png`, but for pub
 To save a plot, you first have to create a variable that contains the plot information.
 
 -   I haven't shown you how to do that so far because plot objects don't automatically render in the RStudio Plots viewer.
-
 -   I typically wait to create a plot object until I'm finished tweaking a figure (resizing axes, changing colors, adjusting font size, etc.), just so I can quickly see how the changes are rendered.
 
-▶️ Pick your favorite plot from any point during the exercise. Copy the code, but now create a variable by creating a name and using the assignment operator `<-` before the `ggplot()` call:
+Pick your favorite plot from any point during the exercise. 
+
+▶️ Copy the code, but now create a variable by creating a name and using the assignment operator `<-` before the `ggplot()` call:
 
 ```{r}
 starwars_scatter <- ggplot(filtered_star_wars, 
@@ -1935,6 +1938,9 @@ starwars_scatter <- ggplot(filtered_star_wars,
                           color = "Weight (kg)",
                           title = "Star Wars Character Height and Weight"
                       ) 
+
+# View the plot by calling the newly created plot object:
+starwars_scatter
 ```
 
 Our friend `ggplot2` has a handy function for saving plots easily, with lots of customization options.
