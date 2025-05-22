@@ -1918,7 +1918,7 @@ To save a plot, you first have to create a variable that contains the plot infor
 -   I haven't shown you how to do that so far because plot objects don't automatically render in the RStudio Plots viewer.
 -   I typically wait to create a plot object until I'm finished tweaking a figure (resizing axes, changing colors, adjusting font size, etc.), just so I can quickly see how the changes are rendered.
 
-Pick your favorite plot from any point during the exercise. 
+**Pick your favorite plot from any point during the exercise.**
 
 ▶️ Copy the code, but now create a variable by creating a name and using the assignment operator `<-` before the `ggplot()` call:
 
@@ -1963,7 +1963,7 @@ ggsave("starwars_scatterplot_weight_vs_age.png",
 
 It's also a good idea to time-stamp your figures so you know when they were created.
 
-▶️ Let's automatically time-stamp the figure and save it as a `.pdf` instead:
+▶️ Let's automatically time-stamp the file title and save it as a `.pdf` instead:
 
 ```{r}
 ggsave(filename = paste0("starwars_scatterplot_weight_vs_age_", format(Sys.Date(), "%Y-%m-%d"), ".pdf"),  
@@ -1983,7 +1983,9 @@ You can leave the `create.dir` argument in your `ggsave()` call because it will 
 (In other words, it won't overwrite an existing directory, hooray!)
 :::
 
-Go ahead and look at your plots to see how they came out! One easy way to do this us using the Files navigator in RStudio:
+Go ahead and look at your plots to see how they came out! 
+
+One easy way to do this us using the Files navigator in RStudio:
 
 ![Navigate to the `output/figures` folder we just created within our R Project folder. Double click a file name to open it!](assets/Path_to_figures.png)
 
