@@ -156,16 +156,16 @@ str(numbr)
 ::: callout-warning
 **Be careful not to coerce a variable into an impossible data type!**
 
-Note what happens if we try to coerce a character vector into a numeric vector, even if the character *could* represent a number:
+Note what happens if we try to coerce a **character vector** into a **numeric vector**, even if the character *could* represent a number:
 
-```{r} 
+```{r}
 number <- c("one","two","three") 
 str(number)  
 number <- as.numeric(number) 
 str(number)
 ```
 
-R isn't reading or understanding the words in our character vector, so it isn't going to automatically convert `one` into `1`.
+R isn't reading or understanding the words in our **character vector**, so it isn't going to automatically convert `one` into `1`.
 :::
 
 If you have numeric variables in your dataset, it's best to save them as numbers in your raw data and treat them as either numeric or integer variables in R.
@@ -205,8 +205,8 @@ rankings <- factor(rankings, levels=c("first","second","third","fourth"))
 table(rankings)
 ```
 
+We can set the levels to be whatever we want.
 
-We can set the levels to be whatever we want 
 ```{r}
 # For example, we could reverse them:
 rankings <- factor(rankings, levels=c("fourth","third","second","first"))
@@ -264,7 +264,12 @@ Did you notice I specified that `mean()` is a function in Base-R? R comes ready-
 
 But one of the best things about R is the community of other users who create **packages** -- collections of related functions to do specific things in R.
 
-R Packages let you do things like calculate RNA-seq gene expression, plot microbiome phylogenetic trees, use machine learning to create statistical models, and more.
+R Packages let you do things like:
+
+-   Calculate RNA-seq gene expression
+-   Plot microbiome phylogenetic trees
+-   Use machine learning to create statistical models
+-   ...and more!
 
 These tasks require diverse skills and expertise to program and execute. Thanks to R's broad user base, people make packages to do each of these things (and so much more!).
 
@@ -279,8 +284,8 @@ To load and use a downloaded package, use `library(package_name)`.
 ::: callout-note
 #### Quick notes on packages
 
--   When installing a package, enclose the name in quotes: `("package_name")`.
--   When loading a package, you don't need the quotes: `(package_name)`.
+-   When *installing* a package, enclose the name in quotes: `("package_name")`.
+-   When *loading* a package, you don't need the quotes: `(package_name)`.
 -   You don't need to *download* a package more than once (though you may need to update it).
 -   However, you must *load* a package every time before you can use it.
 :::
@@ -425,9 +430,9 @@ We will use the `starwars` test dataset from the `tidyverse` package as our exam
 I've created an [R Script](R_code/Getting_Started_with_R_script.R) with the code needed for this exercise.
 
 ::: callout-note
-You can use this script as a template as you write your own script, but try typing out the commands to build muscle memory 💪
+-   You can use this script as a template as you write your own script, but try typing out the commands to build muscle memory 💪
 
-You can copy/paste long names for packages, variables, and files, but typing out functions helps you remember the syntax.
+-   You can copy/paste long names for packages, variables, and files, but typing out functions helps you remember the syntax.
 
 **Look for ▶️ icons to know when need to write in your script.**
 :::
@@ -480,7 +485,7 @@ This shows that it's a **Tibble** (an upgraded **Data Frame**) containing both n
 summary(small_star_wars)
 ```
 
-You can also use the `gtExtras` package to create a polished summary table with very simple code:
+▶️ You can also use the `gtExtras` package to create a polished summary table with very simple code:
 
 ```{r}
 
@@ -498,7 +503,7 @@ gt(small_star_wars)
 ```
 
 ::: {.callout-tip collapse="true"}
-#### A bit more on pipes (`%>%`)
+#### A bit more on `%>%`
 
 Using the code below, you can apply a theme to make your `gtExtras` tables look like they do on the New York Times or ESPN.
 
@@ -598,10 +603,10 @@ agg_star_wars %>%
 Let's use this function to see how many of each species are in our dataset.
 
 ::: callout-tip
-In R, when we want to select just one of a multi-part variable (like a Data Frame or Tibble), we use the selection operator: `$`.
+In R, when we want to select just one of a multi-part variable (like a **Data Frame** or **Tibble**), we use the selection operator: `$`.
 :::
 
-▶️ Let's select just the `species` variable from our Tibble to create a table with one row:
+▶️ Let's select just the `species` variable from our **Tibble** to create a table with one row:
 
 ```{r}
 table(small_star_wars$species)
@@ -660,7 +665,7 @@ There he is! 🤖
 
 But you can also use one of the best features of RStudio: The **Environment** Tab!
 
-![Click the arrow next to your Tibble's name to expand the details for a quick peek. <br><br>Or, click the little table icon on the right to open it in its own tab.](assets/Environment.png)
+![Click the arrow next to your **Tibble's** name to expand the details for a quick peek. <br><br>Or, click the little table icon on the right to open it in its own tab.](assets/Environment.png)
 
 ## Time to Plot!
 
@@ -732,9 +737,9 @@ Creating a `ggplot` is like adding layers to a "base" graph.
 ggplot()
 ```
 
-Next, specify the data (either a Data Frame or Tibble) for your plot.
+Next, specify the data (either a **Data Frame** or **Tibble**) for your plot.
 
-We'll stick with our `small_star_wars` Tibble for now to illustrate how to build the plot.
+We'll stick with our `small_star_wars` **Tibble** for now to illustrate how to build the plot.
 
 If you just type `ggplot(small_star_wars)`, you'll get the same blank canvas because we haven't defined *what* to plot.
 
@@ -751,6 +756,8 @@ ggplot(
   )
 )
 ```
+
+But – we still don't have an actual plot yet since we haven't told it what kind of plot to make.
 
 #### Select your plot
 
