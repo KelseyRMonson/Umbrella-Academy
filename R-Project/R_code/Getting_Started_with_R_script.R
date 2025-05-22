@@ -388,7 +388,7 @@ ggplot(filtered_star_wars, aes(x = mass, y = height, color = species, size = bir
 
 # Heatmaps ----
 
-# Step 1: Prepare the data for heatmap
+# Prepare the data for heatmap
 # Extracting the height and weight columns as matrix
 heatmap_starwars <- filtered_star_wars %>% 
   filter(!is.na(mass),species %in% c("Human","Droid", "Gungan"))
@@ -399,14 +399,21 @@ rownames(heatmap_data) <- heatmap_starwars$name
 
 ##### Your annotation goes here! #####
 
-annotations <- data.frame(Your_Variable = heatmap_starwars$Your_Variable)
+annotations <- data.frame(Your_Variable = heatmap_starwars$hair_color)
 rownames(annotations) <- heatmap_starwars$name  # Match the rownames of the heatmap data
 
 ##### Define the colors for your annotation #####
 
 # This is the code for `species` -- update it with your variable
+
+# First, check the levels of your variable so you know how many categories to make:
+table(heatmap_starwars$Your_Variable)
+
+# Then define each level and a color for each level
+# Replace "Human", "Droid", and "Gungan" below, 
+# Make sure all the levels of your variable are represented
 annotation_colors <- list(
-  Species = c(
+  Your_Variable = c(
     "Human" = "#1f77b4",  # Blue
     "Droid" = "#ff7f0e",  # Orange
     "Gungan" = "#2ca02c" # Green
@@ -423,6 +430,13 @@ pheatmap(
   cluster_cols = FALSE,  # Cluster columns
   scale="column"
 )
+
+# Saving ----
+
+##### Pick your favorite plot from today and copy/paste the code below! #####
+
+Your_plot <- # <paste the code for your favorite plot after the assignment operator!>
+  
 
 
 # Congratulations, you've made some beautiful plots in R!
