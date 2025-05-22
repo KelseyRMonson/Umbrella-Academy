@@ -301,7 +301,7 @@ You can see I'm currently in my project directory on the Zamarin Lab computer.
 If we want to *change* the directory, we can use `setwd()`, specifying the path we want to move to:
 
 ```{r}
-#setwd("C:/Users/Zamarin Lab/Documents/GitHub/Umbrella-Academy/R-Project")
+setwd("C:/Users/Zamarin Lab/Documents/GitHub/Umbrella-Academy/R-Project")
 ```
 
 ::: callout-note
@@ -419,13 +419,15 @@ We will use the `starwars` test dataset from the `tidyverse` package as our exam
 
 ### First steps
 
-I've created an [R Script](R_code/Getting_Started_with_R_script.R) with the code needed for this exercise. Go ahead and open that script now.
+I've created an [R Script](R_code/Getting_Started_with_R_script.R) with the code needed for this exercise. Go ahead and open that script now, and save it into the R Project directory you just made.
 
-You can use it as a template as you write your script, but try typing out the commands to build muscle memory 💪
+:::{.callout-tip}
+You can use this script as a template as you write your own script, but try typing out the commands to build muscle memory 💪
 
 You can copy/paste long names for packages, variables, and files, but typing out functions helps you remember the syntax.
 
-Look for ▶️ icons to know when need to write in your script.
+**Look for ▶️ icons to know when need to write in your script.**
+:::
 
 ▶️ First, install and load the required packages (listed at the top of the script).
 
@@ -1866,14 +1868,15 @@ You get the picture.
 ▶️ Recreate the first annotated heatmap yourself, but annotate with a different variable.
 
 ## Saving your Plots
+
 You've now created some beautiful images -- but right now they're only being displayed in your Plots viewer in RStudio.
 
-To keep them, we need to save them. 
+To keep them, we need to save them!
 
-When creating plots for lab meeting, you could save them as `.png`s, but for publication-quality plots, you really want to save them as `.pdf`s. 
+When creating a plot for lab meeting, you could save it as a `.png`, but for publication-quality plots, you really want to save them as a `.pdf`.
 
-:::{.callout-tip}
-### Why save plots as `.pdf`s?
+::: callout-tip
+### Why save plots as a `.pdf`?
 
 **Scalability:** PDFs are vector-based, meaning that you can resize plots without losing clarity.
 
@@ -1881,6 +1884,77 @@ When creating plots for lab meeting, you could save them as `.png`s, but for pub
 
 *Taken from [this nice tutorial](https://tilburgsciencehub.com/topics/visualization/data-visualization/graphs-charts/saving-plots-r/).*
 :::
+
+To save a plot, you first have to create a variable that contains the plot information.
+
+-   I haven't shown you how to do that so far because plot objects don't automatically render in the RStudio Plots viewer.
+
+-   I typically wait to create a plot object until I'm finished tweaking a figure (resizing axes, changing colors, adjusting font size, etc.), just so I can quickly see how the changes are rendered.
+
+▶️ Pick your favorite plot from any point during the exercise. 
+Copy the code, but now create a variable by creating a name and using the assignment operator `<-` before the `ggplot()` call:
+
+```{r}
+starwars_scatter <- ggplot(filtered_star_wars, 
+                         aes(x = mass, 
+                             y = height, 
+                             color=mass)
+                         ) +
+                    geom_point(size=3) +
+                    ylim(NA, 250) +
+                    scale_color_viridis(alpha = 0.5, begin = 1, end = 0, option = "D", aesthetics = "color", discrete = FALSE) +
+                    theme_light() +
+                        labs(
+                          x = "Weight (kg)",
+                          y = "Height (cm)",
+                          color = "Weight (kg)",
+                          title = "Star Wars Character Height and Weight"
+                      ) 
+```
+
+Our friend `ggplot2` has a handy function for saving plots easily, with lots of customization options.
+
+One nice option is the `create.dir` argument, which allows you to specify the path to save the image, and create that directory if it doesn't already exist.
+
+▶️ Let's save the plot as a `.png` and create a new folder in our project for figures:
+
+```{r}
+ggsave("starwars_scatterplot_weight_vs_age.png", 
+       plot = starwars_scatter, 
+       path = "output/figures", # Here's our new folder
+       width = 10, 
+       height = 6, 
+       dpi = 300, 
+       units = "in", 
+       bg = "white",
+       create.dir = TRUE)
+```
+
+It's also a good idea to time-stamp your figures so you know when they were created.
+
+▶️ Let's automatically time-stamp the figure and save it as a `.pdf` instead:
+
+```{r}
+ggsave(filename = paste0("starwars_scatterplot_weight_vs_age_", format(Sys.Date(), "%Y-%m-%d"), ".pdf"),  
+       plot = starwars_scatter, 
+       path = "output/figures",
+       width = 10, 
+       height = 6, 
+       dpi = 300, 
+       units = "in", 
+       bg = "white",
+       create.dir = TRUE)
+```
+
+::: callout-note
+You can leave the `create.dir` argument in your `ggsave()` call because it will only create the new directory if it doesn't already exist.
+
+(In other words, it won't overwrite an existing directory, hooray!)
+:::
+
+Go ahead and look at your plots to see how they came out! One easy way to do this us using the Files navigator in RStudio:
+
+![Navigate to the `output/figures` folder we just created within our R Project folder. Double click a file name to open it!](assets/Path_to_figures.png)
 
 ## Final Thoughts
 
@@ -1891,7 +1965,7 @@ Feel free to revisit this guide as you apply these skills to your own data!
 ::: callout-note
 ### Acknowledgements
 
-I've indicated throughout this document where I've borrowed definitions, examples, etc. from other sources, but the below require special shoutouts:
+I've indicated throughout this document where I've borrowed definitions, examples, etc. from other sources, but the below require special shout-outs:
 
 -   [Yan Holtz](https://www.yan-holtz.com/)
     -   I've borrowed heavily from his excellent [R Graph Gallery](https://r-graph-gallery.com/). I intended to create my own cheat-sheet for generating common R plots, but his is so comprehensive that I will just point you to this resource.
