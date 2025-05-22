@@ -1865,6 +1865,23 @@ You get the picture.
 
 ▶️ Recreate the first annotated heatmap yourself, but annotate with a different variable.
 
+## Saving your Plots
+You've now created some beautiful images -- but right now they're only being displayed in your Plots viewer in RStudio.
+
+To keep them, we need to save them. 
+
+When creating plots for lab meeting, you could save them as `.png`s, but for publication-quality plots, you really want to save them as `.pdf`s. 
+
+:::{.callout-tip}
+### Why save plots as `.pdf`s?
+
+**Scalability:** PDFs are vector-based, meaning that you can resize plots without losing clarity.
+
+**Quality Preservation:** PDFs maintain sharpness, avoiding the pixelation common in raster formats like PNG or JPG, making the the preferred option for presentations and detailed analysis.
+
+*Taken from [this nice tutorial](https://tilburgsciencehub.com/topics/visualization/data-visualization/graphs-charts/saving-plots-r/).*
+:::
+
 ## Final Thoughts
 
 By now, you should feel comfortable building a variety of plots in R.
