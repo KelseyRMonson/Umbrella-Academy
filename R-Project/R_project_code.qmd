@@ -55,7 +55,7 @@ By now, you should have installed what's often called **"Base-R."**
 
 According to its creators,
 
-> R is "a language and environment for statistical computing and graphics" and "an integrated suite of software facilities for data manipulation, calculation and graphical display."
+> **R is "a language and environment for statistical computing and graphics" and "an integrated suite of software facilities for data manipulation, calculation and graphical display."**
 
 (You can read more about it [here](https://www.r-project.org/about.html).)
 
@@ -94,7 +94,7 @@ I'll try to make this brief:
 -   **Matrix:** A two-dimensional Vector with rows and columns, with elements of the same type.
 -   **Array:** Like a Matrix but can handle more than two dimensions.
 
-You'll most often use **Data Frames** or **Tibbles** to create figures, but will use all the variable types at one point or another.
+You'll most often use **Data Frames** or **Tibbles** to create figures, but will use all the variable types at some point.
 
 #### Data Types in R
 
@@ -155,26 +155,25 @@ str(numbr)
 
 ::: callout-warning
 **Be careful not to coerce a variable into an impossible data type!**
-:::
 
 Note what happens if we try to coerce a character vector into a numeric vector, even if the character *could* represent a number:
 
-```{r}
-number <- c("one","two","three")
-str(number)
-
-number <- as.numeric(number)
+```{r} 
+number <- c("one","two","three") 
+str(number)  
+number <- as.numeric(number) 
 str(number)
 ```
 
-R isn't reading and interpreting what our characters might mean, so it isn't going to automatically convert `one` into `1`.
+R isn't reading or understanding the words in our character vector, so it isn't going to automatically convert `one` into `1`.
+:::
 
 If you have numeric variables in your dataset, it's best to save them as numbers in your raw data and treat them as either numeric or integer variables in R.
 
 #### Why use **Factors**?
 
 ::: callout-caution
-**R treats text variables alphabetically by default** unless we specify otherwise.
+**R treats text variables alphabetically by default**.
 
 Here's an example where that might become confusing.
 
@@ -204,8 +203,12 @@ table(rankings)
 # Instead, we can explicitly tell it the order we want with the "levels" argument:
 rankings <- factor(rankings, levels=c("first","second","third","fourth"))
 table(rankings)
+```
 
-# We can set the levels to be whatever we want -- for example, we could reverse them:
+
+We can set the levels to be whatever we want 
+```{r}
+# For example, we could reverse them:
 rankings <- factor(rankings, levels=c("fourth","third","second","first"))
 table(rankings)
 ```
@@ -421,7 +424,7 @@ We will use the `starwars` test dataset from the `tidyverse` package as our exam
 
 I've created an [R Script](R_code/Getting_Started_with_R_script.R) with the code needed for this exercise.
 
-:::{.callout-note}
+::: callout-note
 You can use this script as a template as you write your own script, but try typing out the commands to build muscle memory 💪
 
 You can copy/paste long names for packages, variables, and files, but typing out functions helps you remember the syntax.
@@ -431,8 +434,8 @@ You can copy/paste long names for packages, variables, and files, but typing out
 
 Go ahead and open that script now, and save it into the R Project directory you just made.
 
-:::{.callout-tip}
-Headings make it much easier to navigate around long scrips in RStudio. 
+::: callout-tip
+Headings make it much easier to navigate around long scrips in RStudio.
 
 Open the `Document Outline` in this script (top right corner) to view and jump to specific sections. I almost always have this open when I'm working.
 
@@ -1907,8 +1910,7 @@ To save a plot, you first have to create a variable that contains the plot infor
 
 -   I typically wait to create a plot object until I'm finished tweaking a figure (resizing axes, changing colors, adjusting font size, etc.), just so I can quickly see how the changes are rendered.
 
-▶️ Pick your favorite plot from any point during the exercise. 
-Copy the code, but now create a variable by creating a name and using the assignment operator `<-` before the `ggplot()` call:
+▶️ Pick your favorite plot from any point during the exercise. Copy the code, but now create a variable by creating a name and using the assignment operator `<-` before the `ggplot()` call:
 
 ```{r}
 starwars_scatter <- ggplot(filtered_star_wars, 
