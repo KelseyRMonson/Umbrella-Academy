@@ -417,17 +417,31 @@ Many packages (and Base-R) include test datasets, which are great for exploring 
 
 We will use the `starwars` test dataset from the `tidyverse` package as our example data today.
 
-### First steps
+### Save the Script
 
-I've created an [R Script](R_code/Getting_Started_with_R_script.R) with the code needed for this exercise. Go ahead and open that script now, and save it into the R Project directory you just made.
+I've created an [R Script](R_code/Getting_Started_with_R_script.R) with the code needed for this exercise.
 
-:::{.callout-tip}
+:::{.callout-note}
 You can use this script as a template as you write your own script, but try typing out the commands to build muscle memory 💪
 
 You can copy/paste long names for packages, variables, and files, but typing out functions helps you remember the syntax.
 
 **Look for ▶️ icons to know when need to write in your script.**
 :::
+
+Go ahead and open that script now, and save it into the R Project directory you just made.
+
+:::{.callout-tip}
+Headings make it much easier to navigate around long scrips in RStudio. 
+
+Open the `Document Outline` in this script (top right corner) to view and jump to specific sections. I almost always have this open when I'm working.
+
+You can also jump to specific sections using the `#️⃣ Code Chunk Navigator` at the bottom of the script editor.
+
+![](assets/Script_Navigation.png)
+:::
+
+### Download the Data
 
 ▶️ First, install and load the required packages (listed at the top of the script).
 
@@ -494,6 +508,8 @@ Which is easier for you to read and understand?
 
 # No pipe:
 gt_theme_nytimes(gt(small_star_wars))
+
+####
 
 # With pipe:
 small_star_wars %>% 
