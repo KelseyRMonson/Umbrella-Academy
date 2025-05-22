@@ -27,9 +27,9 @@ small_star_wars <- read_excel("input/small_star_wars.xlsx", na = "NA")
 
 # Explore the Data ----
 # Look at the structure
+str()
 # *Hint* Remember when we learned about "tab to complete" last week?
 # Try it here now with the "small_star_wars" variable name -- start typing "sma" and hit TAB.
-str(small_star_wars)
 
 # And summarize the dataset, first with `summary()`
 summary(small_star_wars)
@@ -189,7 +189,7 @@ ggplot(
   aes(
     x = fct_reorder(species, desc(height)),
     y = height,
-    fill= name
+    fill= fct_reorder(name, desc(height))
   )
 ) +
   geom_bar(stat="identity", position="dodge") +
@@ -399,19 +399,20 @@ rownames(heatmap_data) <- heatmap_starwars$name
 
 ##### Your annotation goes here! #####
 
-annotations <- data.frame(Your_Variable = heatmap_starwars$hair_color)
+# Replace `Your_Variable` with your annotation variable
+annotations <- data.frame(Your_Variable = heatmap_starwars$Your_Variable)
 rownames(annotations) <- heatmap_starwars$name  # Match the rownames of the heatmap data
 
 ##### Define the colors for your annotation #####
-
-# This is the code for `species` -- update it with your variable
 
 # First, check the levels of your variable so you know how many categories to make:
 table(heatmap_starwars$Your_Variable)
 
 # Then define each level and a color for each level
-# Replace "Human", "Droid", and "Gungan" below, 
-# Make sure all the levels of your variable are represented
+
+# Below is the code for `species` -- update it with your variable
+## Replace "Human", "Droid", and "Gungan" below with your variable levels 
+## Make sure all the levels of your variable are represented
 annotation_colors <- list(
   Your_Variable = c(
     "Human" = "#1f77b4",  # Blue
@@ -436,7 +437,10 @@ pheatmap(
 ##### Pick your favorite plot from today and copy/paste the code below! #####
 
 # Create your plot object
-Your_plot <- # <paste the code for your favorite plot after the assignment operator!>
+Your_plot <- # paste the code for your favorite plot after the assignment operator!
+  
+# View your plot by calling the object:
+Your_plot
 
 # Save as `.png` while creating a new output directory in your R Project:
 ggsave("YOUR_PLOT_NAME.png",
