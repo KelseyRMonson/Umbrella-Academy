@@ -273,6 +273,8 @@ R Packages let you do things like:
 
 These tasks require diverse skills and expertise to program and execute. Thanks to R's broad user base, people make packages to do each of these things (and so much more!).
 
+#### Using Packages
+
 So how do we get these packages?
 
 -   Almost all packages can be installed with `install.packages("package_name")`.
@@ -280,6 +282,8 @@ So how do we get these packages?
 -   Some packages can be installed directly from GitHub using `devtools::install_github("package_name")`.
 
 To load and use a downloaded package, use `library(package_name)`.
+
+It's a good idea to load all of your packages at the beginning of your script. 
 
 ::: callout-note
 #### Quick notes on packages
@@ -289,6 +293,15 @@ To load and use a downloaded package, use `library(package_name)`.
 -   You don't need to *download* a package more than once (though you may need to update it).
 -   However, you must *load* a package every time before you can use it.
 :::
+
+#### Vignettes
+You can learn a lot about how to use a package using R's help system, but many bioinformatics packages also come with **vignettes**.
+
+**Vignettes** are long-form, interactive guides to R packages. These give you a more holistic view of the workflows that you can complete with a package, instead of trying to parse each function individually.
+
+As an example, here's the link to the [DESeq Vignette](https://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html) for RNA-seq differential expression analysis. 
+
+To find them, I usually just Google "`<package name>` vignette" but there is also a `browseVignettes` function in R. Not *every* package will have one -- they are usually only created for robust, complicated packages. 
 
 ### Navigating RStudio
 
