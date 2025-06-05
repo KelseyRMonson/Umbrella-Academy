@@ -9,7 +9,7 @@ I'll walk you step-by-step through my process for identifying and fixing each of
 > But these three examples serve as a good illustration of the categories of bugs you will encounter and strategies for addressing them.
 
 ## 🪲 Example 1: The fix is in the error message
-These are the best kinds of errors to debug, because the error message tells you (roughly) what you need to do. 
+**These are the best kinds of errors to debug, because the error message tells you (roughly) what you need to do.**
 
 Here is the output from the first time I ran my script:
 
@@ -118,3 +118,38 @@ Read file <err.137582052.1> for stderr output of this job.
 ```
 
 </details>
+
+Here is the relevant section:
+```
+Successfully completed.
+
+The output (if any) follows:
+
+Thu Aug 22 10:15:52 EDT 2024
+Starting MiXCR for P2A10_GADCIWn2_S10
+Wrong version of java. Please use Java 7 or higher.
+Wrong version of java. Please use Java 7 or higher.
+Wrong version of java. Please use Java 7 or higher.
+Wrong version of java. Please use Java 7 or higher.
+Finished MiXCR for P2A10_GADCIWn2_S10
+Thu Aug 22 10:15:52 EDT 2024
+```
+You'll notice it says `Successfully completed` -- but then it tells me that I used the `Wrong version of java. Please use Java 7 or higher.`
+
+>⚠️ **This is important**
+>
+>Just because you see `Successfully completed` in your `.out` file does **not** necessarily mean your script did what you wanted it to do!
+>
+>That's why it's important to check your `.err` files, as well as your output folders to see if you have gotten what you expect.
+
+In this case, my script couldn't actually run, so there was no output.
+
+**This was because MiXCR requires Java to run, and I hadn't loaded Java in my script.**
+
+Now, I will admit, this error didn't tell me *exactly* what I needed to do to fix it. 
+
+I could have wasted time trying to figure out what version of Java was installed on Minerva, but I knew I hadn't actually loaded *any* version of Java, so I knew that the fix was to add that to my script. 
+
+### Summary:
+* **Error:** "Wrong" version of Java -- a.k.a. *no* version of Java
+* **Fix:** Add `module load java/11.0.2` to my script so that Java is loaded
