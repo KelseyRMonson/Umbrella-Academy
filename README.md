@@ -25,7 +25,7 @@ Here you will find the code for the hands-on exercises to get students comfortab
 | Class 3   | Intro to High Performance Computing (HPC) |
 | Class 4   | [Getting Started with the Command Line](Command-Line) 💻 |
 | Class 5   | [Getting Started with R](R-Project) 💻 |
-| Class 6   | [Debugging, QC, Data Normalization and Cleaning](Debugging-Cleaning) 💻 🚧|
+| Class 6   | [Debugging, QC, Data Normalization, and Cleaning](Debugging-Cleaning) 💻 🚧|
 | Class 7   | Wet Lab ➡️ Dry Lab: Designing Experiments for Analytic Success |
 | Class 8   | Statistical Interlude: Biostatistics Basics |
 | Class 9  | Wrap-up and (Fun!) Knowledge Check |
