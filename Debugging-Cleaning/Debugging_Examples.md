@@ -148,18 +148,18 @@ In this case, my script couldn't actually run, so there was no output.
 
 Now, I will admit, this error didn't tell me *exactly* what I needed to do to fix it. 
 
-I could have wasted time trying to figure out what version of Java was installed on Minerva, but I knew I hadn't actually loaded *any* version of Java, so I knew that the fix was to add that to my script. 
+I could have wasted time trying to figure out what version of Java was installed on Minerva.
+
+But I knew I hadn't loaded *any* version of Java, so I knew the fix was to add that to my script. 
 
 ### Summary:
 * **Error:** "Wrong" version of Java -- a.k.a. *no* version of Java
 * **Fix:** Add `module load java/11.0.2` to my script so that Java is loaded
 
-## 🪲 Example 2: The fix is in the error message of the `.err` file
-**This is another example where the error message is relatively straightforward, but if you only look at the `.out` file, you won't know there's something wrong**
+## 🪲 Example 2: The fix is in the `.err` file
+**This error message is also relatively straightforward, but if you only look at the `.out` file, you won't know there's something wrong**
 
-So I updated my script to load Java and re-ran it. 
-
-I didn't get any errors in my `.out` file -- so far so good!
+After updating my script to load Java and re-running it, I didn't get any errors in my `.out` file -- so far so good!
 <details>
   <summary>Full output file</summary>
 
@@ -245,3 +245,24 @@ Read file <err.137529137.1> for stderr output of this job.
 
 ```
 </details>
+
+But I did get a short and sweet message in my `.err` file:
+
+```
+License error: ConnectionError
+License manager thread died.
+```
+
+This was another case of me knowing what I *didn't* do, which led me to figure out what I needed to do. 
+
+**In this case, the MiXCR software requires an academic license to run.**
+
+While the error message said there was a `ConnectionError`, I knew this was because I hadn't yet generated a license.
+
+So the fix was to go to the MiXCR website and generate a license. 
+
+### Summary:
+* **Error:** "License error" -- I knew I didn't yet have a license  
+* **Fix:** Generate a MiXCR license so the software could run
+
+## 
