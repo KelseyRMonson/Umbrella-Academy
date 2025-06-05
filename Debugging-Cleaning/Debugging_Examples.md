@@ -8,7 +8,7 @@ I'll walk you step-by-step through my process for identifying and fixing each of
 >
 > But these three examples serve as a good illustration of the categories of bugs you will encounter and strategies for addressing them.
 
-## 🪲 Example 1: The fix is in the error message
+## 🪲 Example 1: The fix is in the error message of the `.out` file
 **These are the best kinds of errors to debug, because the error message tells you (roughly) what you need to do.**
 
 Here is the output from the first time I ran my script:
@@ -153,3 +153,95 @@ I could have wasted time trying to figure out what version of Java was installed
 ### Summary:
 * **Error:** "Wrong" version of Java -- a.k.a. *no* version of Java
 * **Fix:** Add `module load java/11.0.2` to my script so that Java is loaded
+
+## 🪲 Example 2: The fix is in the error message of the `.err` file
+**This is another example where the error message is relatively straightforward, but if you only look at the `.out` file, you won't know there's something wrong**
+
+So I updated my script to load Java and re-ran it. 
+
+I didn't get any errors in my `.out` file -- so far so good!
+<details>
+  <summary>Full output file</summary>
+
+```
+Sender: LSF System <lsfadmin@lc01e25>
+Subject: Job 137529137[1]: <MyArrayJob[1-1]> in cluster <chimera> Done
+
+Job <MyArrayJob[1-1]> was submitted from host <li03c04.chimera.hpc.mssm.edu> by user <monsok03> in cluster <chimera> at Wed Aug 21 17:49:58 2024
+Job was executed on host(s) <lc01e25>, in queue <premium>, as user <monsok03> in cluster <chimera> at Wed Aug 21 17:50:00 2024
+</hpc/users/monsok03> was used as the home directory.
+</sc/arion/projects/NGSCRC/Scripts/NRG-GY003/TCRseq> was used as the working directory.
+Started at Wed Aug 21 17:50:00 2024
+Terminated at Wed Aug 21 17:50:04 2024
+Results reported at Wed Aug 21 17:50:04 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -P acc_NGSCRC 		   # Zamarin Lab allocation account
+#BSUB -n 1	    		   # total number of compute cores
+#BSUB -W 08:00	    		   # walltime in HH:MM
+#BSUB -q premium    		   # queue 
+#BSUB -R "rusage[mem=32GB]"        # 32 GB of memory (32 GB per core)
+#BSUB -J "MiXCR_FC7[1-94]"         # Job name (batch job for flow cell 7 TCR-seq)
+#BSUB -o out.%J.%Im		   # output file name (%I=job array index, %J=jobID)
+#BSUB -e err.%J.%I  		   # error file name (same nomenclature as above)
+#BSUB -L /bin/bash		   # Initialize the execution environment
+
+
+## Load MiXCR and Java (needs Java to run)
+module load java/11.0.2
+export PATH=/sc/arion/projects/NGSCRC/Tools/MiXCR/mixcr-4.7.0-0/bin:$PATH
+
+FLOW_CELL="FC07"
+SAMPLE_LIST=${FLOW_CELL}_sample_list.txt
+SAMPLE_DIR=$(head -n "${LSB_JOBINDEX}" "${SAMPLE_LIST}" | tail -n 1)
+SAMPLE_ID=$(basename ${SAMPLE_DIR})
+OUTPUT_FOLDER="/sc/arion/projects/NGSCRC/Work/NRG-GY003/TCRseq/MiXCR"
+
+echo `date`
+echo "Starting MiXCR for ${SAMPLE_ID}"
+
+## MiXCR has a pre-set for Cellecta DNA sequencing so we will use that
+mixcr analyze cellecta-human-dna-xcr-umi-drivermap-air \
+    ${SAMPLE_DIR}/${SAMPLE_ID}_R1_001.fastq.gz \
+    ${SAMPLE_DIR}/${SAMPLE_ID}_R2_001.fastq.gz \
+    ${OUTPUT_DIR}/${SAMPLE_ID}
+
+echo "Finished MiXCR for ${SAMPLE_ID}"
+echo `date`
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   3.61 sec.
+    Max Memory :                                 129 MB
+    Average Memory :                             92.00 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               32639.00 MB
+    Max Swap :                                   -
+    Max Processes :                              6
+    Max Threads :                                19
+    Run time :                                   4 sec.
+    Turnaround time :                            6 sec.
+
+The output (if any) follows:
+
+Wed Aug 21 17:50:01 EDT 2024
+Starting MiXCR for P2A10_GADCIWn2_S10
+Finished MiXCR for P2A10_GADCIWn2_S10
+Wed Aug 21 17:50:04 EDT 2024
+
+
+PS:
+
+Read file <err.137529137.1> for stderr output of this job.
+
+```
+</details>
