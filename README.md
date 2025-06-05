@@ -11,7 +11,10 @@
 A 10-week course created by [Kelsey Monson](https://github.com/KelseyRMonson) to teach **dry lab** skills to **wet lab** scientists (because an ☔ keeps you dry when it's wet, get it?)
 
 ## What is hosted on the GitHub?
-Here you will find the code for the hands-on exercises to get students comfortable using the [command line](Command-Line) and [R](R-Project). It also includes an exercise to practice [data cleaning](tbd) (🚧).
+Here you will find the code for the hands-on exercises to get students comfortable with these dry lab skills:
+* Using the [command line](Command-Line)
+* Making plots in [R](R-Project)
+* Practicing [data cleaning](Debugging-Cleaning) (🚧).
 
 ## Course Schedule
 
@@ -22,11 +25,10 @@ Here you will find the code for the hands-on exercises to get students comfortab
 | Class 3   | Intro to High Performance Computing (HPC) |
 | Class 4   | [Getting Started with the Command Line](Command-Line) 💻 |
 | Class 5   | [Getting Started with R](R-Project) 💻 |
-| Class 6   | Debugging and QC |
-| Class 7   | Data Normalization and Cleaning 💻 🚧 |
-| Class 8   | Wet Lab ➡️ Dry Lab: Designing Experiments for Analytic Success |
-| Class 9   | Statistical Interlude: Biostatistics Basics |
-| Class 10  | Wrap-up and (Fun!) Knowledge Check |
+| Class 6   | [Debugging, QC, Data Normalization and Cleaning](Debugging-Cleaning) 💻 🚧|
+| Class 7   | Wet Lab ➡️ Dry Lab: Designing Experiments for Analytic Success |
+| Class 8   | Statistical Interlude: Biostatistics Basics |
+| Class 9  | Wrap-up and (Fun!) Knowledge Check |
 
 Classes with 💻 have code hosted here.  
 Classes with 🚧 are under construction -- code will be posted soon!
