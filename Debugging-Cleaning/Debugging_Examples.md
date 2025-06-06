@@ -485,3 +485,17 @@ mixcr analyze cellecta-human-dna-xcr-umi-drivermap-air \
 echo "Finished MiXCR for ${SAMPLE_ID}"
 echo `date`
 ```
+I'll give you a moment 🕰️...
+
+If you didn't immediately spot it, no worries -- I'll show you a tool later that can help with this.
+
+If you notice, I took my own advice of not "hard-coding" my script. 
+
+That is, I defined variables at the beginning of my script that I reference later. 
+
+But, I made a typo in the variable name that I *defined* vs the variable name that I *called* later in my script.
+* I defined a variable called `OUTPUT_FOLDER` pointing to a subfolder in my Work directory where the output from this analysis will go.
+* But the `OUTPUT_FOLDER` variable doesn't appear again in the script!
+* Instead, I had the idea to streamline the naming of the variables, and called a (non-existent) variable named `OUTPUT_DIR` in the `mixcr` statement -- but forgot to rename the variable from `OUTPUT_FOLDER` to `OUTPUT_DIR` above!
+
+### Step 3: Figure out the error
