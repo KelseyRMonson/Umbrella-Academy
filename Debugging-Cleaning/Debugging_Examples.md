@@ -512,9 +512,34 @@ The fix is easy, in that I just have to streamline my variable names. I updated 
 * **Error:** "Access Denied."
 	* This didn't make sense since I should have access to all the files I am reading and writing.
  	* In reviewing the script, I found it was a simple typo. 
-* **Fix:** Fix the typo!
+* **Fix:** Fix the typo! I removed `${OUTPUT_FOLDER}` and had everything be `${OUTPUT_DIR}`
 
-I mentioned that there's a tool that can help with this -- text editors like [VS Code](https://code.visualstudio.com/) are great for writing your scripts. 
-They color-code your text and auto-highlight variables when you select them, so you can see if you have made any typos. 
-Here's what the code chunk above looks like in VS Code -- you can easily see the typo:
-![VSCode](assets/VS_Code.png)
+> **💡Tip:** I mentioned that there's a tool that can help debug these cases.
+>
+> Text editors* like [VS Code](https://code.visualstudio.com/) are great for writing your scripts.  
+> **Technically, VS Code is an Integrated Development Environment, like RStudio. But it's a great text editor on its own.*
+>
+> They color-code your text and auto-highlight variables when you select them, so you can see if you have made any typos.
+>
+> Here's what the code chunk above looks like in VS Code -- you can easily see the typo:
+> ![VSCode](assets/VS_Code.png)
+>
+> You can write your scripts in VS Code and then copy/paste the script into a file on the cluster to run it. 
+
+After updating my variable names, I re-ran my code, and everything worked beautifully! 
+
+## Conclusion 
+Of course, these are just a few examples of the things you might need to debug. 
+
+But I hope I was able to illustrate:
+* The first places you should look to find errors
+* The thought processes to use when approaching errors
+* That the text of the errors themselves can be misleading! Try to think things through logically before getting sidetracked chasing down an erroneous error message.
+
+The other thing to do first, especially if you are confronted with a scary error like in Example 3, is to Google it! 
+
+Chances are, someone has had the same problem (or similar), and a kind soul has walked them through the steps to fix it. 
+
+Just copy/paste the error into Google and it should point you in the right direction.
+
+Happy bug hunting! 🪲
