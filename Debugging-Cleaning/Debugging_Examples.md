@@ -447,7 +447,7 @@ If you notice, this is the only place in the message where the word **error** ac
 
 Now, this is a bit strange. 
 
-* Typically, an Access Denied error happens when you are trying to save a file or navigate to a directory that you don't have permission to access.
+Typically, an Access Denied error happens when you are trying to save a file or navigate to a directory that you don't have permission to access.
 * *Remember, we learned about read, write, execute (`rwx`) permissions in the Command Line class. You must have permission to interact with files on the cluster.*
 * This was strange because I knew that I was the one running the script and generating the output files and directories.
 * So it was unlikely to *really* be an issue of incorrect permissions, because I owned all the files and folders that I was interacting with, so I automatically have permission to access them. 
@@ -457,7 +457,7 @@ The next step was to go back to the script to see if I could find any errors or 
 
 If it's not immediately clear what the problem is, it's most likely the result of a typo. 
 
-Here is the script -- take a look to see if you can find what the issue might be.
+Here is the script -- take a look to see if you can find the issue.
 
 ```
 ## Load MiXCR and Java (needs Java to run)
@@ -494,8 +494,27 @@ If you notice, I took my own advice of not "hard-coding" my script.
 That is, I defined variables at the beginning of my script that I reference later. 
 
 But, I made a typo in the variable name that I *defined* vs the variable name that I *called* later in my script.
-* I defined a variable called `OUTPUT_FOLDER` pointing to a subfolder in my Work directory where the output from this analysis will go.
-* But the `OUTPUT_FOLDER` variable doesn't appear again in the script!
-* Instead, I had the idea to streamline the naming of the variables, and called a (non-existent) variable named `OUTPUT_DIR` in the `mixcr` statement -- but forgot to rename the variable from `OUTPUT_FOLDER` to `OUTPUT_DIR` above!
+* I defined a variable called `${OUTPUT_FOLDER}` pointing to a subfolder in my Work directory where the output from this analysis will go.
+* But the `${OUTPUT_FOLDER}` variable doesn't appear in the `mixcr` code!
+* Instead, I had the idea to streamline the naming of the variables, and called a (non-existent) variable named `${OUTPUT_DIR}` in the `mixcr` statement -- but forgot to rename the variable from `${OUTPUT_FOLDER}` to `${OUTPUT_DIR}` above!
 
 ### Step 3: Figure out the error
+So the issue was just that I created a variable but then incorrectly called a new one that I hadn't yet defined.
+
+Why was I getting an "Access Denied" error, then? 
+* The script was looking for a path corresponding to the `${OUTPUT_DIR}` folder (which didn't exist because I didn't define the variable)
+* It assumed it didn't have access to the `${OUTPUT_DIR}` path because it couldn't find it
+* It generated an Access Denied error because it couldn't find `${OUTPUT_DIR}`
+
+The fix is easy, in that I just have to streamline my variable names. I updated it so that both were called `${OUTPUT_DIR}`
+
+### Summary:
+* **Error:** "Access Denied."
+	* This didn't make sense since I should have access to all the files I am reading and writing.
+ 	* In reviewing the script, I found it was a simple typo. 
+* **Fix:** Fix the typo!
+
+I mentioned that there's a tool that can help with this -- text editors like [VS Code](https://code.visualstudio.com/) are great for writing your scripts. 
+They color-code your text and auto-highlight variables when you select them, so you can see if you have made any typos. 
+Here's what the code chunk above looks like in VS Code -- you can easily see the typo:
+![VSCode](assets/VS_Code.png)
