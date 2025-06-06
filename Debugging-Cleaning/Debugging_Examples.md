@@ -433,7 +433,55 @@ I'll be honest, when I first started coding, I would be totally freaked out by a
 
 But, with a bit of practice, I now know what to look for 🔎
 
+Here are the steps to debugging this one, which is a bit more complicated.
+
+### Step 1: Find the error
 Here's the key bit:
 ```
 CommandLine$ExecutionException: Error while running command align java.nio.file.AccessDeniedException
+```
+If you notice, this is the only place in the message where the word **error** actually appears
+* So I know that whatever is going on in this line is what's causing the problem.
+* And the actually important bit is the `AccessDeniedException`.
+* Even if I don't know what the rest of it means (which I don't), this means that I'm getting some kind of Access Denied error. 
+
+Now, this is a bit strange. 
+
+* Typically, an Access Denied error happens when you are trying to save a file or navigate to a directory that you don't have permission to access.
+* *Remember, we learned about read, write, execute (`rwx`) permissions in the Command Line class. You must have permission to interact with files on the cluster.*
+* This was strange because I knew that I was the one running the script and generating the output files and directories.
+* So it was unlikely to *really* be an issue of incorrect permissions, because I owned all the files and folders that I was interacting with, so I automatically have permission to access them. 
+
+### Step 2: Find the source
+The next step was to go back to the script to see if I could find any errors or typos. 
+
+If it's not immediately clear what the problem is, it's most likely the result of a typo. 
+
+Here is the script -- take a look to see if you can find what the issue might be.
+
+```
+## Load MiXCR and Java (needs Java to run)
+module load java/11.0.2
+export PATH=/sc/arion/projects/NGSCRC/Tools/MiXCR/mixcr-4.7.0-0/bin:$PATH
+
+FLOW_CELL="FC07"
+SAMPLE_LIST=${FLOW_CELL}_sample_list.txt
+SAMPLE_DIR=$(head -n "${LSB_JOBINDEX}" "${SAMPLE_LIST}" | tail -n 1)
+SAMPLE_ID=$(basename ${SAMPLE_DIR})
+OUTPUT_FOLDER="/sc/arion/projects/NGSCRC/Work/NRG-GY003/TCRseq/MiXCR"
+
+echo `date`
+echo "Starting MiXCR for ${SAMPLE_ID}"
+
+## MiXCR has a pre-set for Cellecta DNA sequencing so we will use that
+
+mkdir -p ${OUTPUT_FOLDER}/${SAMPLE_ID}
+
+mixcr analyze cellecta-human-dna-xcr-umi-drivermap-air \
+    ${SAMPLE_DIR}/${SAMPLE_ID}_R1_001.fastq.gz \
+    ${SAMPLE_DIR}/${SAMPLE_ID}_R2_001.fastq.gz \
+    ${OUTPUT_DIR}/${SAMPLE_ID}
+
+echo "Finished MiXCR for ${SAMPLE_ID}"
+echo `date`
 ```
