@@ -487,7 +487,7 @@ echo `date`
 ```
 I'll give you a moment 🕰️...
 
-If you didn't immediately spot it, no worries -- I'll show you [a tool](https://github.com/KelseyRMonson/Umbrella-Academy/edit/main/Debugging-Cleaning/Debugging_Examples.md#debugging-tool) later that can help with this.
+If you didn't immediately spot it, no worries -- I'll show you [a tool](https://github.com/KelseyRMonson/Umbrella-Academy/blob/main/Debugging-Cleaning/Debugging_Examples.md#debugging-tool) later that can help with this.
 
 If you notice, I took my own advice of not "hard-coding" my script. 
 
