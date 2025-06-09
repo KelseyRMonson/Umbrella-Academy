@@ -1,4 +1,4 @@
-# Real-world Debugging Example
+# Real-world Debugging Examples
 Here are three real debugging examples showing common error types and how to fix them.
 
 These are real examples from when I wrote a script to run [MiXCR](https://mixcr.com/mixcr/about/), an algorithm to assemble and quantify TCR sequences, on **Minerva** (Mount Sinai's HPC).
