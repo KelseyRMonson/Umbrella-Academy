@@ -1,5 +1,7 @@
 # Real-world Debugging Example
-These are three real `.out` (*output*) and/or `.err` (*error*) files that I generated while writing a script to run [MiXCR](https://mixcr.com/mixcr/about/), an algorithm to assemble and quantify TCR sequences, on **Minerva** (Mount Sinai's HPC).
+Here are three real debugging examples showing common error types and how to fix them.
+
+These are real examples from when I wrote a script to run [MiXCR](https://mixcr.com/mixcr/about/), an algorithm to assemble and quantify TCR sequences, on **Minerva** (Mount Sinai's HPC).
 ![MiXCR](https://mixcr.com/mixcr/about-light.svg#only-light)
 
 I'll walk you step-by-step through my process for identifying and fixing each of these bugs 🪲
@@ -142,19 +144,15 @@ You'll notice it says `Successfully completed` -- but then it tells me that I us
 >
 >That's why it's important to check your `.err` files, as well as your output folders to see if you have gotten what you expect.
 
-In this case, my script couldn't actually run, so there was no output.
+In this case, my script couldn't run, so there *was* no output.
 
 **This was because MiXCR requires Java to run, and I hadn't loaded Java in my script.**
 
-Now, I will admit, this error didn't tell me *exactly* what I needed to do to fix it. 
-
-I could have wasted time trying to figure out what version of Java was installed on Minerva.
-
-But I knew I hadn't loaded *any* version of Java, so I knew the fix was to add that to my script. 
+I could have wasted time trying to figure out what version of Java was installed on Minerva. But I knew I hadn't loaded *any* version of Java in my script. 
 
 ### Summary:
 * **Error:** "Wrong" version of Java -- a.k.a. *no* version of Java
-* **Fix:** Add `module load java/11.0.2` to my script so that Java is loaded
+* **Fix:** Add `module load java/11.0.2` to my script to load Java before running MiXCR
 
 ## 🪲 Example 2: The fix is in the `.err` file
 **This error message is also relatively straightforward, but if you only look at the `.out` file, you won't know there's something wrong**
@@ -259,11 +257,9 @@ This was another case of me knowing what I *didn't* do, which led me to figure o
 
 While the error message said there was a `ConnectionError`, I knew this was because I hadn't yet generated a license, so there was nothing to connect to!
 
-So the fix was to go to the MiXCR website and generate a license. 
-
 ### Summary:
 * **Error:** "License error" -- I knew I didn't yet have a license  
-* **Fix:** Generate a MiXCR license so the software could run
+* **Fix:** Obtain an academic license from the MiXCR website
 
 ## 🪲 Example 3: The fix is not obvious
 **In this example, the error message is very misleading -- this happens more often than you think!** 
@@ -436,28 +432,28 @@ But, with a bit of practice, I now know what to look for 🔎
 Here are the steps to debugging this one, which is a bit more complicated.
 
 ### Step 1: Find the error
-Here's the key bit:
+Here's the key line:
 ```
 CommandLine$ExecutionException: Error while running command align java.nio.file.AccessDeniedException
 ```
-If you notice, this is the only place in the message where the word **error** actually appears
-* So I know that whatever is going on in this line is what's causing the problem.
-* And the actually important bit is the `AccessDeniedException`.
-* Even if I don't know what the rest of it means (which I don't), this means that I'm getting some kind of Access Denied error. 
+This is the only place where the word **error** actually appears
+* I know that whatever is happening in this line is causing the problem.
+* The important bit is the `AccessDeniedException`.
+* Even if I don't know what the rest of it means (which I don't), I know I'm getting an Access Denied error. 
 
-Now, this is a bit strange. 
+Now, this is strange. 
 
 Typically, an Access Denied error happens when you are trying to save a file or navigate to a directory that you don't have permission to access.
 * *Remember, we learned about read, write, execute (`rwx`) permissions in the Command Line class. You must have permission to interact with files on the cluster.*
-* This was strange because I knew that I was the one running the script and generating the output files and directories.
-* So it was unlikely to *really* be an issue of incorrect permissions, because I owned all the files and folders that I was interacting with, so I automatically have permission to access them. 
+* I knew that *I* was running the script and generating the output files and directories, so I automatically have permission to access them.
+* So it was unlikely to *really* be a permission issue. 
 
 ### Step 2: Find the source
-The next step was to go back to the script to see if I could find any errors or typos. 
+The next step was to return to the script to look for errors or typos. 
 
 If it's not immediately clear what the problem is, it's most likely the result of a typo. 
 
-Here is the script -- take a look to see if you can find the issue.
+Here is the script -- see if you can find the issue:
 
 ```
 ## Load MiXCR and Java (needs Java to run)
@@ -487,6 +483,8 @@ echo `date`
 ```
 I'll give you a moment 🕰️...
 
+...🕰️...
+
 If you didn't immediately spot it, no worries -- I'll show you [a tool](https://github.com/KelseyRMonson/Umbrella-Academy/blob/main/Debugging-Cleaning/Debugging_Examples.md#debugging-tool) later that can help with this.
 
 If you notice, I took my own advice of not "hard-coding" my script. 
@@ -494,36 +492,35 @@ If you notice, I took my own advice of not "hard-coding" my script.
 That is, I defined variables at the beginning of my script that I reference later. 
 
 But, I made a typo in the variable name that I *defined* vs the variable name that I *called* later in my script.
-* I defined a variable called `${OUTPUT_FOLDER}` pointing to a subfolder in my Work directory where the output from this analysis will go.
-* But the `${OUTPUT_FOLDER}` variable doesn't appear in the `mixcr` code!
-* Instead, I had the idea to streamline the naming of the variables, and called a (non-existent) variable named `${OUTPUT_DIR}` in the `mixcr` statement -- but forgot to rename the variable from `${OUTPUT_FOLDER}` to `${OUTPUT_DIR}` above!
+* I defined a variable called `${OUTPUT_FOLDER}`
+* But `${OUTPUT_FOLDER}` doesn't appear in the `mixcr` code!
+* Instead, I called a (non-existent) variable named `${OUTPUT_DIR}` -- but forgot to rename the variable from `${OUTPUT_FOLDER}` to `${OUTPUT_DIR}` above!
 
 ### Step 3: Figure out the error
-So the issue was just that I created a variable but then incorrectly called a new one that I hadn't yet defined.
+The issue was that I called a variable in my script that I hadn't defined.
 
-Why was I getting an "Access Denied" error, then? 
+Why was I getting an "Access Denied" error? 
 * The script was looking for a path corresponding to the `${OUTPUT_DIR}` folder (which didn't exist because I didn't define the variable)
 * It assumed it didn't have access to the `${OUTPUT_DIR}` path because it couldn't find it
-* It generated an Access Denied error because it couldn't find `${OUTPUT_DIR}`
 
-The fix is easy, in that I just have to streamline my variable names. I updated it so that both were called `${OUTPUT_DIR}`
+The fix is easy -- just define `${OUTPUT_DIR}` correctly!
 
 ### Summary:
 * **Error:** "Access Denied."
 	* This didn't make sense since I should have access to all the files I am reading and writing.
  	* In reviewing the script, I found it was a simple typo. 
-* **Fix:** Fix the typo! I changed each instance of `${OUTPUT_FOLDER}` to `${OUTPUT_DIR}`
+* **Fix:** Rename all instances of `${OUTPUT_FOLDER}` to `${OUTPUT_DIR}`
 
 After updating my variable names, I re-ran my code, and everything worked beautifully! 
 
 ## Debugging Tool
 > **💡Tip:** I mentioned that there's a tool that can help debug these cases.
 > 
-> Text editors* like [VS Code](https://code.visualstudio.com/) are great for writing your scripts.
+> Use text editors* like [VS Code](https://code.visualstudio.com/) to spot typos quickly.
 > 
 **Technically, VS Code is an Integrated Development Environment, like RStudio. But it's a great text editor on its own.*
 
-They color-code your text and auto-highlight variables when you select them, so you can see if you have made any typos.
+They automatically color-code your text and highlight variables when you select them, so you can see if you have made any typos.
 
 Here's what the code chunk above looks like in VS Code -- you can easily see the typo:
 ![VSCode](assets/VS_Code.png)
