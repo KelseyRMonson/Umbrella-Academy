@@ -487,7 +487,7 @@ echo `date`
 ```
 I'll give you a moment 🕰️...
 
-If you didn't immediately spot it, no worries -- I'll show you a tool later that can help with this.
+If you didn't immediately spot it, no worries -- I'll show you [a tool](https://github.com/KelseyRMonson/Umbrella-Academy/edit/main/Debugging-Cleaning/Debugging_Examples.md#debugging-tool) later that can help with this.
 
 If you notice, I took my own advice of not "hard-coding" my script. 
 
@@ -514,19 +514,22 @@ The fix is easy, in that I just have to streamline my variable names. I updated 
  	* In reviewing the script, I found it was a simple typo. 
 * **Fix:** Fix the typo! I changed each instance of `${OUTPUT_FOLDER}` to `${OUTPUT_DIR}`
 
-> **💡Tip:** I mentioned that there's a tool that can help debug these cases.
->
-> Text editors* like [VS Code](https://code.visualstudio.com/) are great for writing your scripts.  
-> **Technically, VS Code is an Integrated Development Environment, like RStudio. But it's a great text editor on its own.*
->
-> They color-code your text and auto-highlight variables when you select them, so you can see if you have made any typos.
->
-> Here's what the code chunk above looks like in VS Code -- you can easily see the typo:
-> ![VSCode](assets/VS_Code.png)
->
-> You can write your scripts in VS Code and then copy/paste the script into a file on the cluster to run it. 
-
 After updating my variable names, I re-ran my code, and everything worked beautifully! 
+
+## Debugging Tool
+> **💡Tip:** I mentioned that there's a tool that can help debug these cases.
+> 
+> Text editors* like [VS Code](https://code.visualstudio.com/) are great for writing your scripts.
+> 
+**Technically, VS Code is an Integrated Development Environment, like RStudio. But it's a great text editor on its own.*
+
+They color-code your text and auto-highlight variables when you select them, so you can see if you have made any typos.
+
+Here's what the code chunk above looks like in VS Code -- you can easily see the typo:
+![VSCode](assets/VS_Code.png)
+
+You can write your scripts in VS Code and then copy/paste the script into a file on the cluster to run it. 
+
 
 ## Conclusion 
 Of course, these are just a few examples of the things you might need to debug. 
