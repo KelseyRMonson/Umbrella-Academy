@@ -159,7 +159,7 @@ But I knew I hadn't loaded *any* version of Java, so I knew the fix was to add t
 ## 🪲 Example 2: The fix is in the `.err` file
 **This error message is also relatively straightforward, but if you only look at the `.out` file, you won't know there's something wrong**
 
-After updating my script to load Java and re-running it, I didn't get any errors in my `.out` file -- so far so good!
+After updating my script to load Java and re-running it, I didn't get any errors in my `.out` file -- so far, so good!
 <details>
   <summary>Full output file</summary>
 
@@ -512,7 +512,7 @@ The fix is easy, in that I just have to streamline my variable names. I updated 
 * **Error:** "Access Denied."
 	* This didn't make sense since I should have access to all the files I am reading and writing.
  	* In reviewing the script, I found it was a simple typo. 
-* **Fix:** Fix the typo! I removed `${OUTPUT_FOLDER}` and had everything be `${OUTPUT_DIR}`
+* **Fix:** Fix the typo! I changed each instance of `${OUTPUT_FOLDER}` to `${OUTPUT_DIR}`
 
 > **💡Tip:** I mentioned that there's a tool that can help debug these cases.
 >
@@ -540,6 +540,6 @@ The other thing to do first, especially if you are confronted with a scary error
 
 Chances are, someone has had the same problem (or similar), and a kind soul has walked them through the steps to fix it. 
 
-Just copy/paste the error into Google and it should point you in the right direction.
+Just copy/paste the error into Google, and it should point you in the right direction.
 
 Happy bug hunting! 🪲
