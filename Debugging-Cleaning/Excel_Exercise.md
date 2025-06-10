@@ -184,3 +184,16 @@ The safest thing to do is to save your file as an Excel `.xlsx` file as soon as 
 Do I always remember to do this? No. Should I? Yes. 
 
 Save your workbook, using **💾 Save As**, now. To differentiate it from our raw data, which we should never overwrite, save it with a name like `clean_star_wars.xlsx`.
+
+## 🔀Step 7: Transposing your Data
+Sometimes you need to transpose your data so the columns are rows and the rows are columns. 
+
+To illustrate this, I've saved another dataset, [star_wars_homeworlds.xlsx](data/star_wars_homeworlds.xlsx), which you can download now.
+
+I've saved this as an `.xlsx` file, so you don't need to worry about importing it; just open it in Excel. 
+
+We're going to learn a few things using this dataset, so let's transpose it to be more user-friendly.
+
+Copy the entire range we want to transpose (including the blank spaces), select a blank cell, and select the **Transpose** Paste Option:
+
+![Transpose](assets/Transpose.png)
