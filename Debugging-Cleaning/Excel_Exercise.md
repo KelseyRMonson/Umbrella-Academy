@@ -79,7 +79,7 @@ Highlight column C, `mass`, select the following Conditional Formatting options,
 
 ![Between](assets/Highlight_between.png)
 
-As you can see, you can also select values >, <, or = specific values. Useful when filtering for only significant p-values.
+As you can see, you can also select values >, <, or = specific values. Useful to see only significant p-values.
 
 ### 2.4 Color Scales
 Highlight column B, `height`, select the following Conditional Formatting options, and pick a color pallette:
@@ -91,3 +91,14 @@ Highlight column B, `height`, select the following Conditional Formatting option
 Look how the colors change if I include `0`:
 
 ![More color scales](assets/Color_scales_2.png)
+
+Mostly useful to get a visual sense of the distribution of your data (and it looks pretty). 
+
+## 🗃️Step 3: Filtering
+Filtering is an incredibly powerful tool, but it can also be dangerous, especially when filtering multiple variables at the same time. 
+
+Make sure you are always aware of what filters you have on at any given time to make sure you're not missing any data. 
+
+Click on any cell in row 1 and follow the steps below, either on the **Home** tab (left image) or the **Data** tab (right image):
+
+![Filter](assets/Filter.png)
