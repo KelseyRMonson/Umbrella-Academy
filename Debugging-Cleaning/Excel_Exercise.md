@@ -103,6 +103,12 @@ Select the dropdown arrow 🔽 in column H, `sex`, to filter for only the male c
 
 ![Sex](assets/Filter_sex.png)
 
+I've shown you how to filter by text, but you can also filter by colors. 
+
+In this way, Conditional Formatting and Filtering can work nicely together. 
+* Say you highlight all duplicates and then filter based on the highlight color
+* You can look at only the duplicated values, which makes evaluating them easier
+
 Filtering is an incredibly powerful tool, but it can also be dangerous, especially when filtering multiple variables at the same time. 
 
 Make sure you are always aware of what filters you have on at any given time to make sure you're not inadvertently missing any data. 
@@ -131,7 +137,7 @@ I separated the films by `;`, so select **Semicolon** under Delimiters:
 #### 4.1.4 Use the defaults for Step 3
 We don't need to change the column data format.
 
-### 4.2 Important Caveats
+### 4.2 Important Text to Columns Caveats
 #### 4.2.1 Column names
 You'll notice that our filter only applies to the original `film_names` column. 
 
@@ -345,3 +351,47 @@ A few important things to note about `VLOOKUP`
 To do this, copy the range with the `VLOOKUP` formula, and paste it in the same place, using the **Values** Paste option:
 
 ![Paste VLOOKUP output](assets/Paste_VLOOKUP.png)
+
+## ➗Step 10: Quick Formulas
+I'll close by sharing a few quick and useful formulas for data manipulation and QC. 
+
+### 10.1 Exact Match
+Finally, I shall reveal the reason for `name_2`. 
+
+Sometimes it's useful to confirm if the values in one cell are exactly the same as those in another. Let's confirm that for `name` and `name_2`.
+
+I'm using a simple example here, because we should be reasonably confident that they match (since this was the key that we used for the `VLOOKUP`). 
+
+**Formula**: `=EXACT(Cell1, Cell2)`
+
+I often use the Conditional Formatting: **Highlight text that contains...** option to turn `TRUE` green and `FALSE` red, so I can see at a glance if there are problems. 
+
+![Exact match](assets/Exact.png)
+
+### 10.2 Text Join
+We learned about how it's good practice to use snake_case (check out the Glossary for the definition) in programming and analysis. 
+
+Here's an easy way to automatically link words using snake_case (or join any two cells with a linker in the middle). 
+
+**Formula**: `=TEXTJOIN("delimiter",ignore empty cells?,Cell1,Cell2)`
+
+![Text join](assets/Textjoin.png)
+
+## 🙌Summary
+By now, you should be able to do some basic data manipulation and cleaning in Excel. 
+
+You've learned how to:
+* Import a file, without Excel assuming every fraction is a date, using the Import Wizard
+* Apply some neat Conditional Formatting to evaluate, filter, and clean your data
+* Turn text, separated by a delimiter, into columns using Text to Columns
+* Use workbook tabs (and when you might not want to use them)
+* Save your files in `.xlsx` format to maintain your formatting and tabs
+* Transpose your data
+* Remove duplicate values
+* Write a `VLOOKUP` formula (!), plus some other quick and useful formulas for data cleaning
+
+I've saved my version of both the final `clean_star_wars.xlsx` and the cleaned `star_wars_homeworlds.xlsx` (called `clean_star_wars_homeworlds.xlsx`). 
+
+This way, you can see the exact conditional formatting I applied and reference the full `VLOOKUP`, `EXACT`, and `TEXTJOIN` formulas.
+
+Happy cleaning! 🧽🧼🫧
