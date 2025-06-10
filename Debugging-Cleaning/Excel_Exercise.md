@@ -162,3 +162,25 @@ For us, we will uncheck **Semicolon**:
 
 ![Re-setting text to column defaults](assets/Text_to_col_defaults.png)
 
+## 📑Step 5: Tabs
+Sometimes you need to create an Excel workbook with multiple tabs. This can sometimes keep things organized, but there are a few important things to note regarding tabs and data cleaning.
+
+First, if you don't know how to create one, go to the bottom left corner and click the ➕:
+
+![New tab](assets/New_tab.png)
+
+1. It's always good to rename your tabs so you know what is in them and why you created them. Right click and select **Rename**.
+2. Most data analysis programs such as R *cannot process multiple tabs within a file*. They will default to reading the first tab of a workbook.
+3. This is also true of different file formats. You cannot have a document with multiple tabs if you save it as a `.txt`, `.csv`, or `.tsv` file, for example.
+4. If you need to save your data in one of those formats, or if you need to analyze multiple tabs in R, save each tab as a separate Excel file. 
+
+## 💾Step 6: Save as Excel `.xlsx`
+This might not deserve its own step, but I can't count how many times I've created a beautiful Excel with lots of conditional formatting and a bunch of tabs, only to not realize that it was still a `.csv` file or something, and saved it without realizing it, losing all my tabs and formatting. 
+
+This has become a bigger issue now that Microsoft Office makes file extensions more difficult to see. (You used to be able to check the file extension at the top of your Excel window, but now it just shows the file name.)
+
+The safest thing to do is to save your file as an Excel `.xlsx` file as soon as you've imported it. 
+
+Do I always remember to do this? No. Should I? Yes. 
+
+Save your workbook, using **💾 Save As**, now. To differentiate it from our raw data, which we should never overwrite, save it with a name like `clean_star_wars.xlsx`.
