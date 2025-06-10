@@ -243,3 +243,76 @@ I say "writing," but I always use Excel's "Insert Function" tool.
 Select the first blank cell we want to populate, C2. Click the function button: *fx*
 
 ![Function button](assets/Function.png)
+
+`VLOOKUP` is my most-used function, but you will have to search for it in the search box. 
+
+#### 9.1.2 Lookup_value
+This is the unique key that you will use to match the data in your current sheet with the source data.
+
+Here, we will use `name`. Since we are filling out the `VLOOKUP` for cell C2, we want to select the corresponding name in A2.
+
+You can type "A2" or you can select the ⬆️ arrow next to **Lookup_value** and then click cell A2.
+
+We will write this whole `VLOOKUP` function for cell C2, but I'll show you how to apply it to the rest of the empty cells. 
+
+#### 9.1.3 Table_array
+This is where the `VLOOKUP` is looking. Here we provide the range of data that includes both the unique key (here `name`) and the column containing the missing data we want to populate. 
+
+Don't worry if you include extra data in this step, we will tell it specifically where to look later. 
+
+The only requirement is that the unique key is in the **first column** of this array. This is how the `VLOOKUP` knows where our unique key is in the other dataset. 
+
+To complete this, we should definitely select the ⬆️ and then move to the `clean_star_wars.xlsx` workbook. We will select from A1 through J7.
+
+You'll notice that **Table_array** has now been populated with `[clean_star_wars.xlsx]clean_star_wars!$A$1:$J$7`.
+
+This is how Excel knows which workbook to look in (here `clean_star_wars.xlsx`) for the data.
+
+#### 9.1.4 Col_index_num
+This is where we tell it where the data we want lives. We tell it the specific *column* (col) *index number* (index_num).
+
+**Note that this is in relation to the array that you gave it in the previous step.**
+
+If you started your **Table_array** on column Y of a spreadsheet, and wanted the data in column Z, you would write `2` because Z is the 2nd column in the array you provided, even though it's the 26th column in the overall spreadsheet. 
+
+For us, `species` is in column 10 of our spreadsheet and our array from A1-J7, so we will write 10 here. 
+
+#### 9.1.5 Range_lookup
+This is basically asking if you want an exact match to your unique key or an approximation.
+
+`TRUE` gives an approximation, `FALSE` gives an exact match. I have only ever used `FALSE` in my `VLOOKUP`s.
+
+#### 9.1.6 Admire your work (and run your function)
+Here is our beautiful `VLOOKUP` function!
+
+![VLOOKUP function](assets/VLOOKUP.png)
+
+You can see it gives you a preview of the answer it will return -- you can see that it correctly says `= Wookie`. 
+
+### 9.2 Applying a VLOOKUP to a range
+Ok, phew, we wrote that whole `VLOOKUP` statement...just for cell C2. 
+
+Please don't tell me I need to do that every time for every cell! (You may be saying)
+
+Don't worry! I will show you how to apply it to the rest of your data. 
+
+#### 9.2.1 Holding the name constant
+You may have been wondering what the `$` were in the **Table_array** argument. 
+
+A `$` tells Excel to hold something constant. When our **Table_array** said `$A$1:$J$7`, it means to always look from A1 to J7. It's keeping the range of data constant. 
+
+We can do the same for our **Lookup_value**. In this row, A2 will always be our unique key, so we want to tell Excel that our **Lookup_value** should always be A2. 
+
+But! We're going to apply our `VLOOKUP` to the other names in our spreadsheet, so we don't want to fix both the column *and* the row (`$A$2`), because then it would only ever return the result for the name value in A2 (Chewbacca).
+
+We want to fix the name column, but allow the row to change, so we will change our **Lookup_value** to `$A2`.
+
+Now, we can click the tiny square in the bottom right corner of cell C2 and drag it so that the `VLOOKUP` populates cells C2 to C7:
+
+![Species VLOOKUP](assets/VLOOKUP_species.png)
+
+The **Lookup_value** should have automatically updated to correspond to each row.
+
+We wrote all that to get `species`, but I also have this mysterious `name_2` column (the reason for this will become clear eventually). 
+
+Here's how we can fix the unique ID in A2 so we can apply this same `VLOOKUP` to look for the corresponding `name` instead of `species`:
