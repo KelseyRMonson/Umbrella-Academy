@@ -246,6 +246,10 @@ Select the first blank cell we want to populate, C2. Click the function button: 
 
 `VLOOKUP` is my most-used function, but you will have to search for it in the search box. 
 
+Let's walk through how to populate each of the arguments in the `VLOOKUP` function:
+
+![Blank VLOOKUP](assets/VLOOKUP_empty.png)
+
 #### 9.1.2 Lookup_value
 This is the unique key that you will use to match the data in your current sheet with the source data.
 
@@ -269,9 +273,9 @@ You'll notice that **Table_array** has now been populated with `[clean_star_wars
 This is how Excel knows which workbook to look in (here `clean_star_wars.xlsx`) for the data.
 
 #### 9.1.4 Col_index_num
-This is where we tell it where the data we want lives. We tell it the specific *column* (col) *index number* (index_num).
+This is where we tell it the column we want to pull the data from; we tell it the specific *column* (col) *index number* (index_num).
 
-**Note that this is in relation to the array that you gave it in the previous step.**
+Note that this is **in relation to the array from the previous step.**
 
 If you started your **Table_array** on column Y of a spreadsheet, and wanted the data in column Z, you would write `2` because Z is the 2nd column in the array you provided, even though it's the 26th column in the overall spreadsheet. 
 
@@ -280,14 +284,16 @@ For us, `species` is in column 10 of our spreadsheet and our array from A1-J7, s
 #### 9.1.5 Range_lookup
 This is basically asking if you want an exact match to your unique key or an approximation.
 
-`TRUE` gives an approximation, `FALSE` gives an exact match. I have only ever used `FALSE` in my `VLOOKUP`s.
+`TRUE` gives an approximation, `FALSE` gives an exact match. 
+
+I have only ever used `FALSE` in my `VLOOKUP`s.
 
 #### 9.1.6 Admire your work (and run your function)
 Here is our beautiful `VLOOKUP` function!
 
 ![VLOOKUP function](assets/VLOOKUP.png)
 
-You can see it gives you a preview of the answer it will return -- you can see that it correctly says `= Wookie`. 
+You can see it gives you a preview of the answer it will return -- you can see that it correctly says `= Wookiee`. Hit Ok to apply it to the cell. 
 
 ### 9.2 Applying a VLOOKUP to a range
 Ok, phew, we wrote that whole `VLOOKUP` statement...just for cell C2. 
