@@ -390,7 +390,8 @@ You've learned how to:
 * Remove duplicate values
 * Write a `VLOOKUP` formula (!), plus some other quick and useful formulas for data cleaning
 
-I've saved my version of both the final `clean_star_wars.xlsx` and the cleaned `star_wars_homeworlds.xlsx` (called `clean_star_wars_homeworlds.xlsx`). 
+**Reference**
+I've saved my version of both the final `clean_star_wars.xlsx` and the cleaned `star_wars_homeworlds.xlsx` (called `clean_star_wars_homeworlds.xlsx`) in the [data/cleaned_data](data/clean_data) folder. 
 
 This way, you can see the exact conditional formatting I applied and reference the full `VLOOKUP`, `EXACT`, and `TEXTJOIN` formulas.
 
