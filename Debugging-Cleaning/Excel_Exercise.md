@@ -319,6 +319,25 @@ Now, we can click the tiny square in the bottom right corner of cell C2 and drag
 
 The **Lookup_value** should have automatically updated to correspond to each row.
 
-We wrote all that to get `species`, but I also have this mysterious `name_2` column (the reason for this will become clear eventually). 
+#### 9.2.2 Finding additional variables
+We wrote all that to get `species`, but I also have this mysterious `name_2` column (the reason for this will become clear soon). 
 
-Here's how we can fix the unique ID in A2 so we can apply this same `VLOOKUP` to look for the corresponding `name` instead of `species`:
+Now that we've fixed `$A2`, we can also change the **Col_index_num** to pull data from a different column that still matches the unique ID we defined. 
+
+Let's get the name from `clean_star_wars.xlsx` by changing the **Col_index_num** to `1`, and applying this function to all the empty cells:
+
+![Name VLOOKUP](assets/VLOOKUP_name.png)
+
+### 9.3 Important `VLOOKUP` caveats
+A few important things to note about `VLOOKUP`
+* If data isn't returned from a `VLOOKUP`, it doesn't necessarily mean it doesn't exist.
+  * If the `VLOOKUP` can't find what you asked for, it will return `#N/A`.
+  * That doesn't *always* mean that there's no matching data. It could be a few things:
+    * There is a typo in the unique ID in one of the datasets
+    * You didn't request the correct **Table_array** range
+    * There may not be a typo, but the data may be stored in different forms, e.g. text in one document and numeric in another
+  * In other words, be a bit skeptical of an `#N/A` and look more closely at those entries to ensure there is really no match
+* If there are multiple entries for the same unique key, **`VLOOKUP` will report the first column value it finds**
+  * This is especially important for e.g. time series data, where you may have multiple rows corresponding to the same individual with different observation timepoints.
+  * This is called "long data" (check out the course Glossary for a more detailed explanation of "wide" vs "long" data).
+  * `VLOOKUP`s should therefore not be used on long data, unless you can be certain you are pulling the correct observation.
