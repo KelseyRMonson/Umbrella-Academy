@@ -188,12 +188,58 @@ Save your workbook, using **💾 Save As**, now. To differentiate it from our ra
 ## 🔀Step 7: Transposing your Data
 Sometimes you need to transpose your data so the columns are rows and the rows are columns. 
 
-To illustrate this, I've saved another dataset, [star_wars_homeworlds.xlsx](data/star_wars_homeworlds.xlsx), which you can download now.
+To illustrate this, I've saved another dataset, [star_wars_homeworlds.xlsx](data/star_wars_homeworlds.xlsx).
+
+### 7.1 Download `star_wars_homeworlds.xlsx`
 
 I've saved this as an `.xlsx` file, so you don't need to worry about importing it; just open it in Excel. 
 
 We're going to learn a few things using this dataset, so let's transpose it to be more user-friendly.
 
+### 7.2 Transpose
 Copy the entire range we want to transpose (including the blank spaces), select a blank cell, and select the **Transpose** Paste Option:
 
 ![Transpose](assets/Transpose.png)
+
+### 7.3 Delete un-transposed data
+Let's delete the un-transposed data, so that the `name` column header is now in cell A1. 
+
+The easiest way to do that is to select rows 1-5, right click, and delete:
+
+![Delete rows](assets/Delete_rows.png)
+
+## 👥Step 8: Remove Duplicates
+Under the Data tab, there's a useful feature called **Remove Duplicates**. 
+
+As with filtering, however, *this tool can be very dangerous.*
+
+Here's where **Highlight Duplicates** can be helpful:
+
+![Duplicates](assets/Duplicates.png)
+
+I've copied a few records, so there are a few true duplicates in both `name` and `homeworld`. 
+
+However, both Darth Vader and Luke Skywalker have Tatooine as their homeworld. 
+
+If we were to remove the duplicates from the `homeworld` column *only*, it would keep the first instance and drop all the rest. It would correctly remove the duplicated Han and Luke entries, but it would also drop Luke entirely. 
+
+![Bad remove duplicates](assets/Bad_remove_dups.png)
+
+The correct way would be to either select only the `name` column, or to select all columns, which will evaluate for duplicate entries across all rows.
+
+![Good remove duplicates](assets/Good_remove_dups.png)
+
+## 🔎Step 9: `VLOOKUP`
+I'm  not exaggerating when I say my life changed dramatically (for the better) once I finally learned how to write a `VLOOKUP`. 
+
+You'll notice that we have blank columns for `species` and a column I've called `name_2`. 
+
+Using a `VLOOKUP`, I can match the unique `name` variable in `star_wars_homeworlds.xlsx` and `clean_star_wars.xlsx` to automatically populate the empty `species` and `name_2` columns. 
+
+### 9.1 Writing a `VLOOKUP`
+I say "writing," but I always use Excel's "Insert Function" tool.
+
+#### 9.1.1 Insert the `VLOOKUP` function
+Select the first blank cell we want to populate, C2. Click the function button: *fx*
+
+![Function button](assets/Function.png)
