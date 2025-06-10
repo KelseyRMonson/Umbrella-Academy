@@ -341,3 +341,7 @@ A few important things to note about `VLOOKUP`
   * This is especially important for e.g. time series data, where you may have multiple rows corresponding to the same individual with different observation timepoints.
   * This is called "long data" (check out the course Glossary for a more detailed explanation of "wide" vs "long" data).
   * `VLOOKUP`s should therefore not be used on long data, unless you can be certain you are pulling the correct observation.
+* It's generally a good idea to convert the value in the cell returned by a `VLOOKUP` from the `VLOOKUP` formula to an exact value.
+To do this, copy the range with the `VLOOKUP` formula, and paste it in the same place, using the **Values** Paste option:
+
+![Paste VLOOKUP output](assets/Paste_VLOOKUP.png)
