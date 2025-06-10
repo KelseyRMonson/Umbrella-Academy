@@ -56,3 +56,21 @@ The fix is to select the `films` column and change it from **General** to **Text
 Cells formatted as **Text** are displayed exactly as written.
 
 So select **Text** on Step 3 of the Import Wizard and click Finish.
+
+## 🎨Step 2: Conditional Formatting
+There's a lot of fancy stuff you can do with conditional formatting, but I'll teach you the basics.
+
+### 2.1 Highlight Duplicates
+Highlight column J, `species`, and select the following Conditional Formatting options:
+
+![Highlight duplicates](assets/Highlight_dups.png)
+
+A useful real-world example is gene expression analysis, where you have two lists of differentially expressed genes and you want to quickly see the overlap. Paste one gene list below the other (separated by a cell) and highlight duplicates.
+
+### 2.2 Highlight Text that contains...
+Highlight column I, `homeworld`, select the following Conditional Formatting options, and then type `Kashyyyk` for Chewie's homeworld:
+
+![Highlight text containing](assets/Highlight_text.png)
+
+Useful if you have specific text that you want to quickly highlight.
+
