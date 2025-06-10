@@ -1,0 +1,12 @@
+name,Luke Skywalker,R2-D2,Darth Vader,Leia Organa,Chewbacca,Han Solo
+height,172,96,202,150,228,180
+mass,77,32,136,49,112,80
+hair_color,blond,NA,none,brown,brown,brown
+skin_color,fair,"white, blue",white,light,unknown,fair
+eye_color,blue,red,yellow,brown,blue,brown
+birth_year,19,33,41.9,19,200,29
+sex,male,none,male,female,male,male
+homeworld,Tatooine,Naboo,Tatooine,Alderaan,Kashyyyk,Corellia
+species,Human,Droid,Human,Human,Wookiee,Human
+films,4/6,6/6,4/6,4/6,3/6,3/6
+film_names,Revenge of the Sith; A New Hope; The Empire Strikes Back; Return of the Jedi,The Phantom Menace; Attack of the Clones; Revenge of the Sith; A New Hope; The Empire Strikes Back; Return of the Jedi,Revenge of the Sith; A New Hope; The Empire Strikes Back; Return of the Jedi,Revenge of the Sith; A New Hope; The Empire Strikes Back; Return of the Jedi,A New Hope; The Empire Strikes Back; Return of the Jedi,A New Hope; The Empire Strikes Back; Return of the Jedi
