@@ -319,6 +319,11 @@ Now, we can click the tiny square in the bottom right corner of cell C2 and drag
 
 The **Lookup_value** should have automatically updated to correspond to each row.
 
-We wrote all that to get `species`, but I also have this mysterious `name_2` column (the reason for this will become clear eventually). 
+#### 9.2.2 Finding additional variables
+We wrote all that to get `species`, but I also have this mysterious `name_2` column (the reason for this will become clear soon). 
 
-Here's how we can fix the unique ID in A2 so we can apply this same `VLOOKUP` to look for the corresponding `name` instead of `species`:
+Now that we've fixed `$A2`, we can also change the **Col_index_num** to pull data from a different column that still matches the unique ID we defined. 
+
+Let's get the name from `clean_star_wars.xlsx` by changing the **Col_index_num** to `1`, and applying this function to all the empty cells:
+
+![Name VLOOKUP](assets/VLOOKUP_name.png)
