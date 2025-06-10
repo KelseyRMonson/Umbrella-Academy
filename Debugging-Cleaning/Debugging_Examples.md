@@ -6,9 +6,8 @@ These are real examples from when I wrote a script to run [MiXCR](https://mixcr.
 
 I'll walk you step-by-step through my process for identifying and fixing each bug 🪲
 
-> **ℹ️Note:** You will encounter many different kinds of errors as you write your own scripts and conduct your own analyses, so I can't cover all possible scenarios. 
->
-> But these examples illustrate the categories of bugs you will encounter and strategies to address them.
+> **ℹ️Note**  
+> You will encounter many different errors writing your own scripts and conducting your own analyses, so I can't cover all possible scenarios. But these examples illustrate some categories of bugs you will encounter and strategies to address them.
 
 ## 🪲 Example 1: The fix is in the `.out` file
 **These are the best errors to debug, because the error message tells you (roughly) what to do.**
@@ -440,8 +439,9 @@ This is the only place where **"error"** actually appears
 Now, this is strange. 
 
 Typically, an Access Denied error occurs when trying to save a file or navigate to a directory that you don't have permission to access.
-* *Remember, we learned about read, write, execute (`rwx`) permissions in the Command Line class. You must have permission to interact with files on the cluster.*
-* I knew that *I* was running the script and generating the outputs (both files and directories), so I automatically have permission to access them.
+* Remember, we learned about read, write, execute (`rwx`) permissions in the Command Line class.
+* *You must have permission to interact with files on the cluster.*
+* *I* was running the script and generating the outputs, so I should automatically have permission to access them.
 * So it was unlikely to *really* be a permission issue. 
 
 ### Step 2: Find the source
@@ -495,7 +495,7 @@ The problem was calling a variable in my `mixcr` code that I hadn't defined.
 
 Why was I getting an "Access Denied" error? 
 * The script was looking for the `${OUTPUT_DIR}` path (which didn't exist because I didn't define the variable)
-* It assumed it didn't have access to the `${OUTPUT_DIR}` path because it couldn't find it
+* It assumed it didn't have *access* to the `${OUTPUT_DIR}` path because it couldn't find it
 
 The fix is easy -- just define `${OUTPUT_DIR}` correctly!
 
@@ -508,9 +508,8 @@ The fix is easy -- just define `${OUTPUT_DIR}` correctly!
 After updating my variable names, I re-ran my code, and everything worked beautifully! 
 
 ## Debugging Tool
-> **💡Tip:** I mentioned that there's a tool that can help with debugging.
-> 
-> I use a text editor like [VS Code](https://code.visualstudio.com/)* to spot typos quickly.
+> **💡Tip**  
+> I use a text editor like [VS Code](https://code.visualstudio.com/)* to spot typos quickly.  
 > **Technically, VS Code is an Integrated Development Environment, like RStudio. But it's a great text editor on its own.*
 
 VS Code automatically color-codes your text and highlights variables when you select them, so you can see if you have made any typos.
@@ -529,10 +528,9 @@ But I hope I was able to illustrate:
 * The thought processes to use when approaching errors
 * That the text of the errors themselves can be misleading! Try to think things through logically before getting sidetracked chasing down an erroneous error message.
 
-The first thing to do when you're just getting started, especially when confronted with a scary error like in Example 3, is to Google it! 
-
-Chances are, someone has had the same problem (or similar), and a kind soul has walked them through the steps to fix it. 
-
-Just copy/paste the error into Google, and it should point you in the right direction.
+But first...
+* When you're just getting started, especially when confronted with a scary error like in Example 3, Google it!
+* Chances are, someone has had the same problem (or similar), and a kind soul has walked them through the steps to fix it.
+* Just copy/paste the error into Google, and it should point you in the right direction.
 
 Happy bug hunting! 🪲
