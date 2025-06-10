@@ -1,17 +1,16 @@
 # Real-world Debugging Examples
 Here are three real debugging examples showing common error types and how to fix them.
 
-These are real examples from when I wrote a script to run [MiXCR](https://mixcr.com/mixcr/about/), an algorithm to assemble and quantify TCR sequences, on **Minerva** (Mount Sinai's HPC).
+These are real examples from when I wrote a script to run [MiXCR](https://mixcr.com/mixcr/about/), a TCR sequence quantification algorithm, on **Minerva** (Mount Sinai's HPC).
 ![MiXCR](https://mixcr.com/mixcr/about-light.svg#only-light)
 
-I'll walk you step-by-step through my process for identifying and fixing each of these bugs 🪲
+I'll walk you step-by-step through my process for identifying and fixing each bug 🪲
 
-> **ℹ️Note:** You will encounter many different kinds of errors as you write your own scripts and conduct your own analyses, so I can't cover all possible scenarios. 
->
-> But these three examples serve as a good illustration of the categories of bugs you will encounter and strategies for addressing them.
+> **ℹ️Note**  
+> You will encounter many different errors writing your own scripts and conducting your own analyses, so I can't cover all possible scenarios. But these examples illustrate some categories of bugs you will encounter and strategies to address them.
 
 ## 🪲 Example 1: The fix is in the `.out` file
-**These are the best kinds of errors to debug, because the error message tells you (roughly) what you need to do.**
+**These are the best errors to debug, because the error message tells you (roughly) what to do.**
 
 Here is the output from the first time I ran my script:
 
@@ -138,26 +137,26 @@ Thu Aug 22 10:15:52 EDT 2024
 ```
 You'll notice it says `Successfully completed` -- but then it tells me that I used the `Wrong version of java. Please use Java 7 or higher.`
 
->⚠️ **This is important**
+>⚠️ **IMPORTANT**
 >
->Just because you see `Successfully completed` in your `.out` file does **not** necessarily mean your script did what you wanted it to do!
+>`Successfully completed` does **not** necessarily mean your script did what you wanted!
 >
->That's why it's important to check your `.err` files, as well as your output folders to see if you have gotten what you expect.
+>That's why it's important to check your `.err` files and output folders to see if your script produced what you expected.
 
 In this case, my script couldn't run, so there *was* no output.
 
-**This was because MiXCR requires Java to run, and I hadn't loaded Java in my script.**
+**MiXCR requires Java to run, and I hadn't loaded Java in my script.**
 
-I could have wasted time trying to figure out what version of Java was installed on Minerva. But I knew I hadn't loaded *any* version of Java in my script. 
+I could have wasted time trying to determine the version of Java installed on Minerva. But I knew I hadn't loaded *any* version of Java in my script. 
 
 ### Summary:
 * **Error:** "Wrong" version of Java -- a.k.a. *no* version of Java
 * **Fix:** Add `module load java/11.0.2` to my script to load Java before running MiXCR
 
 ## 🪲 Example 2: The fix is in the `.err` file
-**This error message is also relatively straightforward, but if you only look at the `.out` file, you won't know there's something wrong**
+**In this case, if you only look at the `.out` file, you won't know there's something wrong.**
 
-After updating my script to load Java and re-running it, I didn't get any errors in my `.out` file -- so far, so good!
+After re-running my updated script with `module load java/11.0.2`, I didn't get any errors in my `.out` file -- so far, so good!
 <details>
   <summary>Full output file</summary>
 
@@ -251,20 +250,18 @@ License error: ConnectionError
 License manager thread died.
 ```
 
-This was another case of me knowing what I *didn't* do, which led me to figure out what I needed to do. 
+**The MiXCR software requires an academic license to run.**
 
-**In this case, the MiXCR software requires an academic license to run.**
-
-While the error message said there was a `ConnectionError`, I knew this was because I hadn't yet generated a license, so there was nothing to connect to!
+While the error message mentioned a `ConnectionError`, I knew this was because I hadn't yet generated a license, so there was nothing to connect to!
 
 ### Summary:
 * **Error:** "License error" -- I knew I didn't yet have a license  
 * **Fix:** Obtain an academic license from the MiXCR website
 
 ## 🪲 Example 3: The fix is not obvious
-**In this example, the error message is very misleading -- this happens more often than you think!** 
+**Here, the error message is very misleading -- this happens more often than you think!** 
 
-At this point, I've loaded Java, I've gotten my license, and I'm ready to rock. 
+By now, I've loaded Java, gotten my license, and I'm ready to rock. 
 
 I again have an `.out` file that looks fine -- and this one even shows output for MiXCR actually running!
 <details>
@@ -427,31 +424,30 @@ Caused by: java.nio.file.AccessDeniedException: /P2A10_GADCIWn2_S10.align.list.t
 ```
 I'll be honest, when I first started coding, I would be totally freaked out by an error message like this 🤯
 
-But, with a bit of practice, I now know what to look for 🔎
-
-Here are the steps to debugging this one, which is a bit more complicated.
+But now I know what to look for 🔎
 
 ### Step 1: Find the error
 Here's the key line:
 ```
 CommandLine$ExecutionException: Error while running command align java.nio.file.AccessDeniedException
 ```
-This is the only place where the word **error** actually appears
+This is the only place where **"error"** actually appears
 * I know that whatever is happening in this line is causing the problem.
 * The important bit is the `AccessDeniedException`.
 * Even if I don't know what the rest of it means (which I don't), I know I'm getting an Access Denied error. 
 
 Now, this is strange. 
 
-Typically, an Access Denied error happens when you are trying to save a file or navigate to a directory that you don't have permission to access.
-* *Remember, we learned about read, write, execute (`rwx`) permissions in the Command Line class. You must have permission to interact with files on the cluster.*
-* I knew that *I* was running the script and generating the output files and directories, so I automatically have permission to access them.
+Typically, an Access Denied error occurs when trying to save a file or navigate to a directory that you don't have permission to access.
+* Remember, we learned about read, write, execute (`rwx`) permissions in the Command Line class.
+* *You must have permission to interact with files on the cluster.*
+* *I* was running the script and generating the outputs, so I should automatically have permission to access them.
 * So it was unlikely to *really* be a permission issue. 
 
 ### Step 2: Find the source
-The next step was to return to the script to look for errors or typos. 
+The next step was to check the script for errors or typos. 
 
-If it's not immediately clear what the problem is, it's most likely the result of a typo. 
+If the problem isn't immediately clear, it's most likely due to a typo. 
 
 Here is the script -- see if you can find the issue:
 
@@ -485,23 +481,21 @@ I'll give you a moment 🕰️...
 
 ...🕰️...
 
-If you didn't immediately spot it, no worries -- I'll show you [a tool](https://github.com/KelseyRMonson/Umbrella-Academy/blob/main/Debugging-Cleaning/Debugging_Examples.md#debugging-tool) later that can help with this.
+If you didn't immediately spot it, no worries -- I'll show you [a tool](https://github.com/KelseyRMonson/Umbrella-Academy/blob/main/Debugging-Cleaning/Debugging_Examples.md#debugging-tool) later to help with this.
 
-If you notice, I took my own advice of not "hard-coding" my script. 
-
-That is, I defined variables at the beginning of my script that I reference later. 
+If you notice, I took my own advice of not "hard-coding" my script, defining variables at the beginning of my script that I reference later. 
 
 But, I made a typo in the variable name that I *defined* vs the variable name that I *called* later in my script.
 * I defined a variable called `${OUTPUT_FOLDER}`
 * But `${OUTPUT_FOLDER}` doesn't appear in the `mixcr` code!
-* Instead, I called a (non-existent) variable named `${OUTPUT_DIR}` -- but forgot to rename the variable from `${OUTPUT_FOLDER}` to `${OUTPUT_DIR}` above!
+* Instead, I called a (non-existent) variable named `${OUTPUT_DIR}`!
 
 ### Step 3: Figure out the error
-The issue was that I called a variable in my script that I hadn't defined.
+The problem was calling a variable in my `mixcr` code that I hadn't defined.
 
 Why was I getting an "Access Denied" error? 
-* The script was looking for a path corresponding to the `${OUTPUT_DIR}` folder (which didn't exist because I didn't define the variable)
-* It assumed it didn't have access to the `${OUTPUT_DIR}` path because it couldn't find it
+* The script was looking for the `${OUTPUT_DIR}` path (which didn't exist because I didn't define the variable)
+* It assumed it didn't have *access* to the `${OUTPUT_DIR}` path because it couldn't find it
 
 The fix is easy -- just define `${OUTPUT_DIR}` correctly!
 
@@ -514,13 +508,11 @@ The fix is easy -- just define `${OUTPUT_DIR}` correctly!
 After updating my variable names, I re-ran my code, and everything worked beautifully! 
 
 ## Debugging Tool
-> **💡Tip:** I mentioned that there's a tool that can help debug these cases.
-> 
-> Use text editors* like [VS Code](https://code.visualstudio.com/) to spot typos quickly.
-> 
-**Technically, VS Code is an Integrated Development Environment, like RStudio. But it's a great text editor on its own.*
+> **💡Tip**  
+> I use a text editor like [VS Code](https://code.visualstudio.com/)* to spot typos quickly.  
+> **Technically, VS Code is an Integrated Development Environment, like RStudio. But it's a great text editor on its own.*
 
-They automatically color-code your text and highlight variables when you select them, so you can see if you have made any typos.
+VS Code automatically color-codes your text and highlights variables when you select them, so you can see if you have made any typos.
 
 Here's what the code chunk above looks like in VS Code -- you can easily see the typo:
 ![VSCode](assets/VS_Code.png)
@@ -528,7 +520,7 @@ Here's what the code chunk above looks like in VS Code -- you can easily see the
 You can write your scripts in VS Code and then copy/paste the script into a file on the cluster to run it. 
 
 
-## Conclusion 
+## 🙌 Conclusion 
 Of course, these are just a few examples of the things you might need to debug. 
 
 But I hope I was able to illustrate:
@@ -536,10 +528,9 @@ But I hope I was able to illustrate:
 * The thought processes to use when approaching errors
 * That the text of the errors themselves can be misleading! Try to think things through logically before getting sidetracked chasing down an erroneous error message.
 
-The other thing to do first, especially if you are confronted with a scary error like in Example 3, is to Google it! 
-
-Chances are, someone has had the same problem (or similar), and a kind soul has walked them through the steps to fix it. 
-
-Just copy/paste the error into Google, and it should point you in the right direction.
+But first...
+* When you're just getting started, especially when confronted with a scary error like in Example 3, Google it!
+* Chances are, someone has had the same problem (or similar), and a kind soul has walked them through the steps to fix it.
+* Just copy/paste the error into Google, and it should point you in the right direction.
 
 Happy bug hunting! 🪲
