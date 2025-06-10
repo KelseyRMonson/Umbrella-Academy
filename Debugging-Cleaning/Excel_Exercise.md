@@ -6,7 +6,7 @@ One of the most annoying and detrimental features of Excel is how much it **love
 
 I've saved our test dataset as a `.txt` file to illustrate this.
 
-Download [raw_star_wars.txt](data/raw_star_wars.txt).
+### 1.1 Download [raw_star_wars.txt](data/raw_star_wars.txt).
 
 Open Excel, select Open 📂, then Browse 📂 and navigate to your Downloads folder.
 
@@ -14,3 +14,6 @@ You will see something that looks like this, and you will ask yourself, "Where i
 
 ![All Excel Files](assets/All_Excel_Files.png)
 
+You will then go to the dropdown in the bottom right and change it from "All Excel Files" to "All Files"
+
+![All Files](assets/All_Files.png)
