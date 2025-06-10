@@ -74,3 +74,20 @@ Highlight column I, `homeworld`, select the following Conditional Formatting opt
 
 Useful if you have specific text that you want to quickly highlight.
 
+### 2.3 Highlight Values
+Highlight column C, `mass`, select the following Conditional Formatting options, and select a range of values:
+
+![Between](assets/Highlight_between.png)
+
+As you can see, you can also select values >, <, or = specific values. Useful when filtering for only significant p-values.
+
+### 2.4 Color Scales
+Highlight column B, `height`, select the following Conditional Formatting options, and pick a color pallette:
+
+![Color scales](assets/Color_scales.png)
+
+💡Note that the top and bottom of the scales are determined by the largest and smallest values in your data, respectively. 
+
+Look how the colors change if I include `0`:
+
+![More color scales](assets/Color_scales_2.png)
