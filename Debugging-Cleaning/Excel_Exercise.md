@@ -95,10 +95,70 @@ Look how the colors change if I include `0`:
 Mostly useful to get a visual sense of the distribution of your data (and it looks pretty). 
 
 ## 🗃️Step 3: Filtering
-Filtering is an incredibly powerful tool, but it can also be dangerous, especially when filtering multiple variables at the same time. 
-
-Make sure you are always aware of what filters you have on at any given time to make sure you're not missing any data. 
-
 Click on any cell in row 1 and follow the steps below, either on the **Home** tab (left image) or the **Data** tab (right image):
 
 ![Filter](assets/Filter.png)
+
+Select the dropdown arrow 🔽 in column H, `sex`, to filter for only the male characters:
+
+![Sex](assets/Filter_sex.png)
+
+Filtering is an incredibly powerful tool, but it can also be dangerous, especially when filtering multiple variables at the same time. 
+
+Make sure you are always aware of what filters you have on at any given time to make sure you're not inadvertently missing any data. 
+
+## 📊Step 4: Text to Columns
+I've listed the names of the films the characters appear in, separated by a semicolon `;`.
+
+If we want to separate out each film into its own cell, we can use the Text to Columns feature.
+
+### 4.1 Text to Columns Wizard
+#### 4.1.1 Open Text to Columns Wizard 🪄
+Unfilter column H (select the dropdown 🔽 and select "Clear filter from `sex`").
+
+Select column L, `film_names`, and select Text to Columns
+
+![Text to Columns](assets/Text_to_col.png)
+
+#### 4.1.2 Make sure you select "Delimited" in Step 1
+This will look the same as Step 1 of our Data Import Wizard.
+
+#### 4.1.3 Select the appropriate delimiter in Step 2
+I separated the films by `;`, so select **Semicolon** under Delimiters:
+
+![Semicolon](assets/Semicolon.png)
+
+#### 4.1.4 Use the defaults for Step 3
+We don't need to change the column data format.
+
+### 4.2 Important Caveats
+#### 4.2.1 Column names
+You'll notice that our filter only applies to the original `film_names` column. 
+
+It's best to create column headers for each new column we just created.
+* If we don't care what they're called, we can mark them with anything (I just use an `x`).
+* In this case, I wrote them in order, so the first film listed is the first film the character appears in, and so on.
+* So we can name the new columns logically, with `first_film`, `second_film`, etc.
+
+#### 4.2.2 Filtering with empty columns
+A helpful way to identify missing data in a dataset is to filter by `(Blanks)`. 
+
+You will need to *reapply* the filter to the newly named columns. Just click **Filter** again.
+
+Select the filtering dropdown 🔽 in column Q, our newly named `sixth_film` column, and filter by `(Blanks)`:
+
+![Filtering by blanks](assets/Filter_blank.png)
+
+Now we can see which characters do not appear in a sixth film. If we want, we could add `NA` to these blank spaces to indicate that the `sixth_film` variable does not apply to these characters. 
+
+#### 4.2.3 ⚠️ The most important thing about Text to Columns
+In an attempt to be helpful, Excel assumes you want to apply your Text to Columns settings to every Excel file you open until you tell it otherwise.
+
+This can cause some very annoying behaviors, especially if your delimiter was something very common, like **Tab** or **Space**, because it will automatically turn text into columns using that delimiter.
+
+Re-set to the defaults by selecting a cell with text, going back to Text to Columns, and unchecking whatever delimiter you used. 
+
+For us, we will uncheck **Semicolon**:
+
+![Re-setting text to column defaults](assets/Text_to_col_defaults.png)
+
