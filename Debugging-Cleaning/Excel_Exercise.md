@@ -11,84 +11,89 @@ Download [raw_star_wars.txt](data/raw_star_wars.txt).
 
 Open Excel -> Open 📂 -> Browse 📂 and navigate to your Downloads folder.
 
-Excel defaults to only showing Excel files.
-
 To find our file, go to the dropdown in the bottom right and change it from "All Excel Files" to "All Files":
 
 ![All Files](assets/All_Files.png)
-
-There it is! 
 
 ### 1.2 Use the Import Wizard 🪄
 Select the file and click Open. 
 
 #### 1.2.1 Use the defaults for Step 1
-The file is Delimited (not Fixed Width).
-
-You *can* check "My data has headers."
+The file is delimited, with headers, so choose "Delimited" and check "My data has headers."
 
 #### 1.2.2 Use the defaults for Step 2
-We can see now that the file is **Tab**-delimited because the columns are correctly separated when we select **Tab** as the delimiter. 
+The columns are correctly separated when **Tab** is the delimiter. 
 
-To prove this, try unchecking **Tab** and selecting one of the other delimiters. 
+(Try unchecking **Tab** and selecting another delimiter to test this.)
 
-#### 1.2.3 What happens if we use the defaults for Step 3
-I've made a column called `films` with how many films a character has appeared in, out of the original and prequel trilogies.
+#### 1.2.3 What happens if we use the defaults for Step 3?
+I've created a column called `films` indicating the number of films a character has appeared in (of the original and prequel trilogies).
 
-So Luke Skywalker (who technically appears as a baby in Revenge of the Sith, in addition to all the original movies) is in 4/6 films. 
+Luke Skywalker, for example, is in 4 of 6 films.*  
+**(He technically appears as a baby in Revenge of the Sith, plus all the original films)*
 
 But Excel has decided that 4/6 = April 6th, 2025:
 
 ![Date default](assets/Date_Default.png)
 
 #### 1.2.4 What to do instead for Step 3
-You can see that the default for Column data format is **General**, which automatically converts "date values to dates." 
+The default data format is **General**, which automatically converts "date values to dates." 
 
-You might say, why would it assume that 4/6 is a date and not a fraction? To which I say, great question, I have no idea why this is the default. 
+Why does it assume 4/6 is a date and not a fraction? Great question, I have no idea why this is the default. 
 
-The fix is to select the `films` column and change it from **General** to **Text**.
+Instead, select the `films` column, change it to **Text**, and click Finish.
 
 ![As text](assets/Films_as_text.png)
 
 Cells formatted as **Text** are displayed exactly as written.
 
-So select **Text** on Step 3 of the Import Wizard and click Finish.
-
 ## 🎨Step 2: Conditional Formatting
 There's a lot of fancy stuff you can do with conditional formatting, but I'll teach you the basics.
+
+We'll use the **Conditional Formatting** button on the Home tab.
 
 ### 2.1 Highlight Duplicates
 Highlight column J, `species`, and select the following Conditional Formatting options:
 
 ![Highlight duplicates](assets/Highlight_dups.png)
 
-A useful real-world example is gene expression analysis, where you have two lists of differentially expressed genes and you want to quickly see the overlap. Paste one gene list below the other (separated by a cell) and highlight duplicates.
+To clear this (or any other conditional formatting), just select the **🧽Clear rules** button.
+
+**🌍Real-world usage: Gene expression analysis**  
+You have two lists of differentially expressed genes, and you want to quickly see the overlap.  
+Paste one gene list below the other (separated by a cell) and highlight duplicates.
 
 ### 2.2 Highlight Text that contains...
 Highlight column I, `homeworld`, select the following Conditional Formatting options, and then type `Kashyyyk` for Chewie's homeworld:
 
 ![Highlight text containing](assets/Highlight_text.png)
 
-Useful if you have specific text that you want to quickly highlight.
+**🌍Real-world usage: Reviewing `TRUE`/`FALSE` statements**  
+You have a logical variable and want to scan for any `FALSE` statements.  
+Color-code text that contains `FALSE` to spot it at a glance.
 
 ### 2.3 Highlight Values
 Highlight column C, `mass`, select the following Conditional Formatting options, and select a range of values:
 
 ![Between](assets/Highlight_between.png)
 
-As you can see, you can also select values >, <, or = specific values. Useful to see only significant p-values.
+As you can see, you can also select values >, <, or = specific values.
+
+**🌍Real-world usage: Identifying significant p-values**  
+Highlight only p-values <= 0.05.
 
 ### 2.4 Color Scales
 Highlight column B, `height`, select the following Conditional Formatting options, and pick a color pallette:
 
 ![Color scales](assets/Color_scales.png)
 
-💡Note that the top and bottom of the scales are determined by the largest and smallest values in your data, respectively. 
+Note that the top and bottom of the scales are determined by the largest and smallest values in your data, respectively. 
 
 Look how the colors change if I include `0`:
 
 ![More color scales](assets/Color_scales_2.png)
 
+**🌍Real-world usage: Evaluate distribution of a continuous variable**  
 Mostly useful to get a visual sense of the distribution of your data (and it looks pretty). 
 
 ## 🗃️Step 3: Filtering
@@ -100,20 +105,20 @@ Select the dropdown arrow 🔽 in column H, `sex`, to filter for only the male c
 
 ![Sex](assets/Filter_sex.png)
 
-I've shown you how to filter by text, but you can also filter by colors. 
 
-In this way, Conditional Formatting and Filtering can work nicely together. 
-* Say you highlight all duplicates and then filter based on the highlight color
-* You can look at only the duplicated values, which makes evaluating them easier
+> 💡Tip: You can also filter by colors. 
+> In this way, Conditional Formatting and Filtering can work nicely together. Here's an example:
+> * Highlight all duplicates and then filter based on the highlight color
+> * You can look at only the duplicated values, which makes evaluating them easier
 
-Filtering is an incredibly powerful tool, but it can also be dangerous, especially when filtering multiple variables at the same time. 
+Filtering is powerful, but it can also be dangerous, especially when filtering multiple variables at once. 
 
-Make sure you are always aware of what filters you have on at any given time to make sure you're not inadvertently missing any data. 
+Be mindful of active filters to avoid inadvertently missing any data.
 
 ## 📊Step 4: Text to Columns
-I've listed the names of the films the characters appear in, separated by a semicolon `;`.
+In `film_names`, I've listed each character's films, separated by a semicolon, `;`.
 
-If we want to separate out each film into its own cell, we can use the Text to Columns feature.
+If we want to separate each film into its own cell, we can use **Text to Columns**.
 
 ### 4.1 Text to Columns Wizard
 #### 4.1.1 Open Text to Columns Wizard 🪄
