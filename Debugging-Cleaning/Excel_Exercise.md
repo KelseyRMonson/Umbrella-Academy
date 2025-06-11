@@ -6,24 +6,21 @@ One of the most annoying and detrimental features of Excel is how much it **love
 
 I've saved our test dataset as a `.txt` file to illustrate this.
 
-### 1.1 Download [raw_star_wars.txt](data/raw_star_wars.txt).
+### 1.1 Download Test Dataset
+Download [raw_star_wars.txt](data/raw_star_wars.txt).
 
-Open Excel, select Open 📂, then Browse 📂 and navigate to your Downloads folder.
+Open Excel -> Open 📂 -> Browse 📂 and navigate to your Downloads folder.
 
-You will see something that looks like this, and you will ask yourself, "Where is the file that I literally just downloaded?"
+Excel defaults to only showing Excel files.
 
-![All Excel Files](assets/All_Excel_Files.png)
-
-You will then go to the dropdown in the bottom right and change it from "All Excel Files" to "All Files"
+To find our file, go to the dropdown in the bottom right and change it from "All Excel Files" to "All Files":
 
 ![All Files](assets/All_Files.png)
 
 There it is! 
 
-### 1.2 Import raw_star_wars.txt
+### 1.2 Use the Import Wizard 🪄
 Select the file and click Open. 
-
-You'll see an Import Wizard 🪄
 
 #### 1.2.1 Use the defaults for Step 1
 The file is Delimited (not Fixed Width).
