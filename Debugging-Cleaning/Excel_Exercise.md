@@ -203,20 +203,18 @@ Notes on Tabs:
 4. If you need to save your data in one of those formats, or if you need to analyze multiple tabs in R, save each tab as a separate Excel file. 
 
 ## 💾Step 6: Save as Excel `.xlsx`
-I can't count how many times I've created a beautiful Excel with lots of conditional formatting and a bunch of tabs, only to not realize that it was still a `.csv` file or something, and saved it without realizing it, losing all my tabs and formatting. 
+I can't count how many times I've created a beautiful Excel with lots of conditional formatting and many tabs, only to forget that it was still a `.csv` file or something, and saved it without realizing it, losing all my tabs and formatting. 
 
 This has become a bigger issue now that Microsoft Office makes file extensions more difficult to see. (You used to be able to check the file extension at the top of your Excel window, but now it just shows the file name.)
 
 The safest thing to do is to save your file as an Excel `.xlsx` file as soon as you've imported it. 
-
-Do I always remember to do this? No. Should I? Yes. 
 
 Save your workbook, using **💾 Save As**, now. To differentiate it from our raw data, which we should never overwrite, save it with a name like `clean_star_wars.xlsx`.
 
 ## 🔀Step 7: Transposing your Data
 Sometimes you need to transpose your data so the columns are rows and the rows are columns. 
 
-To illustrate this, I've saved another dataset, [star_wars_homeworlds.xlsx](data/star_wars_homeworlds.xlsx).
+To illustrate this, I've created another dataset, [star_wars_homeworlds.xlsx](data/star_wars_homeworlds.xlsx).
 
 ### 7.1 Download `star_wars_homeworlds.xlsx`
 
@@ -225,7 +223,7 @@ I've saved this as an `.xlsx` file, so you don't need to worry about importing i
 We're going to learn a few things using this dataset, so let's transpose it to be more user-friendly.
 
 ### 7.2 Transpose
-Copy the entire range we want to transpose (including the blank spaces), select a blank cell, and select the **Transpose** Paste Option:
+Copy the entire range we want to transpose (including the blank spaces), select a blank cell, right click, and select the **Transpose** Paste Option:
 
 ![Transpose](assets/Transpose.png)
 
@@ -249,11 +247,11 @@ I've copied a few records, so there are a few true duplicates in both `name` and
 
 However, both Darth Vader and Luke Skywalker have Tatooine as their homeworld. 
 
-If we were to remove the duplicates from the `homeworld` column *only*, it would keep the first instance and drop all the rest. It would correctly remove the duplicated Han and Luke entries, but it would also drop Luke entirely. 
+If we removed duplicates from the `homeworld` column *only*, it would keep the first instance and drop the rest. It would correctly remove the duplicated Han and Luke entries, but it would also drop Luke entirely. 
 
 ![Bad remove duplicates](assets/Bad_remove_dups.png)
 
-The correct way would be to either select only the `name` column, or to select all columns, which will evaluate for duplicate entries across all rows.
+The correct way would be to either select only the `name` column, or to select all columns, which will evaluate for duplicate entries across full rows (i.e. all column values must be duplicated across a row).
 
 ![Good remove duplicates](assets/Good_remove_dups.png)
 
@@ -262,13 +260,15 @@ I'm  not exaggerating when I say my life changed dramatically (for the better) o
 
 You'll notice that we have blank columns for `species` and a column I've called `name_2`. 
 
-Using a `VLOOKUP`, I can match the unique `name` variable in `star_wars_homeworlds.xlsx` and `clean_star_wars.xlsx` to automatically populate the empty `species` and `name_2` columns. 
+Using a `VLOOKUP`, we can match the unique `name` variable in `star_wars_homeworlds.xlsx` and `clean_star_wars.xlsx` to automatically populate the empty `species` and `name_2` columns. 
 
 ### 9.1 Writing a `VLOOKUP`
 I say "writing," but I always use Excel's "Insert Function" tool.
 
 #### 9.1.1 Insert the `VLOOKUP` function
-Select the first blank cell we want to populate, C2. Click the function button: *fx*
+Select the first blank cell we want to populate, C2. 
+
+Click the function button: *fx*
 
 ![Function button](assets/Function.png)
 
@@ -281,7 +281,7 @@ Let's walk through how to populate each of the arguments in the `VLOOKUP` functi
 #### 9.1.2 Lookup_value
 This is the unique key that you will use to match the data in your current sheet with the source data.
 
-Here, we will use `name`. Since we are filling out the `VLOOKUP` for cell C2, we want to select the corresponding name in A2.
+We will use `name`. Since we are filling out the `VLOOKUP` for cell C2, we want to select the corresponding name in A2.
 
 You can type "A2" or you can select the ⬆️ arrow next to **Lookup_value** and then click cell A2.
 
@@ -290,7 +290,7 @@ We will write this whole `VLOOKUP` function for cell C2, but I'll show you how t
 #### 9.1.3 Table_array
 This is where the `VLOOKUP` is looking. Here we provide the range of data that includes both the unique key (here `name`) and the column containing the missing data we want to populate. 
 
-Don't worry if you include extra data in this step, we will tell it specifically where to look later. 
+Don't worry if you include extra data in this step; we will specify exactly where to look later. 
 
 The only requirement is that the unique key is in the **first column** of this array. This is how the `VLOOKUP` knows where our unique key is in the other dataset. 
 
@@ -301,7 +301,7 @@ You'll notice that **Table_array** has now been populated with `[clean_star_wars
 This is how Excel knows which workbook to look in (here `clean_star_wars.xlsx`) for the data.
 
 #### 9.1.4 Col_index_num
-This is where we tell it the column we want to pull the data from; we tell it the specific *column* (col) *index number* (index_num).
+This is where we specify the column we want to pull the data from; we tell it the specific *column* (col) *index number* (index_num).
 
 Note that this is **in relation to the array from the previous step.**
 
@@ -310,18 +310,18 @@ If you started your **Table_array** on column Y of a spreadsheet, and wanted the
 For us, `species` is in column 10 of our spreadsheet and our array from A1-J7, so we will write 10 here. 
 
 #### 9.1.5 Range_lookup
-This is basically asking if you want an exact match to your unique key or an approximation.
+This asks if you want an exact match to your unique key or an approximation.
 
 `TRUE` gives an approximation, `FALSE` gives an exact match. 
 
-I have only ever used `FALSE` in my `VLOOKUP`s.
+I always use `FALSE` to be safe.
 
 #### 9.1.6 Admire your work (and run your function)
 Here is our beautiful `VLOOKUP` function!
 
 ![VLOOKUP function](assets/VLOOKUP.png)
 
-You can see it gives you a preview of the answer it will return -- you can see that it correctly says `= Wookiee`. Hit Ok to apply it to the cell. 
+You can see it previews the answer it will return -- and ours correctly says `= Wookiee`. Hit Ok to apply it to the cell. 
 
 ### 9.2 Applying a VLOOKUP to a range
 Ok, phew, we wrote that whole `VLOOKUP` statement...just for cell C2. 
@@ -331,13 +331,13 @@ Please don't tell me I need to do that every time for every cell! (You may be sa
 Don't worry! I will show you how to apply it to the rest of your data. 
 
 #### 9.2.1 Holding the name constant
-You may have been wondering what the `$` were in the **Table_array** argument. 
+You may have wondered about the `$` in the **Table_array** argument. 
 
 A `$` tells Excel to hold something constant. When our **Table_array** said `$A$1:$J$7`, it means to always look from A1 to J7. It's keeping the range of data constant. 
 
 We can do the same for our **Lookup_value**. In this row, A2 will always be our unique key, so we want to tell Excel that our **Lookup_value** should always be A2. 
 
-But! We're going to apply our `VLOOKUP` to the other names in our spreadsheet, so we don't want to fix both the column *and* the row (`$A$2`), because then it would only ever return the result for the name value in A2 (Chewbacca).
+But! We're going to apply our `VLOOKUP` to the other names in our spreadsheet, so we don't want to fix both the column *and* the row (`$A$2`), because then it would only ever return the result for the name value in A2 (`Chewbacca`).
 
 We want to fix the name column, but allow the row to change, so we will change our **Lookup_value** to `$A2`.
 
@@ -345,7 +345,7 @@ Now, we can click the tiny square in the bottom right corner of cell C2 and drag
 
 ![Species VLOOKUP](assets/VLOOKUP_species.png)
 
-The **Lookup_value** should have automatically updated to correspond to each row.
+The **Lookup_value** should automatically update to correspond to each row in column A.
 
 #### 9.2.2 Finding additional variables
 We wrote all that to get `species`, but I also have this mysterious `name_2` column (the reason for this will become clear soon). 
@@ -382,7 +382,7 @@ Finally, I shall reveal the reason for `name_2`.
 
 Sometimes it's useful to confirm if the values in one cell are exactly the same as those in another. Let's confirm that for `name` and `name_2`.
 
-I'm using a simple example here, because we should be reasonably confident that they match (since this was the key that we used for the `VLOOKUP`). 
+I'm using a simple example here because we should be reasonably confident that they match (since this was the key that we used for the `VLOOKUP`). 
 
 **Formula**: `=EXACT(Cell1, Cell2)`
 
@@ -391,11 +391,11 @@ I often use the Conditional Formatting: **Highlight text that contains...** opti
 ![Exact match](assets/Exact.png)
 
 ### 10.2 Text Join
-We learned about how it's good practice to use snake_case (check out the Glossary for the definition) in programming and analysis. 
+We learned about snake_case (check out the Glossary for the definition) in programming and analysis. 
 
 Here's an easy way to automatically link words using snake_case (or join any two cells with a linker in the middle). 
 
-**Formula**: `=TEXTJOIN("delimiter",ignore empty cells?,Cell1,Cell2)`
+**Formula**: `=TEXTJOIN("delimiter",ignore empty cells?,Cell1,Cell2, ...)`
 
 ![Text join](assets/Textjoin.png)
 
@@ -409,11 +409,11 @@ You've learned how to:
 * Use workbook tabs (and when you might not want to use them)
 * Save your files in `.xlsx` format to maintain your formatting and tabs
 * Transpose your data
-* Remove duplicate values
-* Write a `VLOOKUP` formula (!), plus some other quick and useful formulas for data cleaning
+* Carefully remove duplicate values
+* Write a `VLOOKUP` formula (!), plus some other key formulas for data cleaning
 
-**Reference**
-I've saved my version of both the final `clean_star_wars.xlsx` and the cleaned `star_wars_homeworlds.xlsx` (called `clean_star_wars_homeworlds.xlsx`) in the [data/cleaned_data](data/clean_data) folder. 
+### Reference
+I've saved my version of both final cleaned datasets in the [data/cleaned_data](data/clean_data) folder. 
 
 This way, you can see the exact conditional formatting I applied and reference the full `VLOOKUP`, `EXACT`, and `TEXTJOIN` formulas.
 
