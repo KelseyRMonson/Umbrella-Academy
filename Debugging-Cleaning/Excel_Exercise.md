@@ -96,6 +96,15 @@ Look how the colors change if I include `0`:
 #### 🌍Real-world usage: Evaluate distribution of a continuous variable  
 Mostly useful to get a visual sense of the distribution of your data (and it looks pretty). 
 
+### ⚠️A Caveat on Formatting in Excel
+**Conditional Formatting** can help ensure data integrity by helping identify duplicates, errors, and inconsistencies. It can also assist in evaluating data distributions and patterns.
+
+**Manual Formatting**, such as color-coding relevant variables or samples, should be avoided.  
+Color-coding can quickly become difficult for others to interpret, or you may forget what a certain color signifies. 
+
+If there is meaningful information you want to retain, you should encode it as a variable. 
+
+
 ## 🗃️Step 3: Filtering
 Click on any cell in row 1 and follow the steps below, either on the **Home** tab (left image) or the **Data** tab (right image):
 
@@ -130,27 +139,33 @@ Select column L, `film_names`, and select **Text to Columns**
 
 ![Text to Columns](assets/Text_to_col.png)
 
-#### 4.1.1 Make sure you select "Delimited" in Step 1
+#### 4.1.1 Select "Delimited" in Step 1
 This will look the same as Step 1 of our Data Import Wizard.
 
 #### 4.1.2 Select the appropriate delimiter in Step 2
-I separated the films by `;`, so select **Semicolon** under Delimiters:
+Select **Semicolon** under Delimiters:
 
 ![Semicolon](assets/Semicolon.png)
 
 #### 4.1.3 Use the defaults for Step 3
 We don't need to change the column data format.
 
-### 4.2 Important Text to Columns Caveats
+#### 🌍Real-world usage: Gene Ontology analysis  
+Individual genes in gene ontology (GO) results tables are often separated by a delimiter like `;`.  
+For subsequent analyses, it's helpful to split them into separate columns. 
+
+### 4.2 Important Notes on Text to Columns
 #### 4.2.1 Column names
-You'll notice that our filter only applies to the original `film_names` column. 
+It's best to create headers for each new column we just created.
+* In this case, the first film listed is the first film the character appears in, and so on.
+* We can name the new columns logically, with `first_film`, `second_film`, etc.
+* This helps with subsequent filtering, which we will do in the next step.
 
-It's best to create column headers for each new column we just created.
-* If we don't care what they're called, we can mark them with anything (I just use an `x`).
-* In this case, I wrote them in order, so the first film listed is the first film the character appears in, and so on.
-* So we can name the new columns logically, with `first_film`, `second_film`, etc.
+#### 4.2.2 Filtering by `(Blanks)`
+Often, **Text to Columns** will generate columns with no entries for certain variables. 
 
-#### 4.2.2 Filtering with empty columns
+In this case, we have many characters who don't appear in 6/6 films, so have no entries under e.g. `sixth_film`.
+
 A helpful way to identify missing data in a dataset is to filter by `(Blanks)`. 
 
 You will need to *reapply* the filter to the newly named columns. Just click **Filter** again.
@@ -159,33 +174,36 @@ Select the filtering dropdown 🔽 in column Q, our newly named `sixth_film` col
 
 ![Filtering by blanks](assets/Filter_blank.png)
 
-Now we can see which characters do not appear in a sixth film. If we want, we could add `NA` to these blank spaces to indicate that the `sixth_film` variable does not apply to these characters. 
+Now we can see which characters do not appear in a sixth film. 
 
-#### 4.2.3 ⚠️ The most important thing about Text to Columns
-In an attempt to be helpful, Excel assumes you want to apply your Text to Columns settings to every Excel file you open until you tell it otherwise.
+If we want, we could add `NA` to these blank spaces to indicate that the `sixth_film` variable does not apply to these characters. 
 
-This can cause some very annoying behaviors, especially if your delimiter was something very common, like **Tab** or **Space**, because it will automatically turn text into columns using that delimiter.
+### 4.3 ⚠️ The most important thing about Text to Columns
+In an attempt to be helpful, Excel assumes you want to apply your **Text to Columns** settings to every Excel file you open until you tell it otherwise.
 
-Re-set to the defaults by selecting a cell with text, going back to Text to Columns, and unchecking whatever delimiter you used. 
+This can cause some very annoying behaviors, especially if your delimiter was something common, like **Tab** or **Space**, because it will automatically turn text into columns using that delimiter.
 
-For us, we will uncheck **Semicolon**:
+After you've applied **Text to Columns**, reset it to the defaults by selecting a cell with text, going back to **Text to Columns**, and unchecking whatever delimiter you used:
 
 ![Re-setting text to column defaults](assets/Text_to_col_defaults.png)
 
 ## 📑Step 5: Tabs
-Sometimes you need to create an Excel workbook with multiple tabs. This can sometimes keep things organized, but there are a few important things to note regarding tabs and data cleaning.
+Sometimes you need to create an Excel workbook with multiple tabs. 
 
-First, if you don't know how to create one, go to the bottom left corner and click the ➕:
+This can keep things organized, but there are a few important things to note regarding tabs and data cleaning.
+
+First, to create a new tab, go to the bottom left corner and click ➕:
 
 ![New tab](assets/New_tab.png)
 
-1. It's always good to rename your tabs so you know what is in them and why you created them. Right click and select **Rename**.
+Notes on Tabs:
+1. It's always good to rename your tabs so you know what is in them and why you created them. Right-click the tab and select **Rename**.
 2. Most data analysis programs such as R *cannot process multiple tabs within a file*. They will default to reading the first tab of a workbook.
-3. This is also true of different file formats. You cannot have a document with multiple tabs if you save it as a `.txt`, `.csv`, or `.tsv` file, for example.
+3. File formats like `.txt`, `.csv`, and `.tsv` do not support multiple tabs.
 4. If you need to save your data in one of those formats, or if you need to analyze multiple tabs in R, save each tab as a separate Excel file. 
 
 ## 💾Step 6: Save as Excel `.xlsx`
-This might not deserve its own step, but I can't count how many times I've created a beautiful Excel with lots of conditional formatting and a bunch of tabs, only to not realize that it was still a `.csv` file or something, and saved it without realizing it, losing all my tabs and formatting. 
+I can't count how many times I've created a beautiful Excel with lots of conditional formatting and a bunch of tabs, only to not realize that it was still a `.csv` file or something, and saved it without realizing it, losing all my tabs and formatting. 
 
 This has become a bigger issue now that Microsoft Office makes file extensions more difficult to see. (You used to be able to check the file extension at the top of your Excel window, but now it just shows the file name.)
 
