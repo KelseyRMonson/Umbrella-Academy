@@ -59,7 +59,7 @@ Highlight column J, `species`, and select the following Conditional Formatting o
 
 To clear this (or any other conditional formatting), just select the **🧽Clear rules** button.
 
-**🌍Real-world usage: Gene expression analysis**  
+#### 🌍Real-world usage: Gene expression analysis  
 You have two lists of differentially expressed genes, and you want to quickly see the overlap.  
 Paste one gene list below the other (separated by a cell) and highlight duplicates.
 
@@ -68,7 +68,7 @@ Highlight column I, `homeworld`, select the following Conditional Formatting opt
 
 ![Highlight text containing](assets/Highlight_text.png)
 
-**🌍Real-world usage: Reviewing `TRUE`/`FALSE` statements**  
+#### 🌍Real-world usage: Reviewing `TRUE`/`FALSE` statements  
 You have a logical variable and want to scan for any `FALSE` statements.  
 Color-code text that contains `FALSE` to spot it at a glance.
 
@@ -79,7 +79,7 @@ Highlight column C, `mass`, select the following Conditional Formatting options,
 
 As you can see, you can also select values >, <, or = specific values.
 
-**🌍Real-world usage: Identifying significant p-values**  
+#### 🌍Real-world usage: Identifying significant p-values  
 Highlight only p-values <= 0.05.
 
 ### 2.4 Color Scales
@@ -93,7 +93,7 @@ Look how the colors change if I include `0`:
 
 ![More color scales](assets/Color_scales_2.png)
 
-**🌍Real-world usage: Evaluate distribution of a continuous variable**  
+#### 🌍Real-world usage: Evaluate distribution of a continuous variable  
 Mostly useful to get a visual sense of the distribution of your data (and it looks pretty). 
 
 ## 🗃️Step 3: Filtering
@@ -106,37 +106,39 @@ Select the dropdown arrow 🔽 in column H, `sex`, to filter for only the male c
 ![Sex](assets/Filter_sex.png)
 
 
-> 💡Tip: You can also filter by colors. 
-> In this way, Conditional Formatting and Filtering can work nicely together. Here's an example:
-> * Highlight all duplicates and then filter based on the highlight color
-> * You can look at only the duplicated values, which makes evaluating them easier
+> 💡Tip: You can also filter by colors.
+
 
 Filtering is powerful, but it can also be dangerous, especially when filtering multiple variables at once. 
 
 Be mindful of active filters to avoid inadvertently missing any data.
+
+#### 🌍Real-world usage: Evaluate duplicates  
+Here's an example of Conditional Formatting and Filtering working nicely together:
+* Highlight all duplicates and then filter based on the highlight color
+* You can look at only the duplicated values, which makes evaluating them easier
 
 ## 📊Step 4: Text to Columns
 In `film_names`, I've listed each character's films, separated by a semicolon, `;`.
 
 If we want to separate each film into its own cell, we can use **Text to Columns**.
 
-### 4.1 Text to Columns Wizard
-#### 4.1.1 Open Text to Columns Wizard 🪄
+### 4.1 Use the Text to Columns Wizard 🪄
 Unfilter column H (select the dropdown 🔽 and select "Clear filter from `sex`").
 
-Select column L, `film_names`, and select Text to Columns
+Select column L, `film_names`, and select **Text to Columns**
 
 ![Text to Columns](assets/Text_to_col.png)
 
-#### 4.1.2 Make sure you select "Delimited" in Step 1
+#### 4.1.1 Make sure you select "Delimited" in Step 1
 This will look the same as Step 1 of our Data Import Wizard.
 
-#### 4.1.3 Select the appropriate delimiter in Step 2
+#### 4.1.2 Select the appropriate delimiter in Step 2
 I separated the films by `;`, so select **Semicolon** under Delimiters:
 
 ![Semicolon](assets/Semicolon.png)
 
-#### 4.1.4 Use the defaults for Step 3
+#### 4.1.3 Use the defaults for Step 3
 We don't need to change the column data format.
 
 ### 4.2 Important Text to Columns Caveats
