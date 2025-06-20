@@ -20,15 +20,18 @@ Here you will find the code for the hands-on exercises to get students comfortab
 
 | Course    | Description |
 | --------- | ----------- |
-| Class 1   | Course Intro |
-| Class 2   | Intro to Next Generation Sequencing (NGS) |
-| Class 3   | Intro to High Performance Computing (HPC) |
-| Class 4   | [Getting Started with the Command Line](Command-Line) 💻 |
-| Class 5   | [Getting Started with R](R-Project) 💻 |
-| Class 6   | [Debugging, QC, Data Normalization, and Cleaning](Debugging-Cleaning) 💻 |
-| Class 7   | Wet Lab ➡️ Dry Lab: Designing Experiments for Analytic Success |
-| Class 8   | Statistical Interlude: Biostatistics Basics |
-| Class 9  | Wrap-up and (Fun!) Knowledge Check |
+| Week 1   | Course Intro |
+| Week 2   | Intro to Next Generation Sequencing (NGS): Part I |
+| Week 3   | Intro to Next Generation Sequencing (NGS): Part II |
+| Week 3   | Intro to High Performance Computing (HPC) |
+| Week 4   | [Getting Started with the Command Line](Command-Line): Part I 💻 |
+| Week 5   | Getting Started with the Command Line: Part II 💻 |
+| Week 6   | Getting Started with the Command Line: Part III 💻 |
+| Week 6   | [Getting Started with R](R-Project): Part I 💻 |
+| Week 7   | Getting Started with R: Part II 💻 |
+| Week 8   | Getting Started with R: Part III 💻 |
+| Week 9   | [Debugging and Data Cleaning](Debugging-Cleaning) 💻 |
+| Week 10   | Wet Lab ➡️ Dry Lab: Designing Experiments for Analytic Success |
 
 Classes with 💻 have code hosted here.  
 
