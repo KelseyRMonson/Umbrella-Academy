@@ -7,19 +7,29 @@
 <!-- badges: end -->
 
 
-## What is "The Umbrella Academy"? 
+## ☔ What is "The Umbrella Academy"? 
 
 A 10-week course created by [Kelsey Monson](https://github.com/KelseyRMonson) to teach **dry lab** skills to **wet lab** scientists (because an ☔ keeps you dry when it's wet, get it?)
 
-## What is hosted on the GitHub?
+## 🌐 Where is the Course Webpage?
 
-Here you will find the code for the hands-on exercises to get students comfortable with these dry lab skills:
+The full course webpage is hosted on Notion [here](https://kelseymonson.notion.site/umbrella-academy-home).
+
+This includes the following resources:
+
+* Course [summaries](https://kelseymonson.notion.site/1a00a295e58380cf9486c9efc832fce9?v=1a00a295e5838002928b000cd2d125c8)
+* A [Glossary](https://kelseymonson.notion.site/1d10a295e58380e89182f0236c6949d3?v=1d10a295e58381019dd8000cdc617e65)
+* A [Resource Database](https://kelseymonson.notion.site/1a00a295e58380a99e85ce418748013e?v=1a00a295e58380b49a2b000c3a425491)
+
+## 💻 What is hosted on this GitHub?
+
+Here you will find the code for the hands-on exercises for the following dry lab skills:
 
 * Using the [command line](Command-Line)
 * Making plots in [R](R-Project)
 * Practicing [debugging and data cleaning](Debugging-Cleaning)
 
-## Course Schedule
+## 📅 Course Schedule
 
 | Course    | Description |
 | --------- | ----------- |
