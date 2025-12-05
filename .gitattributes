@@ -1,0 +1,3 @@
+# Mark generated Quarto HTML so GitHub Linguist ignores it in language statistics.
+# This prevents rendered HTML (which is generated from .qmd files) from dominating the repository language breakdown.
+*.html linguist-generated=true
